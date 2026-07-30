@@ -1,0 +1,38 @@
+/* ==========================================
+   SISTEMA DE DISEÑO - BODA GERSON & ISABEL
+   ========================================== */
+
+:root{
+
+    /* ===== PALETA BODA ===== */
+
+    /* 🤍 Blanco perla - 40% (fondo principal) */
+    --color-pearl: #FAF7F5;
+
+    /* 🌿 Verde salvia - 20% (acentos, detalles) */
+    --color-sage: #9CAF88;
+
+    /* 🌸 Rosa malva - 15% (acentos suaves, hover) */
+    --color-mauve: #C9A0A5;
+
+    /* 💜 Lila suave - 10% (detalles delicados) */
+    --color-lilac: #C4B7D6;
+
+    /* 🍷 Guinda - 15% (color fuerte: botones, títulos, dots) */
+    --color-wine: #6B2737;
+
+    /* ===== TEXTO ===== */
+    --color-text: #3A3A3A;
+
+    /* ===== TIPOGRAFÍA ===== */
+    --font-title: "Cormorant Garamond", serif;
+    --font-body: "Montserrat", sans-serif;
+
+    /* Sombras */
+
+    --shadow:0 15px 35px rgba(0,0,0,.15);
+
+      /* ===== UTILIDADES ===== */
+    --transition: all .35s ease;
+    --shadow: 0 10px 30px rgba(0,0,0,.12);
+}

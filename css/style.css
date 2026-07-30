@@ -1,0 +1,1295 @@
+@import url("variables.css");
+
+/*=========================================
+RESET
+=========================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:var(--font-body);
+    background:var(--color-pearl);
+    color:var(--color-text);
+}
+
+/*=========================================
+HERO
+=========================================*/
+
+.hero{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+.guest-greeting{
+    font-size:15px;
+    letter-spacing:2px;
+    margin-bottom:14px;
+    opacity:.9;
+    min-height:20px;
+}
+
+/* Imagen */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("../img/hero.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    animation:zoomHero 20s ease-in-out infinite alternate;
+
+    z-index:0;
+
+}
+
+/* Oscurecer ligeramente */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.10);
+
+    z-index:1;
+
+}
+
+/* Contenido */
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    color:white;
+
+    width:min(90%,700px);
+
+    animation:fadeUp 1.4s ease;
+
+}
+
+/* Texto superior */
+
+.subtitle{
+
+    letter-spacing:8px;
+
+    font-size:14px;
+
+    margin-bottom:20px;
+
+}
+
+/* Nombres */
+
+.hero h1{
+
+    font-family:var(--font-title);
+
+    font-size:82px;
+
+    font-weight:600;
+
+    line-height:1.1;
+
+}
+
+.hero h1 span{
+
+    color:var(--color-mauve);
+
+}
+
+/* Línea */
+
+.divider{
+
+    width:140px;
+
+    height:2px;
+
+    background:rgba(255,255,255,.8);
+
+    margin:30px auto;
+
+}
+
+/* Fecha */
+
+.date{
+
+    font-size:24px;
+
+    letter-spacing:2px;
+
+    margin-bottom:25px;
+
+}
+
+/* Frase */
+
+.phrase{
+
+    line-height:1.9;
+
+    font-size:18px;
+
+    margin-bottom:45px;
+
+}
+
+/* Botón */
+
+.btn-hero{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:var(--color-wine);
+
+    padding:16px 40px;
+
+    border-radius:50px;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow);
+
+}
+
+.btn-hero:hover{
+    background:var(--color-sage);
+    color:white;
+    transform:translateY(-4px);
+}
+
+/* Flecha */
+
+.scroll{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:white;
+
+    font-size:34px;
+
+    animation:float 2s infinite;
+
+    z-index:2;
+
+}
+
+/*=========================================
+ANIMACIONES
+=========================================*/
+
+@keyframes float{
+
+    0%{
+        transform:translate(-50%,0);
+    }
+
+    50%{
+        transform:translate(-50%,10px);
+    }
+
+    100%{
+        transform:translate(-50%,0);
+    }
+
+}
+
+@keyframes zoomHero{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================
+RESPONSIVE
+=========================================*/
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .subtitle{
+        letter-spacing:5px;
+    }
+
+    .date{
+        font-size:18px;
+    }
+
+    .phrase{
+        font-size:16px;
+        line-height:1.8;
+    }
+
+    .btn-hero{
+        padding:14px 30px;
+    }
+
+} /* <-- el media query de arriba se cierra aquí */
+
+/*=========================================
+COUNTDOWN
+=========================================*/
+
+.countdown{
+    margin:40px auto;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.time-box{
+    width:90px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.time-box span{
+    display:block;
+    font-size:34px;
+    font-weight:700;
+}
+
+.time-box small{
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+/* Ajuste responsive para el countdown, en su propio media query */
+@media(max-width:768px){
+
+    .time-box{
+        width:70px;
+        padding:12px;
+    }
+
+    .time-box span{
+        font-size:24px;
+    }
+
+}
+
+.time-box span{
+
+    display:block;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.time-box small{
+
+    font-size:13px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+}
+
+@media(max-width:768px){
+
+.time-box{
+
+    width:70px;
+
+    padding:12px;
+
+}
+
+.time-box span{
+
+    font-size:24px;
+
+}
+
+}
+/*=========================================
+HISTORIA
+=========================================*/
+
+.historia{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    overflow:hidden;
+}
+
+.container{
+    width:min(90%,900px);
+    margin:0 auto;
+}
+
+.subtitle-section{
+    text-align:center;
+    letter-spacing:6px;
+    font-size:13px;
+    color:var(--color-mauve);
+    margin-bottom:10px;
+}
+
+.title-section{
+    text-align:center;
+    font-family:var(--font-title);
+    font-size:44px;
+    color:var(--color-text);
+}
+
+.divider-center{
+    width:80px;
+    height:2px;
+    background:var(--color-wine);
+    margin:25px auto 60px;
+}
+
+/* Línea central */
+
+.timeline{
+    position:relative;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:2px;
+    background:rgba(0,0,0,.12);
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    position:relative;
+    width:50%;
+    padding:0 50px 70px;
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.timeline-item.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.timeline-item:nth-child(odd){
+    left:0;
+    text-align:right;
+}
+
+.timeline-item:nth-child(even){
+    left:50%;
+    text-align:left;
+}
+
+/* Punto en la línea */
+
+.timeline-dot{
+    position:absolute;
+    top:0;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--color-wine);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    box-shadow:var(--shadow);
+    z-index:2;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot{
+    right:-22px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot{
+    left:-22px;
+}
+
+/* Placeholder de imagen */
+
+.timeline-img{
+    width:100%;
+    height:160px;
+    border-radius:16px;
+    margin-bottom:16px;
+    background:linear-gradient(135deg, var(--color-sage), var(--color-lilac));
+    opacity:.3;
+    box-shadow:var(--shadow);
+}
+
+.timeline-date{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--color-mauve);
+    margin-bottom:6px;
+}
+
+.timeline-content h3{
+    font-family:var(--font-title);
+    font-size:26px;
+    margin-bottom:10px;
+    color:var(--color-text);
+}
+
+.timeline-content p{
+    font-size:15px;
+    line-height:1.7;
+    color:rgba(0,0,0,.65);
+}
+
+/*=========================================
+RESPONSIVE HISTORIA
+=========================================*/
+
+@media(max-width:768px){
+
+    .title-section{
+        font-size:32px;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even){
+        width:100%;
+        left:0;
+        text-align:left;
+        padding:0 0 50px 60px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot{
+        left:-2px;
+        right:auto;
+    }
+
+}
+/*=========================================
+CRONOGRAMA
+=========================================*/
+
+.cronograma{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    overflow:hidden;
+}
+
+.schedule{
+    max-width:600px;
+    margin:0 auto;
+}
+
+.schedule-item{
+    display:flex;
+    align-items:flex-start;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    opacity:0;
+    transform:translateX(-20px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+
+.schedule-item.visible{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.schedule-item:last-child{
+    border-bottom:none;
+}
+
+.schedule-time{
+    flex-shrink:0;
+    width:90px;
+    font-family:var(--font-title);
+    font-size:20px;
+    font-weight:600;
+    color:var(--color-wine);
+    padding-top:4px;
+}
+
+.schedule-icon{
+    flex-shrink:0;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--color-sage);
+    opacity:.85;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.schedule-text h3{
+    font-family:var(--font-title);
+    font-size:22px;
+    margin-bottom:4px;
+    color:var(--color-text);
+}
+
+.schedule-text p{
+    font-size:14px;
+    line-height:1.6;
+    color:rgba(0,0,0,.6);
+}
+
+/*=========================================
+RESPONSIVE CRONOGRAMA
+=========================================*/
+
+@media(max-width:768px){
+
+    .schedule-item{
+        gap:14px;
+    }
+
+    .schedule-time{
+        width:70px;
+        font-size:16px;
+    }
+
+    .schedule-icon{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .schedule-text h3{
+        font-size:19px;
+    }
+
+}
+/*=========================================
+LUGARES
+=========================================*/
+
+.lugares{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.places-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    margin-top:20px;
+}
+
+.place-card{
+    background:white;
+    border-radius:20px;
+    padding:36px 30px;
+    width:min(100%,420px);
+    text-align:center;
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.place-card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.place-icon{
+    font-size:36px;
+    margin-bottom:14px;
+}
+
+.place-card h3{
+    font-family:var(--font-title);
+    font-size:26px;
+    margin-bottom:12px;
+    color:var(--color-text);
+}
+
+.place-name{
+    font-weight:600;
+    font-size:16px;
+    margin-bottom:4px;
+    color:var(--color-wine);
+}
+
+.place-address{
+    font-size:14px;
+    color:rgba(0,0,0,.6);
+    margin-bottom:6px;
+}
+
+.place-time{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--color-mauve);
+    margin-bottom:20px;
+}
+
+.place-map{
+    width:100%;
+    height:220px;
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:22px;
+}
+
+.place-map iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.btn-place{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:var(--color-sage);
+    padding:12px 32px;
+    border-radius:50px;
+    font-size:14px;
+    letter-spacing:1px;
+    transition:var(--transition);
+}
+
+.btn-place:hover{
+    background:var(--color-wine);
+    color:white;
+}
+
+/*=========================================
+RESPONSIVE LUGARES
+=========================================*/
+
+@media(max-width:768px){
+
+    .place-card{
+        padding:28px 22px;
+    }
+
+    .place-map{
+        height:180px;
+    }
+
+}
+/*=========================================
+DRESS CODE
+=========================================*/
+
+.dresscode{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.dresscode-intro{
+    max-width:500px;
+    margin:0 auto 50px;
+    font-size:16px;
+    line-height:1.8;
+    color:rgba(0,0,0,.7);
+}
+
+.dresscode-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+    margin-bottom:50px;
+}
+
+.dresscode-card{
+    background:white;
+    border-radius:20px;
+    padding:36px 30px;
+    width:min(100%,300px);
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.dresscode-card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.dresscode-icon{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.dresscode-card h3{
+    font-family:var(--font-title);
+    font-size:24px;
+    margin-bottom:4px;
+    color:var(--color-text);
+}
+
+.dresscode-card p{
+    font-size:14px;
+    color:rgba(0,0,0,.55);
+    margin-bottom:22px;
+}
+
+.swatches{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+}
+
+.swatch{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    display:inline-block;
+}
+
+.dresscode-restricted{
+    max-width:400px;
+    margin:0 auto;
+}
+
+.dresscode-restricted p{
+    font-size:14px;
+    letter-spacing:1px;
+    margin-bottom:16px;
+    color:rgba(0,0,0,.6);
+}
+
+.restricted-colors{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+}
+
+.restricted{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--color-text);
+}
+
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+/*=========================================
+RESPONSIVE DRESS CODE
+=========================================*/
+
+@media(max-width:768px){
+
+    .dresscode-card{
+        padding:28px 22px;
+    }
+
+    .swatch{
+        width:30px;
+        height:30px;
+    }
+
+}
+/*=========================================
+MUSICA
+=========================================*/
+
+.musica{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.musica-intro{
+    max-width:520px;
+    margin:0 auto 40px;
+    font-size:16px;
+    line-height:1.8;
+    color:rgba(0,0,0,.7);
+}
+
+.spotify-embed{
+    max-width:500px;
+    margin:0 auto 60px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+.form-cta{
+    max-width:480px;
+    margin:0 auto;
+    background:white;
+    border-radius:20px;
+    padding:44px 30px;
+    box-shadow:var(--shadow);
+}
+
+.form-cta h3{
+    font-family:var(--font-title);
+    font-size:26px;
+    margin-bottom:10px;
+    color:var(--color-text);
+}
+
+.form-cta p{
+    font-size:14px;
+    color:rgba(0,0,0,.6);
+    margin-bottom:28px;
+}
+
+.btn-form{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:var(--color-wine);
+    padding:16px 42px;
+    border-radius:50px;
+    font-size:15px;
+    letter-spacing:1px;
+    transition:var(--transition);
+}
+
+.btn-form:hover{
+    background:var(--color-sage);
+    color:white;
+    transform:translateY(-3px);
+}
+
+/*=========================================
+RESPONSIVE MUSICA
+=========================================*/
+
+@media(max-width:768px){
+
+    .form-block{
+        padding:28px 12px;
+    }
+
+    .form-embed iframe{
+        width:100%;
+    }
+
+}
+/*=========================================
+RSVP
+=========================================*/
+
+.rsvp{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.rsvp-passes{
+    font-family:var(--font-title);
+    font-size:20px;
+    color:var(--color-wine);
+    margin-bottom:10px;
+    min-height:26px;
+}
+
+.rsvp-intro{
+    max-width:480px;
+    margin:0 auto 40px;
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(0,0,0,.65);
+}
+/*=========================================
+REGALOS
+=========================================*/
+
+.regalo{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.regalo-intro{
+    max-width:480px;
+    margin:0 auto 50px;
+    font-size:16px;
+    line-height:1.8;
+    color:rgba(0,0,0,.7);
+}
+
+.regalo-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+}
+
+.regalo-card{
+    background:white;
+    border-radius:20px;
+    padding:36px 30px;
+    width:min(100%,320px);
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.regalo-card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.regalo-icon{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.regalo-card h3{
+    font-family:var(--font-title);
+    font-size:23px;
+    margin-bottom:8px;
+    color:var(--color-text);
+}
+
+.regalo-card p{
+    font-size:14px;
+    color:rgba(0,0,0,.6);
+    margin-bottom:24px;
+    line-height:1.6;
+}
+
+.qr-box{
+    width:180px;
+    height:180px;
+    margin:0 auto;
+    padding:12px;
+    background:white;
+    border:1px solid rgba(0,0,0,.08);
+    border-radius:14px;
+}
+
+.qr-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+@media(max-width:768px){
+
+    .regalo-card{
+        padding:28px 22px;
+    }
+
+    .qr-box{
+        width:150px;
+        height:150px;
+    }
+    .yape-number{
+    margin-top:14px;
+    font-family:var(--font-title);
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:2px;
+    color:var(--color-wine);
+}
+
+}
+/*=========================================
+INFO NIÑOS
+=========================================*/
+
+.info-ninos{
+    padding:80px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.info-ninos-card{
+    max-width:520px;
+    margin:0 auto;
+    background:white;
+    border-radius:20px;
+    padding:44px 34px;
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.info-ninos-card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.info-ninos-icon{
+    font-size:32px;
+    margin-bottom:14px;
+}
+
+.info-ninos-card h3{
+    font-family:var(--font-title);
+    font-size:26px;
+    margin-bottom:16px;
+    color:var(--color-text);
+}
+
+.info-ninos-card p{
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(0,0,0,.65);
+}
+
+.info-ninos-thanks{
+    margin-top:18px;
+    font-weight:500;
+    color:var(--color-wine);
+}
+
+@media(max-width:768px){
+
+    .info-ninos-card{
+        padding:34px 24px;
+    }
+
+}
+/*=========================================
+GALERIA
+=========================================*/
+
+.galeria{
+    padding:100px 0;
+    background:
+        linear-gradient(rgba(250,247,245,.92), rgba(250,247,245,.92)),
+        url("../img/fondo-floral.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.gallery-item{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    background:linear-gradient(135deg, var(--color-sage), var(--color-lilac));
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .6s ease, transform .6s ease;
+}
+
+.gallery-item.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .4s ease;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+}
+
+/* Lightbox */
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:85vh;
+    border-radius:10px;
+}
+
+.lightbox-close{
+    position:absolute;
+    top:24px;
+    right:34px;
+    color:white;
+    font-size:38px;
+    cursor:pointer;
+    line-height:1;
+}
+
+/*=========================================
+RESPONSIVE GALERIA
+=========================================*/
+
+@media(max-width:768px){
+
+    .gallery-grid{
+        grid-template-columns:repeat(2, 1fr);
+        gap:10px;
+    }
+
+}
