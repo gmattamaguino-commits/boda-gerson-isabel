@@ -1453,11 +1453,49 @@ GRACIAS (CIERRE)
     left:0;
     width:100%;
     height:100%;
-    background:
-        linear-gradient(rgba(250,247,245,.35), rgba(250,247,245,.35)),
-        url("img/fondo-floral.jpg");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-color:var(--color-pearl);
     z-index:-1;
+    pointer-events:none;
+}
+
+/* Desktop: imagen completa (la proporción sí funciona bien aquí) */
+@media(min-width:769px){
+
+    .bg-fixed{
+        background-image:
+            linear-gradient(rgba(250,247,245,.35), rgba(250,247,245,.35)),
+            url("img/fondo-floral.jpg");
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+    }
+
+}
+
+/* Móvil: solo acentos discretos en 2 esquinas, sin estirar la imagen */
+@media(max-width:768px){
+
+    .bg-fixed::before,
+    .bg-fixed::after{
+        content:"";
+        position:absolute;
+        width:100%;
+        height:180px;
+        background-image:url("img/fondo-floral.jpg");
+        background-repeat:no-repeat;
+        opacity:.55;
+    }
+
+    .bg-fixed::before{
+        top:0;
+        background-position:top center;
+        background-size:150% auto;
+    }
+
+    .bg-fixed::after{
+        bottom:0;
+        background-position:bottom center;
+        background-size:150% auto;
+    }
+
 }
