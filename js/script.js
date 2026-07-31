@@ -369,6 +369,56 @@ window.showMap = function (containerId, coordinates) {
     `;
 };
 /* =====================================================
+   APERTURA DE LA INVITACIÓN
+===================================================== */
+
+function initInvitationOpening() {
+    const cover = document.getElementById(
+        "invitation-cover"
+    );
+
+    const openButton = document.getElementById(
+        "open-invitation"
+    );
+
+    if (!cover || !openButton) {
+        return;
+    }
+
+    document.body.classList.add(
+        "invitation-closed"
+    );
+
+    openButton.addEventListener(
+        "click",
+        () => {
+            cover.classList.add("is-opening");
+
+            document.body.classList.remove(
+                "invitation-closed"
+            );
+
+            document.body.classList.add(
+                "invitation-open"
+            );
+
+            /*
+             * Primero se abre el sobre y sale la carta.
+             * Después desaparece la pantalla de apertura.
+             */
+            window.setTimeout(() => {
+                cover.classList.add("is-hidden");
+            }, 1350);
+
+            window.setTimeout(() => {
+                cover.remove();
+                document.body.style.overflow = "";
+            }, 2300);
+        },
+        { once: true }
+    );
+}
+/* =====================================================
    FORMULARIO PRIVADO PARA REGALOS
 ===================================================== */
 
@@ -424,6 +474,7 @@ function configureGiftForm() {
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+        initInvitationOpening();
         showGuestGreeting();
         startCountdown();
         showPassesMessage();
