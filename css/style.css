@@ -30,7 +30,7 @@ HERO
 
     width:100%;
 
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
 
@@ -39,6 +39,73 @@ HERO
     align-items:center;
 
     overflow:hidden;
+
+    padding:100px 0;
+
+}
+.blessing-block{
+    margin-top:30px;
+    padding-top:26px;
+    margin-bottom:30px;
+    border-top:1px solid rgba(255,255,255,.25);
+}
+
+.blessing-phrase{
+    font-family:var(--font-title);
+    font-style:italic;
+    font-size:16px;
+    margin-bottom:18px;
+    opacity:.95;
+}
+
+.parents-row{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.parents-col{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:120px;
+}
+
+.parents-label{
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    opacity:.7;
+    margin-bottom:3px;
+}
+
+.parents-name{
+    font-size:13px;
+    line-height:1.5;
+}
+
+.godparents-name{
+    font-size:14px;
+    margin-top:4px;
+}
+
+@media(max-width:768px){
+
+    .parents-row{
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+    }
+
+    .blessing-phrase{
+        font-size:14px;
+    }
+
+    .parents-name{
+        font-size:13px;
+    }
 
 }
 .guest-greeting{
