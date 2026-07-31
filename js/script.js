@@ -1,252 +1,394 @@
-function getGuestData(){
+"use strict";
 
+/* =====================================================
+   DATOS PERSONALIZADOS DEL INVITADO
+   Ejemplo de URL:
+   ?n=Familia%20Pérez&p=4
+===================================================== */
+
+function getGuestData() {
     const params = new URLSearchParams(window.location.search);
 
-    const nombre = params.get("n");
-    const pases = params.get("p");
-
-    return { nombre, pases };
-
+    return {
+        nombre: params.get("n"),
+        pases: params.get("p")
+    };
 }
 
-function showGuestGreeting(){
+const guestData = getGuestData();
 
-    const { nombre, pases } = getGuestData();
+function showGuestGreeting() {
+    const greetingElement = document.getElementById("guest-greeting");
 
-    const greetingEl = document.getElementById("guest-greeting");
-
-    if(nombre && greetingEl){
-
-        greetingEl.textContent = `Querid@s ${decodeURIComponent(nombre)}`;
-
+    if (guestData.nombre && greetingElement) {
+        greetingElement.textContent = `Querid@s ${guestData.nombre}`;
     }
-
-    return { nombre, pases };
-
 }
 
-const guestData = showGuestGreeting();
-const weddingDate = new Date("October 24, 2026 12:00:00").getTime();
+/* =====================================================
+   CUENTA REGRESIVA
+===================================================== */
 
-const timer = setInterval(function () {
+function startCountdown() {
+    const countdownElement = document.querySelector(".countdown");
 
-    const now = new Date().getTime();
-
-    const distance = weddingDate - now;
-
-    if(distance <= 0){
-
-        clearInterval(timer);
-
-        document.querySelector(".countdown").innerHTML =
-        "<h3>💍 ¡Hoy es nuestro gran día!</h3>";
-
+    if (!countdownElement) {
         return;
-
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    /*
+     * Fecha de la boda:
+     * 24 de octubre de 2026
+     * 12:00 p. m.
+     * Zona horaria de Perú: UTC-5
+     */
+    const weddingDate = new Date(
+        "2026-10-24T12:00:00-05:00"
+    ).getTime();
 
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    function updateCountdown() {
+        const currentDate = Date.now();
+        const distance = weddingDate - currentDate;
 
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = String(days).padStart(3,'0');
-
-    document.getElementById("hours").textContent = String(hours).padStart(2,'0');
-
-    document.getElementById("minutes").textContent = String(minutes).padStart(2,'0');
-
-    document.getElementById("seconds").textContent = String(seconds).padStart(2,'0');
-
-},1000);
-const storyCards = document.querySelectorAll(".story-card");
-
-const storyObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-
-    });
-
-}, { threshold: 0.15 });
-
-storyCards.forEach((card) => storyObserver.observe(card));
-
-const scheduleCards = document.querySelectorAll(".schedule-card");
-
-const scheduleObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-
-    });
-
-}, { threshold: 0.15 });
-
-scheduleCards.forEach((card) => scheduleObserver.observe(card));
-const placeCards = document.querySelectorAll(".place-card");
-
-const placeObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-
-    });
-
-}, { threshold: 0.2 });
-
-placeCards.forEach((card) => placeObserver.observe(card));
-const dresscodeCards = document.querySelectorAll(".dresscode-card");
-
-const dresscodeObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-
-    });
-
-}, { threshold: 0.2 });
-
-dresscodeCards.forEach((card) => dresscodeObserver.observe(card));
-
-
-function showPassesMessage(){
-
-    const passesEl = document.getElementById("rsvp-passes");
-
-    if(!passesEl) return;
-
-    if(guestData && guestData.pases){
-
-        const total = parseInt(guestData.pases, 10);
-
-        let dotsHTML = "";
-
-        for(let i = 1; i <= total; i++){
-
-            dotsHTML += `
-                <div class="pass-dot-wrap">
-                    <div class="pass-dot filled"></div>
-                    <span class="pass-number">${i}</span>
-                </div>
+        if (distance <= 0) {
+            countdownElement.innerHTML = `
+                <h3 class="countdown-finished">
+                    💍 ¡Hoy es nuestro gran día!
+                </h3>
             `;
 
+            return false;
         }
 
-        passesEl.innerHTML = `
-            <p class="passes-label">Hemos reservado</p>
-            <div class="passes-dots">${dotsHTML}</div>
-            <p class="passes-label" style="margin-top:14px;">Lugares en su honor</p>
-        `;
+        const days = Math.floor(
+            distance / (1000 * 60 * 60 * 24)
+        );
 
-    }
+        const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
 
-}
+        const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
 
-showPassesMessage();
-const regaloCards = document.querySelectorAll(".regalo-card");
+        const seconds = Math.floor(
+            (distance % (1000 * 60)) / 1000
+        );
 
-const regaloObserver = new IntersectionObserver((entries) => {
+        const values = {
+            days,
+            hours,
+            minutes,
+            seconds
+        };
 
-    entries.forEach((entry) => {
+        Object.entries(values).forEach(([id, value]) => {
+            const element = document.getElementById(id);
 
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-        }
-
-    });
-
-}, { threshold: 0.2 });
-
-regaloCards.forEach((card) => regaloObserver.observe(card));
-const infoNinosCard = document.querySelector(".info-ninos-card");
-
-if(infoNinosCard){
-
-    const infoNinosObserver = new IntersectionObserver((entries) => {
-
-        entries.forEach((entry) => {
-
-            if(entry.isIntersecting){
-                entry.target.classList.add("visible");
+            if (!element) {
+                return;
             }
 
+            const minimumDigits = id === "days" ? 3 : 2;
+
+            element.textContent = String(value).padStart(
+                minimumDigits,
+                "0"
+            );
         });
 
-    }, { threshold: 0.2 });
+        return true;
+    }
 
-    infoNinosObserver.observe(infoNinosCard);
+    updateCountdown();
 
-}
-function openLightbox(el){
+    const timer = setInterval(() => {
+        const countdownIsActive = updateCountdown();
 
-    const img = el.querySelector("img");
-
-    if(!img || !img.src || img.naturalWidth === 0) return;
-
-    document.getElementById("lightbox-img").src = img.src;
-    document.getElementById("lightbox").classList.add("active");
-
-}
-
-function closeLightbox(){
-
-    document.getElementById("lightbox").classList.remove("active");
-
-}
-
-const galleryItems = document.querySelectorAll(".gallery-item");
-
-const galleryObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("visible");
+        if (!countdownIsActive) {
+            clearInterval(timer);
         }
+    }, 1000);
+}
 
+/* =====================================================
+   CANTIDAD DE PASES
+===================================================== */
+
+function showPassesMessage() {
+    const passesElement = document.getElementById(
+        "rsvp-passes"
+    );
+
+    if (!passesElement || !guestData.pases) {
+        return;
+    }
+
+    const totalPasses = Number.parseInt(
+        guestData.pases,
+        10
+    );
+
+    /*
+     * Evita valores inválidos o cantidades
+     * exageradamente grandes desde la URL.
+     */
+    if (
+        !Number.isInteger(totalPasses) ||
+        totalPasses < 1 ||
+        totalPasses > 20
+    ) {
+        return;
+    }
+
+    const passesHTML = Array.from(
+        { length: totalPasses },
+        (_, index) => `
+            <div class="pass-dot-wrap">
+                <div class="pass-dot filled"></div>
+                <span class="pass-number">
+                    ${index + 1}
+                </span>
+            </div>
+        `
+    ).join("");
+
+    passesElement.innerHTML = `
+        <p class="passes-label">
+            Hemos reservado
+        </p>
+
+        <div class="passes-dots">
+            ${passesHTML}
+        </div>
+
+        <p
+            class="passes-label"
+            style="margin-top:14px;"
+        >
+            Lugares en su honor
+        </p>
+    `;
+}
+
+/* =====================================================
+   ANIMACIONES AL HACER SCROLL
+===================================================== */
+
+function initRevealAnimations() {
+    const elements = document.querySelectorAll(
+        `
+        .subtitle-section,
+        .title-section,
+        .divider-center,
+        .story-card,
+        .schedule-card,
+        .place-card,
+        .dresscode-card,
+        .form-cta,
+        .regalo-card,
+        .info-ninos-card,
+        .gallery-item,
+        .song-player,
+        .gracias-content
+        `
+    );
+
+    elements.forEach((element, index) => {
+        element.classList.add("reveal");
+
+        /*
+         * Retraso escalonado para que los elementos
+         * no aparezcan todos al mismo tiempo.
+         */
+        const delay = (index % 4) * 90;
+
+        element.style.setProperty(
+            "--reveal-delay",
+            `${delay}ms`
+        );
     });
 
-}, { threshold: 0.15 });
+    /*
+     * Compatibilidad con navegadores antiguos.
+     */
+    if (!("IntersectionObserver" in window)) {
+        elements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
 
-galleryItems.forEach((item) => galleryObserver.observe(item));
-function playSong(el){
+        return;
+    }
 
-    const videoId = el.dataset.video;
+    const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                entry.target.classList.add(
+                    "is-visible"
+                );
+
+                /*
+                 * Dejamos de observar el elemento una vez
+                 * que apareció para mejorar el rendimiento.
+                 */
+                currentObserver.unobserve(
+                    entry.target
+                );
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    elements.forEach((element) => {
+        observer.observe(element);
+    });
+}
+
+/* =====================================================
+   GALERÍA Y LIGHTBOX
+===================================================== */
+
+window.openLightbox = function (galleryItem) {
+    const image = galleryItem.querySelector("img");
+
+    const lightbox = document.getElementById(
+        "lightbox"
+    );
+
+    const lightboxImage = document.getElementById(
+        "lightbox-img"
+    );
+
+    if (!image || !lightbox || !lightboxImage) {
+        return;
+    }
+
+    lightboxImage.src =
+        image.currentSrc || image.src;
+
+    lightboxImage.alt =
+        image.alt || "Fotografía ampliada";
+
+    lightbox.classList.add("active");
+
+    /*
+     * Evita que la página siga desplazándose
+     * mientras la fotografía está abierta.
+     */
+    document.body.style.overflow = "hidden";
+};
+
+window.closeLightbox = function () {
+    const lightbox = document.getElementById(
+        "lightbox"
+    );
+
+    if (!lightbox) {
+        return;
+    }
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+};
+
+/* =====================================================
+   REPRODUCTOR DE MÚSICA
+===================================================== */
+
+window.playSong = function (playerElement) {
+    const videoId = playerElement.dataset.video;
+
+    if (!videoId) {
+        return;
+    }
 
     const wrapper = document.createElement("div");
-    wrapper.className = "song-player-embed";
-    wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="Nuestra canción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 
-    el.replaceWith(wrapper);
+    wrapper.className =
+        "youtube-embed reveal is-visible";
 
-}
-function showMap(containerId, coords){
+    wrapper.innerHTML = `
+        <iframe
+            src="https://www.youtube.com/embed/${encodeURIComponent(
+                videoId
+            )}?autoplay=1"
+            title="Nuestra canción"
+            frameborder="0"
+            allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture
+            "
+            allowfullscreen>
+        </iframe>
+    `;
 
-    const container = document.getElementById(containerId);
+    playerElement.replaceWith(wrapper);
+};
 
-    if(!container) return;
+/* =====================================================
+   MAPAS
+===================================================== */
 
-    container.innerHTML = `<iframe
-        src="https://www.google.com/maps?q=${coords}&z=16&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>`;
+window.showMap = function (containerId, coordinates) {
+    const mapContainer = document.getElementById(
+        containerId
+    );
 
-}
+    if (!mapContainer) {
+        return;
+    }
+
+    mapContainer.innerHTML = `
+        <iframe
+            src="https://www.google.com/maps?q=${encodeURIComponent(
+                coordinates
+            )}&z=16&output=embed"
+            title="Mapa de ubicación"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    `;
+};
+
+/* =====================================================
+   INICIALIZACIÓN
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        showGuestGreeting();
+        startCountdown();
+        showPassesMessage();
+        initRevealAnimations();
+
+        /*
+         * Permite cerrar una fotografía ampliada
+         * presionando la tecla Escape.
+         */
+        document.addEventListener(
+            "keydown",
+            (event) => {
+                if (event.key === "Escape") {
+                    window.closeLightbox();
+                }
+            }
+        );
+    }
+);

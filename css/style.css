@@ -17,14 +17,9 @@ html{
 body{
     font-family:var(--font-body);
     color:var(--color-text);
-    background-color:var(--color-pearl);
-    background-image:
-        linear-gradient(rgba(250,247,245,.35), rgba(250,247,245,.35)),
-        url("../img/fondo-floral.jpg");
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    background-repeat:no-repeat;
+    background:var(--color-pearl);
+    min-width:320px;
+    overflow-x:hidden;
 }
 
 @media(max-width:768px){
@@ -43,7 +38,7 @@ HERO
 
     width:100%;
 
-    min-height:100vh;
+    min-height:100svh;
 
     display:flex;
 
@@ -52,7 +47,7 @@ HERO
     align-items:center;
 
     overflow:hidden;
-
+    isolation:isolate;
     padding:100px 0;
 
 }
@@ -132,25 +127,32 @@ HERO
 /* Imagen */
 
 .hero::before{
-
     content:"";
-
     position:absolute;
-
-    inset:0;
-
+    inset:-3%;
     background:
-    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url("../img/hero.jpg");
-
+        linear-gradient(rgba(0,0,0,.48),rgba(0,0,0,.48)),
+        url("../img/hero.jpg");
     background-size:cover;
-
     background-position:center;
-
+    filter:blur(0);
     animation:zoomHero 20s ease-in-out infinite alternate;
-
     z-index:0;
+}
 
+/* Capa adicional: en móvil permite ver la foto completa sin cortar detalles */
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),
+        url("../img/hero.jpg");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:contain;
+    opacity:0;
+    z-index:.5;
 }
 
 /* Oscurecer ligeramente */
@@ -1449,53 +1451,217 @@ GRACIAS (CIERRE)
 }   
 .bg-fixed{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:var(--color-pearl);
-    z-index:-1;
+    inset:0;
+    z-index:-2;
     pointer-events:none;
+    background-color:var(--color-pearl);
+    background-image:
+        linear-gradient(rgba(250,247,245,.52),rgba(250,247,245,.52)),
+        url("../img/fondo-floral.jpg");
+    background-repeat:repeat-y;
+    background-position:top center;
+    background-size:100% auto;
 }
 
-/* Desktop: imagen completa (la proporción sí funciona bien aquí) */
-@media(min-width:769px){
-
-    .bg-fixed{
-        background-image:
-            linear-gradient(rgba(250,247,245,.35), rgba(250,247,245,.35)),
-            url("img/fondo-floral.jpg");
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-    }
-
+/* Velo continuo para evitar cortes visibles entre secciones */
+.bg-fixed::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 8% 22%, rgba(156,175,136,.13), transparent 24%),
+        radial-gradient(circle at 92% 38%, rgba(201,160,165,.13), transparent 25%),
+        radial-gradient(circle at 18% 72%, rgba(196,183,214,.11), transparent 24%),
+        radial-gradient(circle at 88% 88%, rgba(107,39,55,.08), transparent 22%);
 }
 
-/* Móvil: solo acentos discretos en 2 esquinas, sin estirar la imagen */
 @media(max-width:768px){
-
-    .bg-fixed::before,
-    .bg-fixed::after{
-        content:"";
-        position:absolute;
-        width:100%;
-        height:180px;
-        background-image:url("img/fondo-floral.jpg");
-        background-repeat:no-repeat;
-        opacity:.55;
-    }
-
-    .bg-fixed::before{
-        top:0;
+    .bg-fixed{
+        /* En móvil se muestra el ancho completo: no se recortan las esquinas */
+        background-size:100% auto;
         background-position:top center;
-        background-size:150% auto;
+        background-repeat:repeat-y;
+    }
+}
+
+@media(max-width:768px){
+    .hero{
+        min-height:100svh;
+        padding:72px 14px 48px;
     }
 
-    .bg-fixed::after{
-        bottom:0;
-        background-position:bottom center;
-        background-size:150% auto;
+    .hero::before{
+        inset:-8%;
+        background-position:center;
+        filter:blur(18px);
+        transform:scale(1.14);
+        animation:none;
     }
 
+    .hero::after{
+        opacity:1;
+    }
+
+    .overlay{
+        background:linear-gradient(
+            to bottom,
+            rgba(20,15,16,.26),
+            rgba(20,15,16,.42)
+        );
+    }
+
+    .hero-content{
+        width:min(94%,620px);
+        padding:20px 10px;
+    }
+
+    .countdown{
+        gap:8px;
+        flex-wrap:nowrap;
+        width:100%;
+    }
+
+    .time-box{
+        width:clamp(60px,21vw,76px);
+        padding:11px 6px;
+    }
+
+    .time-box span{
+        font-size:clamp(22px,7vw,28px);
+    }
+
+    .time-box small{
+        font-size:10px;
+    }
+}
+
+
+/*=========================================
+MEJORAS VISUALES Y ANIMACIONES
+=========================================*/
+
+section:not(.hero){
+    position:relative;
+    background:transparent;
+}
+
+.story-card,
+.schedule-card,
+.place-card,
+.dresscode-card,
+.form-cta,
+.regalo-card,
+.info-ninos-card,
+.song-player{
+    background:var(--color-surface);
+    border:1px solid rgba(255,255,255,.72);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    box-shadow:var(--shadow);
+}
+
+.story-card:hover,
+.schedule-card:hover,
+.place-card:hover,
+.dresscode-card:hover,
+.regalo-card:hover,
+.song-player:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow-hover);
+}
+
+.subtitle-section{
+    color:var(--color-wine);
+}
+
+.divider-center{
+    background:linear-gradient(90deg,transparent,var(--color-gold),transparent);
+    height:1px;
+}
+
+/* Revelado general al hacer scroll */
+.reveal{
+    opacity:0;
+    transform:translateY(34px);
+    transition:
+        opacity .8s cubic-bezier(.2,.65,.3,1),
+        transform .8s cubic-bezier(.2,.65,.3,1);
+    transition-delay:var(--reveal-delay,0ms);
+}
+
+.reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Entrada escalonada del hero */
+.hero-content > *{
+    opacity:0;
+    transform:translateY(22px);
+    animation:heroItemIn .8s ease forwards;
+}
+
+.hero-content > *:nth-child(1){animation-delay:.10s}
+.hero-content > *:nth-child(2){animation-delay:.22s}
+.hero-content > *:nth-child(3){animation-delay:.34s}
+.hero-content > *:nth-child(4){animation-delay:.46s}
+.hero-content > *:nth-child(5){animation-delay:.58s}
+.hero-content > *:nth-child(6){animation-delay:.70s}
+.hero-content > *:nth-child(7){animation-delay:.82s}
+.hero-content > *:nth-child(8){animation-delay:.94s}
+.hero-content > *:nth-child(9){animation-delay:1.06s}
+
+@keyframes heroItemIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Brillo discreto del botón principal */
+.btn-hero,
+.btn-form,
+.btn-place{
+    position:relative;
+    overflow:hidden;
+}
+
+.btn-hero::after,
+.btn-form::after,
+.btn-place::after{
+    content:"";
+    position:absolute;
+    top:-60%;
+    left:-35%;
+    width:28%;
+    height:220%;
+    background:rgba(255,255,255,.28);
+    transform:rotate(18deg) translateX(-260%);
+    transition:transform .75s ease;
+}
+
+.btn-hero:hover::after,
+.btn-form:hover::after,
+.btn-place:hover::after{
+    transform:rotate(18deg) translateX(620%);
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+    }
+}
+
+.yape-number{
+    margin-top:14px;
+    font-family:var(--font-title);
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:2px;
+    color:var(--color-wine);
 }

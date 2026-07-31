@@ -3,36 +3,28 @@
    ========================================== */
 
 :root{
+    /* Paleta de la boda */
+    --color-pearl:#FAF7F5;
+    --color-sage:#9CAF88;
+    --color-mauve:#C9A0A5;
+    --color-lilac:#C4B7D6;
+    --color-wine:#6B2737;
+    --color-gold:#C9A96E;
 
-    /* ===== PALETA BODA ===== */
+    /* Texto y superficies */
+    --color-text:#3A3A3A;
+    --color-surface:rgba(255,255,255,.78);
+    --color-surface-strong:rgba(255,255,255,.92);
 
-    /* 🤍 Blanco perla - 40% (fondo principal) */
-    --color-pearl: #FAF7F5;
+    /* Tipografía */
+    --font-title:"Cormorant Garamond",serif;
+    --font-body:"Montserrat",sans-serif;
 
-    /* 🌿 Verde salvia - 20% (acentos, detalles) */
-    --color-sage: #9CAF88;
-
-    /* 🌸 Rosa malva - 15% (acentos suaves, hover) */
-    --color-mauve: #C9A0A5;
-
-    /* 💜 Lila suave - 10% (detalles delicados) */
-    --color-lilac: #C4B7D6;
-
-    /* 🍷 Guinda - 15% (color fuerte: botones, títulos, dots) */
-    --color-wine: #6B2737;
-
-    /* ===== TEXTO ===== */
-    --color-text: #3A3A3A;
-
-    /* ===== TIPOGRAFÍA ===== */
-    --font-title: "Cormorant Garamond", serif;
-    --font-body: "Montserrat", sans-serif;
-
-    /* Sombras */
-
-    --shadow:0 15px 35px rgba(0,0,0,.15);
-
-      /* ===== UTILIDADES ===== */
-    --transition: all .35s ease;
-    --shadow: 0 10px 30px rgba(0,0,0,.12);
+    /* Utilidades */
+    --radius-sm:14px;
+    --radius-md:22px;
+    --radius-lg:32px;
+    --shadow:0 14px 40px rgba(55,38,44,.11);
+    --shadow-hover:0 20px 55px rgba(55,38,44,.16);
+    --transition:all .35s ease;
 }
