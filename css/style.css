@@ -3819,3 +3819,34 @@ body.invitation-open .hero {
         line-height:1.35;
     }
 }
+/* =========================================
+   INFORMACIÓN DE ESTACIONAMIENTO
+========================================= */
+
+.place-parking-note{
+    width:fit-content;
+    max-width:100%;
+
+    margin:0 auto 14px;
+    padding:7px 13px;
+
+    border:1px solid rgba(156,175,136,.22);
+    border-radius:999px;
+
+    color:rgba(0,0,0,.62);
+    background:rgba(156,175,136,.13);
+
+    font-size:11px;
+    line-height:1.4;
+    text-align:center;
+}
+
+@media(max-width:600px){
+
+    .place-parking-note{
+        margin-bottom:11px;
+        padding:6px 10px;
+
+        font-size:10px;
+    }
+}
