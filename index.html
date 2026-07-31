@@ -186,9 +186,16 @@
         </p>
 
         <div class="song-player" onclick="playSong(this)" data-video="4BnHvbRlchA">
-    <div class="play-button">▶</div>
-    <p class="song-label">Nuestra canción</p>
-</div>
+
+      <div class="song-cover">
+          <img src="https://img.youtube.com/vi/4BnHvbRlchA/hqdefault.jpg" alt="Bésame - Ricardo Montaner">
+          <div class="song-play-overlay">▶</div>
+      </div>
+
+      <div class="song-info">
+          <h3 class="song-title">Bésame</h3>
+          <p class="song-artist">Ricardo Montaner</p>
+      </div>
 
     </div>
 
@@ -200,55 +207,53 @@
         <p class="subtitle-section">CRONOGRAMA</p>
         <h2 class="title-section">Nuestro gran día</h2>
         <div class="divider-center"></div>
-        <div class="schedule">
+        
+<div class="schedule-grid">
 
-    <div class="schedule-item">
-        <div class="schedule-time">12:00 PM</div>
-        <div class="schedule-icon">⛪</div>
-        <div class="schedule-text">
-            <h3>Ceremonia religiosa</h3>
-            <p>Nos daremos el "sí, acepto"</p>
-        </div>
+    <div class="schedule-card">
+        <div class="schedule-card-time">12:00 PM</div>
+        <div class="schedule-card-icon">⛪</div>
+        <h3>Ceremonia religiosa</h3>
+        <p>Nos daremos el "sí, acepto"</p>
     </div>
 
-    <div class="schedule-item">
-        <div class="schedule-time">5:30 PM</div>
-        <div class="schedule-icon">🥂</div>
-        <div class="schedule-text">
-            <h3>Recepción</h3>
-            <p>Apertura del local e ingreso de invitados</p>
-        </div>
+    <div class="schedule-card">
+        <div class="schedule-card-time">5:30 PM</div>
+        <div class="schedule-card-icon">🎉</div>
+        <h3>Recepción</h3>
+        <p>Apertura del local e ingreso de invitados</p>
     </div>
 
-    <div class="schedule-item">
-        <div class="schedule-time">7:00 PM</div>
-        <div class="schedule-icon">🍽️</div>
-        <div class="schedule-text">
-            <h3>Cena</h3>
-            <p>Disfrutemos juntos de la cena</p>
-        </div>
+    <div class="schedule-card">
+      <div class="schedule-card-time">6:30 PM</div>
+      <div class="schedule-card-icon">🥂</div>
+      <h3>Brindis</h3>
+      <p>Un brindis por el amor</p>
     </div>
 
-    <div class="schedule-item">
-        <div class="schedule-time">8:00 PM</div>
-        <div class="schedule-icon">💃</div>
-        <div class="schedule-text">
-            <h3>Primer baile y torta</h3>
-            <p>El primer baile como esposos</p>
-        </div>
+    <div class="schedule-card">
+        <div class="schedule-card-time">7:00 PM</div>
+        <div class="schedule-card-icon">🍽️</div>
+        <h3>Cena</h3>
+        <p>Disfrutemos juntos de la cena</p>
     </div>
 
-    <div class="schedule-item">
-        <div class="schedule-time">10:00 PM</div>
-        <div class="schedule-icon">🎶</div>
-        <div class="schedule-text">
-            <h3>Hora loca y fiesta</h3>
-            <p>¡A celebrar hasta el final!</p>
-        </div>
+    <div class="schedule-card">
+        <div class="schedule-card-time">8:00 PM</div>
+        <div class="schedule-card-icon">💃</div>
+        <h3>Primer baile y torta</h3>
+        <p>El primer baile como esposos</p>
     </div>
 
+    <div class="schedule-card">
+        <div class="schedule-card-time">10:00 PM</div>
+        <div class="schedule-card-icon">🎶</div>
+        <h3>Hora loca y fiesta</h3>
+        <p>¡A celebrar hasta el final!</p>
+    </div>
+
+</div>
 </div>    
-    </div>
 
 </section>
 <section id="lugares" class="lugares">
@@ -271,14 +276,12 @@
                 <p class="place-address">Jr. Bolognesi 398, Lurín 15823</p>
                 <p class="place-time">12:00 PM</p>
 
-                <div class="place-map">
-                    <iframe
-                        src="https://www.google.com/maps?q=-12.273534552941586,-76.86851985456943&z=16&output=embed"
-                        allowfullscreen
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+                <div class="place-map" id="map-ceremonia">
+    <button class="map-toggle" onclick="showMap('map-ceremonia', '-12.273534552941586,-76.86851985456943')">
+        <span class="map-toggle-icon">📍</span>
+        Ver mapa
+    </button>
+</div>
 
                 <a href="https://www.google.com/maps/place/Catedral+San+Pedro+-+Di%C3%B3cesis+de+Lur%C3%ADn/@-12.2734835,-76.8692538,18.76z/data=!4m6!3m5!1s0x9105bd1e9d4dcfed:0xb13b9b8c07b903d9!8m2!3d-12.2735812!4d-76.8685248!16s%2Fg%2F12hm4xfvn"
                    target="_blank"
@@ -299,14 +302,12 @@
                 <p class="place-address">Q2HW+MQ3, Villa El Salvador 15842</p>
                 <p class="place-time">5:30 PM</p>
 
-                <div class="place-map">
-                    <iframe
-                        src="https://www.google.com/maps?q=-12.220766964841483,-76.95302608275681&z=16&output=embed"
-                        allowfullscreen
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+                <div class="place-map" id="map-recepcion">
+    <button class="map-toggle" onclick="showMap('map-recepcion', '-12.220766964841483,-76.95302608275681')">
+        <span class="map-toggle-icon">📍</span>
+        Ver mapa
+    </button>
+</div>
 
                 <a href="https://www.google.com/maps/place/EL+JARDIN+DE+VILLA/@-12.220302,-76.9538591,18.96z/data=!4m6!3m5!1s0x9105bb3d73804431:0x590118f0c9622e88!8m2!3d-12.2208564!4d-76.9530855!16s%2Fg%2F11fk3xxh4p"
                    target="_blank"

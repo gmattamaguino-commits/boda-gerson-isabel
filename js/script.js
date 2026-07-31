@@ -78,7 +78,7 @@ const storyObserver = new IntersectionObserver((entries) => {
 
 storyCards.forEach((card) => storyObserver.observe(card));
 
-const scheduleItems = document.querySelectorAll(".schedule-item");
+const scheduleCards = document.querySelectorAll(".schedule-card");
 
 const scheduleObserver = new IntersectionObserver((entries) => {
 
@@ -90,9 +90,9 @@ const scheduleObserver = new IntersectionObserver((entries) => {
 
     });
 
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 
-scheduleItems.forEach((item) => scheduleObserver.observe(item));
+scheduleCards.forEach((card) => scheduleObserver.observe(card));
 const placeCards = document.querySelectorAll(".place-card");
 
 const placeObserver = new IntersectionObserver((entries) => {
@@ -220,5 +220,19 @@ function playSong(el){
     wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="Nuestra canción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 
     el.replaceWith(wrapper);
+
+}
+function showMap(containerId, coords){
+
+    const container = document.getElementById(containerId);
+
+    if(!container) return;
+
+    container.innerHTML = `<iframe
+        src="https://www.google.com/maps?q=${coords}&z=16&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>`;
 
 }
