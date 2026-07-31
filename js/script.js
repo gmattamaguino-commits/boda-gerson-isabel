@@ -309,39 +309,185 @@ window.closeLightbox = function () {
    REPRODUCTOR DE MÚSICA
 ===================================================== */
 
-window.playSong = function (playerElement) {
-    const videoId = playerElement.dataset.video;
+function initAudioPlayer() {
+    const audio = document.getElementById(
+        "wedding-audio"
+    );
 
-    if (!videoId) {
+    const player = document.getElementById(
+        "audio-player"
+    );
+
+    const playButton = document.getElementById(
+        "audio-play-button"
+    );
+
+    const volumeButton = document.getElementById(
+        "audio-volume-button"
+    );
+
+    const progress = document.getElementById(
+        "audio-progress"
+    );
+
+    const currentTimeElement = document.getElementById(
+        "audio-current-time"
+    );
+
+    const durationElement = document.getElementById(
+        "audio-duration"
+    );
+
+    if (
+        !audio ||
+        !player ||
+        !playButton ||
+        !volumeButton ||
+        !progress
+    ) {
         return;
     }
 
-    const wrapper = document.createElement("div");
+    function formatAudioTime(seconds) {
+        if (!Number.isFinite(seconds)) {
+            return "00:00";
+        }
 
-    wrapper.className =
-        "youtube-embed reveal is-visible";
+        const minutes = Math.floor(seconds / 60);
 
-    wrapper.innerHTML = `
-        <iframe
-            src="https://www.youtube.com/embed/${encodeURIComponent(
-                videoId
-            )}?autoplay=1"
-            title="Nuestra canción"
-            frameborder="0"
-            allow="
-                accelerometer;
-                autoplay;
-                clipboard-write;
-                encrypted-media;
-                gyroscope;
-                picture-in-picture
-            "
-            allowfullscreen>
-        </iframe>
-    `;
+        const remainingSeconds = Math.floor(
+            seconds % 60
+        );
 
-    playerElement.replaceWith(wrapper);
-};
+        return `${String(minutes).padStart(2, "0")}:${
+            String(remainingSeconds).padStart(2, "0")
+        }`;
+    }
+
+    function updateDuration() {
+        durationElement.textContent =
+            formatAudioTime(audio.duration);
+    }
+
+    function updateProgress() {
+        if (!Number.isFinite(audio.duration)) {
+            return;
+        }
+
+        const percentage =
+            (audio.currentTime / audio.duration) * 100;
+
+        progress.value = percentage;
+
+        progress.style.setProperty(
+            "--audio-progress",
+            `${percentage}%`
+        );
+
+        currentTimeElement.textContent =
+            formatAudioTime(audio.currentTime);
+    }
+
+    playButton.addEventListener(
+        "click",
+        async () => {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                } else {
+                    audio.pause();
+                }
+            } catch (error) {
+                console.error(
+                    "No se pudo reproducir el audio:",
+                    error
+                );
+            }
+        }
+    );
+
+    audio.addEventListener("play", () => {
+        player.classList.add("is-playing");
+
+        playButton.setAttribute(
+            "aria-label",
+            "Pausar canción"
+        );
+    });
+
+    audio.addEventListener("pause", () => {
+        player.classList.remove("is-playing");
+
+        playButton.setAttribute(
+            "aria-label",
+            "Reproducir canción"
+        );
+    });
+
+    audio.addEventListener(
+        "loadedmetadata",
+        updateDuration
+    );
+
+    audio.addEventListener(
+        "durationchange",
+        updateDuration
+    );
+
+    audio.addEventListener(
+        "timeupdate",
+        updateProgress
+    );
+
+    progress.addEventListener("input", () => {
+        if (!Number.isFinite(audio.duration)) {
+            return;
+        }
+
+        const percentage = Number(progress.value);
+
+        audio.currentTime =
+            (percentage / 100) * audio.duration;
+
+        progress.style.setProperty(
+            "--audio-progress",
+            `${percentage}%`
+        );
+    });
+
+    volumeButton.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+
+        player.classList.toggle(
+            "is-muted",
+            audio.muted
+        );
+
+        volumeButton.textContent =
+            audio.muted ? "×" : "♫";
+
+        volumeButton.setAttribute(
+            "aria-label",
+            audio.muted
+                ? "Activar sonido"
+                : "Silenciar canción"
+        );
+    });
+
+    audio.addEventListener("ended", () => {
+        player.classList.remove("is-playing");
+
+        progress.value = 0;
+
+        progress.style.setProperty(
+            "--audio-progress",
+            "0%"
+        );
+
+        currentTimeElement.textContent = "00:00";
+    });
+}
+
 
 /* =====================================================
    MAPAS
@@ -470,12 +616,149 @@ function configureGiftForm() {
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
+/* =====================================================
+   PERSONALIZACIÓN DEL INVITADO
+===================================================== */
 
+function initGuestPersonalization() {
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+    const guestName = (
+        params.get("n") || ""
+    ).trim();
+
+    const passesValue = Number.parseInt(
+        params.get("p"),
+        10
+    );
+
+    const passes = Number.isFinite(passesValue)
+        && passesValue > 0
+        ? passesValue
+        : 0;
+
+    const letterGuest = document.getElementById(
+        "invitation-guest-name"
+    );
+
+    const heroGreeting = document.getElementById(
+        "guest-greeting"
+    );
+
+    const guestCard = document.getElementById(
+        "guest-invitation-card"
+    );
+
+    const guestCardName = document.getElementById(
+        "guest-card-name"
+    );
+
+    const guestCardPasses = document.getElementById(
+        "guest-card-passes"
+    );
+
+    const passIcons = document.getElementById(
+        "guest-pass-icons"
+    );
+
+    /*
+     * Sin nombre personalizado:
+     * mantenemos una invitación general.
+     */
+    if (!guestName) {
+        if (letterGuest) {
+            letterGuest.textContent =
+                "Nuestros familiares y amigos";
+        }
+
+        if (heroGreeting) {
+            heroGreeting.textContent = "";
+        }
+
+        return;
+    }
+
+    if (letterGuest) {
+        letterGuest.textContent = guestName;
+    }
+
+    if (heroGreeting) {
+        heroGreeting.textContent =
+            `Bienvenidos, ${guestName}`;
+    }
+
+    if (!guestCard) {
+    console.error(
+        "No se encontró #guest-invitation-card"
+    );
+    return;
+}
+
+if (!guestCardName) {
+    console.error(
+        "No se encontró #guest-card-name"
+    );
+    return;
+}
+
+if (!guestCardPasses) {
+    console.error(
+        "No se encontró #guest-card-passes"
+    );
+    return;
+}
+
+ guestCard.hidden = false;
+guestCard.removeAttribute("hidden");
+guestCard.style.display = "block";
+
+guestCardName.textContent = guestName;
+
+    if (passes === 1) {
+        guestCardPasses.textContent =
+            "Hemos reservado 1 lugar en tu honor.";
+    } else if (passes > 1) {
+        guestCardPasses.textContent =
+            `Hemos reservado ${passes} lugares en su honor.`;
+    } else {
+        guestCardPasses.textContent =
+            "Será un honor compartir este día contigo.";
+    }
+
+    if (passIcons && passes > 0) {
+        passIcons.innerHTML = "";
+
+        /*
+         * Se limita visualmente a 10 íconos para evitar
+         * que una URL incorrecta rompa el diseño.
+         */
+        const visiblePasses = Math.min(passes, 10);
+
+        for (
+            let index = 0;
+            index < visiblePasses;
+            index += 1
+        ) {
+            const icon = document.createElement("span");
+
+            icon.className = "guest-pass-icon";
+            icon.textContent = "♥";
+
+            icon.style.animationDelay =
+                `${index * 90}ms`;
+
+            passIcons.appendChild(icon);
+        }
+    }
+}
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+        initGuestPersonalization();
+        initAudioPlayer();
         initInvitationOpening();
-        showGuestGreeting();
         startCountdown();
         showPassesMessage();
         initRevealAnimations();

@@ -44,9 +44,14 @@
         <div class="envelope-back"></div>
 
         <div class="invitation-letter">
-            <p class="letter-small">
-                Tenemos el honor de invitarte
-            </p>
+<p class="letter-small">
+    Tenemos el honor de invitar a
+</p>
+
+<p
+    id="invitation-guest-name"
+    class="invitation-guest-name"
+></p>
 
             <h2>
                 Gerson
@@ -132,6 +137,70 @@
             pero la nuestra es nuestra favorita."
         </p>
 
+<div class="hero-audio-player" id="audio-player">
+
+    <audio
+        id="wedding-audio"
+        preload="metadata"
+    >
+        <source
+            src="audio/nuestra-cancion.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+    <button
+        type="button"
+        id="audio-play-button"
+        class="hero-audio-play"
+        aria-label="Reproducir canción"
+    >
+        <span class="play-icon">▶</span>
+        <span class="pause-icon">Ⅱ</span>
+    </button>
+
+    <div class="hero-audio-info">
+
+        <span class="hero-audio-label">
+            Nuestra canción
+        </span>
+
+        <div class="hero-audio-progress-row">
+
+            <span id="audio-current-time">
+                00:00
+            </span>
+
+            <input
+                type="range"
+                id="audio-progress"
+                class="hero-audio-progress"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Progreso de la canción"
+            >
+
+            <span id="audio-duration">
+                00:00
+            </span>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        id="audio-volume-button"
+        class="hero-audio-volume"
+        aria-label="Silenciar canción"
+    >
+        ♫
+    </button>
+
+</div>
+
         <a href="#bendicion" class="btn-hero">
             Descubre los detalles
         </a>
@@ -177,38 +246,34 @@
             </div>
 
         </div>
+        <div
+    id="guest-invitation-card"
+    class="guest-invitation-card"
+    hidden
+>
+
+    <p class="guest-card-label">
+        ESTA INVITACIÓN HA SIDO PREPARADA PARA
+    </p>
+
+    <h3 id="guest-card-name"></h3>
+
+    <div class="guest-card-divider"></div>
+
+    <p id="guest-card-passes"></p>
+
+    <div
+        id="guest-pass-icons"
+        class="guest-pass-icons"
+        aria-hidden="true"
+    ></div>
+
+</div>
 
     </div>
 
 </section>
 
-<section id="musica" class="musica">
-
-    <div class="container">
-
-        <p class="subtitle-section">NUESTRA CANCIÓN</p>
-        <h2 class="title-section">La música de nuestra historia</h2>
-        <div class="divider-center"></div>
-
-        <p class="musica-intro">
-            Esta canción es especial para nosotros.
-        </p>
-
-        <div class="song-player" onclick="playSong(this)" data-video="4BnHvbRlchA">
-
-      <div class="song-cover">
-          <img src="https://img.youtube.com/vi/4BnHvbRlchA/hqdefault.jpg" alt="Bésame - Ricardo Montaner">
-          <div class="song-play-overlay">▶</div>
-      </div>
-
-      <div class="song-info">
-          <h3 class="song-title">Bésame</h3>
-          <p class="song-artist">Ricardo Montaner</p>
-      </div>
-
-    </div>
-
-</section>
 <section id="cronograma" class="cronograma">
 
     <div class="container">

@@ -1773,17 +1773,20 @@ section:not(.hero){
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 
     padding: 24px;
 
     background:
-        radial-gradient(
-            circle at center,
-            rgba(255, 252, 247, 0.96),
-            rgba(235, 225, 218, 0.98)
-        );
+    radial-gradient(
+        circle at center,
+        #fffdf9 0%,
+        #f3e9e2 70%,
+        #eadbd2 100%
+    );
 
     overflow: hidden;
+    isolation:isolate;
 
     transition:
         opacity 0.9s ease,
@@ -1798,7 +1801,7 @@ section:not(.hero){
     height: 420px;
     border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.25;
+    opacity: 0.14;
     pointer-events: none;
 }
 
@@ -1907,10 +1910,10 @@ section:not(.hero){
 }
 
 .invitation-letter h2 {
-    margin: 8px 0;
+    margin: 5px 0;
 
     font-family: var(--font-title, Georgia, serif);
-    font-size: clamp(34px, 7vw, 52px);
+    font-size: clamp(30px, 6vw, 44px);
     font-weight: 500;
 
     color: var(--color-wine, #6b2737);
@@ -2143,18 +2146,15 @@ body.invitation-open .hero {
 
 @media (max-width: 600px) {
 
-    .invitation-envelope {
-        width: min(330px, 88vw);
-        aspect-ratio: 1.12 / 1;
-    }
+ .invitation-envelope {
+    filter:drop-shadow(
+        0 22px 30px rgba(67,38,42,.22)
+    );
+}
 
-    .invitation-letter {
-        left: 8%;
-        right: 8%;
-        top: 8%;
-        min-height: 70%;
-        padding: 22px 16px;
-    }
+.invitation-letter {
+    background:#fffdf9;
+}
 
     .invitation-letter h2 {
         font-size: 34px;
@@ -2183,4 +2183,459 @@ body.invitation-open .hero {
     .hero {
         transition-duration: 0.01ms;
     }
+}
+
+/* =========================================
+   AJUSTES DE ESPACIADO
+========================================= */
+
+.hero{
+    padding:65px 0 45px;
+}
+
+.divider{
+    margin:22px auto;
+}
+
+.countdown{
+    margin:28px auto;
+}
+
+.phrase{
+    line-height:1.7;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.scroll{
+    margin-top:22px;
+}
+
+/* Reduce espacios verticales sin amontonar el contenido */
+.historia,
+.cronograma,
+.lugares,
+.dresscode,
+.rsvp,
+.regalo,
+.galeria,
+.family-section{
+    padding-top:70px;
+    padding-bottom:70px;
+}
+
+.info-ninos{
+    padding-top:55px;
+    padding-bottom:55px;
+}
+
+.divider-center{
+    margin:20px auto 38px;
+}
+
+.dresscode-intro,
+.regalo-intro{
+    margin-bottom:35px;
+}
+
+.gracias{
+    padding-top:70px;
+}
+
+
+/* =========================================
+   REPRODUCTOR DENTRO DEL HERO
+========================================= */
+
+.hero-audio-player{
+    width:min(500px,92vw);
+    margin:20px auto 22px;
+    padding:11px 15px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    border:1px solid rgba(255,255,255,.34);
+    border-radius:18px;
+
+    background:rgba(35,20,25,.38);
+
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.hero-audio-play,
+.hero-audio-volume{
+    flex:0 0 auto;
+
+    display:grid;
+    place-items:center;
+
+    padding:0;
+    border:1px solid rgba(255,255,255,.36);
+    border-radius:50%;
+
+    color:#fff;
+    background:rgba(107,39,55,.90);
+
+    cursor:pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.hero-audio-play{
+    width:43px;
+    height:43px;
+    font-size:15px;
+}
+
+.hero-audio-volume{
+    width:33px;
+    height:33px;
+    font-size:15px;
+}
+
+.hero-audio-play:hover,
+.hero-audio-volume:hover{
+    transform:scale(1.06);
+    background:var(--color-wine);
+    box-shadow:0 7px 18px rgba(0,0,0,.22);
+}
+
+.hero-audio-play:focus-visible,
+.hero-audio-volume:focus-visible{
+    outline:2px solid #fff;
+    outline-offset:3px;
+}
+
+.hero-audio-info{
+    flex:1;
+    min-width:0;
+}
+
+.hero-audio-label{
+    display:block;
+    margin-bottom:6px;
+
+    color:rgba(255,255,255,.94);
+
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:2.4px;
+    text-transform:uppercase;
+}
+
+.hero-audio-progress-row{
+    display:grid;
+    grid-template-columns:37px minmax(0,1fr) 37px;
+    align-items:center;
+    gap:7px;
+
+    color:rgba(255,255,255,.80);
+    font-size:10px;
+    font-variant-numeric:tabular-nums;
+}
+
+.hero-audio-progress{
+    width:100%;
+    height:4px;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    border:0;
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            to right,
+            #fff 0%,
+            #fff var(--audio-progress,0%),
+            rgba(255,255,255,.24) var(--audio-progress,0%),
+            rgba(255,255,255,.24) 100%
+        );
+
+    cursor:pointer;
+}
+
+.hero-audio-progress::-webkit-slider-thumb{
+    width:13px;
+    height:13px;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    border:2px solid #fff;
+    border-radius:50%;
+
+    background:var(--color-wine);
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+}
+
+.hero-audio-progress::-moz-range-thumb{
+    width:10px;
+    height:10px;
+
+    border:2px solid #fff;
+    border-radius:50%;
+
+    background:var(--color-wine);
+}
+
+.hero-audio-player .pause-icon{
+    display:none;
+}
+
+.hero-audio-player.is-playing .play-icon{
+    display:none;
+}
+
+.hero-audio-player.is-playing .pause-icon{
+    display:inline;
+}
+
+.hero-audio-player.is-muted .hero-audio-volume{
+    opacity:.55;
+}
+
+
+/* =========================================
+   AJUSTES RESPONSIVE
+========================================= */
+
+@media(max-width:768px){
+
+    .hero{
+        min-height:100svh;
+        padding:50px 12px 30px;
+    }
+
+    .historia,
+    .cronograma,
+    .lugares,
+    .dresscode,
+    .rsvp,
+    .regalo,
+    .galeria,
+    .family-section{
+        padding-top:50px;
+        padding-bottom:50px;
+    }
+
+    .info-ninos{
+        padding-top:42px;
+        padding-bottom:42px;
+    }
+
+    .divider-center{
+        margin:16px auto 30px;
+    }
+
+    .title-section{
+        font-size:clamp(32px,9vw,40px);
+        line-height:1.08;
+    }
+
+    .phrase{
+        font-size:15px;
+        line-height:1.65;
+        margin-bottom:8px;
+    }
+
+    .countdown{
+        margin:20px auto;
+    }
+
+    .scroll{
+        margin-top:18px;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero-audio-player{
+        width:min(350px,92vw);
+        margin:16px auto 18px;
+        padding:10px 11px;
+        gap:9px;
+        border-radius:15px;
+    }
+
+    .hero-audio-play{
+        width:39px;
+        height:39px;
+    }
+
+    .hero-audio-volume{
+        width:30px;
+        height:30px;
+    }
+
+    .hero-audio-label{
+        font-size:8px;
+        letter-spacing:1.7px;
+    }
+
+    .hero-audio-progress-row{
+        grid-template-columns:32px minmax(0,1fr) 32px;
+        gap:5px;
+        font-size:9px;
+    }
+}
+/* =========================================
+   PERSONALIZACIÓN DEL INVITADO
+========================================= */
+
+.invitation-guest-name{
+    max-width:82%;
+    margin:6px auto 0;
+
+    color:var(--color-wine,#6b2737);
+
+    font-family:var(--font-title,Georgia,serif);
+    font-size:clamp(17px,4vw,23px);
+    font-weight:600;
+    line-height:1.05;
+}
+
+.guest-invitation-card{
+    width:min(700px,100%);
+    margin:28px auto 0;
+    padding:32px 28px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,253,249,.94),
+            rgba(244,234,229,.90)
+        );
+
+    border:1px solid rgba(107,39,55,.14);
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+}
+
+.guest-invitation-card[hidden]{
+    display:none;
+}
+
+.guest-card-label{
+    margin-bottom:10px;
+
+    color:var(--color-wine);
+
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+}
+
+.guest-invitation-card h3{
+    margin:0;
+
+    color:var(--color-text);
+
+    font-family:var(--font-title);
+    font-size:clamp(30px,6vw,42px);
+    font-weight:600;
+    line-height:1.15;
+}
+
+.guest-card-divider{
+    width:65px;
+    height:1px;
+    margin:17px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--color-wine),
+            transparent
+        );
+}
+
+.guest-invitation-card > p:last-of-type{
+    margin:0;
+
+    color:rgba(0,0,0,.65);
+
+    font-size:15px;
+    line-height:1.6;
+}
+
+.guest-pass-icons{
+    display:flex;
+    justify-content:center;
+    gap:9px;
+
+    margin-top:16px;
+}
+
+.guest-pass-icon{
+    width:30px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid rgba(107,39,55,.25);
+    border-radius:50%;
+
+    color:var(--color-wine);
+    background:rgba(255,255,255,.55);
+
+    font-size:14px;
+
+    animation:guestPassAppear .5s ease both;
+}
+
+@keyframes guestPassAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(8px) scale(.85);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@media(max-width:600px){
+
+    .guest-invitation-card{
+        margin-top:22px;
+        padding:26px 18px;
+        border-radius:20px;
+    }
+
+    .guest-card-label{
+        font-size:9px;
+        letter-spacing:1.8px;
+    }
+
+    .guest-invitation-card h3{
+        font-size:31px;
+    }
+
+    .guest-invitation-card > p:last-of-type{
+        font-size:14px;
+    }
+}
+#guest-invitation-card:not([hidden]){
+    display:block !important;
 }
