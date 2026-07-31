@@ -941,11 +941,18 @@ MUSICA
     color:rgba(0,0,0,.7);
 }
 
-.spotify-embed{
+.youtube-embed{
     max-width:500px;
     margin:0 auto 60px;
     border-radius:16px;
+    overflow:hidden;
     box-shadow:var(--shadow);
+    aspect-ratio:16/9;
+}
+
+.youtube-embed iframe{
+    width:100%;
+    height:100%;
 }
 .form-cta{
     max-width:480px;
@@ -1290,6 +1297,20 @@ RESPONSIVE GALERIA
     .gallery-grid{
         grid-template-columns:repeat(2, 1fr);
         gap:10px;
+    }
+
+}
+@media(max-width:768px){
+
+    .historia,
+    .cronograma,
+    .lugares,
+    .dresscode,
+    .musica,
+    .regalo,
+    .info-ninos,
+    .galeria{
+        background-attachment:scroll;
     }
 
 }
