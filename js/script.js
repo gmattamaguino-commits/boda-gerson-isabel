@@ -930,18 +930,116 @@ function configureRSVPForm() {
         "rsvp-form-button"
     );
 
+    const rsvpSummary = document.getElementById(
+        "rsvp-summary"
+    );
+
+    const summaryName = document.getElementById(
+        "rsvp-summary-name"
+    );
+
+    const summaryPasses = document.getElementById(
+        "rsvp-summary-passes"
+    );
+
+    const warning = document.getElementById(
+        "rsvp-form-warning"
+    );
+
     if (!rsvpButton) {
+        return;
+    }
+
+    const guestName = (
+        guestData.nombre || ""
+    ).trim();
+
+    const guestCode = (
+        guestData.codigo || ""
+    ).trim();
+
+    const passesValue = Number.parseInt(
+        guestData.pases,
+        10
+    );
+
+    const validPasses =
+        Number.isInteger(passesValue) &&
+        passesValue >= 1 &&
+        passesValue <= 20;
+
+    const invitationIsValid =
+        Boolean(guestName) &&
+        Boolean(guestCode) &&
+        validPasses;
+
+    /*
+     * Mostramos el resumen únicamente cuando
+     * existe un nombre personalizado.
+     */
+    if (
+        guestName &&
+        rsvpSummary &&
+        summaryName &&
+        summaryPasses
+    ) {
+        rsvpSummary.hidden = false;
+
+        summaryName.textContent =
+            guestName;
+
+        if (passesValue === 1) {
+            summaryPasses.textContent =
+                "Tienes 1 lugar reservado.";
+        } else if (validPasses) {
+            summaryPasses.textContent =
+                `Tienen ${passesValue} lugares reservados.`;
+        } else {
+            summaryPasses.textContent =
+                "Consulta la cantidad de lugares asignados.";
+        }
+    }
+
+    /*
+     * Sin nombre, pases o código válidos,
+     * el formulario queda bloqueado.
+     */
+    if (!invitationIsValid) {
+        rsvpButton.href = "#";
+
+        rsvpButton.removeAttribute(
+            "target"
+        );
+
+        rsvpButton.classList.add(
+            "is-disabled"
+        );
+
+        rsvpButton.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+        if (warning) {
+            warning.hidden = false;
+        }
+
+        rsvpButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                if (warning) {
+                    warning.hidden = false;
+                }
+            }
+        );
+
         return;
     }
 
     const formBaseURL =
         "https://docs.google.com/forms/d/e/1FAIpQLSfxyaz7drSzgiMviKdOuDYxbv3Oo6Djhbj-38066ikbl6WSmA/viewform";
-
-    const guestName =
-        guestData.nombre || "";
-
-    const guestPasses =
-        guestData.pases || "1";
 
     const formParams = new URLSearchParams({
         usp: "pp_url",
@@ -950,12 +1048,92 @@ function configureRSVPForm() {
             guestName,
 
         "entry.120770457":
-            guestPasses
+            String(passesValue),
+
+        "entry.1314277754":
+            guestCode
     });
 
     rsvpButton.href =
         `${formBaseURL}?${formParams.toString()}`;
+
+    rsvpButton.classList.remove(
+        "is-disabled"
+    );
+
+    rsvpButton.removeAttribute(
+        "aria-disabled"
+    );
+
+    if (warning) {
+        warning.hidden = true;
+    }
 }
+/* =====================================================
+   RESUMEN PERSONALIZADO DEL RSVP
+===================================================== */
+
+function showRSVPSummary() {
+    const summary = document.getElementById(
+        "rsvp-summary"
+    );
+
+    const summaryName = document.getElementById(
+        "rsvp-summary-name"
+    );
+
+    const summaryPasses = document.getElementById(
+        "rsvp-summary-passes"
+    );
+
+    if (
+        !summary ||
+        !summaryName ||
+        !summaryPasses
+    ) {
+        console.error(
+            "No se encontraron los elementos del resumen RSVP"
+        );
+
+        return;
+    }
+
+    const guestName = (
+        guestData.nombre || ""
+    ).trim();
+
+    const passes = Number.parseInt(
+        guestData.pases,
+        10
+    );
+
+    if (!guestName) {
+        summary.hidden = true;
+        return;
+    }
+
+    summaryName.textContent =
+        guestName;
+
+    if (passes === 1) {
+        summaryPasses.textContent =
+            "Tienes 1 lugar reservado.";
+    } else if (
+        Number.isInteger(passes) &&
+        passes > 1
+    ) {
+        summaryPasses.textContent =
+            `Tienen ${passes} lugares reservados.`;
+    } else {
+        summaryPasses.textContent =
+            "Consulta la cantidad de lugares asignados.";
+    }
+
+    summary.hidden = false;
+    summary.removeAttribute("hidden");
+    summary.style.display = "flex";
+}
+
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
@@ -971,6 +1149,7 @@ document.addEventListener(
         initRevealAnimations();
         configureGiftForm();
         configureRSVPForm();
+        showRSVPSummary();
 
         document.addEventListener(
             "keydown",

@@ -3112,3 +3112,352 @@ body.invitation-open .hero {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================
+   RSVP PERSONALIZADO
+========================================= */
+
+.rsvp-summary{
+    max-width:480px;
+    margin:0 auto 22px;
+    padding:24px 26px;
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    text-align:left;
+
+    background:var(--color-surface);
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.rsvp-summary[hidden]{
+    display:none;
+}
+
+.rsvp-summary-icon{
+    width:54px;
+    height:54px;
+    flex:0 0 54px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(156,175,136,.22);
+
+    font-size:25px;
+}
+
+.rsvp-summary-content{
+    min-width:0;
+}
+
+.rsvp-summary-label{
+    margin:0 0 4px;
+
+    color:var(--color-wine);
+
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+.rsvp-summary h3{
+    margin:0 0 4px;
+
+    font-family:var(--font-title);
+    font-size:27px;
+    line-height:1.15;
+
+    color:var(--color-text);
+}
+
+.rsvp-summary-passes{
+    margin:0;
+
+    color:rgba(0,0,0,.62);
+
+    font-size:14px;
+    line-height:1.5;
+}
+
+.rsvp-limit-note{
+    max-width:480px;
+    margin:-20px auto 24px;
+
+    color:rgba(0,0,0,.5);
+
+    font-size:12px;
+    line-height:1.5;
+}
+
+.rsvp-actions{
+    text-align:center;
+}
+
+.rsvp-form-warning{
+    max-width:420px;
+    margin:14px auto 0;
+
+    color:var(--color-wine);
+
+    font-size:12px;
+    line-height:1.5;
+}
+
+.btn-form.is-disabled{
+    cursor:not-allowed;
+    pointer-events:auto;
+
+    opacity:.48;
+
+    transform:none;
+    box-shadow:none;
+}
+
+.rsvp-song-card{
+    margin-top:22px;
+
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr) auto;
+    gap:14px;
+    align-items:center;
+
+    max-width:620px;
+    padding:22px 24px;
+
+    text-align:left;
+}
+
+.rsvp-song-icon{
+    width:46px;
+    height:46px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(196,183,214,.24);
+
+    font-size:22px;
+}
+
+.rsvp-song-content h3{
+    margin:0 0 3px;
+}
+
+.rsvp-song-content p{
+    margin:0;
+}
+
+.rsvp-song-card .btn-form{
+    white-space:nowrap;
+}
+
+
+/* =========================================
+   RSVP EN CELULAR
+========================================= */
+
+@media(max-width:768px){
+
+    .rsvp-summary{
+        margin-bottom:16px;
+        padding:16px;
+
+        gap:12px;
+
+        border-radius:17px;
+    }
+
+    .rsvp-summary-icon{
+        width:42px;
+        height:42px;
+        flex-basis:42px;
+
+        font-size:19px;
+    }
+
+    .rsvp-summary-label{
+        font-size:9px;
+        letter-spacing:1.5px;
+    }
+
+    .rsvp-summary h3{
+        font-size:21px;
+    }
+
+    .rsvp-summary-passes{
+        font-size:12px;
+    }
+
+    .rsvp-limit-note{
+        margin:-9px auto 18px;
+
+        font-size:11px;
+    }
+
+    .rsvp-song-card{
+        grid-template-columns:40px minmax(0,1fr);
+        grid-template-areas:
+            "icon content"
+            "button button";
+
+        gap:9px 11px;
+
+        padding:16px;
+    }
+
+    .rsvp-song-icon{
+        grid-area:icon;
+
+        width:38px;
+        height:38px;
+
+        font-size:18px;
+    }
+
+    .rsvp-song-content{
+        grid-area:content;
+    }
+
+    .rsvp-song-content h3{
+        font-size:19px;
+    }
+
+    .rsvp-song-content p{
+        font-size:11px;
+        line-height:1.4;
+    }
+
+    .rsvp-song-card .btn-form{
+        grid-area:button;
+
+        width:100%;
+        padding:10px 15px;
+
+        text-align:center;
+    }
+}
+/* =========================================
+   TARJETA DE CONFIRMACIÓN RSVP
+========================================= */
+
+.rsvp-confirm-card{
+    margin-top:22px;
+
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr) auto;
+    gap:14px;
+    align-items:center;
+
+    max-width:620px;
+    padding:22px 24px;
+
+    text-align:left;
+}
+
+.rsvp-confirm-icon{
+    width:46px;
+    height:46px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(156,175,136,.22);
+
+    font-size:22px;
+}
+
+.rsvp-confirm-content{
+    min-width:0;
+}
+
+.rsvp-confirm-content h3{
+    margin:0 0 3px;
+
+    font-family:var(--font-title);
+    font-size:24px;
+    line-height:1.15;
+
+    color:var(--color-text);
+}
+
+.rsvp-confirm-content p{
+    margin:0;
+
+    color:rgba(0,0,0,.62);
+
+    font-size:13px;
+    line-height:1.5;
+}
+
+.rsvp-confirm-card .btn-form{
+    white-space:nowrap;
+}
+
+.rsvp-confirm-card .rsvp-form-warning{
+    margin-top:8px;
+
+    color:var(--color-wine);
+
+    font-size:11px;
+}
+@media(max-width:768px){
+
+    .rsvp-confirm-card{
+        grid-template-columns:40px minmax(0,1fr);
+        grid-template-areas:
+            "icon content"
+            "button button";
+
+        gap:9px 11px;
+
+        padding:16px;
+    }
+
+    .rsvp-confirm-icon{
+        grid-area:icon;
+
+        width:38px;
+        height:38px;
+
+        font-size:18px;
+    }
+
+    .rsvp-confirm-content{
+        grid-area:content;
+    }
+
+    .rsvp-confirm-content h3{
+        font-size:19px;
+    }
+
+    .rsvp-confirm-content p{
+        font-size:11px;
+        line-height:1.4;
+    }
+
+    .rsvp-confirm-card .btn-form{
+        grid-area:button;
+
+        width:100%;
+        padding:10px 15px;
+
+        text-align:center;
+    }
+}

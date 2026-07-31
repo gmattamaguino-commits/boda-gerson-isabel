@@ -456,37 +456,121 @@
 
     <div class="container">
 
-        <p class="subtitle-section">RSVP</p>
-        <h2 class="title-section">Confirma tu asistencia</h2>
-        <div class="divider-center"></div>
-
-        <div id="rsvp-passes" class="rsvp-passes"></div>
-
-        <p class="rsvp-intro">
-            Por favor confírmanos antes del <strong>1 de octubre</strong> para poder organizar todo con cariño.
+        <p class="subtitle-section">
+            RSVP
         </p>
 
-        <div class="form-cta">
+        <h2 class="title-section">
+            Confirma tu asistencia
+        </h2>
+
+        <div class="divider-center"></div>
+
+        <div
+    id="rsvp-summary"
+    class="rsvp-summary"
+    hidden
+>
+    <div
+        class="rsvp-summary-icon"
+        aria-hidden="true"
+    >
+        ✉️
+    </div>
+
+    <div class="rsvp-summary-content">
+
+        <p class="rsvp-summary-label">
+            INVITACIÓN PARA
+        </p>
+
+        <h3 id="rsvp-summary-name"></h3>
+
+        <p
+            id="rsvp-summary-passes"
+            class="rsvp-summary-passes"
+        ></p>
+
+    </div>
+</div>
+
+        <div class="form-cta rsvp-confirm-card">
+
+    <div
+        class="rsvp-confirm-icon"
+        aria-hidden="true"
+    >
+        ✅
+    </div>
+
+    <div class="rsvp-confirm-content">
+
+        <h3>
+            Confirma tu asistencia
+        </h3>
+
+        <p>
+            Confírmanos antes del
+            <strong>1 de octubre de 2026</strong>.
+            Los lugares indicados corresponden al máximo
+            de asistentes asignados.
+        </p>
+
+        <p
+            id="rsvp-form-warning"
+            class="rsvp-form-warning"
+            hidden
+        >
+            Abre el enlace personalizado que recibiste
+            para confirmar tu asistencia.
+        </p>
+
+    </div>
+
+    <a
+        href="#"
+        id="rsvp-form-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-form"
+    >
+        Confirmar
+    </a>
+
+</div>
+
+        <div class="form-cta rsvp-song-card">
+
+            <div
+                class="rsvp-song-icon"
+                aria-hidden="true"
+            >
+                🎵
+            </div>
+
+            <div class="rsvp-song-content">
+
+                <h3>
+                    ¿Qué canción no puede faltar?
+                </h3>
+
+                <p>
+                    Cuéntanos tu tema favorito y lo incluiremos
+                    en la lista para el DJ.
+                </p>
+
+            </div>
 
             <a
-    href="#"
-    id="rsvp-form-button"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-form"
->
-    Confirmar asistencia
-</a>
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe6MJg2xiOGVkVqOeCAp7S0diQTWPH5PskBaF_kjnglJaM5cw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-form"
+            >
+                Sugerir canción
+            </a>
 
         </div>
-        <div class="form-cta" style="margin-top:24px;">
-            <h3>¿Qué canción no puede faltar?</h3>
-            <p>Cuéntanos tu tema favorito y lo incluimos en la lista para el DJ.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6MJg2xiOGVkVqOeCAp7S0diQTWPH5PskBaF_kjnglJaM5cw/viewform"
-               target="_blank" rel="noopener" class="btn-form">
-                Sugerir una canción
-            </a>
-            </div>
 
     </div>
 
