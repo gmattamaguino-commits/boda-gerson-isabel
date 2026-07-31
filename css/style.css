@@ -3727,3 +3727,54 @@ body.invitation-open .hero {
         width:100%;
     }
 }
+/* =========================================
+   BOTONES DE LUGARES DEL MISMO TAMAÑO
+========================================= */
+
+.place-actions{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+    width:100%;
+    max-width:310px;
+    margin:0 auto;
+}
+
+.place-actions .place-map,
+.place-actions .btn-place{
+    width:100%;
+    margin:0;
+}
+
+.place-actions .map-toggle,
+.place-actions .btn-place{
+    width:100%;
+    min-width:0;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+    line-height:1;
+    white-space:nowrap;
+}
+@media(max-width:480px){
+
+    .place-actions{
+        max-width:100%;
+        gap:8px;
+    }
+
+    .place-actions .map-toggle,
+    .place-actions .btn-place{
+        height:40px;
+        padding:0 8px;
+        font-size:11px;
+    }
+}
