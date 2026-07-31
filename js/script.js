@@ -62,9 +62,9 @@ const timer = setInterval(function () {
     document.getElementById("seconds").textContent = String(seconds).padStart(2,'0');
 
 },1000);
-const timelineItems = document.querySelectorAll(".timeline-item");
+const storyCards = document.querySelectorAll(".story-card");
 
-const observer = new IntersectionObserver((entries) => {
+const storyObserver = new IntersectionObserver((entries) => {
 
     entries.forEach((entry) => {
 
@@ -74,9 +74,10 @@ const observer = new IntersectionObserver((entries) => {
 
     });
 
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 
-timelineItems.forEach((item) => observer.observe(item));
+storyCards.forEach((card) => storyObserver.observe(card));
+
 const scheduleItems = document.querySelectorAll(".schedule-item");
 
 const scheduleObserver = new IntersectionObserver((entries) => {
@@ -210,3 +211,14 @@ const galleryObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 galleryItems.forEach((item) => galleryObserver.observe(item));
+function playSong(el){
+
+    const videoId = el.dataset.video;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "song-player-embed";
+    wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="Nuestra canción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+    el.replaceWith(wrapper);
+
+}
