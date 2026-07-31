@@ -3778,3 +3778,44 @@ body.invitation-open .hero {
         font-size:11px;
     }
 }
+/* =========================================
+   MENSAJE DINÁMICO DE LA BODA
+========================================= */
+
+.wedding-status-message{
+    width:fit-content;
+    max-width:90%;
+
+    margin:-12px auto 18px;
+    padding:7px 16px;
+
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+
+    color:rgba(255,255,255,.94);
+    background:rgba(35,20,25,.28);
+
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
+
+    font-size:12px;
+    line-height:1.4;
+    letter-spacing:.4px;
+
+    text-align:center;
+}
+
+.wedding-status-message:empty{
+    display:none;
+}
+
+@media(max-width:600px){
+
+    .wedding-status-message{
+        margin:-8px auto 14px;
+        padding:6px 13px;
+
+        font-size:10px;
+        line-height:1.35;
+    }
+}

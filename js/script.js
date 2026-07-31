@@ -1195,7 +1195,62 @@ function showRSVPSummary() {
     summary.removeAttribute("hidden");
     summary.style.display = "flex";
 }
+/* =====================================================
+   MENSAJE DINÁMICO SEGÚN LA FECHA
+===================================================== */
 
+function updateWeddingStatusMessage() {
+    const messageElement = document.getElementById(
+        "wedding-status-message"
+    );
+
+    if (!messageElement) {
+        return;
+    }
+
+    const weddingDate = new Date(
+        "2026-10-24T12:00:00-05:00"
+    );
+
+    const currentDate = new Date();
+
+    const difference =
+        weddingDate.getTime() -
+        currentDate.getTime();
+
+    const totalDays = Math.ceil(
+        difference /
+        (1000 * 60 * 60 * 24)
+    );
+
+    let message = "";
+
+    if (totalDays < 0) {
+        message =
+            "Gracias por haber sido parte de nuestro gran día.";
+    } else if (totalDays === 0) {
+        message =
+            "¡Hoy es nuestro gran día!";
+    } else if (totalDays === 1) {
+        message =
+            "¡Mañana nos casamos!";
+    } else if (totalDays <= 7) {
+        message =
+            `¡Faltan solo ${totalDays} días!`;
+    } else if (totalDays <= 30) {
+        message =
+            "Estamos a menos de un mes de celebrar juntos.";
+    } else if (totalDays <= 60) {
+        message =
+            "Cada vez falta menos para nuestro gran día.";
+    } else {
+        message =
+            "Contamos los días para celebrar junto a ustedes.";
+    }
+
+    messageElement.textContent =
+        message;
+}
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
@@ -1212,6 +1267,7 @@ document.addEventListener(
         configureGiftForm();
         configureRSVPForm();
         showRSVPSummary();
+        updateWeddingStatusMessage();
 
         document.addEventListener(
             "keydown",
