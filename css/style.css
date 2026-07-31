@@ -3545,3 +3545,185 @@ body.invitation-open .hero {
         font-size:10px;
     }
 }
+/* =========================================
+   LUGARES COMPACTOS EN ESCRITORIO
+========================================= */
+
+.places-grid{
+    gap:22px;
+    align-items:start;
+}
+
+.place-card{
+    padding:24px 22px;
+}
+
+.place-icon{
+    margin-bottom:8px;
+    font-size:30px;
+}
+
+.place-card h3{
+    margin-bottom:7px;
+    font-size:24px;
+}
+
+.place-name{
+    margin-bottom:3px;
+}
+
+.place-address{
+    margin-bottom:3px;
+}
+
+.place-time{
+    margin-bottom:10px;
+}
+
+.place-arrival-note{
+    margin:0 auto 14px;
+}
+
+/* Estado cerrado: solo muestra un botón compacto */
+
+.place-map:not(.is-open){
+    display:inline-block;
+    width:auto;
+    height:auto;
+    margin:0 8px 0 0;
+    vertical-align:middle;
+    overflow:visible;
+}
+
+.place-map:not(.is-open) .map-toggle{
+    width:auto;
+    height:auto;
+    min-height:0;
+
+    padding:11px 20px;
+
+    flex-direction:row;
+    gap:7px;
+
+    border:1px solid rgba(107,39,55,.22);
+    border-radius:999px;
+
+    background:rgba(255,255,255,.6);
+
+    font-size:13px;
+}
+
+.place-map:not(.is-open) .map-toggle-icon{
+    font-size:16px;
+}
+
+/* Alinea Ver mapa y Cómo llegar */
+
+.place-card .btn-place{
+    margin:0;
+    vertical-align:middle;
+}
+
+/* Estado abierto */
+
+.place-map.is-open{
+    display:block;
+    width:100%;
+    height:240px;
+    margin:14px 0 16px;
+}
+
+.place-map.is-open .map-expanded,
+.place-map.is-open iframe{
+    width:100%;
+    height:100%;
+}
+/* =========================================
+   BOTONES DE LUGARES ALINEADOS
+========================================= */
+
+.place-actions{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.place-actions .place-map{
+    margin:0;
+}
+
+.place-actions .map-toggle,
+.place-actions .btn-place{
+    min-width:132px;
+    min-height:42px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-size:12px;
+    line-height:1;
+
+    white-space:nowrap;
+}
+
+.place-actions .map-toggle{
+    border:1px solid rgba(107,39,55,.22);
+    background:rgba(255,255,255,.65);
+}
+
+.place-actions .btn-place{
+    margin:0;
+}
+
+/* Cuando el mapa se abre, ocupa toda la fila */
+
+.place-actions .place-map.is-open{
+    flex:0 0 100%;
+    width:100%;
+    height:210px;
+    margin-bottom:4px;
+}
+
+.place-actions .place-map.is-open + .btn-place{
+    width:auto;
+}
+@media(max-width:480px){
+
+    .place-actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+        width:100%;
+    }
+
+    .place-actions .place-map,
+    .place-actions .btn-place{
+        width:100%;
+    }
+
+    .place-actions .map-toggle,
+    .place-actions .btn-place{
+        width:100%;
+        min-width:0;
+        min-height:40px;
+        padding:9px 10px;
+        font-size:11px;
+    }
+
+    .place-actions .place-map.is-open{
+        grid-column:1 / -1;
+        height:200px;
+    }
+
+    .place-actions .place-map.is-open + .btn-place{
+        grid-column:1 / -1;
+        width:100%;
+    }
+}
