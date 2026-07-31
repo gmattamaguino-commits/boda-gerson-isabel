@@ -613,6 +613,10 @@ function initAudioPlayer() {
    MAPAS
 ===================================================== */
 
+/* =====================================================
+   MAPAS DESPLEGABLES
+===================================================== */
+
 window.showMap = function (
     containerId,
     coordinates
@@ -626,20 +630,78 @@ window.showMap = function (
         return;
     }
 
+    const isOpen =
+        mapContainer.classList.contains(
+            "is-open"
+        );
+
+    /*
+     * Si el mapa ya está abierto,
+     * vuelve al botón inicial.
+     */
+    if (isOpen) {
+        mapContainer.classList.remove(
+            "is-open"
+        );
+
+        mapContainer.innerHTML = `
+            <button
+                type="button"
+                class="map-toggle"
+                onclick="showMap(
+                    '${containerId}',
+                    '${coordinates}'
+                )"
+                aria-expanded="false"
+            >
+                <span
+                    class="map-toggle-icon"
+                    aria-hidden="true"
+                >
+                    📍
+                </span>
+
+                Ver mapa
+            </button>
+        `;
+
+        return;
+    }
+
+    /*
+     * Abre el mapa y agrega el botón
+     * para volver a cerrarlo.
+     */
     mapContainer.classList.add(
         "is-open"
     );
 
     mapContainer.innerHTML = `
-        <iframe
-            src="https://www.google.com/maps?q=${encodeURIComponent(
-                coordinates
-            )}&z=16&output=embed"
-            title="Mapa de ubicación"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <div class="map-expanded">
+
+            <iframe
+                src="https://www.google.com/maps?q=${encodeURIComponent(
+                    coordinates
+                )}&z=16&output=embed"
+                title="Mapa de ubicación"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <button
+                type="button"
+                class="map-close-button"
+                onclick="showMap(
+                    '${containerId}',
+                    '${coordinates}'
+                )"
+                aria-expanded="true"
+            >
+                Cerrar mapa
+            </button>
+
+        </div>
     `;
 };
 
