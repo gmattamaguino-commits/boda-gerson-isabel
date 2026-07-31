@@ -688,14 +688,14 @@ function initInvitationOpening() {
                 cover.classList.add(
                     "is-hidden"
                 );
-            }, 1350);
+            }, 3000);
 
             window.setTimeout(() => {
                 cover.remove();
 
                 document.body.style.overflow =
                     "";
-            }, 2300);
+            }, 4000);
         },
         {
             once: true
@@ -921,7 +921,41 @@ function initGuestPersonalization() {
         }
     }
 }
+/* =====================================================
+   FORMULARIO PERSONALIZADO DE ASISTENCIA
+===================================================== */
 
+function configureRSVPForm() {
+    const rsvpButton = document.getElementById(
+        "rsvp-form-button"
+    );
+
+    if (!rsvpButton) {
+        return;
+    }
+
+    const formBaseURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfxyaz7drSzgiMviKdOuDYxbv3Oo6Djhbj-38066ikbl6WSmA/viewform";
+
+    const guestName =
+        guestData.nombre || "";
+
+    const guestPasses =
+        guestData.pases || "1";
+
+    const formParams = new URLSearchParams({
+        usp: "pp_url",
+
+        "entry.444096586":
+            guestName,
+
+        "entry.120770457":
+            guestPasses
+    });
+
+    rsvpButton.href =
+        `${formBaseURL}?${formParams.toString()}`;
+}
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
@@ -936,6 +970,7 @@ document.addEventListener(
         showPassesMessage();
         initRevealAnimations();
         configureGiftForm();
+        configureRSVPForm();
 
         document.addEventListener(
             "keydown",
