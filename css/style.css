@@ -1665,3 +1665,98 @@ section:not(.hero){
     letter-spacing:2px;
     color:var(--color-wine);
 }
+/* =========================================
+   SECCIÓN BENDICIÓN / PADRES / PADRINOS
+========================================= */
+
+.family-section{
+    padding:100px 20px;
+    position:relative;
+    z-index:1;
+}
+
+.family-card{
+    max-width:950px;
+    margin:0 auto;
+    padding:50px 35px;
+    background:var(--color-surface);
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    text-align:center;
+}
+
+.parents-row{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.parents-col{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-width:260px;
+}
+
+.parents-label{
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--color-wine);
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.parents-name{
+    font-family:var(--font-title);
+    font-size:30px;
+    color:var(--color-text);
+    line-height:1.3;
+}
+
+.godparents-block{
+    padding-top:20px;
+    border-top:1px solid rgba(107,39,55,.15);
+}
+
+.godparents-name{
+    margin-top:12px;
+    font-family:var(--font-title);
+    font-size:30px;
+    color:var(--color-text);
+    line-height:1.4;
+}
+
+@media(max-width:768px){
+
+    .family-section{
+        padding:70px 16px;
+    }
+
+    .family-card{
+        padding:35px 22px;
+        border-radius:22px;
+    }
+
+    .parents-row{
+        gap:30px;
+        margin-bottom:28px;
+    }
+
+    .parents-col{
+        min-width:100%;
+    }
+
+    .parents-name{
+        font-size:24px;
+    }
+
+    .godparents-name{
+        font-size:24px;
+    }
+}
