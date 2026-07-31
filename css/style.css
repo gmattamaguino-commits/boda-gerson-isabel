@@ -2639,3 +2639,476 @@ body.invitation-open .hero {
 #guest-invitation-card:not([hidden]){
     display:block !important;
 }
+
+
+/* =====================================================
+   DISEÑO COMPACTO Y OPTIMIZADO PARA CELULAR
+===================================================== */
+
+@media (max-width: 768px) {
+
+    /* Espaciado general */
+
+    .family-section,
+    .cronograma,
+    .lugares,
+    .dresscode,
+    .rsvp,
+    .regalo,
+    .info-ninos,
+    .galeria {
+        padding-top: 38px;
+        padding-bottom: 38px;
+    }
+
+    .subtitle-section {
+        margin-bottom: 6px;
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .title-section {
+        font-size: clamp(29px, 8vw, 36px);
+        line-height: 1.08;
+    }
+
+    .divider-center {
+        margin: 13px auto 24px;
+    }
+
+    /* Bendición y tarjeta del invitado */
+
+    .family-card {
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .parents-row {
+        gap: 18px;
+        margin-bottom: 20px;
+    }
+
+    .parents-col {
+        gap: 4px;
+    }
+
+    .parents-name {
+        font-size: 21px;
+    }
+
+    .godparents-block {
+        padding-top: 14px;
+    }
+
+    .godparents-name {
+        margin-top: 7px;
+        font-size: 21px;
+    }
+
+    .guest-invitation-card {
+        margin-top: 16px;
+        padding: 20px 16px;
+        border-radius: 17px;
+    }
+
+    .guest-invitation-card h3 {
+        font-size: 27px;
+    }
+
+    /* Cronograma tipo línea de tiempo */
+
+    .schedule-grid {
+        position: relative;
+        display: block;
+        width: min(100%, 520px);
+        margin: 0 auto;
+        padding-left: 0;
+    }
+
+    .schedule-grid::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+        left: 88px;
+        width: 1px;
+        background: rgba(107, 39, 55, .22);
+    }
+
+    .schedule-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 70px 40px minmax(0, 1fr);
+        grid-template-areas:
+            "time icon title"
+            "time icon text";
+        column-gap: 10px;
+        align-items: center;
+
+        min-height: 76px;
+        margin: 0;
+        padding: 11px 6px;
+
+        text-align: left;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .schedule-card + .schedule-card {
+        border-top: 1px solid rgba(107, 39, 55, .10);
+    }
+
+    .schedule-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .schedule-card-time {
+        grid-area: time;
+        margin: 0;
+        text-align: right;
+        font-size: 12px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    .schedule-card-icon {
+        grid-area: icon;
+        position: relative;
+        z-index: 1;
+        width: 36px;
+        height: 36px;
+        margin: 0;
+        font-size: 17px;
+        opacity: 1;
+        box-shadow: 0 0 0 4px rgba(250, 247, 245, .94);
+    }
+
+    .schedule-card h3 {
+        grid-area: title;
+        margin: 0 0 2px;
+        font-size: 17px;
+        line-height: 1.15;
+    }
+
+    .schedule-card p {
+        grid-area: text;
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    /* Lugares compactos */
+
+    .places-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 0;
+    }
+
+    .place-card {
+        width: 100%;
+        max-width: none;
+        padding: 18px 15px;
+        border-radius: 18px;
+    }
+
+    .place-icon {
+        margin-bottom: 4px;
+        font-size: 25px;
+    }
+
+    .place-card h3 {
+        margin-bottom: 4px;
+        font-size: 21px;
+    }
+
+    .place-name {
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .place-address {
+        max-width: 290px;
+        margin: 0 auto 3px;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .place-time {
+        margin-bottom: 11px;
+        font-size: 10px;
+    }
+
+    .place-map {
+        height: auto;
+        min-height: 0;
+        margin-bottom: 11px;
+        overflow: visible;
+    }
+
+    .place-map:not(.is-open) {
+        display: inline-block;
+        width: auto;
+    }
+
+    .place-map.is-open {
+        display: block;
+        width: 100%;
+        height: 210px;
+    }
+
+    .map-toggle {
+        width: auto;
+        height: auto;
+        min-height: 0;
+        flex-direction: row;
+        gap: 6px;
+        padding: 9px 15px;
+        border: 1px solid rgba(107, 39, 55, .24);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .55);
+        font-size: 12px;
+        letter-spacing: .4px;
+    }
+
+    .map-toggle-icon {
+        font-size: 15px;
+    }
+
+    .place-map iframe {
+        height: 210px;
+    }
+
+    .btn-place {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+
+    /* Dress code compacto */
+
+    .dresscode-intro {
+        margin-bottom: 21px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .dresscode-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 21px;
+    }
+
+    .dresscode-card {
+        width: 100%;
+        padding: 15px 9px;
+        border-radius: 16px;
+    }
+
+    .dresscode-card:hover {
+        transform: none;
+    }
+
+    .dresscode-icon {
+        margin-bottom: 4px;
+        font-size: 24px;
+    }
+
+    .dresscode-card h3 {
+        font-size: 19px;
+    }
+
+    .dresscode-card p {
+        margin-bottom: 11px;
+        font-size: 11px;
+    }
+
+    .swatches {
+        gap: 5px;
+    }
+
+    .swatch {
+        width: 21px;
+        height: 21px;
+    }
+
+    .dresscode-restricted p {
+        margin-bottom: 11px;
+        font-size: 12px;
+    }
+
+    .restricted-colors {
+        gap: 10px;
+    }
+
+    .restricted {
+        font-size: 12px;
+    }
+
+    /* RSVP compacto */
+
+    .rsvp-passes {
+        min-height: 0;
+        margin-bottom: 12px;
+    }
+
+    .passes-label {
+        margin-bottom: 9px;
+        font-size: 11px;
+    }
+
+    .passes-dots {
+        gap: 10px;
+    }
+
+    .pass-dot {
+        width: 18px;
+        height: 18px;
+    }
+
+    .rsvp-intro {
+        margin-bottom: 20px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .form-cta {
+        padding: 19px 15px;
+        border-radius: 17px;
+    }
+
+    .form-cta h3 {
+        font-size: 21px;
+    }
+
+    .form-cta p {
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+
+    .btn-form {
+        padding: 10px 19px;
+        font-size: 12px;
+    }
+
+    /* Regalos horizontales */
+
+    .regalo-intro {
+        margin-bottom: 20px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .regalo-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .regalo-card {
+        width: 100%;
+        max-width: none;
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        grid-template-areas:
+            "icon content"
+            "button button";
+        gap: 7px 11px;
+        align-items: center;
+        padding: 15px;
+        border-radius: 17px;
+        text-align: left;
+    }
+
+    .regalo-card:hover {
+        transform: none;
+    }
+
+    .regalo-icon {
+        grid-area: icon;
+        margin: 0;
+        font-size: 29px;
+        text-align: center;
+    }
+
+    .regalo-content {
+        grid-area: content;
+        min-width: 0;
+    }
+
+    .regalo-card h3 {
+        margin: 0 0 3px;
+        font-size: 19px;
+        line-height: 1.15;
+    }
+
+    .regalo-card p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .regalo-card .btn-form {
+        grid-area: button;
+        width: 100%;
+        margin-top: 3px;
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    /* Evento para adultos */
+
+    .info-ninos-card {
+        padding: 21px 17px;
+        border-radius: 17px;
+    }
+
+    .info-ninos-icon {
+        margin-bottom: 6px;
+        font-size: 24px;
+    }
+
+    .info-ninos-card h3 {
+        margin-bottom: 8px;
+        font-size: 21px;
+    }
+
+    .info-ninos-card p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .info-ninos-thanks {
+        margin-top: 11px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .schedule-grid::before {
+        left: 79px;
+    }
+
+    .schedule-card {
+        grid-template-columns: 62px 36px minmax(0, 1fr);
+        column-gap: 7px;
+    }
+
+    .schedule-card-time {
+        font-size: 11px;
+    }
+
+    .schedule-card h3 {
+        font-size: 16px;
+    }
+
+    .dresscode-grid {
+        grid-template-columns: 1fr;
+    }
+}

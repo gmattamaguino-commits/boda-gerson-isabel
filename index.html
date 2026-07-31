@@ -351,7 +351,7 @@
                 <p class="place-time">12:00 PM</p>
 
                 <div class="place-map" id="map-ceremonia">
-    <button class="map-toggle" onclick="showMap('map-ceremonia', '-12.273534552941586,-76.86851985456943')">
+    <button type="button" class="map-toggle" onclick="showMap('map-ceremonia', '-12.273534552941586,-76.86851985456943')">
         <span class="map-toggle-icon">📍</span>
         Ver mapa
     </button>
@@ -377,7 +377,7 @@
                 <p class="place-time">5:30 PM</p>
 
                 <div class="place-map" id="map-recepcion">
-    <button class="map-toggle" onclick="showMap('map-recepcion', '-12.220766964841483,-76.95302608275681')">
+    <button type="button" class="map-toggle" onclick="showMap('map-recepcion', '-12.220766964841483,-76.95302608275681')">
         <span class="map-toggle-icon">📍</span>
         Ver mapa
     </button>
@@ -500,53 +500,68 @@
     <div class="container">
 
         <p class="subtitle-section">REGALOS</p>
-        <h2 class="title-section">Su presencia es nuestro mejor regalo</h2>
+
+        <h2 class="title-section">
+            Su presencia es nuestro mejor regalo
+        </h2>
+
         <div class="divider-center"></div>
 
         <p class="regalo-intro">
-            Pero si desean tener un detalle con nosotros, les dejamos estas opciones.
+            Pero si desean tener un detalle con nosotros,
+            les dejamos estas opciones.
         </p>
 
         <div class="regalo-grid">
 
-            <div class="regalo-card">
+            <article class="regalo-card">
 
-                <div class="regalo-icon">🎁</div>
-                <h3>Lista de regalos</h3>
-                <p>Ingresa al link y elige el regalo que más te guste</p>
+                <div class="regalo-icon" aria-hidden="true">🎁</div>
 
-                <a href="#"
-                   target="_blank"
-                   rel="noopener"
-                   class="btn-form">
-                    Ver lista de regalos
+                <div class="regalo-content">
+                    <h3>Lista de regalos</h3>
+
+                    <p>
+                        Elige el detalle que más te guste
+                        de nuestra lista.
+                    </p>
+                </div>
+
+                <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-form"
+                >
+                    Ver lista
                 </a>
 
-            </div>
+            </article>
 
-            <div class="regalo-card">
+            <article class="regalo-card">
 
-    <div class="regalo-icon">💝</div>
-     </h3>
+                <div class="regalo-icon" aria-hidden="true">💝</div>
 
-            <p>
-                Puedes solicitar de forma segura nuestros
-                datos para Yape, Plin o transferencia bancaria.
-            </p>
+                <div class="regalo-content">
+                    <h3>Regalo monetario</h3>
 
-            <a
-                href="#"
-                id="gift-form-button"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-form"
-            >
-                Solicitar datos para regalo
-            </a>
+                    <p>
+                        Solicita de forma segura nuestros datos
+                        para Yape, Plin o transferencia.
+                    </p>
+                </div>
 
-</div>
+                <a
+                    href="#"
+                    id="gift-form-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-form"
+                >
+                    Solicitar datos
+                </a>
 
-            </div>
+            </article>
 
         </div>
 
