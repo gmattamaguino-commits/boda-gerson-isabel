@@ -123,6 +123,8 @@ const dresscodeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 
 dresscodeCards.forEach((card) => dresscodeObserver.observe(card));
+
+
 function showPassesMessage(){
 
     const passesEl = document.getElementById("rsvp-passes");
@@ -131,20 +133,32 @@ function showPassesMessage(){
 
     if(guestData && guestData.pases){
 
-        const p = parseInt(guestData.pases, 10);
+        const total = parseInt(guestData.pases, 10);
 
-        const texto = p === 1
-            ? "Tienes 1 pase reservado"
-            : `Tienen ${p} pases reservados`;
+        let dotsHTML = "";
 
-        passesEl.textContent = texto;
+        for(let i = 1; i <= total; i++){
+
+            dotsHTML += `
+                <div class="pass-dot-wrap">
+                    <div class="pass-dot filled"></div>
+                    <span class="pass-number">${i}</span>
+                </div>
+            `;
+
+        }
+
+        passesEl.innerHTML = `
+            <p class="passes-label">Hemos reservado</p>
+            <div class="passes-dots">${dotsHTML}</div>
+            <p class="passes-label" style="margin-top:14px;">Lugares en su honor</p>
+        `;
 
     }
 
 }
 
 showPassesMessage();
-
 const regaloCards = document.querySelectorAll(".regalo-card");
 
 const regaloObserver = new IntersectionObserver((entries) => {
