@@ -7,11 +7,14 @@
 ===================================================== */
 
 function getGuestData() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(
+        window.location.search
+    );
 
     return {
         nombre: params.get("n"),
-        pases: params.get("p")
+        pases: params.get("p"),
+        codigo: params.get("codigo")
     };
 }
 
@@ -365,7 +368,55 @@ window.showMap = function (containerId, coordinates) {
         </iframe>
     `;
 };
+/* =====================================================
+   FORMULARIO PRIVADO PARA REGALOS
+===================================================== */
 
+function configureGiftForm() {
+    const giftButton = document.getElementById(
+        "gift-form-button"
+    );
+
+    if (!giftButton) {
+        return;
+    }
+
+    const formBaseURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfcSfTX_YKVaqRev6ps2Wc9wEB-q-EAMc1zO4zfWc1In1Agxw/viewform";
+
+    const formParams = new URLSearchParams({
+        usp: "pp_url",
+        "entry.988199634":
+            guestData.nombre || "",
+        "entry.1231225220":
+            guestData.codigo || "",
+        "entry.995696210":
+            "Ambas opciones"
+    });
+
+    giftButton.href =
+        `${formBaseURL}?${formParams.toString()}`;
+
+    /*
+     * Si el enlace no tiene código, bloqueamos
+     * el acceso automático para evitar solicitudes
+     * sin invitación personalizada.
+     */
+    if (!guestData.codigo) {
+        giftButton.removeAttribute("target");
+
+        giftButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                alert(
+                    "Para solicitar los datos de regalo, abre el enlace personalizado que recibiste con tu invitación."
+                );
+            }
+        );
+    }
+}
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
@@ -377,6 +428,7 @@ document.addEventListener(
         startCountdown();
         showPassesMessage();
         initRevealAnimations();
+        configureGiftForm();
 
         /*
          * Permite cerrar una fotografía ampliada
