@@ -4490,3 +4490,602 @@ a{
         font-size:11px;
     }
 }
+
+/* =====================================================
+   NUEVA PORTADA Y SEGUNDO SLIDE — v14 CORREGIDO
+===================================================== */
+
+/* -----------------------------------------------------
+   TARJETA DE APERTURA
+----------------------------------------------------- */
+
+.invitation-letter{
+    justify-content:center;
+    gap:8px;
+}
+
+.invitation-letter::before{
+    inset:10px;
+}
+
+.letter-welcome,
+.letter-wedding{
+    margin:0;
+    color:#756367;
+    font-family:"Cinzel", serif;
+    font-size:clamp(12px, 3.3vw, 15px);
+    font-weight:500;
+    letter-spacing:2px;
+    line-height:1.4;
+    text-transform:uppercase;
+}
+
+.invitation-guest-name{
+    max-width:100%;
+    margin:2px 0;
+    color:var(--color-wine);
+    font-family:"Great Vibes", cursive;
+    font-size:clamp(30px, 8vw, 46px);
+    font-weight:400;
+    line-height:1.05;
+    overflow-wrap:anywhere;
+}
+
+.invitation-seal span{
+    font-family:serif;
+    font-size:21px;
+}
+
+/* -----------------------------------------------------
+   PRIMER SLIDE: FOTO NÍTIDA + NOMBRES + CANCIÓN
+----------------------------------------------------- */
+
+.hero{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    min-height:100svh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:44px 20px;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+/*
+ * Se anulan expresamente el blur, zoom y escalado
+ * existentes en reglas anteriores del archivo.
+ */
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0 !important;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.26),
+            rgba(0,0,0,.36)
+        ),
+        url("../img/hero.jpg") !important;
+
+    background-size:cover !important;
+    background-position:center center !important;
+    background-repeat:no-repeat !important;
+
+    filter:none !important;
+    transform:none !important;
+    animation:none !important;
+    opacity:1 !important;
+
+    z-index:0;
+}
+
+/*
+ * La capa móvil anterior mostraba una segunda copia
+ * de la imagen con background-size: contain.
+ * Se desactiva para evitar doble imagen y desenfoque.
+ */
+.hero::after{
+    display:none !important;
+    content:none !important;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    z-index:1;
+
+    display:block !important;
+    background:linear-gradient(
+        to bottom,
+        rgba(15,10,12,.06),
+        rgba(15,10,12,.15)
+    ) !important;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    width:min(92%,760px);
+    margin:0 auto;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+
+    color:#fff;
+    text-align:center;
+
+    animation:none !important;
+}
+
+.hero h1{
+    margin:0;
+    color:#fff;
+
+    font-family:"Great Vibes", cursive !important;
+    font-size:clamp(72px, 9vw, 118px);
+    font-weight:400;
+    line-height:1.02;
+    letter-spacing:0;
+
+    text-shadow:
+        0 5px 24px rgba(0,0,0,.38),
+        0 1px 2px rgba(0,0,0,.45);
+}
+
+.hero h1 span{
+    color:#f1d7dc;
+}
+
+.hero-audio-player{
+    width:min(100%,520px);
+    margin:0 auto;
+}
+
+/* Elimina las animaciones escalonadas del hero anterior. */
+.hero-content > *{
+    opacity:1 !important;
+    transform:none !important;
+    animation:none !important;
+}
+
+/* -----------------------------------------------------
+   SEGUNDO SLIDE: FECHA + CUENTA REGRESIVA + VERSÍCULO
+----------------------------------------------------- */
+
+.wedding-details{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    min-height:100svh;
+
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+
+    padding:88px 20px;
+    text-align:center;
+    overflow:hidden;
+    visibility:visible !important;
+    opacity:1 !important;
+}
+
+.wedding-details::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 8% 15%,
+            rgba(201,160,165,.14),
+            transparent 26%
+        ),
+        radial-gradient(
+            circle at 92% 80%,
+            rgba(156,175,136,.13),
+            transparent 28%
+        );
+
+    pointer-events:none;
+}
+
+.wedding-details-container{
+    position:relative;
+    z-index:1;
+
+    width:min(92%,760px);
+    margin:0 auto;
+}
+
+.wedding-details-eyebrow{
+    margin:0 0 12px;
+
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:4px;
+}
+
+.wedding-details-date{
+    margin:0;
+
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(32px, 6vw, 54px);
+    font-weight:500;
+    line-height:1.2;
+}
+
+.wedding-details-divider{
+    width:100px;
+    height:1px;
+    margin:26px auto 22px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--color-gold),
+        transparent
+    );
+}
+
+.wedding-details-count-title{
+    margin:0 0 14px;
+
+    color:rgba(0,0,0,.58);
+    font-family:"Lato", sans-serif;
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/*
+ * Fuerza la cuenta regresiva a mostrarse.
+ * Conserva los mismos IDs usados por JavaScript.
+ */
+.wedding-details .countdown{
+    width:100%;
+    margin:0 auto 34px;
+
+    display:flex !important;
+    align-items:stretch;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:nowrap;
+
+    visibility:visible !important;
+    opacity:1 !important;
+    transform:none !important;
+}
+
+.wedding-details .time-box{
+    width:clamp(66px, 18vw, 94px);
+    min-width:0;
+    padding:16px 8px;
+
+    color:var(--color-text);
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(107,39,55,.12);
+    border-radius:16px;
+
+    box-shadow:0 10px 24px rgba(72,48,52,.10);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    visibility:visible !important;
+    opacity:1 !important;
+    transform:none !important;
+}
+
+.wedding-details .time-box span{
+    display:block;
+
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:clamp(23px, 5vw, 34px);
+    font-weight:600;
+    line-height:1.1;
+}
+
+.wedding-details .time-box small{
+    display:block;
+    margin-top:6px;
+
+    color:rgba(0,0,0,.56);
+    font-size:10px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+.countdown-finished{
+    width:100%;
+    margin:0;
+    padding:20px;
+
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:clamp(20px, 4vw, 30px);
+}
+
+.bible-verse-block{
+    max-width:620px;
+    margin:0 auto 30px;
+    padding:26px 24px;
+
+    background:rgba(255,255,255,.62);
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:22px;
+
+    box-shadow:0 12px 28px rgba(72,48,52,.08);
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
+}
+
+.bible-verse{
+    margin:0;
+
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(18px, 3.5vw, 25px);
+    font-weight:400;
+    line-height:1.65;
+}
+
+.bible-reference{
+    display:block;
+    margin-top:14px;
+
+    color:var(--color-wine);
+    font-family:"Lato", sans-serif;
+    font-size:12px;
+    font-style:normal;
+    font-weight:700;
+    letter-spacing:1.5px;
+}
+
+.wedding-details .guest-invitation-card{
+    max-width:620px;
+    margin:0 auto;
+}
+
+/* -----------------------------------------------------
+   TABLET
+----------------------------------------------------- */
+
+@media(max-width:900px){
+
+    .hero{
+        padding:38px 16px;
+    }
+
+    .hero h1{
+        font-size:clamp(66px, 12vw, 94px);
+    }
+}
+
+/* -----------------------------------------------------
+   CELULAR
+----------------------------------------------------- */
+
+@media(max-width:768px){
+
+    .hero{
+        min-height:100vh;
+        min-height:100svh;
+        padding:28px 14px;
+    }
+
+    .hero::before{
+        inset:0 !important;
+
+        background-image:
+            linear-gradient(
+                rgba(0,0,0,.22),
+                rgba(0,0,0,.34)
+            ),
+            url("../img/hero.jpg") !important;
+
+        background-size:cover !important;
+        background-position:center center !important;
+        background-repeat:no-repeat !important;
+
+        filter:none !important;
+        transform:none !important;
+        animation:none !important;
+    }
+
+    .hero::after{
+        display:none !important;
+        content:none !important;
+    }
+
+    .overlay{
+        background:linear-gradient(
+            to bottom,
+            rgba(15,10,12,.04),
+            rgba(15,10,12,.14)
+        ) !important;
+    }
+
+    .hero-content{
+        width:min(100%,380px);
+        padding:0;
+        gap:24px;
+    }
+
+    .hero h1{
+        font-size:clamp(56px, 17vw, 78px);
+        line-height:1.04;
+    }
+
+    .hero-audio-player{
+        width:100%;
+        max-width:350px;
+    }
+
+    .wedding-details{
+        min-height:100vh;
+        min-height:100svh;
+        padding:68px 14px;
+    }
+
+    .wedding-details-container{
+        width:100%;
+    }
+
+    .wedding-details-date{
+        font-size:clamp(28px, 9vw, 38px);
+    }
+
+    .wedding-details .countdown{
+        gap:7px;
+    }
+
+    .wedding-details .time-box{
+        width:clamp(60px, 21vw, 76px);
+        padding:12px 5px;
+        border-radius:15px;
+    }
+
+    .wedding-details .time-box span{
+        font-size:clamp(20px, 7vw, 27px);
+    }
+
+    .wedding-details .time-box small{
+        font-size:9px;
+        letter-spacing:.3px;
+    }
+
+    .bible-verse-block{
+        padding:22px 17px;
+        border-radius:18px;
+    }
+
+    .bible-verse{
+        font-size:17px;
+        line-height:1.6;
+    }
+}
+
+/* -----------------------------------------------------
+   CELULARES PEQUEÑOS
+----------------------------------------------------- */
+
+@media(max-width:380px){
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-audio-player{
+        max-width:320px;
+    }
+
+    .wedding-details{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .wedding-details .countdown{
+        gap:5px;
+    }
+
+    .wedding-details .time-box{
+        width:calc((100vw - 41px) / 4);
+        padding:11px 3px;
+    }
+
+    .wedding-details .time-box span{
+        font-size:20px;
+    }
+
+    .wedding-details .time-box small{
+        font-size:8px;
+    }
+}
+
+/* =====================================================
+   AJUSTE DE POSICIÓN DEL HERO — v15
+===================================================== */
+
+/*
+ * Los nombres se mantienen en la zona superior
+ * y el reproductor cerca de la parte inferior.
+ */
+.hero-content{
+    width:min(92%,760px);
+    min-height:calc(100svh - 88px);
+    margin:0 auto;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:8vh 0 5vh;
+    gap:24px;
+}
+
+.hero h1{
+    align-self:center;
+    margin:0;
+}
+
+.hero-audio-player{
+    align-self:center;
+    margin:0 auto;
+}
+
+/* Garantiza que el contador nunca herede display:none */
+.wedding-details .countdown{
+    display:flex !important;
+}
+
+@media(max-width:768px){
+
+    /*
+     * En celulares, cover evita franjas y mantiene
+     * la fotografía nítida. La posición prioriza
+     * el centro de la escena.
+     */
+    .hero::before{
+        background-size:cover !important;
+        background-position:center 48% !important;
+        filter:none !important;
+        transform:none !important;
+        animation:none !important;
+    }
+
+    .hero-content{
+        width:min(100%,380px);
+        min-height:calc(100svh - 56px);
+        padding:5vh 0 4vh;
+        gap:20px;
+    }
+
+    .hero h1{
+        font-size:clamp(52px,16vw,74px);
+    }
+
+    .hero-audio-player{
+        width:100%;
+        max-width:350px;
+    }
+}
+
+@media(max-width:420px){
+
+    .hero-content{
+        min-height:calc(100svh - 44px);
+        padding:4vh 0 3vh;
+    }
+}

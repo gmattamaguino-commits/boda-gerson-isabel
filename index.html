@@ -36,7 +36,7 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Great+Vibes&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS principal -->
-<link href="css/style.css?v=12" rel="stylesheet"/>
+<link href="css/style.css?v=15" rel="stylesheet"/>
 </head>
 <body>
 <!-- =========================================
@@ -45,71 +45,16 @@
 <div aria-label="Abrir invitación de boda" class="invitation-cover" id="invitation-cover">
 <div class="invitation-envelope">
 <div class="envelope-back"></div>
-<div class="invitation-letter">
-<p class="letter-small">
-    Tenemos el honor de invitar a
-</p>
-<p class="invitation-guest-name" id="invitation-guest-name"></p>
-<h2>
-                Gerson
-                <span>&amp;</span>
-                Isabel
-            </h2>
-<p class="letter-date">
-                24 · 10 · 2026
-            </p>
-</div>
+<div class="invitation-letter"><p class="letter-welcome">Bienvenidos</p><p class="invitation-guest-name" id="invitation-guest-name"></p><p class="letter-wedding">a nuestra boda</p></div>
 <div class="envelope-front"></div>
 <div class="envelope-flap"></div>
-<button aria-label="Abrir invitación" class="invitation-seal" id="open-invitation" type="button">
-<span>G &amp; I</span>
-</button>
+<button aria-label="Abrir invitación" class="invitation-seal" id="open-invitation" type="button"><span>♥</span></button>
 </div>
-<p class="invitation-cover-text">
-        Haz clic para abrir nuestra invitación
-    </p>
 </div>
 <div class="bg-fixed"></div>
 <header aria-label="Portada de la invitación" class="hero">
 <div class="overlay"></div>
-<div class="hero-content">
-<p class="guest-greeting" id="guest-greeting"></p>
-<p class="subtitle">
-            NOS CASAMOS
-        </p>
-<h1>
-            Gerson
-            <span>&amp;</span>
-            Isabel
-        </h1>
-<div class="divider"></div>
-<p class="date">
-            24 Octubre 2026
-        </p>
-<div class="countdown">
-<div class="time-box">
-<span id="days">000</span>
-<small>Días</small>
-</div>
-<div class="time-box">
-<span id="hours">00</span>
-<small>Horas</small>
-</div>
-<div class="time-box">
-<span id="minutes">00</span>
-<small>Min</small>
-</div>
-<div class="time-box">
-<span id="seconds">00</span>
-<small>Seg</small>
-</div>
-</div>
-<p aria-live="polite" class="wedding-status-message" id="wedding-status-message"></p>
-<p class="phrase">
-            "Cada historia de amor es hermosa,
-            pero la nuestra es nuestra favorita."
-        </p>
-<div class="hero-audio-player" id="audio-player">
+<div class="hero-content"><h1>Gerson<span> &amp; </span>Isabel</h1><div class="hero-audio-player" id="audio-player">
 <audio id="wedding-audio" preload="metadata">
 <source src="audio/nuestra-cancion.mp3" type="audio/mpeg"/>
 </audio>
@@ -134,15 +79,16 @@
 <button aria-label="Silenciar canción" class="hero-audio-volume" id="audio-volume-button" type="button">
         ♫
     </button>
-</div>
-<a class="btn-hero" href="#bendicion">
-            Descubre los detalles
-        </a>
-<div class="scroll">
-            ↓
-        </div>
-</div>
-</header>
+</div></div>
+</header><section class="wedding-details" id="detalles-principales"><div class="container wedding-details-container"><p class="wedding-details-eyebrow">NUESTRO GRAN DÍA</p><h2 class="wedding-details-date">24 · OCTUBRE · 2026</h2><div class="wedding-details-divider"></div><p class="wedding-details-count-title">Faltan</p><div class="countdown"><div class="time-box"><span id="days">000</span><small>Días</small></div><div class="time-box"><span id="hours">00</span><small>Horas</small></div><div class="time-box"><span id="minutes">00</span><small>Min</small></div><div class="time-box"><span id="seconds">00</span><small>Seg</small></div></div><blockquote class="bible-verse-block"><p class="bible-verse">“Mejores son dos que uno… porque si uno cae, el otro levantará a su compañero.”</p><cite class="bible-reference">Eclesiastés 4:9-10</cite></blockquote><div class="guest-invitation-card" hidden="" id="guest-invitation-card">
+<p class="guest-card-label">
+        ESTA INVITACIÓN HA SIDO PREPARADA PARA
+    </p>
+<h3 id="guest-card-name"></h3>
+<div class="guest-card-divider"></div>
+<p id="guest-card-passes"></p>
+<div aria-hidden="true" class="guest-pass-icons" id="guest-pass-icons"></div>
+</div></div></section>
 <section class="family-section" id="bendicion">
 <div class="container">
 <p class="subtitle-section">NUESTRA BENDICIÓN</p>
@@ -167,15 +113,6 @@
                     David Gonzales &amp; Cynthia Olivera
                 </p>
 </div>
-</div>
-<div class="guest-invitation-card" hidden="" id="guest-invitation-card">
-<p class="guest-card-label">
-        ESTA INVITACIÓN HA SIDO PREPARADA PARA
-    </p>
-<h3 id="guest-card-name"></h3>
-<div class="guest-card-divider"></div>
-<p id="guest-card-passes"></p>
-<div aria-hidden="true" class="guest-pass-icons" id="guest-pass-icons"></div>
 </div>
 </div>
 </section>
@@ -287,174 +224,120 @@
             Aquí les dejamos algunas sugerencias de color.
         </p>
 <div class="dresscode-grid">
-
-    <!-- CABALLEROS -->
-    <div class="dresscode-card flip-card" onclick="toggleFlip(this)">
-        <div class="flip-card-inner">
-
-            <!-- Frente -->
-            <div class="flip-card-front">
-                <div class="dresscode-icon">🤵</div>
-                <h3>Caballeros</h3>
-                <p>Traje formal</p>
-                <span class="flip-hint">Toca para ver colores</span>
-            </div>
-
-            <!-- Atrás -->
-            <div class="flip-card-back">
-                <h3>Caballeros</h3>
-                <p class="flip-subtitle">Colores sugeridos</p>
-
-                <div class="color-list">
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#1B2A4A;"></span>
-                        <span class="color-name">Azul marino</span>
-                    </div>
-
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#3A3A3A;"></span>
-                        <span class="color-name">Gris carbón</span>
-                    </div>
-
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#1F3B2C;"></span>
-                        <span class="color-name">Verde botella</span>
-                    </div>
-
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#111111;"></span>
-                        <span class="color-name">Negro</span>
-                    </div>
-                </div>
-
-                <span class="flip-hint">Toca para volver</span>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- DAMAS -->
-    <div class="dresscode-card flip-card" onclick="toggleFlip(this)">
-        <div class="flip-card-inner">
-
-            <!-- Frente -->
-            <div class="flip-card-front">
-                <div class="dresscode-icon">👗</div>
-                <h3>Damas</h3>
-                <p>Vestido largo</p>
-                <span class="flip-hint">Toca para ver colores</span>
-            </div>
-
-            <!-- Atrás -->
-            <div class="flip-card-back">
-                <h3>Damas</h3>
-                <p class="flip-subtitle">Colores sugeridos</p>
-
-                <div class="color-list">
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#9CAF88;"></span>
-                        <span class="color-name">Verde salvia</span>
-                    </div>
-
-                    <div class="color-item">
-    <span class="swatch-large" style="background:#1F4E5F;"></span>
-    <span class="color-name">Azul petróleo</span>
+<!-- CABALLEROS -->
+<div class="dresscode-card flip-card" onclick="toggleFlip(this)">
+<div class="flip-card-inner">
+<!-- Frente -->
+<div class="flip-card-front">
+<div class="dresscode-icon">🤵</div>
+<h3>Caballeros</h3>
+<p>Traje formal</p>
+<span class="flip-hint">Toca para ver colores</span>
 </div>
-
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#C4B7D6;"></span>
-                        <span class="color-name">Lila suave</span>
-                    </div>
-
-                    <div class="color-item">
-                        <span class="swatch-large" style="background:#6B2737;"></span>
-                        <span class="color-name">Guinda</span>
-                    </div>
-                </div>
-
-                <span class="flip-hint">Toca para volver</span>
-            </div>
-
-        </div>
-    </div>
-
+<!-- Atrás -->
+<div class="flip-card-back">
+<h3>Caballeros</h3>
+<p class="flip-subtitle">Colores sugeridos</p>
+<div class="color-list">
+<div class="color-item">
+<span class="swatch-large" style="background:#1B2A4A;"></span>
+<span class="color-name">Azul marino</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#3A3A3A;"></span>
+<span class="color-name">Gris carbón</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#1F3B2C;"></span>
+<span class="color-name">Verde botella</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#111111;"></span>
+<span class="color-name">Negro</span>
+</div>
+</div>
+<span class="flip-hint">Toca para volver</span>
+</div>
+</div>
+</div>
+<!-- DAMAS -->
+<div class="dresscode-card flip-card" onclick="toggleFlip(this)">
+<div class="flip-card-inner">
+<!-- Frente -->
+<div class="flip-card-front">
+<div class="dresscode-icon">👗</div>
+<h3>Damas</h3>
+<p>Vestido largo</p>
+<span class="flip-hint">Toca para ver colores</span>
+</div>
+<!-- Atrás -->
+<div class="flip-card-back">
+<h3>Damas</h3>
+<p class="flip-subtitle">Colores sugeridos</p>
+<div class="color-list">
+<div class="color-item">
+<span class="swatch-large" style="background:#9CAF88;"></span>
+<span class="color-name">Verde salvia</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#1F4E5F;"></span>
+<span class="color-name">Azul petróleo</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#C4B7D6;"></span>
+<span class="color-name">Lila suave</span>
+</div>
+<div class="color-item">
+<span class="swatch-large" style="background:#6B2737;"></span>
+<span class="color-name">Guinda</span>
+</div>
+</div>
+<span class="flip-hint">Toca para volver</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="dresscode-restricted">
-
-    <p class="restricted-title">
+<p class="restricted-title">
         Colores reservados
     </p>
-
-    <div class="restricted-colors">
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#FFFFFF; border:1px solid rgba(0,0,0,.20);"
-            ></span>
+<div class="restricted-colors">
+<span class="restricted">
+<span class="dot" style="background:#FFFFFF; border:1px solid rgba(0,0,0,.20);"></span>
             Blanco
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#FFFFF0; border:1px solid rgba(0,0,0,.18);"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#FFFFF0; border:1px solid rgba(0,0,0,.18);"></span>
             Marfil / Ivory
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#FFFDD0; border:1px solid rgba(0,0,0,.15);"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#FFFDD0; border:1px solid rgba(0,0,0,.15);"></span>
             Crema
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#F7E7CE; border:1px solid rgba(0,0,0,.15);"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#F7E7CE; border:1px solid rgba(0,0,0,.15);"></span>
             Champagne
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#E8D8C3; border:1px solid rgba(0,0,0,.15);"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#E8D8C3; border:1px solid rgba(0,0,0,.15);"></span>
             Beige muy claro
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#EBC8B2; border:1px solid rgba(0,0,0,.12);"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#EBC8B2; border:1px solid rgba(0,0,0,.12);"></span>
             Nude muy pálido
         </span>
-
-        <span class="restricted">
-            <span
-                class="dot"
-                style="background:#C9A0A5;"
-            ></span>
+<span class="restricted">
+<span class="dot" style="background:#C9A0A5;"></span>
             Malva rosa
         </span>
-
-    </div>
-
-    <p class="restricted-special-note">
+</div>
+<p class="restricted-special-note">
         El malva rosa está reservado exclusivamente para las damas de honor.
     </p>
-
-    <p class="restricted-note">
+<p class="restricted-note">
         Agradecemos evitar estos tonos para mantener la armonía visual de los novios y del cortejo.
     </p>
-
-</div>
 </div>
 </section>
 <section class="rsvp" id="rsvp">
@@ -541,12 +424,7 @@
                         de nuestra lista.
                     </p>
 </div>
-<a
-    href="https://www.noviosfalabella.com.pe/public/prodSubCatTodasCategoriasCl.do?codigoEvento=738096&dvEvento=08&retencionEvento=S"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn-form"
->
+<a class="btn-form" href="https://www.noviosfalabella.com.pe/public/prodSubCatTodasCategoriasCl.do?codigoEvento=738096&amp;dvEvento=08&amp;retencionEvento=S" rel="noopener noreferrer" target="_blank">
     Ver lista
 </a>
 </article>
@@ -628,6 +506,6 @@
 <img alt="" aria-hidden="true" class="gracias-floral" decoding="async" loading="lazy" src="img/gracias-floral.png"/>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=12"></script>
+<script src="js/script.js?v=15"></script>
 </body>
 </html>

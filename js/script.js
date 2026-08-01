@@ -35,10 +35,10 @@ const guestData = getGuestData();
 ===================================================== */
 
 function startCountdown() {
-    const countdownElement =
+    const countdown =
         document.querySelector(".countdown");
 
-    if (!countdownElement) {
+    if (!countdown) {
         return;
     }
 
@@ -51,7 +51,7 @@ function startCountdown() {
             weddingDate - Date.now();
 
         if (distance <= 0) {
-            countdownElement.innerHTML = `
+            countdown.innerHTML = `
                 <h3 class="countdown-finished">
                     💍 ¡Hoy es nuestro gran día!
                 </h3>
@@ -105,12 +105,12 @@ function startCountdown() {
                     return;
                 }
 
-                const minimumDigits =
+                const digits =
                     id === "days" ? 3 : 2;
 
                 element.textContent =
                     String(value).padStart(
-                        minimumDigits,
+                        digits,
                         "0"
                     );
             }
@@ -119,10 +119,10 @@ function startCountdown() {
         return true;
     }
 
-    const countdownIsActive =
+    const active =
         updateCountdown();
 
-    if (!countdownIsActive) {
+    if (!active) {
         return;
     }
 
@@ -164,12 +164,9 @@ function initRevealAnimations() {
         (element, index) => {
             element.classList.add("reveal");
 
-            const delay =
-                (index % 4) * 90;
-
             element.style.setProperty(
                 "--reveal-delay",
-                `${delay}ms`
+                `${(index % 4) * 90}ms`
             );
         }
     );
@@ -332,34 +329,21 @@ function initAudioPlayer() {
         return;
     }
 
-    function formatAudioTime(
-        seconds
-    ) {
-        if (
-            !Number.isFinite(seconds)
-        ) {
+    function formatAudioTime(seconds) {
+        if (!Number.isFinite(seconds)) {
             return "00:00";
         }
 
         const minutes =
-            Math.floor(
-                seconds / 60
-            );
+            Math.floor(seconds / 60);
 
         const remainingSeconds =
-            Math.floor(
-                seconds % 60
-            );
+            Math.floor(seconds % 60);
 
         return `${
-            String(minutes).padStart(
-                2,
-                "0"
-            )
+            String(minutes).padStart(2, "0")
         }:${
-            String(
-                remainingSeconds
-            ).padStart(
+            String(remainingSeconds).padStart(
                 2,
                 "0"
             )
@@ -591,9 +575,7 @@ window.showMap = function (
                     📍
                 </span>
 
-                <span>
-                    Ver mapa
-                </span>
+                <span>Ver mapa</span>
             </button>
         `;
 
@@ -740,6 +722,12 @@ function configureGiftForm() {
     giftButton.href =
         `${formBaseURL}?${formParams.toString()}`;
 
+    giftButton.target =
+        "_blank";
+
+    giftButton.rel =
+        "noopener noreferrer";
+
     if (!guestData.codigo) {
         giftButton.href = "#";
 
@@ -797,11 +785,6 @@ function initGuestPersonalization() {
             "invitation-guest-name"
         );
 
-    const heroGreeting =
-        document.getElementById(
-            "guest-greeting"
-        );
-
     const guestCard =
         document.getElementById(
             "guest-invitation-card"
@@ -825,12 +808,7 @@ function initGuestPersonalization() {
     if (!guestName) {
         if (letterGuest) {
             letterGuest.textContent =
-                "Nuestros familiares y amigos";
-        }
-
-        if (heroGreeting) {
-            heroGreeting.textContent =
-                "";
+                "Familiares y amigos";
         }
 
         if (guestCard) {
@@ -843,11 +821,6 @@ function initGuestPersonalization() {
     if (letterGuest) {
         letterGuest.textContent =
             guestName;
-    }
-
-    if (heroGreeting) {
-        heroGreeting.textContent =
-            `Bienvenidos, ${guestName}`;
     }
 
     if (
@@ -878,14 +851,15 @@ function initGuestPersonalization() {
             "Será un honor compartir este día contigo.";
     }
 
-    if (
-        !passIcons ||
-        passes <= 0
-    ) {
+    if (!passIcons) {
         return;
     }
 
     passIcons.innerHTML = "";
+
+    if (passes <= 0) {
+        return;
+    }
 
     const visiblePasses =
         Math.min(
@@ -1017,6 +991,9 @@ function configureRSVPForm() {
     rsvpButton.target =
         "_blank";
 
+    rsvpButton.rel =
+        "noopener noreferrer";
+
     rsvpButton.classList.remove(
         "is-disabled"
     );
@@ -1108,6 +1085,11 @@ function updateWeddingStatusMessage() {
             "wedding-status-message"
         );
 
+    /*
+     * En la nueva portada este elemento
+     * puede no existir. En ese caso no
+     * se realiza ninguna acción.
+     */
     if (!messageElement) {
         return;
     }
@@ -1156,7 +1138,38 @@ function updateWeddingStatusMessage() {
 
 
 /* =====================================================
-   INICIALIZACIÓN
+   TARJETAS GIRATORIAS DEL DRESS CODE
+===================================================== */
+
+window.toggleFlip = function (card) {
+    if (!card) {
+        return;
+    }
+
+    card.classList.toggle(
+        "is-flipped"
+    );
+};
+
+
+/* =====================================================
+   CERRAR LIGHTBOX CON TECLA ESCAPE
+===================================================== */
+
+function initKeyboardControls() {
+    document.addEventListener(
+        "keydown",
+        event => {
+            if (event.key === "Escape") {
+                window.closeLightbox();
+            }
+        }
+    );
+}
+
+
+/* =====================================================
+   INICIALIZACIÓN GENERAL
 ===================================================== */
 
 document.addEventListener(
@@ -1171,20 +1184,6 @@ document.addEventListener(
         configureRSVPForm();
         showRSVPSummary();
         updateWeddingStatusMessage();
-
-        document.addEventListener(
-            "keydown",
-            event => {
-                if (
-                    event.key ===
-                    "Escape"
-                ) {
-                    window.closeLightbox();
-                }
-            }
-        );
+        initKeyboardControls();
     }
 );
-function toggleFlip(card){
-    card.classList.toggle("is-flipped");
-}
