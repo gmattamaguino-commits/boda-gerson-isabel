@@ -5089,3 +5089,116 @@ a{
         padding:4vh 0 3vh;
     }
 }
+
+/* =====================================================
+   PASES SOLO EN EL SEGUNDO SLIDE — v16
+===================================================== */
+
+/* El RSVP ya no muestra nombre ni cantidad de pases. */
+#rsvp-summary{
+    display:none !important;
+}
+
+/* Tarjeta de invitado más compacta dentro del segundo slide. */
+.wedding-details .guest-invitation-card{
+    width:min(520px,100%);
+    margin:0 auto;
+    padding:20px 22px;
+    border-radius:18px;
+}
+
+.wedding-details .guest-card-label{
+    margin-bottom:6px;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.wedding-details .guest-invitation-card h3{
+    font-size:clamp(24px,4vw,32px);
+    line-height:1.1;
+}
+
+.wedding-details .guest-card-divider{
+    width:48px;
+    margin:11px auto;
+}
+
+.wedding-details .guest-invitation-card > p:last-of-type{
+    font-size:13px;
+    line-height:1.45;
+}
+
+.wedding-details .guest-pass-icons{
+    gap:6px;
+    margin-top:10px;
+}
+
+.wedding-details .guest-pass-icon{
+    width:24px;
+    height:24px;
+    font-size:11px;
+}
+
+/* Celular: mucho más limpio y compacto. */
+@media(max-width:600px){
+
+    .wedding-details{
+        padding-top:56px;
+        padding-bottom:56px;
+    }
+
+    .wedding-details .guest-invitation-card{
+        width:min(100%,340px);
+        margin-top:0;
+        padding:14px 14px;
+        border-radius:15px;
+    }
+
+    .wedding-details .guest-card-label{
+        margin-bottom:4px;
+        font-size:7.5px;
+        letter-spacing:1.4px;
+    }
+
+    .wedding-details .guest-invitation-card h3{
+        font-size:22px;
+    }
+
+    .wedding-details .guest-card-divider{
+        width:40px;
+        margin:8px auto;
+    }
+
+    .wedding-details .guest-invitation-card > p:last-of-type{
+        font-size:11.5px;
+        line-height:1.35;
+    }
+
+    .wedding-details .guest-pass-icons{
+        gap:4px;
+        margin-top:8px;
+    }
+
+    .wedding-details .guest-pass-icon{
+        width:20px;
+        height:20px;
+        font-size:9px;
+    }
+}
+
+@media(max-width:380px){
+
+    .wedding-details .guest-invitation-card{
+        padding:12px;
+    }
+
+    .wedding-details .guest-invitation-card h3{
+        font-size:20px;
+    }
+
+    .wedding-details .guest-pass-icon{
+        width:18px;
+        height:18px;
+        font-size:8px;
+    }
+}
