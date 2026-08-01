@@ -3850,3 +3850,70 @@ body.invitation-open .hero {
         font-size:10px;
     }
 }
+.place-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+
+    width:100%;
+    max-width:300px;
+
+    margin:0 auto;
+}
+
+.place-actions .place-map,
+.place-actions .btn-place{
+    width:100%;
+    margin:0;
+}
+
+.place-actions .map-toggle,
+.place-actions .btn-place{
+    width:100%;
+    height:42px;
+    min-width:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+    line-height:1;
+    white-space:nowrap;
+}
+
+.place-actions .place-map:not(.is-open){
+    height:42px;
+}
+
+.place-actions .place-map.is-open{
+    grid-column:1 / -1;
+
+    width:100%;
+    height:200px;
+
+    margin:0;
+}
+
+@media(max-width:480px){
+
+    .place-actions{
+        max-width:100%;
+        gap:8px;
+    }
+
+    .place-actions .map-toggle,
+    .place-actions .btn-place{
+        height:40px;
+        padding:0 8px;
+        font-size:11px;
+    }
+
+    .place-actions .place-map:not(.is-open){
+        height:40px;
+    }
+}
