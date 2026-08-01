@@ -287,36 +287,173 @@
             Aquí les dejamos algunas sugerencias de color.
         </p>
 <div class="dresscode-grid">
-<div class="dresscode-card">
-<div class="dresscode-icon">🤵</div>
-<h3>Caballeros</h3>
-<p>Traje formal</p>
-<div class="swatches">
-<span class="swatch" style="background:#1B2A4A" title="Azul marino"></span>
-<span class="swatch" style="background:#3A3A3A" title="Gris carbón"></span>
-<span class="swatch" style="background:#1F3B2C" title="Verde botella"></span>
-<span class="swatch" style="background:#111111" title="Negro"></span>
+
+    <!-- CABALLEROS -->
+    <div class="dresscode-card flip-card" onclick="toggleFlip(this)">
+        <div class="flip-card-inner">
+
+            <!-- Frente -->
+            <div class="flip-card-front">
+                <div class="dresscode-icon">🤵</div>
+                <h3>Caballeros</h3>
+                <p>Traje formal</p>
+                <span class="flip-hint">Toca para ver colores</span>
+            </div>
+
+            <!-- Atrás -->
+            <div class="flip-card-back">
+                <h3>Caballeros</h3>
+                <p class="flip-subtitle">Colores sugeridos</p>
+
+                <div class="color-list">
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#1B2A4A;"></span>
+                        <span class="color-name">Azul marino</span>
+                    </div>
+
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#3A3A3A;"></span>
+                        <span class="color-name">Gris carbón</span>
+                    </div>
+
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#1F3B2C;"></span>
+                        <span class="color-name">Verde botella</span>
+                    </div>
+
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#111111;"></span>
+                        <span class="color-name">Negro</span>
+                    </div>
+                </div>
+
+                <span class="flip-hint">Toca para volver</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- DAMAS -->
+    <div class="dresscode-card flip-card" onclick="toggleFlip(this)">
+        <div class="flip-card-inner">
+
+            <!-- Frente -->
+            <div class="flip-card-front">
+                <div class="dresscode-icon">👗</div>
+                <h3>Damas</h3>
+                <p>Vestido largo</p>
+                <span class="flip-hint">Toca para ver colores</span>
+            </div>
+
+            <!-- Atrás -->
+            <div class="flip-card-back">
+                <h3>Damas</h3>
+                <p class="flip-subtitle">Colores sugeridos</p>
+
+                <div class="color-list">
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#9CAF88;"></span>
+                        <span class="color-name">Verde salvia</span>
+                    </div>
+
+                    <div class="color-item">
+    <span class="swatch-large" style="background:#1F4E5F;"></span>
+    <span class="color-name">Azul petróleo</span>
 </div>
-</div>
-<div class="dresscode-card">
-<div class="dresscode-icon">👗</div>
-<h3>Damas</h3>
-<p>Vestido largo</p>
-<div class="swatches">
-<span class="swatch" style="background:#9CAF88" title="Verde salvia"></span>
-<span class="swatch" style="background:#C9A0A5" title="Rosa malva"></span>
-<span class="swatch" style="background:#C4B7D6" title="Lila"></span>
-<span class="swatch" style="background:#6B2737" title="Guinda"></span>
-</div>
+
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#C4B7D6;"></span>
+                        <span class="color-name">Lila suave</span>
+                    </div>
+
+                    <div class="color-item">
+                        <span class="swatch-large" style="background:#6B2737;"></span>
+                        <span class="color-name">Guinda</span>
+                    </div>
+                </div>
+
+                <span class="flip-hint">Toca para volver</span>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 </div>
 <div class="dresscode-restricted">
-<p>Por respeto a los novios, se solicita evitar:</p>
-<div class="restricted-colors">
-<span class="restricted"><i class="dot" style="background:#ffffff;border:1px solid #ddd"></i> Blanco</span>
-<span class="restricted"><i class="dot" style="background:#C0392B"></i> Rojo</span>
-<span class="restricted"><i class="dot" style="background:#D2B48C"></i> Beige</span>
-</div>
+
+    <p class="restricted-title">
+        Colores reservados
+    </p>
+
+    <div class="restricted-colors">
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#FFFFFF; border:1px solid rgba(0,0,0,.20);"
+            ></span>
+            Blanco
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#FFFFF0; border:1px solid rgba(0,0,0,.18);"
+            ></span>
+            Marfil / Ivory
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#FFFDD0; border:1px solid rgba(0,0,0,.15);"
+            ></span>
+            Crema
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#F7E7CE; border:1px solid rgba(0,0,0,.15);"
+            ></span>
+            Champagne
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#E8D8C3; border:1px solid rgba(0,0,0,.15);"
+            ></span>
+            Beige muy claro
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#EBC8B2; border:1px solid rgba(0,0,0,.12);"
+            ></span>
+            Nude muy pálido
+        </span>
+
+        <span class="restricted">
+            <span
+                class="dot"
+                style="background:#C9A0A5;"
+            ></span>
+            Malva rosa
+        </span>
+
+    </div>
+
+    <p class="restricted-special-note">
+        El malva rosa está reservado exclusivamente para las damas de honor.
+    </p>
+
+    <p class="restricted-note">
+        Agradecemos evitar estos tonos para mantener la armonía visual de los novios y del cortejo.
+    </p>
+
 </div>
 </div>
 </section>

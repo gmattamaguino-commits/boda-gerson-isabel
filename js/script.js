@@ -1185,3 +1185,6 @@ document.addEventListener(
         );
     }
 );
+function toggleFlip(card){
+    card.classList.toggle("is-flipped");
+}
