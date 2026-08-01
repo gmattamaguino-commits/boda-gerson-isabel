@@ -2,8 +2,9 @@
 
 /* =====================================================
    DATOS PERSONALIZADOS DEL INVITADO
-   Ejemplo de URL:
-   ?n=Familia%20Pérez&p=4
+
+   Ejemplo:
+   ?n=Familia%20Pérez&p=4&codigo=GI26-001
 ===================================================== */
 
 function getGuestData() {
@@ -12,24 +13,22 @@ function getGuestData() {
     );
 
     return {
-        nombre: params.get("n"),
-        pases: params.get("p"),
-        codigo: params.get("codigo")
+        nombre: (
+            params.get("n") || ""
+        ).trim(),
+
+        pases: (
+            params.get("p") || ""
+        ).trim(),
+
+        codigo: (
+            params.get("codigo") || ""
+        ).trim()
     };
 }
 
 const guestData = getGuestData();
 
-function showGuestGreeting() {
-    const greetingElement = document.getElementById(
-        "guest-greeting"
-    );
-
-    if (guestData.nombre && greetingElement) {
-        greetingElement.textContent =
-            `Querid@s ${guestData.nombre}`;
-    }
-}
 
 /* =====================================================
    CUENTA REGRESIVA
@@ -48,9 +47,8 @@ function startCountdown() {
     ).getTime();
 
     function updateCountdown() {
-        const currentDate = Date.now();
         const distance =
-            weddingDate - currentDate;
+            weddingDate - Date.now();
 
         if (distance <= 0) {
             countdownElement.innerHTML = `
@@ -121,79 +119,26 @@ function startCountdown() {
         return true;
     }
 
-    updateCountdown();
+    const countdownIsActive =
+        updateCountdown();
 
-    const timer = setInterval(() => {
-        const countdownIsActive =
-            updateCountdown();
-
-        if (!countdownIsActive) {
-            clearInterval(timer);
-        }
-    }, 1000);
-}
-
-/* =====================================================
-   CANTIDAD DE PASES
-===================================================== */
-
-function showPassesMessage() {
-    const passesElement =
-        document.getElementById(
-            "rsvp-passes"
-        );
-
-    if (
-        !passesElement ||
-        !guestData.pases
-    ) {
+    if (!countdownIsActive) {
         return;
     }
 
-    const totalPasses =
-        Number.parseInt(
-            guestData.pases,
-            10
-        );
+    const timer = window.setInterval(
+        () => {
+            const stillActive =
+                updateCountdown();
 
-    if (
-        !Number.isInteger(totalPasses) ||
-        totalPasses < 1 ||
-        totalPasses > 20
-    ) {
-        return;
-    }
-
-    const passesHTML = Array.from(
-        { length: totalPasses },
-        (_, index) => `
-            <div class="pass-dot-wrap">
-                <div class="pass-dot filled"></div>
-
-                <span class="pass-number">
-                    ${index + 1}
-                </span>
-            </div>
-        `
-    ).join("");
-
-    passesElement.innerHTML = `
-        <p class="passes-label">
-            Hemos reservado
-        </p>
-
-        <div class="passes-dots">
-            ${passesHTML}
-        </div>
-
-        <p
-            class="passes-label"
-            style="margin-top:14px;"
-        >
-            Lugares en su honor
-        </p>
-    `;
+            if (!stillActive) {
+                window.clearInterval(timer);
+            }
+        },
+        1000
+    );
 }
+
 
 /* =====================================================
    ANIMACIONES AL HACER SCROLL
@@ -205,7 +150,6 @@ function initRevealAnimations() {
             .subtitle-section,
             .title-section,
             .divider-center,
-            .story-card,
             .schedule-card,
             .place-card,
             .dresscode-card,
@@ -213,15 +157,12 @@ function initRevealAnimations() {
             .regalo-card,
             .info-ninos-card,
             .gallery-item,
-            .song-player,
             .gracias-content
         `);
 
     elements.forEach(
         (element, index) => {
-            element.classList.add(
-                "reveal"
-            );
+            element.classList.add("reveal");
 
             const delay =
                 (index % 4) * 90;
@@ -282,50 +223,48 @@ function initRevealAnimations() {
     });
 }
 
+
 /* =====================================================
    GALERÍA Y LIGHTBOX
 ===================================================== */
 
-window.openLightbox =
-    function (galleryItem) {
-        const image =
-            galleryItem.querySelector(
-                "img"
-            );
+window.openLightbox = function (
+    galleryItem
+) {
+    const image =
+        galleryItem.querySelector("img");
 
-        const lightbox =
-            document.getElementById(
-                "lightbox"
-            );
-
-        const lightboxImage =
-            document.getElementById(
-                "lightbox-img"
-            );
-
-        if (
-            !image ||
-            !lightbox ||
-            !lightboxImage
-        ) {
-            return;
-        }
-
-        lightboxImage.src =
-            image.currentSrc ||
-            image.src;
-
-        lightboxImage.alt =
-            image.alt ||
-            "Fotografía ampliada";
-
-        lightbox.classList.add(
-            "active"
+    const lightbox =
+        document.getElementById(
+            "lightbox"
         );
 
-        document.body.style.overflow =
-            "hidden";
-    };
+    const lightboxImage =
+        document.getElementById(
+            "lightbox-img"
+        );
+
+    if (
+        !image ||
+        !lightbox ||
+        !lightboxImage
+    ) {
+        return;
+    }
+
+    lightboxImage.src =
+        image.currentSrc ||
+        image.src;
+
+    lightboxImage.alt =
+        image.alt ||
+        "Fotografía ampliada";
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+};
 
 window.closeLightbox = function () {
     const lightbox =
@@ -337,13 +276,11 @@ window.closeLightbox = function () {
         return;
     }
 
-    lightbox.classList.remove(
-        "active"
-    );
+    lightbox.classList.remove("active");
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 };
+
 
 /* =====================================================
    REPRODUCTOR DE MÚSICA
@@ -444,7 +381,8 @@ function initAudioPlayer() {
         if (
             !Number.isFinite(
                 audio.duration
-            )
+            ) ||
+            audio.duration <= 0
         ) {
             return;
         }
@@ -456,7 +394,7 @@ function initAudioPlayer() {
             ) * 100;
 
         progress.value =
-            percentage;
+            String(percentage);
 
         progress.style.setProperty(
             "--audio-progress",
@@ -538,15 +476,14 @@ function initAudioPlayer() {
             if (
                 !Number.isFinite(
                     audio.duration
-                )
+                ) ||
+                audio.duration <= 0
             ) {
                 return;
             }
 
             const percentage =
-                Number(
-                    progress.value
-                );
+                Number(progress.value);
 
             audio.currentTime =
                 (
@@ -594,7 +531,7 @@ function initAudioPlayer() {
                 "is-playing"
             );
 
-            progress.value = 0;
+            progress.value = "0";
 
             progress.style.setProperty(
                 "--audio-progress",
@@ -609,9 +546,6 @@ function initAudioPlayer() {
     );
 }
 
-/* =====================================================
-   MAPAS
-===================================================== */
 
 /* =====================================================
    MAPAS DESPLEGABLES
@@ -635,10 +569,6 @@ window.showMap = function (
             "is-open"
         );
 
-    /*
-     * Si el mapa ya está abierto,
-     * vuelve al botón inicial.
-     */
     if (isOpen) {
         mapContainer.classList.remove(
             "is-open"
@@ -648,11 +578,11 @@ window.showMap = function (
             <button
                 type="button"
                 class="map-toggle"
+                aria-expanded="false"
                 onclick="showMap(
                     '${containerId}',
                     '${coordinates}'
                 )"
-                aria-expanded="false"
             >
                 <span
                     class="map-toggle-icon"
@@ -661,42 +591,45 @@ window.showMap = function (
                     📍
                 </span>
 
-                Ver mapa
+                <span>
+                    Ver mapa
+                </span>
             </button>
         `;
 
         return;
     }
 
-    /*
-     * Abre el mapa y agrega el botón
-     * para volver a cerrarlo.
-     */
     mapContainer.classList.add(
         "is-open"
     );
+
+    const mapURL =
+        `https://www.google.com/maps?q=${
+            encodeURIComponent(
+                coordinates
+            )
+        }&z=16&output=embed`;
 
     mapContainer.innerHTML = `
         <div class="map-expanded">
 
             <iframe
-                src="https://www.google.com/maps?q=${encodeURIComponent(
-                    coordinates
-                )}&z=16&output=embed"
+                src="${mapURL}"
                 title="Mapa de ubicación"
-                allowfullscreen
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
 
             <button
                 type="button"
                 class="map-close-button"
+                aria-label="Cerrar mapa"
                 onclick="showMap(
                     '${containerId}',
                     '${coordinates}'
                 )"
-                aria-expanded="true"
             >
                 Cerrar mapa
             </button>
@@ -704,6 +637,7 @@ window.showMap = function (
         </div>
     `;
 };
+
 
 /* =====================================================
    APERTURA DE LA INVITACIÓN
@@ -746,24 +680,31 @@ function initInvitationOpening() {
                 "invitation-open"
             );
 
-            window.setTimeout(() => {
-                cover.classList.add(
-                    "is-hidden"
-                );
-            }, 3000);
+            window.setTimeout(
+                () => {
+                    cover.classList.add(
+                        "is-hidden"
+                    );
+                },
+                3000
+            );
 
-            window.setTimeout(() => {
-                cover.remove();
+            window.setTimeout(
+                () => {
+                    cover.remove();
 
-                document.body.style.overflow =
-                    "";
-            }, 4000);
+                    document.body.style.overflow =
+                        "";
+                },
+                4000
+            );
         },
         {
             once: true
         }
     );
 }
+
 
 /* =====================================================
    FORMULARIO PRIVADO PARA REGALOS
@@ -787,10 +728,10 @@ function configureGiftForm() {
             usp: "pp_url",
 
             "entry.988199634":
-                guestData.nombre || "",
+                guestData.nombre,
 
             "entry.1231225220":
-                guestData.codigo || "",
+                guestData.codigo,
 
             "entry.995696210":
                 "Ambas opciones"
@@ -800,8 +741,19 @@ function configureGiftForm() {
         `${formBaseURL}?${formParams.toString()}`;
 
     if (!guestData.codigo) {
+        giftButton.href = "#";
+
         giftButton.removeAttribute(
             "target"
+        );
+
+        giftButton.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+        giftButton.classList.add(
+            "is-disabled"
         );
 
         giftButton.addEventListener(
@@ -817,28 +769,23 @@ function configureGiftForm() {
     }
 }
 
+
 /* =====================================================
    PERSONALIZACIÓN DEL INVITADO
 ===================================================== */
 
 function initGuestPersonalization() {
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    const guestName = (
-        params.get("n") || ""
-    ).trim();
+    const guestName =
+        guestData.nombre;
 
     const passesValue =
         Number.parseInt(
-            params.get("p"),
+            guestData.pases,
             10
         );
 
     const passes =
-        Number.isFinite(
+        Number.isInteger(
             passesValue
         ) &&
         passesValue > 0
@@ -886,6 +833,10 @@ function initGuestPersonalization() {
                 "";
         }
 
+        if (guestCard) {
+            guestCard.hidden = true;
+        }
+
         return;
     }
 
@@ -899,27 +850,11 @@ function initGuestPersonalization() {
             `Bienvenidos, ${guestName}`;
     }
 
-    if (!guestCard) {
-        console.error(
-            "No se encontró #guest-invitation-card"
-        );
-
-        return;
-    }
-
-    if (!guestCardName) {
-        console.error(
-            "No se encontró #guest-card-name"
-        );
-
-        return;
-    }
-
-    if (!guestCardPasses) {
-        console.error(
-            "No se encontró #guest-card-passes"
-        );
-
+    if (
+        !guestCard ||
+        !guestCardName ||
+        !guestCardPasses
+    ) {
         return;
     }
 
@@ -928,9 +863,6 @@ function initGuestPersonalization() {
     guestCard.removeAttribute(
         "hidden"
     );
-
-    guestCard.style.display =
-        "block";
 
     guestCardName.textContent =
         guestName;
@@ -947,86 +879,79 @@ function initGuestPersonalization() {
     }
 
     if (
-        passIcons &&
-        passes > 0
+        !passIcons ||
+        passes <= 0
     ) {
-        passIcons.innerHTML = "";
+        return;
+    }
 
-        const visiblePasses =
-            Math.min(
-                passes,
-                10
+    passIcons.innerHTML = "";
+
+    const visiblePasses =
+        Math.min(
+            passes,
+            10
+        );
+
+    for (
+        let index = 0;
+        index < visiblePasses;
+        index += 1
+    ) {
+        const icon =
+            document.createElement(
+                "span"
             );
 
-        for (
-            let index = 0;
-            index < visiblePasses;
-            index += 1
-        ) {
-            const icon =
-                document.createElement(
-                    "span"
-                );
+        icon.className =
+            "guest-pass-icon";
 
-            icon.className =
-                "guest-pass-icon";
+        icon.textContent =
+            "♥";
 
-            icon.textContent =
-                "♥";
+        icon.style.animationDelay =
+            `${index * 90}ms`;
 
-            icon.style.animationDelay =
-                `${index * 90}ms`;
-
-            passIcons.appendChild(
-                icon
-            );
-        }
+        passIcons.appendChild(icon);
     }
 }
+
+
 /* =====================================================
    FORMULARIO PERSONALIZADO DE ASISTENCIA
 ===================================================== */
 
 function configureRSVPForm() {
-    const rsvpButton = document.getElementById(
-        "rsvp-form-button"
-    );
+    const rsvpButton =
+        document.getElementById(
+            "rsvp-form-button"
+        );
 
-    const rsvpSummary = document.getElementById(
-        "rsvp-summary"
-    );
-
-    const summaryName = document.getElementById(
-        "rsvp-summary-name"
-    );
-
-    const summaryPasses = document.getElementById(
-        "rsvp-summary-passes"
-    );
-
-    const warning = document.getElementById(
-        "rsvp-form-warning"
-    );
+    const warning =
+        document.getElementById(
+            "rsvp-form-warning"
+        );
 
     if (!rsvpButton) {
         return;
     }
 
-    const guestName = (
-        guestData.nombre || ""
-    ).trim();
+    const guestName =
+        guestData.nombre;
 
-    const guestCode = (
-        guestData.codigo || ""
-    ).trim();
+    const guestCode =
+        guestData.codigo;
 
-    const passesValue = Number.parseInt(
-        guestData.pases,
-        10
-    );
+    const passesValue =
+        Number.parseInt(
+            guestData.pases,
+            10
+        );
 
     const validPasses =
-        Number.isInteger(passesValue) &&
+        Number.isInteger(
+            passesValue
+        ) &&
         passesValue >= 1 &&
         passesValue <= 20;
 
@@ -1035,37 +960,6 @@ function configureRSVPForm() {
         Boolean(guestCode) &&
         validPasses;
 
-    /*
-     * Mostramos el resumen únicamente cuando
-     * existe un nombre personalizado.
-     */
-    if (
-        guestName &&
-        rsvpSummary &&
-        summaryName &&
-        summaryPasses
-    ) {
-        rsvpSummary.hidden = false;
-
-        summaryName.textContent =
-            guestName;
-
-        if (passesValue === 1) {
-            summaryPasses.textContent =
-                "Tienes 1 lugar reservado.";
-        } else if (validPasses) {
-            summaryPasses.textContent =
-                `Tienen ${passesValue} lugares reservados.`;
-        } else {
-            summaryPasses.textContent =
-                "Consulta la cantidad de lugares asignados.";
-        }
-    }
-
-    /*
-     * Sin nombre, pases o código válidos,
-     * el formulario queda bloqueado.
-     */
     if (!invitationIsValid) {
         rsvpButton.href = "#";
 
@@ -1103,21 +997,25 @@ function configureRSVPForm() {
     const formBaseURL =
         "https://docs.google.com/forms/d/e/1FAIpQLSfxyaz7drSzgiMviKdOuDYxbv3Oo6Djhbj-38066ikbl6WSmA/viewform";
 
-    const formParams = new URLSearchParams({
-        usp: "pp_url",
+    const formParams =
+        new URLSearchParams({
+            usp: "pp_url",
 
-        "entry.444096586":
-            guestName,
+            "entry.444096586":
+                guestName,
 
-        "entry.120770457":
-            String(passesValue),
+            "entry.120770457":
+                String(passesValue),
 
-        "entry.1314277754":
-            guestCode
-    });
+            "entry.1314277754":
+                guestCode
+        });
 
     rsvpButton.href =
         `${formBaseURL}?${formParams.toString()}`;
+
+    rsvpButton.target =
+        "_blank";
 
     rsvpButton.classList.remove(
         "is-disabled"
@@ -1131,43 +1029,44 @@ function configureRSVPForm() {
         warning.hidden = true;
     }
 }
+
+
 /* =====================================================
    RESUMEN PERSONALIZADO DEL RSVP
 ===================================================== */
 
 function showRSVPSummary() {
-    const summary = document.getElementById(
-        "rsvp-summary"
-    );
+    const summary =
+        document.getElementById(
+            "rsvp-summary"
+        );
 
-    const summaryName = document.getElementById(
-        "rsvp-summary-name"
-    );
+    const summaryName =
+        document.getElementById(
+            "rsvp-summary-name"
+        );
 
-    const summaryPasses = document.getElementById(
-        "rsvp-summary-passes"
-    );
+    const summaryPasses =
+        document.getElementById(
+            "rsvp-summary-passes"
+        );
 
     if (
         !summary ||
         !summaryName ||
         !summaryPasses
     ) {
-        console.error(
-            "No se encontraron los elementos del resumen RSVP"
-        );
-
         return;
     }
 
-    const guestName = (
-        guestData.nombre || ""
-    ).trim();
+    const guestName =
+        guestData.nombre;
 
-    const passes = Number.parseInt(
-        guestData.pases,
-        10
-    );
+    const passes =
+        Number.parseInt(
+            guestData.pases,
+            10
+        );
 
     if (!guestName) {
         summary.hidden = true;
@@ -1192,17 +1091,22 @@ function showRSVPSummary() {
     }
 
     summary.hidden = false;
-    summary.removeAttribute("hidden");
-    summary.style.display = "flex";
+
+    summary.removeAttribute(
+        "hidden"
+    );
 }
+
+
 /* =====================================================
    MENSAJE DINÁMICO SEGÚN LA FECHA
 ===================================================== */
 
 function updateWeddingStatusMessage() {
-    const messageElement = document.getElementById(
-        "wedding-status-message"
-    );
+    const messageElement =
+        document.getElementById(
+            "wedding-status-message"
+        );
 
     if (!messageElement) {
         return;
@@ -1212,11 +1116,9 @@ function updateWeddingStatusMessage() {
         "2026-10-24T12:00:00-05:00"
     );
 
-    const currentDate = new Date();
-
     const difference =
         weddingDate.getTime() -
-        currentDate.getTime();
+        Date.now();
 
     const totalDays = Math.ceil(
         difference /
@@ -1251,6 +1153,8 @@ function updateWeddingStatusMessage() {
     messageElement.textContent =
         message;
 }
+
+
 /* =====================================================
    INICIALIZACIÓN
 ===================================================== */
@@ -1262,7 +1166,6 @@ document.addEventListener(
         initAudioPlayer();
         initGuestPersonalization();
         startCountdown();
-        showPassesMessage();
         initRevealAnimations();
         configureGiftForm();
         configureRSVPForm();
