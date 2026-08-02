@@ -35,74 +35,90 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Great+Vibes&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Precarga de la apertura -->
+<link
+    rel="preload"
+    as="image"
+    href="img/sobre-cerrado-gi.png?v=29"
+    fetchpriority="high"
+>
+<link
+    rel="preload"
+    as="image"
+    href="img/sobre-abierto-gi.png?v=29"
+    fetchpriority="high"
+>
 <!-- CSS principal -->
-<link href="css/style.css?v=23" rel="stylesheet"/>
+<link href="css/style.css?v=29" rel="stylesheet">
 </head>
 <body>
 <!-- =========================================
-     SOBRE ELEGANTE ANIMADO — v21
+     APERTURA CON DOS IMÁGENES
 ========================================= -->
+
 <div
-    class="invitation-cover"
+    class="envelope-intro"
     id="invitation-cover"
     aria-label="Abrir invitación de boda"
 >
-    <div class="wedding-envelope" id="wedding-envelope">
+    <div class="envelope-swap">
 
-        <!-- Fondo rígido del sobre -->
-        <div class="wedding-envelope-back"></div>
+        <!-- Imagen inicial: sobre cerrado -->
+        <img
+            class="envelope-image envelope-image-closed"
+            src="img/sobre-cerrado-gi.png?v=29"
+            alt="Sobre cerrado de la invitación de Gerson e Isabel"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            draggable="false"
+        >
 
-        <!-- Tarjeta guardada dentro del sobre -->
-        <article
-            class="wedding-welcome-card"
+        <!-- Imagen posterior: sobre abierto -->
+        <img
+            class="envelope-image envelope-image-open"
+            src="img/sobre-abierto-gi.png?v=29"
+            alt="Sobre abierto de la invitación de Gerson e Isabel"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            draggable="false"
+        >
+
+        <!-- Mensaje colocado sobre la tarjeta de la imagen abierta -->
+        <div
+            class="envelope-welcome-message"
             id="invitation-welcome"
             aria-hidden="true"
         >
-            <span class="welcome-card-ornament" aria-hidden="true">✦</span>
+            <span class="envelope-welcome-ornament">✦</span>
+
             <p>Bienvenidos</p>
+
             <h2>a nuestra boda</h2>
-            <span class="welcome-card-ornament" aria-hidden="true">✦</span>
-        </article>
 
-        <!-- Boca interior -->
-        <div class="wedding-envelope-pocket"></div>
-
-        <!-- Frente del sobre -->
-        <div class="wedding-envelope-front">
-            <div class="envelope-front-left"></div>
-            <div class="envelope-front-right"></div>
-            <div class="envelope-front-bottom"></div>
-            <div class="envelope-front-border"></div>
+            <span class="envelope-welcome-ornament">✦</span>
         </div>
 
-        <!-- Solapa superior completamente cerrada -->
-        <div class="wedding-envelope-flap">
-            <div class="flap-relief">
-                <span class="relief-stem stem-one"></span>
-                <span class="relief-stem stem-two"></span>
-                <span class="relief-stem stem-three"></span>
-                <span class="relief-stem stem-four"></span>
-            </div>
-        </div>
-
-        <!-- Sello guinda -->
+        <!-- Área invisible sobre el sello G&I -->
         <button
-            class="wedding-envelope-seal"
+            class="envelope-seal-button"
             id="open-invitation"
             type="button"
             aria-label="Abrir invitación"
+            disabled
         >
-            <span>ABRE</span>
-            <span>AQUÍ</span>
+            <span class="visually-hidden">
+                Abrir invitación
+            </span>
         </button>
 
-        <p class="wedding-envelope-hint">
-            Toca el sello para abrir
+        <p class="envelope-open-hint">
+            Toca el sello G&amp;I para abrir
         </p>
 
     </div>
 </div>
-
 <div class="bg-fixed"></div>
 <header aria-label="Portada de la invitación" class="hero">
 <div class="overlay"></div>
@@ -550,6 +566,6 @@
 <img alt="" aria-hidden="true" class="gracias-floral" decoding="async" loading="lazy" src="img/gracias-floral.png"/>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=23"></script>
+<script src="js/script.js?v=29"></script>
 </body>
 </html>

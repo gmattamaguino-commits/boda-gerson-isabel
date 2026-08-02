@@ -1,7 +1,7 @@
 "use strict";
 
 /* =====================================================
-   DATOS DEL INVITADO
+   DATOS PERSONALIZADOS DEL INVITADO
    Ejemplo: ?n=Familia%20Pérez&p=4&codigo=GI26-001
 ===================================================== */
 
@@ -19,52 +19,166 @@ const guestData = getGuestData();
 
 
 /* =====================================================
-   APERTURA DEL SOBRE
-   Cerrado → abre solapa → sale tarjeta → hero
+   APERTURA CON CAMBIO INSTANTÁNEO DE IMÁGENES
 ===================================================== */
 
 function initInvitationOpening() {
-    const cover = document.getElementById("invitation-cover");
-    const openButton = document.getElementById("open-invitation");
-    const welcomeCard = document.getElementById("invitation-welcome");
+    const cover = document.getElementById(
+        "invitation-cover"
+    );
 
-    if (!cover || !openButton || !welcomeCard) {
+    const openButton = document.getElementById(
+        "open-invitation"
+    );
+
+    const welcomeMessage = document.getElementById(
+        "invitation-welcome"
+    );
+
+    const closedImage = document.querySelector(
+        ".envelope-image-closed"
+    );
+
+    const openImage = document.querySelector(
+        ".envelope-image-open"
+    );
+
+    if (
+        !cover ||
+        !openButton ||
+        !welcomeMessage ||
+        !closedImage ||
+        !openImage
+    ) {
         return;
     }
 
-    document.body.classList.add("invitation-closed");
+    document.body.classList.add(
+        "invitation-closed"
+    );
+
+    /*
+     * El botón permanece deshabilitado hasta que
+     * ambas imágenes estén cargadas y decodificadas.
+     */
+    openButton.disabled = true;
+
+    async function prepareImages() {
+        const images = [
+            closedImage,
+            openImage
+        ];
+
+        await Promise.all(
+            images.map(async image => {
+                if (!image.complete) {
+                    await new Promise(resolve => {
+                        image.addEventListener(
+                            "load",
+                            resolve,
+                            {
+                                once: true
+                            }
+                        );
+
+                        image.addEventListener(
+                            "error",
+                            resolve,
+                            {
+                                once: true
+                            }
+                        );
+                    });
+                }
+
+                if (
+                    typeof image.decode ===
+                    "function"
+                ) {
+                    try {
+                        await image.decode();
+                    } catch (error) {
+                        /*
+                         * La imagen puede estar lista aunque
+                         * el navegador rechace decode().
+                         */
+                    }
+                }
+            })
+        );
+
+        cover.classList.add(
+            "is-ready"
+        );
+
+        openButton.disabled = false;
+    }
+
+    prepareImages().catch(() => {
+        openButton.disabled = false;
+    });
 
     openButton.addEventListener(
         "click",
         () => {
+            if (openButton.disabled) {
+                return;
+            }
+
             openButton.disabled = true;
 
-            // 1. Desaparece el sello y se abre la solapa.
-            cover.classList.add("is-opening");
+            /*
+             * El cambio entre la carta cerrada y la
+             * abierta ocurre en un solo fotograma.
+             */
+            cover.classList.add(
+                "is-open"
+            );
 
-            // 2. La tarjeta sale físicamente desde el sobre.
-            window.setTimeout(() => {
-                welcomeCard.setAttribute("aria-hidden", "false");
-                cover.classList.add("is-card-out");
-            }, 900);
+            welcomeMessage.setAttribute(
+                "aria-hidden",
+                "false"
+            );
 
-            // 3. Después de leer el mensaje, entra el hero.
-            window.setTimeout(() => {
-                cover.classList.add("is-leaving");
-                document.body.classList.remove("invitation-closed");
-                document.body.classList.add("invitation-open");
-            }, 4700);
+            /*
+             * Mantiene visible la carta abierta durante
+             * tres segundos para leer la bienvenida.
+             */
+            window.setTimeout(
+                () => {
+                    cover.classList.add(
+                        "is-leaving"
+                    );
 
-            // 4. Se elimina la portada al terminar la transición.
-            window.setTimeout(() => {
-                cover.remove();
-                document.body.style.overflow = "";
+                    document.body.classList.remove(
+                        "invitation-closed"
+                    );
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "auto"
-                });
-            }, 5700);
+                    document.body.classList.add(
+                        "invitation-open"
+                    );
+                },
+                3000
+            );
+
+            /*
+             * Elimina la portada cuando termina
+             * la transición al hero.
+             */
+            window.setTimeout(
+                () => {
+                    cover.remove();
+
+                    document.body.style.overflow =
+                        "";
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "auto"
+                    });
+                },
+                3500
+            );
         },
         {
             once: true
@@ -78,7 +192,9 @@ function initInvitationOpening() {
 ===================================================== */
 
 function startCountdown() {
-    const countdown = document.querySelector(".countdown");
+    const countdown = document.querySelector(
+        ".countdown"
+    );
 
     if (!countdown) {
         return;
@@ -89,7 +205,8 @@ function startCountdown() {
     ).getTime();
 
     function updateCountdown() {
-        const distance = weddingDate - Date.now();
+        const distance =
+            weddingDate - Date.now();
 
         if (distance <= 0) {
             countdown.innerHTML = `
@@ -103,29 +220,54 @@ function startCountdown() {
 
         const values = {
             days: Math.floor(
-                distance / (1000 * 60 * 60 * 24)
+                distance /
+                (
+                    1000 *
+                    60 *
+                    60 *
+                    24
+                )
             ),
 
             hours: Math.floor(
                 (
                     distance %
-                    (1000 * 60 * 60 * 24)
+                    (
+                        1000 *
+                        60 *
+                        60 *
+                        24
+                    )
                 ) /
-                (1000 * 60 * 60)
+                (
+                    1000 *
+                    60 *
+                    60
+                )
             ),
 
             minutes: Math.floor(
                 (
                     distance %
-                    (1000 * 60 * 60)
+                    (
+                        1000 *
+                        60 *
+                        60
+                    )
                 ) /
-                (1000 * 60)
+                (
+                    1000 *
+                    60
+                )
             ),
 
             seconds: Math.floor(
                 (
                     distance %
-                    (1000 * 60)
+                    (
+                        1000 *
+                        60
+                    )
                 ) /
                 1000
             )
@@ -134,14 +276,18 @@ function startCountdown() {
         Object.entries(values).forEach(
             ([id, value]) => {
                 const element =
-                    document.getElementById(id);
+                    document.getElementById(
+                        id
+                    );
 
                 if (!element) {
                     return;
                 }
 
                 const digits =
-                    id === "days" ? 3 : 2;
+                    id === "days"
+                        ? 3
+                        : 2;
 
                 element.textContent =
                     String(value).padStart(
@@ -158,11 +304,16 @@ function startCountdown() {
         return;
     }
 
-    const timer = window.setInterval(() => {
-        if (!updateCountdown()) {
-            window.clearInterval(timer);
-        }
-    }, 1000);
+    const timer = window.setInterval(
+        () => {
+            if (!updateCountdown()) {
+                window.clearInterval(
+                    timer
+                );
+            }
+        },
+        1000
+    );
 }
 
 
@@ -181,7 +332,9 @@ function initGuestPersonalization() {
         );
 
     const passes =
-        Number.isInteger(parsedPasses) &&
+        Number.isInteger(
+            parsedPasses
+        ) &&
         parsedPasses > 0
             ? parsedPasses
             : 0;
@@ -206,14 +359,17 @@ function initGuestPersonalization() {
             "guest-pass-icons"
         );
 
-    const oldLetterGuest =
+    /*
+     * Compatibilidad con versiones anteriores.
+     */
+    const letterGuest =
         document.getElementById(
             "invitation-guest-name"
         );
 
     if (!guestName) {
-        if (oldLetterGuest) {
-            oldLetterGuest.textContent =
+        if (letterGuest) {
+            letterGuest.textContent =
                 "Familiares y amigos";
         }
 
@@ -224,8 +380,8 @@ function initGuestPersonalization() {
         return;
     }
 
-    if (oldLetterGuest) {
-        oldLetterGuest.textContent =
+    if (letterGuest) {
+        letterGuest.textContent =
             guestName;
     }
 
@@ -238,7 +394,10 @@ function initGuestPersonalization() {
     }
 
     guestCard.hidden = false;
-    guestCard.removeAttribute("hidden");
+
+    guestCard.removeAttribute(
+        "hidden"
+    );
 
     guestCardName.textContent =
         guestName;
@@ -260,8 +419,15 @@ function initGuestPersonalization() {
 
     passIcons.innerHTML = "";
 
+    if (passes <= 0) {
+        return;
+    }
+
     const visiblePasses =
-        Math.min(passes, 10);
+        Math.min(
+            passes,
+            10
+        );
 
     for (
         let index = 0;
@@ -269,7 +435,9 @@ function initGuestPersonalization() {
         index += 1
     ) {
         const icon =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
         icon.className =
             "guest-pass-icon";
@@ -280,7 +448,9 @@ function initGuestPersonalization() {
         icon.style.animationDelay =
             `${index * 90}ms`;
 
-        passIcons.appendChild(icon);
+        passIcons.appendChild(
+            icon
+        );
     }
 }
 
@@ -341,15 +511,24 @@ function initAudioPlayer() {
         }
 
         const minutes =
-            Math.floor(seconds / 60);
+            Math.floor(
+                seconds / 60
+            );
 
         const remainingSeconds =
-            Math.floor(seconds % 60);
+            Math.floor(
+                seconds % 60
+            );
 
         return `${
-            String(minutes).padStart(2, "0")
+            String(minutes).padStart(
+                2,
+                "0"
+            )
         }:${
-            String(remainingSeconds).padStart(
+            String(
+                remainingSeconds
+            ).padStart(
                 2,
                 "0"
             )
@@ -379,10 +558,13 @@ function initAudioPlayer() {
             (
                 audio.currentTime /
                 audio.duration
-            ) * 100;
+            ) *
+            100;
 
         progress.value =
-            String(percentage);
+            String(
+                percentage
+            );
 
         progress.style.setProperty(
             "--audio-progress",
@@ -471,7 +653,9 @@ function initAudioPlayer() {
             }
 
             const percentage =
-                Number(progress.value);
+                Number(
+                    progress.value
+                );
 
             audio.currentTime =
                 (
@@ -519,7 +703,8 @@ function initAudioPlayer() {
                 "is-playing"
             );
 
-            progress.value = "0";
+            progress.value =
+                "0";
 
             progress.style.setProperty(
                 "--audio-progress",
@@ -556,7 +741,10 @@ function initRevealAnimations() {
         `);
 
     elements.forEach(
-        (element, index) => {
+        (
+            element,
+            index
+        ) => {
             element.classList.add(
                 "reveal"
             );
@@ -574,11 +762,13 @@ function initRevealAnimations() {
             in window
         )
     ) {
-        elements.forEach(element => {
-            element.classList.add(
-                "is-visible"
-            );
-        });
+        elements.forEach(
+            element => {
+                element.classList.add(
+                    "is-visible"
+                );
+            }
+        );
 
         return;
     }
@@ -589,32 +779,39 @@ function initRevealAnimations() {
                 entries,
                 currentObserver
             ) => {
-                entries.forEach(entry => {
-                    if (
-                        !entry.isIntersecting
-                    ) {
-                        return;
+                entries.forEach(
+                    entry => {
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
+
+                        entry.target.classList.add(
+                            "is-visible"
+                        );
+
+                        currentObserver.unobserve(
+                            entry.target
+                        );
                     }
-
-                    entry.target.classList.add(
-                        "is-visible"
-                    );
-
-                    currentObserver.unobserve(
-                        entry.target
-                    );
-                });
+                );
             },
             {
                 threshold: 0.12,
+
                 rootMargin:
                     "0px 0px -40px 0px"
             }
         );
 
-    elements.forEach(element => {
-        observer.observe(element);
-    });
+    elements.forEach(
+        element => {
+            observer.observe(
+                element
+            );
+        }
+    );
 }
 
 
@@ -662,7 +859,9 @@ window.showMap = function (
                     📍
                 </span>
 
-                <span>Ver mapa</span>
+                <span>
+                    Ver mapa
+                </span>
             </button>
         `;
 
@@ -716,7 +915,9 @@ window.openLightbox = function (
     galleryItem
 ) {
     const image =
-        galleryItem?.querySelector("img");
+        galleryItem?.querySelector(
+            "img"
+        );
 
     const lightbox =
         document.getElementById(
@@ -752,36 +953,40 @@ window.openLightbox = function (
         "hidden";
 };
 
-window.closeLightbox = function () {
-    const lightbox =
-        document.getElementById(
-            "lightbox"
+window.closeLightbox =
+    function () {
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+        if (!lightbox) {
+            return;
+        }
+
+        lightbox.classList.remove(
+            "active"
         );
 
-    if (!lightbox) {
-        return;
-    }
-
-    lightbox.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "";
-};
+        document.body.style.overflow =
+            "";
+    };
 
 
 /* =====================================================
    TARJETAS GIRATORIAS DEL DRESS CODE
 ===================================================== */
 
-window.toggleFlip = function (card) {
-    if (card) {
+window.toggleFlip =
+    function (card) {
+        if (!card) {
+            return;
+        }
+
         card.classList.toggle(
             "is-flipped"
         );
-    }
-};
+    };
 
 
 /* =====================================================
@@ -823,8 +1028,12 @@ function configureRSVPForm() {
         passesValue <= 20;
 
     const invitationIsValid =
-        Boolean(guestName) &&
-        Boolean(guestCode) &&
+        Boolean(
+            guestName
+        ) &&
+        Boolean(
+            guestCode
+        ) &&
         validPasses;
 
     if (!invitationIsValid) {
@@ -875,7 +1084,9 @@ function configureRSVPForm() {
                 guestName,
 
             "entry.120770457":
-                String(passesValue),
+                String(
+                    passesValue
+                ),
 
             "entry.1314277754":
                 guestCode
@@ -978,7 +1189,6 @@ function configureGiftForm() {
 
 /* =====================================================
    RESUMEN DEL RSVP
-   No aparece si fue eliminado del HTML.
 ===================================================== */
 
 function showRSVPSummary() {
@@ -1028,7 +1238,9 @@ function showRSVPSummary() {
         summaryPasses.textContent =
             "Tienes 1 lugar reservado.";
     } else if (
-        Number.isInteger(passes) &&
+        Number.isInteger(
+            passes
+        ) &&
         passes > 1
     ) {
         summaryPasses.textContent =
@@ -1073,10 +1285,16 @@ function updateWeddingStatusMessage() {
     const totalDays =
         Math.ceil(
             difference /
-            (1000 * 60 * 60 * 24)
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
         );
 
-    let message;
+    let message =
+        "";
 
     if (totalDays < 0) {
         message =
@@ -1114,7 +1332,10 @@ function initKeyboardControls() {
     document.addEventListener(
         "keydown",
         event => {
-            if (event.key === "Escape") {
+            if (
+                event.key ===
+                "Escape"
+            ) {
                 window.closeLightbox();
             }
         }
