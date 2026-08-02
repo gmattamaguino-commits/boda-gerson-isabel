@@ -1760,454 +1760,113 @@ section:not(.hero){
         font-size:24px;
     }
 }
-/* =========================================
-   APERTURA TIPO CARTA
-========================================= */
+/*=========================================
+SOBRE DE APERTURA
+=========================================*/
 
-/* =========================================
-   APERTURA TIPO CARTA - MEJORADA
-========================================= */
-
-.invitation-cover {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: 24px;
-
-    background:
-        radial-gradient(circle at center, #fffdf9 0%, #f7f0e8 62%, #ede0d3 100%);
-
-    overflow: hidden;
-    isolation: isolate;
-
-    transition:
-        opacity 0.9s ease,
-        visibility 0.9s ease;
+.invitation-cover{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+    background:var(--color-pearl);
+    transition:opacity .6s ease, visibility .6s ease;
 }
 
-.invitation-cover::before,
-.invitation-cover::after {
-    content: "";
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.10;
-    pointer-events: none;
+.invitation-cover.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
 }
 
-.invitation-cover::before {
-    top: -180px;
-    left: -160px;
-    background: var(--color-wine, #6b2737);
+.cover-envelope-img{
+    max-width:380px;
+    width:80%;
+    height:auto;
+    filter:drop-shadow(0 20px 40px rgba(0,0,0,.2));
 }
 
-.invitation-cover::after {
-    right: -170px;
-    bottom: -180px;
-    background: var(--color-sage, #9caf88);
+.cover-seal-btn{
+    position:absolute;
+    top:47%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:transparent;
+    border:none;
+    cursor:pointer;
 }
 
-.invitation-cover.is-opening {
-    pointer-events: none;
+.cover-hint{
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--color-text);
+    opacity:.6;
+    animation:float 2s infinite;
 }
 
-.invitation-cover.is-hidden {
-    opacity: 0;
-    visibility: hidden;
+/* Mensaje de bienvenida */
+
+.welcome-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9998;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--color-wine);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .6s ease, visibility .6s ease;
 }
 
-/* Contenedor del sobre */
-
-.invitation-envelope {
-    position: relative;
-    width: min(410px, 90vw);
-    aspect-ratio: 1.18 / 1;
-    perspective: 1300px;
-
-    filter: drop-shadow(0 28px 38px rgba(67, 38, 42, 0.22));
-
-    animation: envelopeEntrance 1.2s ease both;
+.welcome-overlay.is-visible{
+    opacity:1;
+    visibility:visible;
 }
 
-/* Parte posterior */
-
-.envelope-back {
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(145deg, #f3e8da 0%, #ead9c9 55%, #e2cfbd 100%);
-    border-radius: 14px;
-    border: 1px solid rgba(124, 95, 68, 0.16);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.65),
-        inset 0 -8px 18px rgba(150, 120, 90, 0.08);
+.welcome-content{
+    text-align:center;
+    color:white;
 }
 
-/* Carta interior */
-
-.invitation-letter {
-    position: absolute;
-    left: 9%;
-    right: 9%;
-    top: 9%;
-
-    min-height: 72%;
-    padding: 28px 22px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    text-align: center;
-
-    background:
-        linear-gradient(180deg, rgba(255,253,249,0.98) 0%, rgba(250,244,236,0.98) 100%);
-
-    border: 1px solid rgba(107, 39, 55, 0.12);
-    border-radius: 8px;
-
-    box-shadow:
-        0 12px 26px rgba(75, 46, 48, 0.10),
-        inset 0 1px 0 rgba(255,255,255,0.7);
-
-    transform: translateY(16%);
-
-    transition:
-        transform 1.15s cubic-bezier(.22, .8, .25, 1),
-        opacity 0.8s ease;
-
-    z-index: 2;
+.welcome-deco{
+    display:block;
+    font-size:20px;
+    opacity:.8;
+    margin-bottom:14px;
 }
 
-.invitation-letter::before {
-    content: "";
-    position: absolute;
-    inset: 10px;
-    border: 1px solid rgba(124, 95, 68, 0.14);
-    pointer-events: none;
-    border-radius: 4px;
+.welcome-content p{
+    font-size:16px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:6px;
 }
 
-/* Marco interno más elegante */
-.invitation-letter::after {
-    content: "";
-    position: absolute;
-    inset: 18px;
-    background:
-        linear-gradient(90deg, rgba(214,193,171,0.18), rgba(255,255,255,0) 18%, rgba(255,255,255,0) 82%, rgba(214,193,171,0.18)),
-        linear-gradient(180deg, rgba(214,193,171,0.15), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(214,193,171,0.15));
-    pointer-events: none;
-    border-radius: 3px;
-    opacity: .65;
+.welcome-content h2{
+    font-family:var(--font-title);
+    font-style:italic;
+    font-size:38px;
 }
 
-.invitation-letter h2 {
-    margin: 5px 0;
-    position: relative;
-    z-index: 1;
+@media(max-width:768px){
 
-    font-family: var(--font-title, Georgia, serif);
-    font-size: clamp(30px, 6vw, 44px);
-    font-weight: 500;
-    color: var(--color-wine, #6b2737);
-}
-
-.invitation-letter h2 span {
-    color: #c69ba5;
-}
-
-.letter-small {
-    margin: 0;
-    position: relative;
-    z-index: 1;
-
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #7c6b60;
-}
-
-.letter-date {
-    margin: 6px 0 0;
-    position: relative;
-    z-index: 1;
-
-    font-size: 13px;
-    letter-spacing: 5px;
-    color: #7c6b60;
-}
-
-/* Frente triangular del sobre */
-
-.envelope-front {
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(145deg, #efe1d2 0%, #e5d0c0 55%, #dcbfaa 100%);
-    clip-path: polygon(
-        0 38%,
-        50% 72%,
-        100% 38%,
-        100% 100%,
-        0 100%
-    );
-
-    border-radius: 0 0 14px 14px;
-    z-index: 4;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.35),
-        inset 0 -10px 20px rgba(124,95,68,.06);
-}
-
-/* Solapa superior con textura */
-
-.envelope-flap {
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(155deg, #f3e5d3 0%, #ead8c4 52%, #e2cdb8 100%);
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        50% 55%
-    );
-
-    transform-origin: top center;
-    backface-visibility: hidden;
-
-    transition:
-        transform 0.95s cubic-bezier(.22, .8, .25, 1);
-
-    z-index: 5;
-    overflow: hidden;
-}
-
-/* Textura tipo relieve / arabesco */
-.envelope-flap::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .32;
-    pointer-events: none;
-
-    background-image:
-        radial-gradient(circle at 18% 22%, rgba(255,255,255,.60) 0 10px, transparent 11px),
-        radial-gradient(circle at 76% 28%, rgba(255,255,255,.45) 0 12px, transparent 13px),
-        radial-gradient(circle at 38% 68%, rgba(255,255,255,.40) 0 11px, transparent 12px),
-        repeating-radial-gradient(circle at 20% 30%,
-            rgba(255,255,255,.18) 0 10px,
-            rgba(183,154,124,.10) 10px 20px,
-            transparent 20px 36px
-        );
-    mix-blend-mode: soft-light;
-}
-
-/* Líneas decorativas suaves para simular relieve */
-.envelope-flap::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .18;
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,.20) 0px,
-            rgba(255,255,255,.20) 2px,
-            transparent 2px,
-            transparent 18px
-        );
-    mix-blend-mode: overlay;
-}
-
-/* Sello guinda */
-
-.invitation-seal {
-    position: absolute;
-    left: 50%;
-    top: 52%;
-
-    width: 76px;
-    height: 76px;
-
-    transform: translate(-50%, -50%);
-
-    border: 5px double rgba(255, 255, 255, 0.42);
-    border-radius: 50%;
-
-    background:
-        radial-gradient(circle at 35% 30%, #a9435c 0%, #7f243f 50%, #681a31 100%);
-
-    box-shadow:
-        0 10px 22px rgba(63, 18, 31, 0.30),
-        inset 0 2px 6px rgba(255, 255, 255, 0.22);
-
-    color: #fff9f5;
-    font-family: var(--font-title, Georgia, serif);
-    font-size: 16px;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-    z-index: 6;
-
-    transition:
-        transform 0.35s ease,
-        opacity 0.35s ease,
-        box-shadow 0.35s ease;
-}
-
-.invitation-seal:hover {
-    transform: translate(-50%, -50%) scale(1.08);
-    box-shadow:
-        0 12px 24px rgba(63, 18, 31, 0.38),
-        inset 0 2px 5px rgba(255, 255, 255, 0.25);
-}
-
-.invitation-seal:focus-visible {
-    outline: 3px solid rgba(107, 39, 55, 0.35);
-    outline-offset: 6px;
-}
-
-.invitation-cover-text {
-    position: relative;
-    margin: 34px 0 0;
-
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #7b6c62;
-}
-
-/* Estado abierto */
-
-.invitation-cover.is-opening .envelope-flap {
-    transform: rotateX(180deg);
-    z-index: 1;
-}
-
-.invitation-cover.is-opening .invitation-seal {
-    opacity: 0;
-    transform:
-        translate(-50%, -50%)
-        scale(0.45);
-}
-
-.invitation-cover.is-opening .invitation-letter {
-    transform: translateY(-54%);
-}
-
-.invitation-cover.is-opening .invitation-cover-text {
-    opacity: 0;
-}
-
-/* Hero inicialmente oculto */
-
-body.invitation-closed {
-    overflow: hidden;
-}
-
-body.invitation-closed .hero {
-    opacity: 0;
-    transform: scale(1.025);
-}
-
-.hero {
-    transition:
-        opacity 1.1s ease,
-        transform 1.4s ease;
-}
-
-body.invitation-open .hero {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Animaciones */
-
-@keyframes envelopeEntrance {
-    from {
-        opacity: 0;
-        transform:
-            translateY(40px)
-            scale(0.9);
+    .cover-envelope-img{
+        max-width:300px;
     }
 
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-@keyframes invitationTextPulse {
-    0%,
-    100% {
-        opacity: 0.55;
+    .welcome-content h2{
+        font-size:28px;
     }
 
-    50% {
-        opacity: 1;
-    }
-}
-
-/* Móvil */
-
-@media (max-width: 600px) {
-
- .invitation-envelope {
-    filter:drop-shadow(
-        0 22px 30px rgba(67,38,42,.22)
-    );
-}
-
-.invitation-letter {
-    background:#fffdf9;
-}
-
-    .invitation-letter h2 {
-        font-size: 34px;
-    }
-
-    .invitation-seal {
-        width: 62px;
-        height: 62px;
-        font-size: 13px;
-    }
-}
-
-/* Accesibilidad */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .invitation-envelope,
-    .invitation-cover-text {
-        animation: none;
-    }
-
-    .invitation-cover,
-    .envelope-flap,
-    .invitation-letter,
-    .invitation-seal,
-    .hero {
-        transition-duration: 0.01ms;
-    }
 }
 
 /* =========================================
@@ -5229,8 +4888,8 @@ a{
 }
 
 /* =====================================================
-   PORTADA CON SOBRE ELEGANTE — v17
-   Flujo: sobre → mensaje breve → hero
+   PORTADA CON SOBRE ANIMADO — v18
+   El mensaje sale desde el interior del sobre
 ===================================================== */
 
 .invitation-cover{
@@ -5241,15 +4900,10 @@ a{
     display:grid;
     place-items:center;
 
-    padding:clamp(12px,2vw,24px);
+    padding:8px;
 
     background:
-        radial-gradient(
-            circle at 50% 42%,
-            #fffdf8 0%,
-            #f2e8dc 64%,
-            #e6d8ca 100%
-        );
+        radial-gradient(circle at 50% 45%, #fffdf9 0%, #f3e9df 62%, #e7d8ca 100%);
 
     overflow:hidden;
     isolation:isolate;
@@ -5268,16 +4922,8 @@ a{
     inset:0;
 
     background:
-        radial-gradient(
-            circle at 12% 12%,
-            rgba(107,39,55,.10),
-            transparent 27%
-        ),
-        radial-gradient(
-            circle at 88% 86%,
-            rgba(156,175,136,.13),
-            transparent 28%
-        );
+        radial-gradient(circle at 12% 16%, rgba(107,39,55,.08), transparent 28%),
+        radial-gradient(circle at 88% 84%, rgba(156,175,136,.12), transparent 29%);
 
     pointer-events:none;
 }
@@ -5287,64 +4933,189 @@ a{
     content:none !important;
 }
 
-.invitation-cover-stage{
+.invitation-envelope-scene{
     position:relative;
     z-index:1;
 
-    width:min(92vw,560px);
-    height:min(94svh,920px);
+    height:min(96svh,960px);
+    aspect-ratio:2 / 3;
+
+    max-width:96vw;
+
+    filter:drop-shadow(0 26px 34px rgba(61,40,40,.24));
+
+    transform:scale(1);
+    transition:
+        transform .9s cubic-bezier(.22,.75,.26,1),
+        opacity .8s ease;
+}
+
+/*
+ * Las tres capas usan la misma imagen.
+ * Se recortan con clip-path para simular:
+ * fondo, frente y solapa.
+ */
+.invitation-envelope-base,
+.invitation-envelope-front,
+.invitation-envelope-flap{
+    position:absolute;
+    inset:0;
+}
+
+.invitation-envelope-base img,
+.invitation-envelope-front img,
+.invitation-envelope-flap img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+.invitation-envelope-base{
+    z-index:1;
+}
+
+/* Parte inferior del sobre, permanece delante de la tarjeta. */
+.invitation-envelope-front{
+    z-index:4;
+    clip-path:polygon(
+        0 45%,
+        100% 45%,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* Zona superior que se levanta al abrir. */
+.invitation-envelope-flap{
+    z-index:5;
+    clip-path:polygon(
+        7% 29%,
+        93% 29%,
+        93% 57%,
+        50% 69%,
+        7% 57%
+    );
+
+    transform-origin:50% 38%;
+    transform:perspective(1100px) rotateX(0deg);
+
+    transition:
+        transform 1s cubic-bezier(.22,.78,.24,1),
+        opacity .7s ease;
+}
+
+/* Tarjeta que sale desde dentro del sobre. */
+.invitation-welcome-card{
+    position:absolute;
+    left:50%;
+    top:47%;
+    z-index:3;
+
+    width:72%;
+    min-height:27%;
 
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-}
+    gap:6px;
 
-.invitation-image-wrap{
-    position:relative;
+    padding:28px 22px;
 
-    width:100%;
-    max-height:calc(100% - 42px);
-    aspect-ratio:9 / 16;
+    text-align:center;
 
-    border-radius:8px;
-    overflow:hidden;
+    background:
+        linear-gradient(
+            155deg,
+            rgba(255,253,248,.98),
+            rgba(244,232,221,.97)
+        );
 
-    filter:
-        drop-shadow(0 28px 35px rgba(59,39,37,.22));
+    border:1px solid rgba(107,39,55,.14);
+    border-radius:22px;
 
-    transform:translateY(0) scale(1);
-    opacity:1;
+    box-shadow:
+        0 17px 34px rgba(69,42,44,.16),
+        inset 0 1px 0 rgba(255,255,255,.82);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:
+        translate(-50%,8%)
+        scale(.95);
 
     transition:
-        transform .9s cubic-bezier(.22,.75,.26,1),
-        opacity .7s ease,
-        filter .7s ease;
+        transform 1.15s cubic-bezier(.2,.75,.25,1),
+        opacity .55s ease,
+        visibility .55s ease;
 }
 
-.invitation-cover-image{
-    display:block;
+.invitation-welcome-card::before{
+    content:"";
+    position:absolute;
+    inset:11px;
 
-    width:100%;
-    height:100%;
+    border:1px solid rgba(184,146,96,.24);
+    border-radius:15px;
 
-    object-fit:contain;
-    object-position:center;
+    pointer-events:none;
+}
 
-    user-select:none;
-    -webkit-user-drag:none;
+.invitation-welcome-card p{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:#756267;
+
+    font-family:"Cinzel",serif;
+    font-size:clamp(11px,2.2vw,17px);
+    font-weight:600;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.invitation-welcome-card h2{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:var(--color-wine,#6b2737);
+
+    font-family:"Great Vibes",cursive;
+    font-size:clamp(40px,7vw,70px);
+    font-weight:400;
+    line-height:1.02;
+}
+
+.welcome-ornament{
+    position:relative;
+    z-index:1;
+
+    color:#ad8759;
+    font-size:12px;
 }
 
 /*
- * Área transparente situada sobre el sello que ya
- * forma parte de la imagen.
+ * Botón totalmente invisible.
+ * No crea aro, borde, relieve ni sobresale del sello.
  */
 .invitation-open-hotspot{
     position:absolute;
     left:50%;
-    top:43.5%;
+    top:45%;
 
-    width:clamp(86px,19%,112px);
+    z-index:7;
+
+    width:15%;
+    min-width:70px;
     aspect-ratio:1;
 
     transform:translate(-50%,-50%);
@@ -5353,168 +5124,82 @@ a{
     border:0;
     border-radius:50%;
 
-    color:transparent;
     background:transparent;
+    box-shadow:none;
+    outline:none;
 
     cursor:pointer;
     -webkit-tap-highlight-color:transparent;
-
-    outline:none;
 }
 
-.invitation-open-hotspot::before{
-    content:"";
-    position:absolute;
-    inset:-7px;
-
-    border:1px solid rgba(255,255,255,.52);
-    border-radius:50%;
-
-    box-shadow:
-        0 0 0 0 rgba(107,39,55,.34);
-
-    animation:invitationSealPulse 1.9s ease-out infinite;
-}
-
-.invitation-open-hotspot:hover{
-    transform:translate(-50%,-50%) scale(1.045);
+.invitation-open-hotspot::before,
+.invitation-open-hotspot::after{
+    display:none !important;
+    content:none !important;
 }
 
 .invitation-open-hotspot:focus-visible{
-    outline:3px solid rgba(107,39,55,.55);
-    outline-offset:7px;
+    outline:2px solid rgba(107,39,55,.42);
+    outline-offset:4px;
 }
 
 .invitation-cover-hint{
-    margin:15px 0 0;
+    position:absolute;
+    left:50%;
+    bottom:1.2%;
 
-    color:#725d61;
+    z-index:8;
+
+    margin:0;
+
+    transform:translateX(-50%);
+
+    color:#715e62;
 
     font-family:"Cinzel",serif;
-    font-size:clamp(9px,2.5vw,12px);
+    font-size:clamp(8px,1.5vw,11px);
     font-weight:600;
-    letter-spacing:2.4px;
-    text-align:center;
+    letter-spacing:2px;
+    white-space:nowrap;
     text-transform:uppercase;
-
-    animation:invitationHintPulse 2s ease-in-out infinite;
 
     transition:
         opacity .45s ease,
         transform .45s ease;
 }
 
-/* Mensaje breve intermedio */
+/* Secuencia de apertura */
 
-.invitation-welcome{
-    position:absolute;
-    inset:0;
-    z-index:3;
+.invitation-cover.is-opening .invitation-envelope-flap{
+    transform:
+        perspective(1100px)
+        rotateX(-165deg);
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:7px;
-
-    padding:28px;
-
-    text-align:center;
-
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(20px) scale(.97);
-
-    transition:
-        opacity .75s ease,
-        visibility .75s ease,
-        transform .85s cubic-bezier(.22,.75,.26,1);
-}
-
-.invitation-welcome::before{
-    content:"";
-    position:absolute;
-    inset:50% auto auto 50%;
-
-    width:min(86vw,440px);
-    aspect-ratio:1.28;
-
-    transform:translate(-50%,-50%);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,253,248,.96),
-            rgba(247,237,228,.94)
-        );
-
-    border:1px solid rgba(107,39,55,.13);
-    border-radius:26px;
-
-    box-shadow:
-        0 22px 55px rgba(71,43,45,.18),
-        inset 0 1px rgba(255,255,255,.8);
-
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-
-    z-index:-1;
-}
-
-.invitation-welcome p{
-    margin:0;
-
-    color:#7b6568;
-
-    font-family:"Cinzel",serif;
-    font-size:clamp(14px,3.6vw,20px);
-    font-weight:500;
-    letter-spacing:4px;
-    text-transform:uppercase;
-}
-
-.invitation-welcome h2{
-    margin:0;
-
-    color:var(--color-wine,#6b2737);
-
-    font-family:"Great Vibes",cursive;
-    font-size:clamp(44px,10vw,72px);
-    font-weight:400;
-    line-height:1.05;
-}
-
-.invitation-welcome-ornament{
-    color:#b69363;
-    font-size:13px;
-    line-height:1;
-}
-
-/* Estados de la secuencia */
-
-.invitation-cover.is-opening .invitation-image-wrap{
-    transform:translateY(-18px) scale(1.035);
-    opacity:0;
-    filter:
-        drop-shadow(0 12px 18px rgba(59,39,37,.10))
-        blur(2px);
+    opacity:.88;
 }
 
 .invitation-cover.is-opening .invitation-cover-hint{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateX(-50%) translateY(7px);
 }
 
-.invitation-cover.is-showing-message .invitation-welcome{
+.invitation-cover.is-card-out .invitation-welcome-card{
     opacity:1;
     visibility:visible;
-    transform:translateY(0) scale(1);
+
+    transform:
+        translate(-50%,-76%)
+        scale(1);
 }
 
 .invitation-cover.is-leaving{
     opacity:0;
     visibility:hidden;
     pointer-events:none;
+}
+
+.invitation-cover.is-leaving .invitation-envelope-scene{
+    transform:scale(1.035);
 }
 
 body.invitation-closed{
@@ -5531,79 +5216,44 @@ body.invitation-open .hero{
     transform:scale(1);
 }
 
-@keyframes invitationSealPulse{
-    0%{
-        box-shadow:
-            0 0 0 0 rgba(107,39,55,.38);
-    }
-
-    70%{
-        box-shadow:
-            0 0 0 17px rgba(107,39,55,0);
-    }
-
-    100%{
-        box-shadow:
-            0 0 0 0 rgba(107,39,55,0);
-    }
-}
-
-@keyframes invitationHintPulse{
-    0%,100%{
-        opacity:.58;
-    }
-
-    50%{
-        opacity:1;
-    }
-}
-
-/* Celular */
+/* Ajustes para celulares */
 
 @media(max-width:600px){
 
-    .invitation-cover{
-        padding:8px;
+    .invitation-envelope-scene{
+        height:min(97svh,820px);
+        max-width:98vw;
     }
 
-    .invitation-cover-stage{
-        width:min(96vw,430px);
-        height:97svh;
+    .invitation-welcome-card{
+        width:75%;
+        min-height:26%;
+        padding:22px 15px;
+        border-radius:18px;
     }
 
-    .invitation-image-wrap{
-        max-height:calc(100% - 38px);
-        border-radius:5px;
+    .invitation-welcome-card h2{
+        font-size:clamp(42px,13vw,60px);
     }
 
     .invitation-open-hotspot{
-        top:43.5%;
-        width:20%;
-        min-width:72px;
+        top:45%;
+        width:18%;
+        min-width:66px;
     }
 
     .invitation-cover-hint{
-        margin-top:10px;
-        letter-spacing:1.7px;
-    }
-
-    .invitation-welcome::before{
-        width:min(88vw,350px);
-        aspect-ratio:1.18;
-        border-radius:22px;
-    }
-
-    .invitation-welcome h2{
-        font-size:clamp(45px,14vw,64px);
+        bottom:.8%;
+        letter-spacing:1.4px;
     }
 }
 
-/* Pantallas anchas: la imagen mantiene su formato vertical */
+/* Ajuste para pantallas anchas */
 
-@media(min-width:900px){
+@media(min-width:1000px){
 
-    .invitation-cover-stage{
-        width:min(43vw,530px);
+    .invitation-envelope-scene{
+        height:min(94svh,980px);
     }
 }
 
@@ -5611,15 +5261,1824 @@ body.invitation-open .hero{
 
 @media(prefers-reduced-motion:reduce){
 
-    .invitation-open-hotspot::before,
-    .invitation-cover-hint{
-        animation:none !important;
+    .invitation-envelope-flap,
+    .invitation-welcome-card,
+    .invitation-cover,
+    .invitation-envelope-scene{
+        transition-duration:.01ms !important;
+    }
+}
+/* =====================================================
+   SOBRE ELEGANTE CREADO POR CÓDIGO — v19
+===================================================== */
+
+.invitation-cover{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:grid;
+    place-items:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffdf8 0%,
+            #f3e9df 65%,
+            #dfcfbf 100%
+        );
+
+    overflow:hidden;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
+}
+
+/* Elimina decoraciones anteriores de la portada */
+
+.invitation-cover::before,
+.invitation-cover::after{
+    display:none !important;
+    content:none !important;
+}
+
+/* Contenedor general */
+
+.code-envelope{
+    position:relative;
+
+    width:min(470px,90vw);
+    aspect-ratio:1 / 1.45;
+
+    perspective:1400px;
+
+    filter:
+        drop-shadow(
+            0 28px 35px
+            rgba(57,38,39,.25)
+        );
+
+    animation:
+        codeEnvelopeEntrance
+        1s ease both;
+}
+
+/* Parte posterior */
+
+.code-envelope-back{
+    position:absolute;
+    inset:0;
+    z-index:1;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f5ecdf 0%,
+            #ead8c7 52%,
+            #dfc7b4 100%
+        );
+
+    border:
+        1px solid
+        rgba(107,39,55,.16);
+
+    box-shadow:
+        inset 0 2px 0
+        rgba(255,255,255,.65),
+        inset 0 -15px 30px
+        rgba(111,77,57,.08);
+}
+
+/* Interior visible cuando se abre */
+
+.code-envelope-inside{
+    position:absolute;
+    left:3%;
+    right:3%;
+    top:26%;
+    height:41%;
+
+    z-index:2;
+
+    background:
+        linear-gradient(
+            180deg,
+            #cfb9a7,
+            #e9dacb
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    opacity:.85;
+}
+
+/* =====================================================
+   TARJETA DE BIENVENIDA
+===================================================== */
+
+.code-welcome-card{
+    position:absolute;
+    left:8%;
+    right:8%;
+    top:24%;
+
+    min-height:48%;
+
+    z-index:3;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:34px 24px;
+
+    text-align:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            155deg,
+            #fffdf8,
+            #f8eee4
+        );
+
+    border:
+        1px solid
+        rgba(107,39,55,.15);
+
+    box-shadow:
+        0 14px 28px
+        rgba(71,45,45,.16),
+        inset 0 1px 0
+        rgba(255,255,255,.9);
+
+    opacity:0;
+
+    transform:
+        translateY(34%)
+        scale(.95);
+
+    transition:
+        transform 1.35s
+        cubic-bezier(.2,.75,.25,1),
+        opacity .55s ease;
+}
+
+/* Marco interior de la tarjeta */
+
+.code-welcome-card::before{
+    content:"";
+
+    position:absolute;
+    inset:13px;
+
+    border:
+        1px solid
+        rgba(179,140,91,.28);
+
+    border-radius:9px;
+
+    pointer-events:none;
+}
+
+/* Ornamentos de esquina */
+
+.code-welcome-card::after{
+    content:"";
+
+    position:absolute;
+    inset:22px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(107,39,55,.18),
+            transparent 19%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(156,175,136,.18),
+            transparent 19%
+        );
+
+    pointer-events:none;
+}
+
+.code-welcome-card p{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:#725f63;
+
+    font-family:"Cinzel",serif;
+    font-size:clamp(13px,3vw,18px);
+    font-weight:600;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.code-welcome-card h2{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:var(
+        --color-wine,
+        #6b2737
+    );
+
+    font-family:"Great Vibes",cursive;
+    font-size:clamp(48px,9vw,76px);
+    font-weight:400;
+    line-height:1;
+}
+
+.welcome-decoration{
+    position:relative;
+    z-index:1;
+
+    color:#b18a5d;
+    font-size:14px;
+}
+
+/* =====================================================
+   FRENTE DEL SOBRE
+===================================================== */
+
+.code-envelope-front{
+    position:absolute;
+    inset:0;
+    z-index:5;
+
+    overflow:hidden;
+    border-radius:18px;
+
+    pointer-events:none;
+}
+
+/* Triángulo izquierdo */
+
+.code-envelope-front-left{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f3e6d8,
+            #e4cdbb
+        );
+
+    clip-path:
+        polygon(
+            0 30%,
+            52% 67%,
+            0 100%
+        );
+}
+
+/* Triángulo derecho */
+
+.code-envelope-front-right{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            215deg,
+            #f1e1d1,
+            #dcc0aa
+        );
+
+    clip-path:
+        polygon(
+            100% 30%,
+            48% 67%,
+            100% 100%
+        );
+}
+
+/* Parte inferior */
+
+.code-envelope-front-bottom{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            165deg,
+            #f2e4d7,
+            #dec5b2
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 58%,
+            100% 100%
+        );
+}
+
+/* Borde inferior elegante */
+
+.code-envelope-front::after{
+    content:"";
+
+    position:absolute;
+    left:4%;
+    right:4%;
+    bottom:3%;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(107,39,55,.45),
+            transparent
+        );
+}
+
+/* =====================================================
+   SOLAPA SUPERIOR
+===================================================== */
+
+.code-envelope-flap{
+    position:absolute;
+    inset:0;
+
+    z-index:6;
+
+    border-radius:18px 18px 0 0;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 51%
+        );
+
+    background:
+        linear-gradient(
+            155deg,
+            #f8eee1 0%,
+            #eddbc7 52%,
+            #dfc4ad 100%
+        );
+
+    transform-origin:top center;
+
+    transform:
+        perspective(1400px)
+        rotateX(0deg);
+
+    transition:
+        transform 1.15s
+        cubic-bezier(.2,.75,.25,1),
+        filter .8s ease;
+
+    backface-visibility:hidden;
+
+    border:
+        1px solid
+        rgba(107,39,55,.10);
+
+    overflow:hidden;
+}
+
+/* Fondo con textura de papel */
+
+.code-envelope-flap::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.32)
+            0 2px,
+            transparent 2px 12px
+        );
+
+    opacity:.3;
+
+    mix-blend-mode:soft-light;
+}
+
+/* Línea de borde vino */
+
+.code-envelope-flap::after{
+    content:"";
+
+    position:absolute;
+    top:6%;
+    left:6%;
+    right:6%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #7a293d,
+            transparent
+        );
+
+    opacity:.75;
+}
+
+/* =====================================================
+   RELIEVE DECORATIVO
+===================================================== */
+
+.flap-relief{
+    position:absolute;
+    inset:0;
+
+    opacity:.68;
+
+    filter:
+        drop-shadow(
+            1px 2px 1px
+            rgba(124,91,69,.24)
+        );
+}
+
+/* Ramas curvas simuladas */
+
+.relief-branch{
+    position:absolute;
+
+    width:44%;
+    height:20%;
+
+    border:
+        5px solid
+        rgba(255,250,242,.72);
+
+    border-left-color:transparent;
+    border-bottom-color:transparent;
+
+    border-radius:50%;
+
+    box-shadow:
+        inset -2px 2px 2px
+        rgba(143,107,80,.15);
+}
+
+.branch-one{
+    top:10%;
+    left:4%;
+
+    transform:rotate(17deg);
+}
+
+.branch-two{
+    top:10%;
+    right:4%;
+
+    transform:
+        scaleX(-1)
+        rotate(17deg);
+}
+
+.branch-three{
+    top:26%;
+    left:17%;
+
+    width:36%;
+
+    transform:rotate(-7deg);
+}
+
+.branch-four{
+    top:26%;
+    right:17%;
+
+    width:36%;
+
+    transform:
+        scaleX(-1)
+        rotate(-7deg);
+}
+
+/* Hojas hechas con pseudoformas */
+
+.relief-branch::before,
+.relief-branch::after{
+    content:"";
+
+    position:absolute;
+
+    width:20px;
+    height:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf2,
+            #ead9c7
+        );
+
+    border-radius:
+        80% 0
+        80% 0;
+
+    box-shadow:
+        1px 2px 2px
+        rgba(123,88,65,.18);
+}
+
+.relief-branch::before{
+    top:-5px;
+    left:32%;
+
+    transform:rotate(22deg);
+}
+
+.relief-branch::after{
+    top:15px;
+    right:22%;
+
+    transform:rotate(60deg);
+}
+
+/* =====================================================
+   SELLO
+===================================================== */
+
+.code-envelope-seal{
+    position:absolute;
+    left:50%;
+    top:49%;
+
+    z-index:8;
+
+    width:100px;
+    height:100px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    border:
+        5px double
+        rgba(244,207,156,.6);
+
+    border-radius:50%;
+
+    color:#f5d49f;
+
+    background:
+        radial-gradient(
+            circle at 34% 27%,
+            #a8455c 0%,
+            #762137 48%,
+            #501424 100%
+        );
+
+    box-shadow:
+        0 12px 22px
+        rgba(73,20,34,.4),
+        inset 0 3px 5px
+        rgba(255,255,255,.2),
+        inset 0 -4px 7px
+        rgba(44,7,17,.25);
+
+    font-family:"Cinzel",serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:
+        transform .42s ease,
+        opacity .42s ease,
+        box-shadow .3s ease;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+.code-envelope-seal:hover{
+    transform:
+        translate(-50%,-50%)
+        scale(1.06);
+
+    box-shadow:
+        0 15px 27px
+        rgba(73,20,34,.48),
+        inset 0 3px 5px
+        rgba(255,255,255,.2);
+}
+
+.code-envelope-seal:focus-visible{
+    outline:
+        3px solid
+        rgba(107,39,55,.35);
+
+    outline-offset:7px;
+}
+
+/* Texto inferior */
+
+.code-envelope-hint{
+    position:absolute;
+    left:50%;
+    bottom:-36px;
+
+    transform:translateX(-50%);
+
+    margin:0;
+
+    color:#715d61;
+
+    font-family:"Cinzel",serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:2px;
+    white-space:nowrap;
+    text-transform:uppercase;
+
+    animation:
+        codeHintPulse
+        2s ease-in-out infinite;
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+/* =====================================================
+   ESTADOS DE ANIMACIÓN
+===================================================== */
+
+/* 1. El sello desaparece */
+
+.invitation-cover.is-opening
+.code-envelope-seal{
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.45);
+
+    pointer-events:none;
+}
+
+/* 2. La solapa abre */
+
+.invitation-cover.is-opening
+.code-envelope-flap{
+    transform:
+        perspective(1400px)
+        rotateX(-178deg);
+
+    filter:brightness(.92);
+
+    z-index:2;
+}
+
+.invitation-cover.is-opening
+.code-envelope-hint{
+    opacity:0;
+
+    transform:
+        translateX(-50%)
+        translateY(8px);
+}
+
+/* 3. La tarjeta sale físicamente */
+
+.invitation-cover.is-card-out
+.code-welcome-card{
+    opacity:1;
+
+    transform:
+        translateY(-47%)
+        scale(1);
+
+    z-index:7;
+}
+
+/* 4. Desaparece toda la portada */
+
+.invitation-cover.is-leaving{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+/* Hero */
+
+body.invitation-closed{
+    overflow:hidden;
+}
+
+body.invitation-closed .hero{
+    opacity:0;
+    transform:scale(1.018);
+}
+
+body.invitation-open .hero{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes codeEnvelopeEntrance{
+    from{
+        opacity:0;
+
+        transform:
+            translateY(35px)
+            scale(.92);
     }
 
-    .invitation-image-wrap,
-    .invitation-welcome,
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes codeHintPulse{
+    0%,
+    100%{
+        opacity:.55;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media(max-width:600px){
+
     .invitation-cover{
+        padding:12px;
+    }
+
+    .code-envelope{
+        width:min(92vw,390px);
+    }
+
+    .code-envelope-seal{
+        width:82px;
+        height:82px;
+
+        font-size:13px;
+    }
+
+    .code-welcome-card{
+        left:7%;
+        right:7%;
+
+        padding:25px 16px;
+    }
+
+    .code-welcome-card h2{
+        font-size:clamp(
+            44px,
+            14vw,
+            62px
+        );
+    }
+
+    .code-welcome-card p{
+        font-size:11px;
+        letter-spacing:2.5px;
+    }
+
+    .code-envelope-hint{
+        bottom:-28px;
+
+        font-size:9px;
+        letter-spacing:1.5px;
+    }
+
+    .relief-branch{
+        border-width:4px;
+    }
+
+    .relief-branch::before,
+    .relief-branch::after{
+        width:15px;
+        height:27px;
+    }
+}
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    .code-envelope,
+    .code-envelope-flap,
+    .code-envelope-seal,
+    .code-welcome-card,
+    .invitation-cover{
+        animation:none !important;
         transition-duration:.01ms !important;
     }
 }
 
+/* =====================================================
+   SOBRE COMPLETAMENTE CERRADO — v21
+   Sobre cerrado → solapa abre → tarjeta sale → hero
+===================================================== */
+
+/* Anula la portada anterior basada en imagen/overlay. */
+.cover-envelope-img,
+.cover-seal-btn,
+.cover-hint,
+.welcome-overlay{
+    display:none !important;
+}
+
+.invitation-cover{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:grid;
+    place-items:center;
+
+    padding:22px 14px 40px;
+
+    background:
+        radial-gradient(
+            circle at 50% 44%,
+            #fffdf9 0%,
+            #f4ebe2 61%,
+            #e5d6c8 100%
+        );
+
+    overflow:hidden;
+    isolation:isolate;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
+}
+
+.invitation-cover::before,
+.invitation-cover::after{
+    display:none !important;
+    content:none !important;
+}
+
+/* -----------------------------------------------------
+   CONTENEDOR GENERAL
+----------------------------------------------------- */
+
+.wedding-envelope{
+    position:relative;
+
+    width:min(500px,92vw);
+    aspect-ratio:1 / 1.37;
+
+    perspective:1700px;
+    transform-style:preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 28px 36px
+            rgba(59,38,39,.26)
+        );
+
+    animation:
+        weddingEnvelopeEnter
+        .9s ease both;
+
+    transition:
+        transform .8s ease;
+}
+
+/* -----------------------------------------------------
+   BASE DEL SOBRE
+----------------------------------------------------- */
+
+.wedding-envelope-back{
+    position:absolute;
+    inset:0;
+    z-index:1;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            155deg,
+            #f9f1e7 0%,
+            #ecddce 54%,
+            #dfc8b5 100%
+        );
+
+    border:
+        1px solid
+        rgba(107,39,55,.15);
+
+    box-shadow:
+        inset 0 2px 0
+        rgba(255,255,255,.78),
+        inset 0 -18px 32px
+        rgba(103,71,53,.09);
+}
+
+/* Boca del sobre, oculta cuando está cerrado. */
+.wedding-envelope-pocket{
+    position:absolute;
+    left:3%;
+    right:3%;
+    top:31%;
+    height:33%;
+    z-index:2;
+
+    background:
+        linear-gradient(
+            180deg,
+            #bfa48f 0%,
+            #d5bda9 34%,
+            #ead9ca 100%
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    opacity:.88;
+}
+
+/* -----------------------------------------------------
+   TARJETA INTERIOR
+----------------------------------------------------- */
+
+.wedding-welcome-card{
+    position:absolute;
+    left:9%;
+    right:9%;
+    top:29%;
+    height:48%;
+    z-index:3;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:32px 24px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            155deg,
+            #fffdf8 0%,
+            #f8eee4 100%
+        );
+
+    border:
+        1px solid
+        rgba(107,39,55,.14);
+
+    border-radius:15px;
+
+    box-shadow:
+        0 14px 28px
+        rgba(70,44,45,.15),
+        inset 0 1px 0
+        rgba(255,255,255,.92);
+
+    /*
+     * Está totalmente dentro del sobre desde el inicio.
+     * No usa opacity 0: simplemente queda tapada por
+     * la solapa y el frente.
+     */
+    opacity:1;
+
+    transform:
+        translateY(24%)
+        scale(.98);
+
+    transition:
+        transform 1.35s
+        cubic-bezier(.18,.78,.22,1);
+}
+
+.wedding-welcome-card::before{
+    content:"";
+
+    position:absolute;
+    inset:13px;
+
+    border:
+        1px solid
+        rgba(178,139,90,.30);
+
+    border-radius:10px;
+
+    pointer-events:none;
+}
+
+.wedding-welcome-card::after{
+    content:"";
+
+    position:absolute;
+    inset:21px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(156,175,136,.16),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(201,160,165,.18),
+            transparent 22%
+        );
+
+    pointer-events:none;
+}
+
+.wedding-welcome-card p{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:#756267;
+
+    font-family:"Cinzel",serif;
+    font-size:clamp(13px,2.8vw,18px);
+    font-weight:600;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.wedding-welcome-card h2{
+    position:relative;
+    z-index:1;
+
+    margin:0;
+
+    color:var(--color-wine,#6b2737);
+
+    font-family:"Great Vibes",cursive;
+    font-size:clamp(52px,9vw,78px);
+    font-weight:400;
+    line-height:1;
+}
+
+.welcome-card-ornament{
+    position:relative;
+    z-index:1;
+
+    color:#b18b5e;
+    font-size:13px;
+}
+
+/* -----------------------------------------------------
+   FRENTE DEL SOBRE
+----------------------------------------------------- */
+
+.wedding-envelope-front{
+    position:absolute;
+    inset:0;
+    z-index:6;
+
+    overflow:hidden;
+    border-radius:20px;
+
+    pointer-events:none;
+}
+
+.envelope-front-left{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8eee3,
+            #e5cfbd
+        );
+
+    clip-path:
+        polygon(
+            0 36%,
+            52% 69%,
+            0 100%
+        );
+}
+
+.envelope-front-right{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            215deg,
+            #f6e9dc,
+            #dfc6b2
+        );
+
+    clip-path:
+        polygon(
+            100% 36%,
+            48% 69%,
+            100% 100%
+        );
+}
+
+.envelope-front-bottom{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            160deg,
+            #f6eadf,
+            #dec4b0
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            50% 60%,
+            100% 100%
+        );
+}
+
+.envelope-front-border{
+    position:absolute;
+    left:5%;
+    right:5%;
+    bottom:3.5%;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #76283c 14%,
+            #76283c 86%,
+            transparent
+        );
+
+    opacity:.76;
+}
+
+/* -----------------------------------------------------
+   SOLAPA COMPLETAMENTE CERRADA
+----------------------------------------------------- */
+
+.wedding-envelope-flap{
+    position:absolute;
+    inset:0;
+    z-index:8;
+
+    /*
+     * La punta llega debajo del sello.
+     * Esto evita que el sobre parezca entreabierto.
+     */
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 65%
+        );
+
+    border-radius:20px 20px 0 0;
+
+    background:
+        linear-gradient(
+            155deg,
+            #fbf4ea 0%,
+            #edddcc 54%,
+            #dec5b1 100%
+        );
+
+    transform-origin:top center;
+
+    transform:
+        perspective(1700px)
+        rotateX(0deg);
+
+    transition:
+        transform 1.18s
+        cubic-bezier(.18,.78,.22,1),
+        filter .7s ease;
+
+    backface-visibility:hidden;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(107,39,55,.10);
+
+    box-shadow:
+        inset 0 2px 0
+        rgba(255,255,255,.75);
+}
+
+.wedding-envelope-flap::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-radial-gradient(
+            circle at 24% 20%,
+            rgba(255,255,255,.40)
+            0 2px,
+            transparent 2px 13px
+        );
+
+    opacity:.30;
+
+    mix-blend-mode:soft-light;
+}
+
+.wedding-envelope-flap::after{
+    content:"";
+
+    position:absolute;
+    top:5%;
+    left:6%;
+    right:6%;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #76283c 12%,
+            #76283c 88%,
+            transparent
+        );
+
+    opacity:.80;
+}
+
+/* -----------------------------------------------------
+   RELIEVE DECORATIVO
+----------------------------------------------------- */
+
+.flap-relief{
+    position:absolute;
+    inset:0;
+
+    opacity:.72;
+
+    filter:
+        drop-shadow(
+            1px 2px 1px
+            rgba(123,88,65,.23)
+        );
+}
+
+.relief-stem{
+    position:absolute;
+
+    width:43%;
+    height:24%;
+
+    border:
+        6px solid
+        rgba(255,251,244,.79);
+
+    border-left-color:transparent;
+    border-bottom-color:transparent;
+
+    border-radius:50%;
+
+    box-shadow:
+        inset -2px 2px 2px
+        rgba(136,99,73,.13);
+}
+
+.stem-one{
+    top:10%;
+    left:4%;
+    transform:rotate(16deg);
+}
+
+.stem-two{
+    top:10%;
+    right:4%;
+    transform:
+        scaleX(-1)
+        rotate(16deg);
+}
+
+.stem-three{
+    top:29%;
+    left:13%;
+    width:39%;
+    transform:rotate(-6deg);
+}
+
+.stem-four{
+    top:29%;
+    right:13%;
+    width:39%;
+    transform:
+        scaleX(-1)
+        rotate(-6deg);
+}
+
+.relief-stem::before,
+.relief-stem::after{
+    content:"";
+
+    position:absolute;
+
+    width:20px;
+    height:36px;
+
+    border-radius:
+        80% 0
+        80% 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf2,
+            #ead8c6
+        );
+
+    box-shadow:
+        1px 2px 2px
+        rgba(123,88,65,.18);
+}
+
+.relief-stem::before{
+    top:-7px;
+    left:30%;
+    transform:rotate(20deg);
+}
+
+.relief-stem::after{
+    top:18px;
+    right:20%;
+    transform:rotate(61deg);
+}
+
+/* -----------------------------------------------------
+   SELLO
+----------------------------------------------------- */
+
+.wedding-envelope-seal{
+    position:absolute;
+    left:50%;
+    top:60%;
+
+    z-index:10;
+
+    width:102px;
+    height:102px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    border:
+        5px double
+        rgba(239,199,142,.62);
+
+    border-radius:50%;
+
+    color:#f3d29a;
+
+    background:
+        radial-gradient(
+            circle at 34% 27%,
+            #aa465e 0%,
+            #772238 50%,
+            #501423 100%
+        );
+
+    box-shadow:
+        0 12px 24px
+        rgba(71,19,32,.43),
+        inset 0 3px 5px
+        rgba(255,255,255,.20),
+        inset 0 -4px 8px
+        rgba(42,7,16,.28);
+
+    font-family:"Cinzel",serif;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+.wedding-envelope-seal:hover{
+    transform:
+        translate(-50%,-50%)
+        scale(1.06);
+}
+
+.wedding-envelope-seal:focus-visible{
+    outline:
+        3px solid
+        rgba(107,39,55,.35);
+
+    outline-offset:7px;
+}
+
+.wedding-envelope-hint{
+    position:absolute;
+    left:50%;
+    bottom:-34px;
+
+    transform:translateX(-50%);
+
+    margin:0;
+
+    color:#715e62;
+
+    font-family:"Cinzel",serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:2px;
+    white-space:nowrap;
+    text-transform:uppercase;
+
+    animation:
+        weddingEnvelopeHint
+        2s ease-in-out infinite;
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+/* -----------------------------------------------------
+   SECUENCIA DE APERTURA
+----------------------------------------------------- */
+
+.invitation-cover.is-opening
+.wedding-envelope-seal{
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.42);
+
+    pointer-events:none;
+}
+
+.invitation-cover.is-opening
+.wedding-envelope-flap{
+    transform:
+        perspective(1700px)
+        rotateX(-179deg);
+
+    filter:brightness(.92);
+
+    z-index:2;
+}
+
+.invitation-cover.is-opening
+.wedding-envelope-hint{
+    opacity:0;
+
+    transform:
+        translateX(-50%)
+        translateY(8px);
+}
+
+/*
+ * La tarjeta sale desde dentro mientras el sobre
+ * permanece visible. No hay overlay separado.
+ */
+.invitation-cover.is-card-out
+.wedding-welcome-card{
+    transform:
+        translateY(-91%)
+        scale(1);
+
+    z-index:7;
+}
+
+.invitation-cover.is-card-out
+.wedding-envelope{
+    transform:translateY(12%);
+}
+
+/* Solo al terminar desaparece toda la escena. */
+.invitation-cover.is-leaving{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+/* -----------------------------------------------------
+   HERO
+----------------------------------------------------- */
+
+body.invitation-closed{
+    overflow:hidden;
+}
+
+body.invitation-closed .hero{
+    opacity:0;
+    transform:scale(1.018);
+}
+
+body.invitation-open .hero{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* -----------------------------------------------------
+   ANIMACIONES
+----------------------------------------------------- */
+
+@keyframes weddingEnvelopeEnter{
+    from{
+        opacity:0;
+
+        transform:
+            translateY(36px)
+            scale(.93);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes weddingEnvelopeHint{
+    0%,100%{
+        opacity:.56;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+/* -----------------------------------------------------
+   CELULAR
+----------------------------------------------------- */
+
+@media(max-width:600px){
+
+    .invitation-cover{
+        padding:12px 10px 34px;
+    }
+
+    .wedding-envelope{
+        width:min(93vw,390px);
+    }
+
+    .wedding-envelope-seal{
+        width:82px;
+        height:82px;
+
+        font-size:13px;
+    }
+
+    .wedding-welcome-card{
+        left:7%;
+        right:7%;
+
+        padding:24px 16px;
+    }
+
+    .wedding-welcome-card h2{
+        font-size:clamp(
+            45px,
+            14vw,
+            62px
+        );
+    }
+
+    .wedding-welcome-card p{
+        font-size:11px;
+        letter-spacing:2.4px;
+    }
+
+    .wedding-envelope-hint{
+        bottom:-28px;
+
+        font-size:9px;
+        letter-spacing:1.4px;
+    }
+
+    .relief-stem{
+        border-width:4px;
+    }
+
+    .relief-stem::before,
+    .relief-stem::after{
+        width:15px;
+        height:27px;
+    }
+
+    .invitation-cover.is-card-out
+    .wedding-welcome-card{
+        transform:
+            translateY(-78%)
+            scale(1);
+    }
+
+    .invitation-cover.is-card-out
+    .wedding-envelope{
+        transform:translateY(9%);
+    }
+}
+
+/* -----------------------------------------------------
+   ACCESIBILIDAD
+----------------------------------------------------- */
+
+@media(prefers-reduced-motion:reduce){
+
+    .wedding-envelope,
+    .wedding-envelope-flap,
+    .wedding-envelope-seal,
+    .wedding-welcome-card,
+    .invitation-cover{
+        animation:none !important;
+        transition-duration:.01ms !important;
+    }
+}
+/* =====================================================
+   CORRECCIÓN: SOBRE TOTALMENTE CERRADO — v22
+===================================================== */
+
+/* La tarjeta queda completamente guardada dentro */
+.wedding-welcome-card{
+    top:36% !important;
+    height:44% !important;
+
+    transform:
+        translateY(28%)
+        scale(.97) !important;
+
+    z-index:3 !important;
+}
+
+/* La boca interior queda más abajo */
+.wedding-envelope-pocket{
+    top:39% !important;
+    height:27% !important;
+
+    opacity:.72 !important;
+}
+
+/* La solapa baja más y tapa por completo el interior */
+.wedding-envelope-flap{
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 73%
+        ) !important;
+
+    z-index:9 !important;
+}
+
+/* El frente también sube para cubrir la tarjeta */
+.envelope-front-left{
+    clip-path:
+        polygon(
+            0 29%,
+            55% 68%,
+            0 100%
+        ) !important;
+}
+
+.envelope-front-right{
+    clip-path:
+        polygon(
+            100% 29%,
+            45% 68%,
+            100% 100%
+        ) !important;
+}
+
+.envelope-front-bottom{
+    clip-path:
+        polygon(
+            0 100%,
+            50% 54%,
+            100% 100%
+        ) !important;
+}
+
+/* El sello queda justo sobre la unión de la solapa */
+.wedding-envelope-seal{
+    top:69% !important;
+}
+
+/* Cuando abre, la tarjeta sale desde dentro */
+.invitation-cover.is-card-out
+.wedding-welcome-card{
+    transform:
+        translateY(-105%)
+        scale(1) !important;
+
+    z-index:8 !important;
+}
+
+/* En celular */
+@media(max-width:600px){
+
+    .wedding-welcome-card{
+        top:37% !important;
+        height:42% !important;
+    }
+
+    .wedding-envelope-flap{
+        clip-path:
+            polygon(
+                0 0,
+                100% 0,
+                50% 74%
+            ) !important;
+    }
+
+    .wedding-envelope-seal{
+        top:70% !important;
+    }
+
+    .invitation-cover.is-card-out
+    .wedding-welcome-card{
+        transform:
+            translateY(-92%)
+            scale(1) !important;
+    }
+}

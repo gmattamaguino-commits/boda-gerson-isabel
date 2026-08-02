@@ -1,7 +1,7 @@
 "use strict";
 
 /* =====================================================
-   DATOS PERSONALIZADOS DEL INVITADO
+   DATOS DEL INVITADO
 
    Ejemplo:
    ?n=Familia%20Pérez&p=4&codigo=GI26-001
@@ -13,17 +13,9 @@ function getGuestData() {
     );
 
     return {
-        nombre: (
-            params.get("n") || ""
-        ).trim(),
-
-        pases: (
-            params.get("p") || ""
-        ).trim(),
-
-        codigo: (
-            params.get("codigo") || ""
-        ).trim()
+        nombre: (params.get("n") || "").trim(),
+        pases: (params.get("p") || "").trim(),
+        codigo: (params.get("codigo") || "").trim()
     };
 }
 
@@ -31,12 +23,110 @@ const guestData = getGuestData();
 
 
 /* =====================================================
+   APERTURA DEL SOBRE
+
+   Sobre cerrado
+   → abre la solapa
+   → sale la tarjeta
+   → aparece el hero
+===================================================== */
+
+function initInvitationOpening() {
+    const cover = document.getElementById(
+        "invitation-cover"
+    );
+
+    const openButton = document.getElementById(
+        "open-invitation"
+    );
+
+    const welcomeCard = document.getElementById(
+        "invitation-welcome"
+    );
+
+    if (!cover || !openButton || !welcomeCard) {
+        return;
+    }
+
+    document.body.classList.add(
+        "invitation-closed"
+    );
+
+    openButton.addEventListener(
+        "click",
+        () => {
+            openButton.disabled = true;
+
+            /*
+             * 1. Desaparece el sello y
+             *    se abre la solapa.
+             */
+            cover.classList.add(
+                "is-opening"
+            );
+
+            /*
+             * 2. La tarjeta sale físicamente
+             *    desde dentro del sobre.
+             */
+            window.setTimeout(() => {
+                welcomeCard.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                cover.classList.add(
+                    "is-card-out"
+                );
+            }, 900);
+
+            /*
+             * 3. Se mantiene el mensaje visible
+             *    y luego comienza a entrar el hero.
+             */
+            window.setTimeout(() => {
+                cover.classList.add(
+                    "is-leaving"
+                );
+
+                document.body.classList.remove(
+                    "invitation-closed"
+                );
+
+                document.body.classList.add(
+                    "invitation-open"
+                );
+            }, 4700);
+
+            /*
+             * 4. Se elimina la portada al finalizar.
+             */
+            window.setTimeout(() => {
+                cover.remove();
+
+                document.body.style.overflow = "";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto"
+                });
+            }, 5700);
+        },
+        {
+            once: true
+        }
+    );
+}
+
+
+/* =====================================================
    CUENTA REGRESIVA
 ===================================================== */
 
 function startCountdown() {
-    const countdown =
-        document.querySelector(".countdown");
+    const countdown = document.querySelector(
+        ".countdown"
+    );
 
     if (!countdown) {
         return;
@@ -119,164 +209,141 @@ function startCountdown() {
         return true;
     }
 
-    const active =
-        updateCountdown();
-
-    if (!active) {
+    if (!updateCountdown()) {
         return;
     }
 
-    const timer = window.setInterval(
-        () => {
-            const stillActive =
-                updateCountdown();
-
-            if (!stillActive) {
-                window.clearInterval(timer);
-            }
-        },
-        1000
-    );
-}
-
-
-/* =====================================================
-   ANIMACIONES AL HACER SCROLL
-===================================================== */
-
-function initRevealAnimations() {
-    const elements =
-        document.querySelectorAll(`
-            .subtitle-section,
-            .title-section,
-            .divider-center,
-            .schedule-card,
-            .place-card,
-            .dresscode-card,
-            .form-cta,
-            .regalo-card,
-            .info-ninos-card,
-            .gallery-item,
-            .gracias-content
-        `);
-
-    elements.forEach(
-        (element, index) => {
-            element.classList.add("reveal");
-
-            element.style.setProperty(
-                "--reveal-delay",
-                `${(index % 4) * 90}ms`
-            );
+    const timer = window.setInterval(() => {
+        if (!updateCountdown()) {
+            window.clearInterval(timer);
         }
-    );
-
-    if (
-        !(
-            "IntersectionObserver"
-            in window
-        )
-    ) {
-        elements.forEach(element => {
-            element.classList.add(
-                "is-visible"
-            );
-        });
-
-        return;
-    }
-
-    const observer =
-        new IntersectionObserver(
-            (
-                entries,
-                currentObserver
-            ) => {
-                entries.forEach(entry => {
-                    if (
-                        !entry.isIntersecting
-                    ) {
-                        return;
-                    }
-
-                    entry.target.classList.add(
-                        "is-visible"
-                    );
-
-                    currentObserver.unobserve(
-                        entry.target
-                    );
-                });
-            },
-            {
-                threshold: 0.12,
-                rootMargin:
-                    "0px 0px -40px 0px"
-            }
-        );
-
-    elements.forEach(element => {
-        observer.observe(element);
-    });
+    }, 1000);
 }
 
 
 /* =====================================================
-   GALERÍA Y LIGHTBOX
+   PERSONALIZACIÓN DEL INVITADO
 ===================================================== */
 
-window.openLightbox = function (
-    galleryItem
-) {
-    const image =
-        galleryItem.querySelector("img");
+function initGuestPersonalization() {
+    const guestName =
+        guestData.nombre;
 
-    const lightbox =
-        document.getElementById(
-            "lightbox"
+    const passesValue =
+        Number.parseInt(
+            guestData.pases,
+            10
         );
 
-    const lightboxImage =
+    const passes =
+        Number.isInteger(passesValue) &&
+        passesValue > 0
+            ? passesValue
+            : 0;
+
+    const guestCard =
         document.getElementById(
-            "lightbox-img"
+            "guest-invitation-card"
         );
+
+    const guestCardName =
+        document.getElementById(
+            "guest-card-name"
+        );
+
+    const guestCardPasses =
+        document.getElementById(
+            "guest-card-passes"
+        );
+
+    const passIcons =
+        document.getElementById(
+            "guest-pass-icons"
+        );
+
+    const oldLetterGuest =
+        document.getElementById(
+            "invitation-guest-name"
+        );
+
+    if (!guestName) {
+        if (oldLetterGuest) {
+            oldLetterGuest.textContent =
+                "Familiares y amigos";
+        }
+
+        if (guestCard) {
+            guestCard.hidden = true;
+        }
+
+        return;
+    }
+
+    if (oldLetterGuest) {
+        oldLetterGuest.textContent =
+            guestName;
+    }
 
     if (
-        !image ||
-        !lightbox ||
-        !lightboxImage
+        !guestCard ||
+        !guestCardName ||
+        !guestCardPasses
     ) {
         return;
     }
 
-    lightboxImage.src =
-        image.currentSrc ||
-        image.src;
+    guestCard.hidden = false;
 
-    lightboxImage.alt =
-        image.alt ||
-        "Fotografía ampliada";
+    guestCard.removeAttribute(
+        "hidden"
+    );
 
-    lightbox.classList.add("active");
+    guestCardName.textContent =
+        guestName;
 
-    document.body.style.overflow =
-        "hidden";
-};
+    if (passes === 1) {
+        guestCardPasses.textContent =
+            "Hemos reservado 1 lugar en tu honor.";
+    } else if (passes > 1) {
+        guestCardPasses.textContent =
+            `Hemos reservado ${passes} lugares en su honor.`;
+    } else {
+        guestCardPasses.textContent =
+            "Será un honor compartir este día contigo.";
+    }
 
-window.closeLightbox = function () {
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-    if (!lightbox) {
+    if (!passIcons) {
         return;
     }
 
-    lightbox.classList.remove("active");
+    passIcons.innerHTML = "";
 
-    document.body.style.overflow = "";
-};
+    if (passes <= 0) {
+        return;
+    }
+
+    const visiblePasses =
+        Math.min(passes, 10);
+
+    for (
+        let index = 0;
+        index < visiblePasses;
+        index += 1
+    ) {
+        const icon =
+            document.createElement("span");
+
+        icon.className =
+            "guest-pass-icon";
+
+        icon.textContent = "♥";
+
+        icon.style.animationDelay =
+            `${index * 90}ms`;
+
+        passIcons.appendChild(icon);
+    }
+}
 
 
 /* =====================================================
@@ -363,9 +430,7 @@ function initAudioPlayer() {
 
     function updateProgress() {
         if (
-            !Number.isFinite(
-                audio.duration
-            ) ||
+            !Number.isFinite(audio.duration) ||
             audio.duration <= 0
         ) {
             return;
@@ -532,6 +597,89 @@ function initAudioPlayer() {
 
 
 /* =====================================================
+   ANIMACIONES AL HACER SCROLL
+===================================================== */
+
+function initRevealAnimations() {
+    const elements =
+        document.querySelectorAll(`
+            .subtitle-section,
+            .title-section,
+            .divider-center,
+            .schedule-card,
+            .place-card,
+            .dresscode-card,
+            .form-cta,
+            .regalo-card,
+            .info-ninos-card,
+            .gallery-item,
+            .gracias-content
+        `);
+
+    elements.forEach(
+        (element, index) => {
+            element.classList.add(
+                "reveal"
+            );
+
+            element.style.setProperty(
+                "--reveal-delay",
+                `${(index % 4) * 90}ms`
+            );
+        }
+    );
+
+    if (
+        !(
+            "IntersectionObserver"
+            in window
+        )
+    ) {
+        elements.forEach(element => {
+            element.classList.add(
+                "is-visible"
+            );
+        });
+
+        return;
+    }
+
+    const observer =
+        new IntersectionObserver(
+            (
+                entries,
+                currentObserver
+            ) => {
+                entries.forEach(entry => {
+                    if (
+                        !entry.isIntersecting
+                    ) {
+                        return;
+                    }
+
+                    entry.target.classList.add(
+                        "is-visible"
+                    );
+
+                    currentObserver.unobserve(
+                        entry.target
+                    );
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin:
+                    "0px 0px -40px 0px"
+            }
+        );
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+
+/* =====================================================
    MAPAS DESPLEGABLES
 ===================================================== */
 
@@ -620,327 +768,86 @@ window.showMap = function (
     `;
 };
 
-/* =====================================================
-   APERTURA DE LA INVITACIÓN
-   Sobre → mensaje breve → hero
-===================================================== */
-
-function initInvitationOpening() {
-    const cover =
-        document.getElementById(
-            "invitation-cover"
-        );
-
-    const openButton =
-        document.getElementById(
-            "open-invitation"
-        );
-
-    const welcome =
-        document.getElementById(
-            "invitation-welcome"
-        );
-
-    if (!cover || !openButton) {
-        return;
-    }
-
-    /*
-     * Mantiene bloqueada la página mientras
-     * la portada permanece visible.
-     */
-    document.body.classList.add(
-        "invitation-closed"
-    );
-
-    openButton.addEventListener(
-        "click",
-        () => {
-            /*
-             * Inicia la desaparición del sobre.
-             */
-            cover.classList.add(
-                "is-opening"
-            );
-
-            /*
-             * Evita un segundo clic durante
-             * la animación.
-             */
-            openButton.disabled = true;
-
-            /*
-             * Después de 650 ms aparece:
-             * “Bienvenidos a nuestra boda”.
-             */
-            window.setTimeout(
-                () => {
-                    if (welcome) {
-                        welcome.setAttribute(
-                            "aria-hidden",
-                            "false"
-                        );
-                    }
-
-                    cover.classList.add(
-                        "is-showing-message"
-                    );
-                },
-                650
-            );
-
-            /*
-             * Después de 2.55 segundos
-             * comienza la entrada del hero.
-             */
-            window.setTimeout(
-                () => {
-                    cover.classList.add(
-                        "is-leaving"
-                    );
-
-                    document.body.classList.remove(
-                        "invitation-closed"
-                    );
-
-                    document.body.classList.add(
-                        "invitation-open"
-                    );
-                },
-                2550
-            );
-
-            /*
-             * Al terminar la transición,
-             * elimina completamente la portada.
-             */
-            window.setTimeout(
-                () => {
-                    cover.remove();
-
-                    document.body.style.overflow =
-                        "";
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "auto"
-                    });
-                },
-                3550
-            );
-        },
-        {
-            once: true
-        }
-    );
-}
-
 
 /* =====================================================
-   FORMULARIO PRIVADO PARA REGALOS
+   GALERÍA Y LIGHTBOX
 ===================================================== */
 
-function configureGiftForm() {
-    const giftButton =
+window.openLightbox = function (
+    galleryItem
+) {
+    const image =
+        galleryItem?.querySelector("img");
+
+    const lightbox =
         document.getElementById(
-            "gift-form-button"
+            "lightbox"
         );
 
-    if (!giftButton) {
-        return;
-    }
-
-    const formBaseURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSfcSfTX_YKVaqRev6ps2Wc9wEB-q-EAMc1zO4zfWc1In1Agxw/viewform";
-
-    const formParams =
-        new URLSearchParams({
-            usp: "pp_url",
-
-            "entry.988199634":
-                guestData.nombre,
-
-            "entry.1231225220":
-                guestData.codigo,
-
-            "entry.995696210":
-                "Ambas opciones"
-        });
-
-    giftButton.href =
-        `${formBaseURL}?${formParams.toString()}`;
-
-    giftButton.target =
-        "_blank";
-
-    giftButton.rel =
-        "noopener noreferrer";
-
-    if (!guestData.codigo) {
-        giftButton.href = "#";
-
-        giftButton.removeAttribute(
-            "target"
-        );
-
-        giftButton.setAttribute(
-            "aria-disabled",
-            "true"
-        );
-
-        giftButton.classList.add(
-            "is-disabled"
-        );
-
-        giftButton.addEventListener(
-            "click",
-            event => {
-                event.preventDefault();
-
-                alert(
-                    "Para solicitar los datos de regalo, abre el enlace personalizado que recibiste con tu invitación."
-                );
-            }
-        );
-    }
-}
-
-
-/* =====================================================
-   PERSONALIZACIÓN DEL INVITADO
-===================================================== */
-
-function initGuestPersonalization() {
-    const guestName =
-        guestData.nombre;
-
-    const passesValue =
-        Number.parseInt(
-            guestData.pases,
-            10
-        );
-
-    const passes =
-        Number.isInteger(
-            passesValue
-        ) &&
-        passesValue > 0
-            ? passesValue
-            : 0;
-
-    const letterGuest =
+    const lightboxImage =
         document.getElementById(
-            "invitation-guest-name"
+            "lightbox-img"
         );
-
-    const guestCard =
-        document.getElementById(
-            "guest-invitation-card"
-        );
-
-    const guestCardName =
-        document.getElementById(
-            "guest-card-name"
-        );
-
-    const guestCardPasses =
-        document.getElementById(
-            "guest-card-passes"
-        );
-
-    const passIcons =
-        document.getElementById(
-            "guest-pass-icons"
-        );
-
-    if (!guestName) {
-        if (letterGuest) {
-            letterGuest.textContent =
-                "Familiares y amigos";
-        }
-
-        if (guestCard) {
-            guestCard.hidden = true;
-        }
-
-        return;
-    }
-
-    if (letterGuest) {
-        letterGuest.textContent =
-            guestName;
-    }
 
     if (
-        !guestCard ||
-        !guestCardName ||
-        !guestCardPasses
+        !image ||
+        !lightbox ||
+        !lightboxImage
     ) {
         return;
     }
 
-    guestCard.hidden = false;
+    lightboxImage.src =
+        image.currentSrc ||
+        image.src;
 
-    guestCard.removeAttribute(
-        "hidden"
+    lightboxImage.alt =
+        image.alt ||
+        "Fotografía ampliada";
+
+    lightbox.classList.add(
+        "active"
     );
 
-    guestCardName.textContent =
-        guestName;
+    document.body.style.overflow =
+        "hidden";
+};
 
-    if (passes === 1) {
-        guestCardPasses.textContent =
-            "Hemos reservado 1 lugar en tu honor.";
-    } else if (passes > 1) {
-        guestCardPasses.textContent =
-            `Hemos reservado ${passes} lugares en su honor.`;
-    } else {
-        guestCardPasses.textContent =
-            "Será un honor compartir este día contigo.";
-    }
-
-    if (!passIcons) {
-        return;
-    }
-
-    passIcons.innerHTML = "";
-
-    if (passes <= 0) {
-        return;
-    }
-
-    const visiblePasses =
-        Math.min(
-            passes,
-            10
+window.closeLightbox = function () {
+    const lightbox =
+        document.getElementById(
+            "lightbox"
         );
 
-    for (
-        let index = 0;
-        index < visiblePasses;
-        index += 1
-    ) {
-        const icon =
-            document.createElement(
-                "span"
-            );
-
-        icon.className =
-            "guest-pass-icon";
-
-        icon.textContent =
-            "♥";
-
-        icon.style.animationDelay =
-            `${index * 90}ms`;
-
-        passIcons.appendChild(icon);
+    if (!lightbox) {
+        return;
     }
-}
+
+    lightbox.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow = "";
+};
 
 
 /* =====================================================
-   FORMULARIO PERSONALIZADO DE ASISTENCIA
+   TARJETAS GIRATORIAS DEL DRESS CODE
+===================================================== */
+
+window.toggleFlip = function (card) {
+    if (!card) {
+        return;
+    }
+
+    card.classList.toggle(
+        "is-flipped"
+    );
+};
+
+
+/* =====================================================
+   FORMULARIO DE ASISTENCIA
 ===================================================== */
 
 function configureRSVPForm() {
@@ -971,9 +878,7 @@ function configureRSVPForm() {
         );
 
     const validPasses =
-        Number.isInteger(
-            passesValue
-        ) &&
+        Number.isInteger(passesValue) &&
         passesValue >= 1 &&
         passesValue <= 20;
 
@@ -1057,7 +962,79 @@ function configureRSVPForm() {
 
 
 /* =====================================================
-   RESUMEN PERSONALIZADO DEL RSVP
+   FORMULARIO PRIVADO PARA REGALOS
+===================================================== */
+
+function configureGiftForm() {
+    const giftButton =
+        document.getElementById(
+            "gift-form-button"
+        );
+
+    if (!giftButton) {
+        return;
+    }
+
+    const formBaseURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfcSfTX_YKVaqRev6ps2Wc9wEB-q-EAMc1zO4zfWc1In1Agxw/viewform";
+
+    const formParams =
+        new URLSearchParams({
+            usp: "pp_url",
+
+            "entry.988199634":
+                guestData.nombre,
+
+            "entry.1231225220":
+                guestData.codigo,
+
+            "entry.995696210":
+                "Ambas opciones"
+        });
+
+    giftButton.href =
+        `${formBaseURL}?${formParams.toString()}`;
+
+    giftButton.target =
+        "_blank";
+
+    giftButton.rel =
+        "noopener noreferrer";
+
+    if (!guestData.codigo) {
+        giftButton.href = "#";
+
+        giftButton.removeAttribute(
+            "target"
+        );
+
+        giftButton.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+        giftButton.classList.add(
+            "is-disabled"
+        );
+
+        giftButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                alert(
+                    "Para solicitar los datos de regalo, abre el enlace personalizado que recibiste con tu invitación."
+                );
+            }
+        );
+    }
+}
+
+
+/* =====================================================
+   RESUMEN DEL RSVP
+
+   No aparece si fue eliminado del HTML.
 ===================================================== */
 
 function showRSVPSummary() {
@@ -1124,7 +1101,7 @@ function showRSVPSummary() {
 
 
 /* =====================================================
-   MENSAJE DINÁMICO SEGÚN LA FECHA
+   MENSAJE SEGÚN LA FECHA
 ===================================================== */
 
 function updateWeddingStatusMessage() {
@@ -1133,11 +1110,6 @@ function updateWeddingStatusMessage() {
             "wedding-status-message"
         );
 
-    /*
-     * En la nueva portada este elemento
-     * puede no existir. En ese caso no
-     * se realiza ninguna acción.
-     */
     if (!messageElement) {
         return;
     }
@@ -1150,10 +1122,11 @@ function updateWeddingStatusMessage() {
         weddingDate.getTime() -
         Date.now();
 
-    const totalDays = Math.ceil(
-        difference /
-        (1000 * 60 * 60 * 24)
-    );
+    const totalDays =
+        Math.ceil(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
 
     let message = "";
 
@@ -1186,22 +1159,7 @@ function updateWeddingStatusMessage() {
 
 
 /* =====================================================
-   TARJETAS GIRATORIAS DEL DRESS CODE
-===================================================== */
-
-window.toggleFlip = function (card) {
-    if (!card) {
-        return;
-    }
-
-    card.classList.toggle(
-        "is-flipped"
-    );
-};
-
-
-/* =====================================================
-   CERRAR LIGHTBOX CON TECLA ESCAPE
+   CONTROLES DEL TECLADO
 ===================================================== */
 
 function initKeyboardControls() {

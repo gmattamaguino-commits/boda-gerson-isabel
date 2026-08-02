@@ -36,56 +36,73 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Great+Vibes&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS principal -->
-<link href="css/style.css?v=17" rel="stylesheet"/>
+<link href="css/style.css?v=21" rel="stylesheet"/>
 </head>
 <body>
 <!-- =========================================
-     PORTADA ELEGANTE DE LA INVITACIÓN
+     SOBRE ELEGANTE ANIMADO — v21
 ========================================= -->
 <div
     class="invitation-cover"
     id="invitation-cover"
-    aria-label="Portada de la invitación de boda"
+    aria-label="Abrir invitación de boda"
 >
-    <div class="invitation-cover-stage">
+    <div class="wedding-envelope" id="wedding-envelope">
 
-        <div class="invitation-image-wrap">
-            <img
-                class="invitation-cover-image"
-                src="img/sobre-elegante.png?v=17"
-                alt="Sobre elegante de boda en relieve con sello color guinda"
-            >
+        <!-- Fondo rígido del sobre -->
+        <div class="wedding-envelope-back"></div>
 
-            <button
-                class="invitation-open-hotspot"
-                id="open-invitation"
-                type="button"
-                aria-label="Abrir invitación"
-            >
-                <span class="visually-hidden">Abrir invitación</span>
-            </button>
+        <!-- Tarjeta guardada dentro del sobre -->
+        <article
+            class="wedding-welcome-card"
+            id="invitation-welcome"
+            aria-hidden="true"
+        >
+            <span class="welcome-card-ornament" aria-hidden="true">✦</span>
+            <p>Bienvenidos</p>
+            <h2>a nuestra boda</h2>
+            <span class="welcome-card-ornament" aria-hidden="true">✦</span>
+        </article>
+
+        <!-- Boca interior -->
+        <div class="wedding-envelope-pocket"></div>
+
+        <!-- Frente del sobre -->
+        <div class="wedding-envelope-front">
+            <div class="envelope-front-left"></div>
+            <div class="envelope-front-right"></div>
+            <div class="envelope-front-bottom"></div>
+            <div class="envelope-front-border"></div>
         </div>
 
-        <p class="invitation-cover-hint">
+        <!-- Solapa superior completamente cerrada -->
+        <div class="wedding-envelope-flap">
+            <div class="flap-relief">
+                <span class="relief-stem stem-one"></span>
+                <span class="relief-stem stem-two"></span>
+                <span class="relief-stem stem-three"></span>
+                <span class="relief-stem stem-four"></span>
+            </div>
+        </div>
+
+        <!-- Sello guinda -->
+        <button
+            class="wedding-envelope-seal"
+            id="open-invitation"
+            type="button"
+            aria-label="Abrir invitación"
+        >
+            <span>ABRE</span>
+            <span>AQUÍ</span>
+        </button>
+
+        <p class="wedding-envelope-hint">
             Toca el sello para abrir
         </p>
 
-        <div
-            class="invitation-welcome"
-            id="invitation-welcome"
-            aria-live="polite"
-            aria-hidden="true"
-        >
-            <span class="invitation-welcome-ornament" aria-hidden="true">✦</span>
-
-            <p>Bienvenidos</p>
-            <h2>a nuestra boda</h2>
-
-            <span class="invitation-welcome-ornament" aria-hidden="true">✦</span>
-        </div>
-
     </div>
 </div>
+
 <div class="bg-fixed"></div>
 <header aria-label="Portada de la invitación" class="hero">
 <div class="overlay"></div>
@@ -533,6 +550,6 @@
 <img alt="" aria-hidden="true" class="gracias-floral" decoding="async" loading="lazy" src="img/gracias-floral.png"/>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=17"></script>
+<script src="js/script.js?v=21"></script>
 </body>
 </html>
