@@ -129,7 +129,8 @@ function initInvitationOpening() {
 
             /*
              * El cambio entre la carta cerrada y la
-             * abierta ocurre en un solo fotograma.
+             * abierta ocurre en un solo fotograma. El CSS
+             * conserva exactamente el mismo cuadro para ambas.
              */
             cover.classList.add(
                 "is-open"

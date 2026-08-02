@@ -4837,6 +4837,7 @@ a{
 
     width:min(570px,96vw);
     aspect-ratio:941 / 1672;
+    overflow:hidden;
 
     contain:layout paint;
     transform:translateZ(0);
@@ -4865,7 +4866,7 @@ a{
     width:100%;
     height:100%;
 
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
 
     opacity:1;
@@ -4884,13 +4885,13 @@ a{
 }
 
 .envelope-image-closed{
+    display:block;
     z-index:2;
-    visibility:visible;
 }
 
 .envelope-image-open{
+    display:none;
     z-index:3;
-    visibility:hidden;
 }
 
 /*
@@ -4899,12 +4900,12 @@ a{
  */
 .envelope-intro.is-open
 .envelope-image-closed{
-    visibility:hidden;
+    display:none;
 }
 
 .envelope-intro.is-open
 .envelope-image-open{
-    visibility:visible;
+    display:block;
 }
 
 /* =====================================================
@@ -4974,30 +4975,39 @@ a{
    MENSAJE DE BIENVENIDA
 ===================================================== */
 
+/* =====================================================
+   TEXTO DE LA TARJETA ABIERTA — v32
+===================================================== */
+
 .envelope-welcome-message{
     position:absolute;
+
     left:50%;
-    top:36.5%;
+    top:37%;
+
     z-index:5;
 
-    width:57%;
-
-    transform:translate(-50%,-50%);
+    width:62%;
 
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:5px;
+
+    gap:9px;
 
     text-align:center;
+
+    transform:translate(-50%,-50%);
 
     opacity:0;
     visibility:hidden;
 
+    pointer-events:none;
+
     transition:
-        opacity 80ms linear,
-        visibility 0ms linear 80ms;
+        opacity 90ms linear,
+        visibility 0ms linear 90ms;
 }
 
 .envelope-intro.is-open
@@ -5006,37 +5016,98 @@ a{
     visibility:visible;
 
     transition:
-        opacity 80ms linear,
+        opacity 90ms linear,
         visibility 0ms linear;
 }
 
-.envelope-welcome-message p{
+/* Texto superior plomo */
+
+.welcome-invitation-text{
     margin:0;
 
-    color:#725d63;
+    color:#696466;
 
     font-family:"Cinzel",serif;
-    font-size:clamp(10px,2vw,16px);
-    font-weight:600;
-    letter-spacing:3px;
-    text-transform:uppercase;
+
+    font-size:clamp(
+        10px,
+        1.7vw,
+        17px
+    );
+
+    font-weight:500;
+
+    line-height:1.45;
+
+    letter-spacing:.4px;
+
+    text-transform:none;
+
+    text-shadow:
+        0 1px 0
+        rgba(255,255,255,.55);
 }
 
-.envelope-welcome-message h2{
+/* Título principal guinda */
+
+.welcome-wedding-title{
     margin:0;
 
-    color:var(--color-wine,#6b2737);
+    color:var(
+        --color-wine,
+        #6b2737
+    );
 
     font-family:"Great Vibes",cursive;
-    font-size:clamp(38px,7vw,66px);
+
+    font-size:clamp(
+        46px,
+        7.5vw,
+        76px
+    );
+
     font-weight:400;
+
     line-height:1;
+
+    white-space:nowrap;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.55),
+        0 2px 3px rgba(80,41,48,.08);
 }
 
-.envelope-welcome-ornament{
-    color:#a98050;
-    font-size:11px;
+/* =====================================================
+   AJUSTE PARA CELULAR
+===================================================== */
+
+@media(max-width:600px){
+
+    .envelope-welcome-message{
+        top:37%;
+        width:68%;
+        gap:5px;
+    }
+
+    .welcome-invitation-text{
+        font-size:clamp(
+            9px,
+            3vw,
+            13px
+        );
+
+        line-height:1.35;
+    }
+
+    .welcome-wedding-title{
+        font-size:clamp(
+            42px,
+            12vw,
+            59px
+        );
+    }
 }
+
 
 /* =====================================================
    INDICACIÓN INFERIOR
