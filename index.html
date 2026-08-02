@@ -36,20 +36,55 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&amp;family=Great+Vibes&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <!-- CSS principal -->
-<link href="css/style.css?v=16" rel="stylesheet"/>
+<link href="css/style.css?v=17" rel="stylesheet"/>
 </head>
 <body>
 <!-- =========================================
-     APERTURA DE LA INVITACIÓN
+     PORTADA ELEGANTE DE LA INVITACIÓN
 ========================================= -->
-<div aria-label="Abrir invitación de boda" class="invitation-cover" id="invitation-cover">
-<div class="invitation-envelope">
-<div class="envelope-back"></div>
-<div class="invitation-letter"><p class="letter-welcome">Bienvenidos</p><p class="invitation-guest-name" id="invitation-guest-name"></p><p class="letter-wedding">a nuestra boda</p></div>
-<div class="envelope-front"></div>
-<div class="envelope-flap"></div>
-<button aria-label="Abrir invitación" class="invitation-seal" id="open-invitation" type="button"><span>♥</span></button>
-</div>
+<div
+    class="invitation-cover"
+    id="invitation-cover"
+    aria-label="Portada de la invitación de boda"
+>
+    <div class="invitation-cover-stage">
+
+        <div class="invitation-image-wrap">
+            <img
+                class="invitation-cover-image"
+                src="img/sobre-elegante.png?v=17"
+                alt="Sobre elegante de boda en relieve con sello color guinda"
+            >
+
+            <button
+                class="invitation-open-hotspot"
+                id="open-invitation"
+                type="button"
+                aria-label="Abrir invitación"
+            >
+                <span class="visually-hidden">Abrir invitación</span>
+            </button>
+        </div>
+
+        <p class="invitation-cover-hint">
+            Toca el sello para abrir
+        </p>
+
+        <div
+            class="invitation-welcome"
+            id="invitation-welcome"
+            aria-live="polite"
+            aria-hidden="true"
+        >
+            <span class="invitation-welcome-ornament" aria-hidden="true">✦</span>
+
+            <p>Bienvenidos</p>
+            <h2>a nuestra boda</h2>
+
+            <span class="invitation-welcome-ornament" aria-hidden="true">✦</span>
+        </div>
+
+    </div>
 </div>
 <div class="bg-fixed"></div>
 <header aria-label="Portada de la invitación" class="hero">
@@ -498,6 +533,6 @@
 <img alt="" aria-hidden="true" class="gracias-floral" decoding="async" loading="lazy" src="img/gracias-floral.png"/>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=16"></script>
+<script src="js/script.js?v=17"></script>
 </body>
 </html>

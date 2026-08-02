@@ -620,9 +620,9 @@ window.showMap = function (
     `;
 };
 
-
 /* =====================================================
    APERTURA DE LA INVITACIÓN
+   Sobre → mensaje breve → hero
 ===================================================== */
 
 function initInvitationOpening() {
@@ -636,13 +636,19 @@ function initInvitationOpening() {
             "open-invitation"
         );
 
-    if (
-        !cover ||
-        !openButton
-    ) {
+    const welcome =
+        document.getElementById(
+            "invitation-welcome"
+        );
+
+    if (!cover || !openButton) {
         return;
     }
 
+    /*
+     * Mantiene bloqueada la página mientras
+     * la portada permanece visible.
+     */
     document.body.classList.add(
         "invitation-closed"
     );
@@ -650,35 +656,77 @@ function initInvitationOpening() {
     openButton.addEventListener(
         "click",
         () => {
+            /*
+             * Inicia la desaparición del sobre.
+             */
             cover.classList.add(
                 "is-opening"
             );
 
-            document.body.classList.remove(
-                "invitation-closed"
+            /*
+             * Evita un segundo clic durante
+             * la animación.
+             */
+            openButton.disabled = true;
+
+            /*
+             * Después de 650 ms aparece:
+             * “Bienvenidos a nuestra boda”.
+             */
+            window.setTimeout(
+                () => {
+                    if (welcome) {
+                        welcome.setAttribute(
+                            "aria-hidden",
+                            "false"
+                        );
+                    }
+
+                    cover.classList.add(
+                        "is-showing-message"
+                    );
+                },
+                650
             );
 
-            document.body.classList.add(
-                "invitation-open"
-            );
-
+            /*
+             * Después de 2.55 segundos
+             * comienza la entrada del hero.
+             */
             window.setTimeout(
                 () => {
                     cover.classList.add(
-                        "is-hidden"
+                        "is-leaving"
+                    );
+
+                    document.body.classList.remove(
+                        "invitation-closed"
+                    );
+
+                    document.body.classList.add(
+                        "invitation-open"
                     );
                 },
-                3000
+                2550
             );
 
+            /*
+             * Al terminar la transición,
+             * elimina completamente la portada.
+             */
             window.setTimeout(
                 () => {
                     cover.remove();
 
                     document.body.style.overflow =
                         "";
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "auto"
+                    });
                 },
-                4000
+                3550
             );
         },
         {
