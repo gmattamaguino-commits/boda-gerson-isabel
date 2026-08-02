@@ -5061,16 +5061,18 @@ a{
     font-family:"Great Vibes",cursive;
 
     font-size:clamp(
-        46px,
-        7.5vw,
-        76px
+        37px,
+        6vw,
+        58px
     );
 
     font-weight:400;
 
-    line-height:1;
+    line-height:.95;
 
     white-space:nowrap;
+
+    letter-spacing:.3px;
 
     text-shadow:
         0 1px 0 rgba(255,255,255,.55),
@@ -5080,35 +5082,53 @@ a{
 /* =====================================================
    AJUSTE PARA CELULAR
 ===================================================== */
-
 @media(max-width:600px){
 
     .envelope-welcome-message{
-        top:37%;
-        width:68%;
-        gap:5px;
+        top:35.2% !important;
+        width:78% !important;
+        max-width:78% !important;
+        gap:6px !important;
     }
 
     .welcome-invitation-text{
-        font-size:clamp(
-            9px,
-            3vw,
-            13px
-        );
+        display:block !important;
 
-        line-height:1.35;
+        width:100% !important;
+        max-width:100% !important;
+
+        margin:0 !important;
+
+        font-family:"Cinzel",serif;
+
+        font-size:clamp(
+            8.5px,
+            2.55vw,
+            11px
+        ) !important;
+
+        font-weight:500;
+        line-height:1.2 !important;
+        letter-spacing:.1px !important;
+
+        text-align:center;
+        white-space:nowrap !important;
+
+        overflow:visible !important;
+        text-transform:none !important;
     }
 
     .welcome-wedding-title{
         font-size:clamp(
-            42px,
-            12vw,
-            59px
-        );
+            38px,
+            10vw,
+            51px
+        ) !important;
+
+        line-height:.95 !important;
+        white-space:nowrap !important;
     }
 }
-
-
 /* =====================================================
    INDICACIÓN INFERIOR
 ===================================================== */
