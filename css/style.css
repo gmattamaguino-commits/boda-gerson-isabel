@@ -6975,110 +6975,185 @@ body.invitation-open .hero{
         transition-duration:.01ms !important;
     }
 }
+
 /* =====================================================
-   CORRECCIÓN: SOBRE TOTALMENTE CERRADO — v22
+   CORRECCIÓN DEFINITIVA: SOBRE CERRADO — v23
 ===================================================== */
 
-/* La tarjeta queda completamente guardada dentro */
+/*
+ * El problema anterior era que las piezas triangulares
+ * dejaban ver la boca y la tarjeta aun con el sobre cerrado.
+ *
+ * Esta capa frontal cubre completamente el sobre en reposo.
+ * Al abrir, se retira después de que la solapa empieza a girar.
+ */
+
+.wedding-envelope-front::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:10;
+
+    border-radius:20px;
+
+    background:
+        /* línea diagonal izquierda */
+        linear-gradient(
+            132deg,
+            transparent 0 49.4%,
+            rgba(164,126,99,.18) 49.6% 50.2%,
+            transparent 50.4%
+        ),
+        /* línea diagonal derecha */
+        linear-gradient(
+            228deg,
+            transparent 0 49.4%,
+            rgba(164,126,99,.18) 49.6% 50.2%,
+            transparent 50.4%
+        ),
+        /* papel cerrado */
+        linear-gradient(
+            155deg,
+            #f7ecdf 0%,
+            #ecdac9 52%,
+            #dfc6b2 100%
+        );
+
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,.72),
+        inset 0 -16px 30px rgba(110,76,57,.07);
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .34s ease .42s,
+        visibility .34s ease .42s;
+}
+
+/*
+ * La solapa queda por encima de la cara cerrada.
+ * Así el estado inicial es una pieza continua y sin huecos.
+ */
+.wedding-envelope-flap{
+    z-index:12 !important;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 68%
+        ) !important;
+}
+
+/* El sello queda exactamente sobre la unión de la solapa. */
+.wedding-envelope-seal{
+    top:63.5% !important;
+    z-index:14 !important;
+}
+
+/*
+ * Mientras el sobre está cerrado, la tarjeta queda
+ * más abajo y completamente oculta.
+ */
 .wedding-welcome-card{
-    top:36% !important;
-    height:44% !important;
+    top:37% !important;
+    height:43% !important;
 
     transform:
-        translateY(28%)
+        translateY(32%)
         scale(.97) !important;
 
     z-index:3 !important;
 }
 
-/* La boca interior queda más abajo */
+/* La boca interior tampoco debe verse al inicio. */
 .wedding-envelope-pocket{
-    top:39% !important;
-    height:27% !important;
-
-    opacity:.72 !important;
+    top:42% !important;
+    height:22% !important;
+    opacity:.68 !important;
 }
 
-/* La solapa baja más y tapa por completo el interior */
+/*
+ * Al abrir:
+ * 1. la solapa gira;
+ * 2. después se retira la cara cerrada;
+ * 3. aparece la boca real del sobre;
+ * 4. la tarjeta sale desde dentro.
+ */
+.invitation-cover.is-opening
+.wedding-envelope-front::before{
+    opacity:0;
+    visibility:hidden;
+}
+
+.invitation-cover.is-opening
 .wedding-envelope-flap{
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 73%
-        ) !important;
+    transform:
+        perspective(1700px)
+        rotateX(-179deg) !important;
+
+    z-index:2 !important;
+}
+
+/* La parte frontal real permanece para sujetar la tarjeta. */
+.invitation-cover.is-opening
+.wedding-envelope-front{
+    z-index:6 !important;
+}
+
+/* La tarjeta sale verticalmente sin desvanecerse. */
+.invitation-cover.is-card-out
+.wedding-welcome-card{
+    opacity:1 !important;
+    visibility:visible !important;
+
+    transform:
+        translateY(-102%)
+        scale(1) !important;
 
     z-index:9 !important;
 }
 
-/* El frente también sube para cubrir la tarjeta */
-.envelope-front-left{
-    clip-path:
-        polygon(
-            0 29%,
-            55% 68%,
-            0 100%
-        ) !important;
-}
-
-.envelope-front-right{
-    clip-path:
-        polygon(
-            100% 29%,
-            45% 68%,
-            100% 100%
-        ) !important;
-}
-
-.envelope-front-bottom{
-    clip-path:
-        polygon(
-            0 100%,
-            50% 54%,
-            100% 100%
-        ) !important;
-}
-
-/* El sello queda justo sobre la unión de la solapa */
-.wedding-envelope-seal{
-    top:69% !important;
-}
-
-/* Cuando abre, la tarjeta sale desde dentro */
+/*
+ * El sobre permanece visible debajo de la tarjeta.
+ * No se oculta ni se sustituye por otra pantalla.
+ */
 .invitation-cover.is-card-out
-.wedding-welcome-card{
-    transform:
-        translateY(-105%)
-        scale(1) !important;
-
-    z-index:8 !important;
+.wedding-envelope{
+    transform:translateY(13%) !important;
 }
 
-/* En celular */
+/* Celular */
 @media(max-width:600px){
-
-    .wedding-welcome-card{
-        top:37% !important;
-        height:42% !important;
-    }
 
     .wedding-envelope-flap{
         clip-path:
             polygon(
                 0 0,
                 100% 0,
-                50% 74%
+                50% 69%
             ) !important;
     }
 
     .wedding-envelope-seal{
-        top:70% !important;
+        top:64.5% !important;
+    }
+
+    .wedding-welcome-card{
+        top:38% !important;
+        height:41% !important;
     }
 
     .invitation-cover.is-card-out
     .wedding-welcome-card{
         transform:
-            translateY(-92%)
+            translateY(-88%)
             scale(1) !important;
+    }
+
+    .invitation-cover.is-card-out
+    .wedding-envelope{
+        transform:translateY(10%) !important;
     }
 }

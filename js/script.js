@@ -2,15 +2,11 @@
 
 /* =====================================================
    DATOS DEL INVITADO
-
-   Ejemplo:
-   ?n=Familia%20Pérez&p=4&codigo=GI26-001
+   Ejemplo: ?n=Familia%20Pérez&p=4&codigo=GI26-001
 ===================================================== */
 
 function getGuestData() {
-    const params = new URLSearchParams(
-        window.location.search
-    );
+    const params = new URLSearchParams(window.location.search);
 
     return {
         nombre: (params.get("n") || "").trim(),
@@ -24,86 +20,44 @@ const guestData = getGuestData();
 
 /* =====================================================
    APERTURA DEL SOBRE
-
-   Sobre cerrado
-   → abre la solapa
-   → sale la tarjeta
-   → aparece el hero
+   Cerrado → abre solapa → sale tarjeta → hero
 ===================================================== */
 
 function initInvitationOpening() {
-    const cover = document.getElementById(
-        "invitation-cover"
-    );
-
-    const openButton = document.getElementById(
-        "open-invitation"
-    );
-
-    const welcomeCard = document.getElementById(
-        "invitation-welcome"
-    );
+    const cover = document.getElementById("invitation-cover");
+    const openButton = document.getElementById("open-invitation");
+    const welcomeCard = document.getElementById("invitation-welcome");
 
     if (!cover || !openButton || !welcomeCard) {
         return;
     }
 
-    document.body.classList.add(
-        "invitation-closed"
-    );
+    document.body.classList.add("invitation-closed");
 
     openButton.addEventListener(
         "click",
         () => {
             openButton.disabled = true;
 
-            /*
-             * 1. Desaparece el sello y
-             *    se abre la solapa.
-             */
-            cover.classList.add(
-                "is-opening"
-            );
+            // 1. Desaparece el sello y se abre la solapa.
+            cover.classList.add("is-opening");
 
-            /*
-             * 2. La tarjeta sale físicamente
-             *    desde dentro del sobre.
-             */
+            // 2. La tarjeta sale físicamente desde el sobre.
             window.setTimeout(() => {
-                welcomeCard.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
-
-                cover.classList.add(
-                    "is-card-out"
-                );
+                welcomeCard.setAttribute("aria-hidden", "false");
+                cover.classList.add("is-card-out");
             }, 900);
 
-            /*
-             * 3. Se mantiene el mensaje visible
-             *    y luego comienza a entrar el hero.
-             */
+            // 3. Después de leer el mensaje, entra el hero.
             window.setTimeout(() => {
-                cover.classList.add(
-                    "is-leaving"
-                );
-
-                document.body.classList.remove(
-                    "invitation-closed"
-                );
-
-                document.body.classList.add(
-                    "invitation-open"
-                );
+                cover.classList.add("is-leaving");
+                document.body.classList.remove("invitation-closed");
+                document.body.classList.add("invitation-open");
             }, 4700);
 
-            /*
-             * 4. Se elimina la portada al finalizar.
-             */
+            // 4. Se elimina la portada al terminar la transición.
             window.setTimeout(() => {
                 cover.remove();
-
                 document.body.style.overflow = "";
 
                 window.scrollTo({
@@ -124,9 +78,7 @@ function initInvitationOpening() {
 ===================================================== */
 
 function startCountdown() {
-    const countdown = document.querySelector(
-        ".countdown"
-    );
+    const countdown = document.querySelector(".countdown");
 
     if (!countdown) {
         return;
@@ -137,8 +89,7 @@ function startCountdown() {
     ).getTime();
 
     function updateCountdown() {
-        const distance =
-            weddingDate - Date.now();
+        const distance = weddingDate - Date.now();
 
         if (distance <= 0) {
             countdown.innerHTML = `
@@ -150,40 +101,34 @@ function startCountdown() {
             return false;
         }
 
-        const days = Math.floor(
-            distance /
-            (1000 * 60 * 60 * 24)
-        );
-
-        const hours = Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60 * 24)
-            ) /
-            (1000 * 60 * 60)
-        );
-
-        const minutes = Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60)
-            ) /
-            (1000 * 60)
-        );
-
-        const seconds = Math.floor(
-            (
-                distance %
-                (1000 * 60)
-            ) /
-            1000
-        );
-
         const values = {
-            days,
-            hours,
-            minutes,
-            seconds
+            days: Math.floor(
+                distance / (1000 * 60 * 60 * 24)
+            ),
+
+            hours: Math.floor(
+                (
+                    distance %
+                    (1000 * 60 * 60 * 24)
+                ) /
+                (1000 * 60 * 60)
+            ),
+
+            minutes: Math.floor(
+                (
+                    distance %
+                    (1000 * 60 * 60)
+                ) /
+                (1000 * 60)
+            ),
+
+            seconds: Math.floor(
+                (
+                    distance %
+                    (1000 * 60)
+                ) /
+                1000
+            )
         };
 
         Object.entries(values).forEach(
@@ -222,23 +167,23 @@ function startCountdown() {
 
 
 /* =====================================================
-   PERSONALIZACIÓN DEL INVITADO
+   PERSONALIZACIÓN DEL INVITADO Y PASES
 ===================================================== */
 
 function initGuestPersonalization() {
     const guestName =
         guestData.nombre;
 
-    const passesValue =
+    const parsedPasses =
         Number.parseInt(
             guestData.pases,
             10
         );
 
     const passes =
-        Number.isInteger(passesValue) &&
-        passesValue > 0
-            ? passesValue
+        Number.isInteger(parsedPasses) &&
+        parsedPasses > 0
+            ? parsedPasses
             : 0;
 
     const guestCard =
@@ -293,10 +238,7 @@ function initGuestPersonalization() {
     }
 
     guestCard.hidden = false;
-
-    guestCard.removeAttribute(
-        "hidden"
-    );
+    guestCard.removeAttribute("hidden");
 
     guestCardName.textContent =
         guestName;
@@ -318,10 +260,6 @@ function initGuestPersonalization() {
 
     passIcons.innerHTML = "";
 
-    if (passes <= 0) {
-        return;
-    }
-
     const visiblePasses =
         Math.min(passes, 10);
 
@@ -336,7 +274,8 @@ function initGuestPersonalization() {
         icon.className =
             "guest-pass-icon";
 
-        icon.textContent = "♥";
+        icon.textContent =
+            "♥";
 
         icon.style.animationDelay =
             `${index * 90}ms`;
@@ -418,19 +357,19 @@ function initAudioPlayer() {
     }
 
     function updateDuration() {
-        if (!durationElement) {
-            return;
+        if (durationElement) {
+            durationElement.textContent =
+                formatAudioTime(
+                    audio.duration
+                );
         }
-
-        durationElement.textContent =
-            formatAudioTime(
-                audio.duration
-            );
     }
 
     function updateProgress() {
         if (
-            !Number.isFinite(audio.duration) ||
+            !Number.isFinite(
+                audio.duration
+            ) ||
             audio.duration <= 0
         ) {
             return;
@@ -827,7 +766,8 @@ window.closeLightbox = function () {
         "active"
     );
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 };
 
 
@@ -836,13 +776,11 @@ window.closeLightbox = function () {
 ===================================================== */
 
 window.toggleFlip = function (card) {
-    if (!card) {
-        return;
+    if (card) {
+        card.classList.toggle(
+            "is-flipped"
+        );
     }
-
-    card.classList.toggle(
-        "is-flipped"
-    );
 };
 
 
@@ -878,7 +816,9 @@ function configureRSVPForm() {
         );
 
     const validPasses =
-        Number.isInteger(passesValue) &&
+        Number.isInteger(
+            passesValue
+        ) &&
         passesValue >= 1 &&
         passesValue <= 20;
 
@@ -888,7 +828,8 @@ function configureRSVPForm() {
         validPasses;
 
     if (!invitationIsValid) {
-        rsvpButton.href = "#";
+        rsvpButton.href =
+            "#";
 
         rsvpButton.removeAttribute(
             "target"
@@ -904,7 +845,8 @@ function configureRSVPForm() {
         );
 
         if (warning) {
-            warning.hidden = false;
+            warning.hidden =
+                false;
         }
 
         rsvpButton.addEventListener(
@@ -913,7 +855,8 @@ function configureRSVPForm() {
                 event.preventDefault();
 
                 if (warning) {
-                    warning.hidden = false;
+                    warning.hidden =
+                        false;
                 }
             }
         );
@@ -956,7 +899,8 @@ function configureRSVPForm() {
     );
 
     if (warning) {
-        warning.hidden = true;
+        warning.hidden =
+            true;
     }
 }
 
@@ -1002,7 +946,8 @@ function configureGiftForm() {
         "noopener noreferrer";
 
     if (!guestData.codigo) {
-        giftButton.href = "#";
+        giftButton.href =
+            "#";
 
         giftButton.removeAttribute(
             "target"
@@ -1033,7 +978,6 @@ function configureGiftForm() {
 
 /* =====================================================
    RESUMEN DEL RSVP
-
    No aparece si fue eliminado del HTML.
 ===================================================== */
 
@@ -1071,7 +1015,9 @@ function showRSVPSummary() {
         );
 
     if (!guestName) {
-        summary.hidden = true;
+        summary.hidden =
+            true;
+
         return;
     }
 
@@ -1092,7 +1038,8 @@ function showRSVPSummary() {
             "Consulta la cantidad de lugares asignados.";
     }
 
-    summary.hidden = false;
+    summary.hidden =
+        false;
 
     summary.removeAttribute(
         "hidden"
@@ -1114,9 +1061,10 @@ function updateWeddingStatusMessage() {
         return;
     }
 
-    const weddingDate = new Date(
-        "2026-10-24T12:00:00-05:00"
-    );
+    const weddingDate =
+        new Date(
+            "2026-10-24T12:00:00-05:00"
+        );
 
     const difference =
         weddingDate.getTime() -
@@ -1128,7 +1076,7 @@ function updateWeddingStatusMessage() {
             (1000 * 60 * 60 * 24)
         );
 
-    let message = "";
+    let message;
 
     if (totalDays < 0) {
         message =
