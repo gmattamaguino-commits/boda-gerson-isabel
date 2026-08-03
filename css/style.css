@@ -305,6 +305,62 @@ RESET
     }
 }
 
+/* =====================================================
+   v41 — CENTRADO DE TARJETAS EN MÓVIL
+===================================================== */
+@media(max-width:768px){
+    .place-card,
+    .regalo-card,
+    .info-ninos-card{
+        text-align:center !important;
+    }
+
+    .place-card .place-icon,
+    .regalo-card .regalo-icon,
+    .info-ninos-card .info-ninos-icon{
+        margin-left:auto !important;
+        margin-right:auto !important;
+        align-self:center !important;
+        flex:0 0 auto;
+    }
+
+    .place-card h3,
+    .place-card p,
+    .regalo-card h3,
+    .regalo-card p,
+    .info-ninos-card h3,
+    .info-ninos-card p{
+        width:100%;
+        margin-left:auto !important;
+        margin-right:auto !important;
+        text-align:center !important;
+    }
+
+    .regalo-card{
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content:center !important;
+    }
+
+    .regalo-card .regalo-content,
+    .info-ninos-card .info-ninos-content{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center !important;
+    }
+
+    .place-card .place-actions,
+    .regalo-card .regalo-actions,
+    .regalo-card .btn-form,
+    .regalo-card .btn-regalo{
+        margin-left:auto !important;
+        margin-right:auto !important;
+    }
+}
+
 html{
     scroll-behavior:smooth;
 }
@@ -6480,4 +6536,33 @@ input:focus-visible{
         transition-duration:.01ms !important;
     }
     .floating-music.is-playing .line-icon{ animation:none !important; }
+}
+
+/* =====================================================
+   v42 — CENTRADO REAL DE ÍCONOS EN TARJETAS
+===================================================== */
+@media(max-width:768px){
+    .place-card > .place-icon,
+    .info-ninos-card > .info-ninos-icon{
+        position:static !important;
+        inset:auto !important;
+        float:none !important;
+        width:100% !important;
+        max-width:none !important;
+        height:auto !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        margin:0 auto 8px !important;
+        padding:0 !important;
+        text-align:center !important;
+        transform:none !important;
+    }
+
+    .place-card > .place-icon .line-icon,
+    .info-ninos-card > .info-ninos-icon .line-icon{
+        display:block !important;
+        margin:0 auto !important;
+        flex:0 0 auto;
+    }
 }
