@@ -229,6 +229,85 @@ RESET
     }
 }
 
+/* =====================================================
+   v43 — APERTURA ANIMADA CONSERVANDO LA CARTA ORIGINAL
+===================================================== */
+.envelope-intro .envelope-swap{
+    perspective:1200px;
+    transform-style:preserve-3d;
+}
+
+.envelope-intro.is-opening .envelope-swap{
+    animation:envelopeOpeningGesture .72s cubic-bezier(.22,.75,.25,1) both;
+}
+
+.envelope-intro.is-opening .envelope-image-closed{
+    visibility:visible;
+    animation:closedEnvelopeOpening .68s cubic-bezier(.3,.7,.3,1) both !important;
+    transform-origin:50% 56%;
+    will-change:transform, opacity, filter;
+}
+
+.envelope-intro.is-opening .envelope-image-open{
+    visibility:visible;
+    animation:openEnvelopeReveal .72s cubic-bezier(.22,.75,.25,1) both !important;
+    transform-origin:50% 56%;
+    will-change:transform, opacity, filter;
+}
+
+.envelope-intro.is-opening .envelope-seal-button,
+.envelope-intro.is-opening .envelope-open-hint{
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+}
+
+.envelope-intro.is-open .envelope-image-closed{
+    opacity:0 !important;
+    visibility:hidden;
+}
+
+.envelope-intro.is-open .envelope-image-open{
+    opacity:1 !important;
+    visibility:visible;
+    transform:none !important;
+}
+
+.envelope-intro.is-open .envelope-welcome-message{
+    animation:welcomeCardReveal .55s .08s cubic-bezier(.22,.75,.25,1) both;
+}
+
+@keyframes envelopeOpeningGesture{
+    0%{ transform:translateY(0) scale(1); }
+    38%{ transform:translateY(7px) scale(.985); }
+    100%{ transform:translateY(-4px) scale(1.008); }
+}
+
+@keyframes closedEnvelopeOpening{
+    0%{ opacity:1; filter:brightness(1); }
+    45%{ opacity:1; filter:brightness(.98); }
+    100%{ opacity:0; filter:brightness(1.04); }
+}
+
+@keyframes openEnvelopeReveal{
+    0%,28%{ opacity:0; filter:blur(1.5px) brightness(1.04); }
+    100%{ opacity:1; filter:blur(0) brightness(1); }
+}
+
+@keyframes welcomeCardReveal{
+    from{ opacity:0; transform:translate(-50%, calc(-50% + 10px)) scale(.98); }
+    to{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .envelope-intro.is-opening .envelope-swap,
+    .envelope-intro.is-opening .envelope-image-closed,
+    .envelope-intro.is-opening .envelope-image-open,
+    .envelope-intro.is-open .envelope-welcome-message{
+        animation:none !important;
+    }
+}
+
 @media(max-width:480px){
     .cronograma .schedule-card{
         margin-left:34px;

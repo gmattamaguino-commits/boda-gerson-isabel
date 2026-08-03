@@ -107,11 +107,18 @@ function initInvitationOpening() {
 
             openButton.disabled = true;
 
-            cover.classList.add("is-open");
+            cover.classList.add("is-opening");
 
-            welcomeMessage.setAttribute(
-                "aria-hidden",
-                "false"
+            window.setTimeout(
+                () => {
+                    cover.classList.add("is-open");
+
+                    welcomeMessage.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+                },
+                620
             );
 
             /*
@@ -129,7 +136,7 @@ function initInvitationOpening() {
                         "invitation-open"
                     );
                 },
-                3000
+                3800
             );
 
             /*
@@ -146,7 +153,7 @@ function initInvitationOpening() {
                         behavior: "auto"
                     });
                 },
-                3500
+                4300
             );
         },
         {
