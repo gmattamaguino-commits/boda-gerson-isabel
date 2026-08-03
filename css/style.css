@@ -257,6 +257,47 @@ RESET
     }
 }
 
+/* =====================================================
+   v39 — TIPOGRAFÍA Y COLOR DE “SAVE THE DATE”
+   Mantiene intactas las medidas y posiciones.
+===================================================== */
+
+.wedding-details .wedding-details-eyebrow{
+    color:var(--color-wine) !important;
+    font-family:"Cinzel", serif !important;
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+.wedding-details .wedding-details-date{
+    color:#333234 !important;
+    font-family:"Cormorant Garamond", Georgia, serif !important;
+    font-weight:700 !important;
+    text-transform:uppercase;
+}
+
+.wedding-details .wedding-details-count-title,
+.wedding-details .time-box small,
+.wedding-details .bible-verse{
+    color:#3a393b;
+    font-family:"Cormorant Garamond", Georgia, serif !important;
+    font-weight:400;
+}
+
+.wedding-details .bible-verse{
+    font-size:clamp(19px, 3.5vw, 26px);
+}
+
+.wedding-details .bible-reference,
+.wedding-details .time-box span{
+    color:var(--color-wine) !important;
+}
+
+.wedding-details .bible-reference{
+    font-family:"Cormorant Garamond", Georgia, serif !important;
+    font-weight:600;
+}
+
 @media(prefers-reduced-motion:reduce){
     .dresscode .dresscode-card.flip-card .flip-card-front,
     .dresscode .dresscode-card.flip-card .flip-card-back{
@@ -6269,4 +6310,174 @@ body.leaves-active .leaf-overlay{
     .dresscode-card.flip-card .flip-card-back{
         padding:16px 10px !important;
     }
+}
+
+/* =====================================================
+   v40 — COHERENCIA VISUAL, CONTROLES Y ACCESIBILIDAD
+===================================================== */
+body,
+p,
+li,
+small,
+.parents-name,
+.godparents-name,
+.place-address,
+.place-arrival-note,
+.place-parking-note,
+.dresscode-intro,
+.regalo-intro,
+.gracias-text{
+    font-family:"Cormorant Garamond", Georgia, serif;
+}
+
+.title-section,
+.subtitle-section,
+.schedule-card h3,
+.place-card h3,
+.dresscode-card h3,
+.regalo-card h3,
+.info-ninos-card h3,
+.rsvp-confirm-content h3,
+.rsvp-song-content h3{
+    font-family:"Cinzel", serif;
+}
+
+.line-icon{
+    display:block;
+    width:1em;
+    height:1em;
+}
+
+.schedule-card-icon,
+.place-icon,
+.dresscode-icon,
+.regalo-icon,
+.info-ninos-icon,
+.rsvp-confirm-icon,
+.rsvp-song-icon{
+    color:var(--color-wine) !important;
+}
+
+.schedule-card-icon .line-icon,
+.place-icon .line-icon,
+.dresscode-icon .line-icon,
+.regalo-icon .line-icon,
+.info-ninos-icon .line-icon{
+    width:30px;
+    height:30px;
+}
+
+.map-toggle-icon .line-icon{
+    width:18px;
+    height:18px;
+}
+
+.guest-invitation-card #guest-card-name{
+    color:#333234;
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:clamp(30px, 5vw, 46px);
+    font-weight:700;
+    line-height:1.1;
+}
+
+.guest-card-welcome{
+    margin:18px 0 0;
+    color:var(--color-wine);
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:18px;
+    font-style:italic;
+}
+
+.floating-control{
+    position:fixed;
+    right:max(16px, env(safe-area-inset-right));
+    z-index:9990;
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    padding:0;
+    color:var(--color-wine);
+    background:rgba(255,250,247,.94);
+    border:1px solid rgba(178,137,78,.55);
+    border-radius:50%;
+    box-shadow:0 10px 28px rgba(70,42,48,.18);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s ease, background .25s ease;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.floating-control.is-visible{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+}
+
+.floating-control:hover,
+.floating-control:focus-visible{
+    color:#fff;
+    background:var(--color-wine);
+    outline:3px solid rgba(201,160,165,.38);
+    outline-offset:3px;
+}
+
+.floating-control .line-icon{
+    width:23px;
+    height:23px;
+}
+
+.floating-music{
+    bottom:calc(78px + env(safe-area-inset-bottom));
+}
+
+.floating-music.is-playing .line-icon{
+    animation:musicPulse 1.5s ease-in-out infinite;
+}
+
+.back-to-top{
+    bottom:calc(18px + env(safe-area-inset-bottom));
+}
+
+@keyframes musicPulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.12); }
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible{
+    outline:3px solid rgba(107,39,55,.38);
+    outline-offset:3px;
+}
+
+.btn-form,
+.btn-place,
+.map-toggle,
+.floating-control{
+    min-height:48px;
+}
+
+.gallery-item[role="button"]{
+    cursor:pointer;
+}
+
+@media(max-width:480px){
+    .floating-control{
+        width:46px;
+        height:46px;
+        right:12px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto !important; }
+    *,*::before,*::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+    .floating-music.is-playing .line-icon{ animation:none !important; }
 }

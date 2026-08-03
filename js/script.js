@@ -1614,6 +1614,60 @@ function initFallingLeaves() {
    INICIALIZACIÓN GENERAL
 ===================================================== */
 
+function initInvitationEnhancements() {
+    const paths = {
+        church:'<path d="M4 21h16M6 21V10l6-5 6 5v11M9 21v-6h6v6M12 2v5M9.5 4.5h5"/>',
+        party:'<path d="M4 20 9 7l8 8-13 5ZM9 7l8-3M14 12l6-2M15 4l1-2M20 8l2 1"/>',
+        toast:'<path d="M3 3h8l-1 7a3 3 0 0 1-6 0L3 3ZM7 13v6M4 21h6M13 3h8l-1 7a3 3 0 0 1-6 0l-1-7ZM17 13v6M14 21h6"/>',
+        dinner:'<path d="M6 3v7M3 3v5a3 3 0 0 0 6 0V3M6 10v11M15 3v18M15 3c4 2 4 8 0 10"/>',
+        music:'<path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>',
+        suit:'<path d="M8 3l4 3 4-3 3 4-2 14H7L5 7l3-4ZM12 6v15M9 10l3 3 3-3"/>',
+        dress:'<path d="M9 3h6l-1 6 5 12H5l5-12-1-6ZM10 9h4"/>',
+        gift:'<path d="M3 9h18v12H3V9ZM2 5h20v4H2V5ZM12 5v16M12 5c-3 0-5-1-5-3 3-1 5 0 5 3ZM12 5c3 0 5-1 5-3-3-1-5 0-5 3Z"/>',
+        children:'<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7M9 8h.01M15 8h.01M10 11c1 .7 3 .7 4 0"/>',
+        pin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>'
+    };
+    const icon = name => '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">' + paths[name] + '</svg>';
+    const replaceIcons = (selector, names) => document.querySelectorAll(selector).forEach((el, i) => { el.innerHTML = icon(names[i] || names[0]); });
+    replaceIcons('.schedule-card-icon', ['church','party','toast','dinner','music']);
+    replaceIcons('.place-icon', ['church','party']);
+    replaceIcons('.dresscode-icon', ['suit','dress']);
+    replaceIcons('.regalo-icon', ['gift']);
+    replaceIcons('.info-ninos-icon', ['children']);
+    replaceIcons('.map-toggle-icon', ['pin']);
+
+    const guestCard = document.getElementById('guest-invitation-card');
+    if (guestCard && !guestCard.querySelector('.guest-card-welcome')) {
+        const welcome = document.createElement('p');
+        welcome.className = 'guest-card-welcome';
+        welcome.textContent = 'Nos encantará celebrar este día contigo.';
+        guestCard.appendChild(welcome);
+    }
+
+    const audio = document.getElementById('wedding-audio');
+    if (audio) {
+        const music = document.createElement('button');
+        music.type = 'button'; music.className = 'floating-control floating-music'; music.innerHTML = icon('music');
+        document.body.appendChild(music);
+        const sync = () => { const playing = !audio.paused; music.classList.toggle('is-playing', playing); music.setAttribute('aria-pressed', String(playing)); music.setAttribute('aria-label', playing ? 'Pausar canción' : 'Reproducir canción'); };
+        music.addEventListener('click', async () => { try { if (audio.paused) await audio.play(); else audio.pause(); } catch (_) { music.setAttribute('aria-label','No se pudo reproducir la canción'); } });
+        audio.addEventListener('play', sync); audio.addEventListener('pause', sync); sync();
+    }
+
+    const topButton = document.createElement('button');
+    topButton.type = 'button'; topButton.className = 'floating-control back-to-top'; topButton.setAttribute('aria-label','Volver al inicio');
+    topButton.innerHTML = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="m6 15 6-6 6 6"/></svg>';
+    document.body.appendChild(topButton);
+    topButton.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    const syncControls = () => { topButton.classList.toggle('is-visible', scrollY > innerHeight * .7); document.querySelector('.floating-music')?.classList.toggle('is-visible', scrollY > 180); };
+    addEventListener('scroll', syncControls, {passive:true}); syncControls();
+
+    document.querySelectorAll('.gallery-item').forEach((item, i) => {
+        item.setAttribute('role','button'); item.setAttribute('tabindex','0'); item.setAttribute('aria-label',`Ampliar fotografía ${i+1}`);
+        item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); } });
+    });
+}
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
@@ -1628,5 +1682,6 @@ document.addEventListener(
         updateWeddingStatusMessage();
         initKeyboardControls();
         initFallingLeaves();
+        initInvitationEnhancements();
     }
 );
