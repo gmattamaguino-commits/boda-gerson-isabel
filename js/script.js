@@ -2,7 +2,8 @@
 
 /* =====================================================
    DATOS PERSONALIZADOS DEL INVITADO
-   Ejemplo: ?n=Familia%20Pérez&p=4&codigo=GI26-001
+   Ejemplo:
+   ?n=Familia%20Pérez&p=4&codigo=GI26-001
 ===================================================== */
 
 function getGuestData() {
@@ -19,21 +20,13 @@ const guestData = getGuestData();
 
 
 /* =====================================================
-   APERTURA CON CAMBIO INSTANTÁNEO DE IMÁGENES
+   APERTURA DE LA INVITACIÓN
 ===================================================== */
 
 function initInvitationOpening() {
-    const cover = document.getElementById(
-        "invitation-cover"
-    );
-
-    const openButton = document.getElementById(
-        "open-invitation"
-    );
-
-    const welcomeMessage = document.getElementById(
-        "invitation-welcome"
-    );
+    const cover = document.getElementById("invitation-cover");
+    const openButton = document.getElementById("open-invitation");
+    const welcomeMessage = document.getElementById("invitation-welcome");
 
     const closedImage = document.querySelector(
         ".envelope-image-closed"
@@ -53,14 +46,7 @@ function initInvitationOpening() {
         return;
     }
 
-    document.body.classList.add(
-        "invitation-closed"
-    );
-
-    /*
-     * El botón permanece deshabilitado hasta que
-     * ambas imágenes estén cargadas y decodificadas.
-     */
+    document.body.classList.add("invitation-closed");
     openButton.disabled = true;
 
     async function prepareImages() {
@@ -91,26 +77,20 @@ function initInvitationOpening() {
                     });
                 }
 
-                if (
-                    typeof image.decode ===
-                    "function"
-                ) {
+                if (typeof image.decode === "function") {
                     try {
                         await image.decode();
                     } catch (error) {
                         /*
-                         * La imagen puede estar lista aunque
-                         * el navegador rechace decode().
+                         * La imagen puede estar cargada
+                         * aunque decode() falle.
                          */
                     }
                 }
             })
         );
 
-        cover.classList.add(
-            "is-ready"
-        );
-
+        cover.classList.add("is-ready");
         openButton.disabled = false;
     }
 
@@ -127,14 +107,7 @@ function initInvitationOpening() {
 
             openButton.disabled = true;
 
-            /*
-             * El cambio entre la carta cerrada y la
-             * abierta ocurre en un solo fotograma. El CSS
-             * conserva exactamente el mismo cuadro para ambas.
-             */
-            cover.classList.add(
-                "is-open"
-            );
+            cover.classList.add("is-open");
 
             welcomeMessage.setAttribute(
                 "aria-hidden",
@@ -142,14 +115,11 @@ function initInvitationOpening() {
             );
 
             /*
-             * Mantiene visible la carta abierta durante
-             * tres segundos para leer la bienvenida.
+             * Tiempo visible del sobre abierto.
              */
             window.setTimeout(
                 () => {
-                    cover.classList.add(
-                        "is-leaving"
-                    );
+                    cover.classList.add("is-leaving");
 
                     document.body.classList.remove(
                         "invitation-closed"
@@ -163,15 +133,13 @@ function initInvitationOpening() {
             );
 
             /*
-             * Elimina la portada cuando termina
-             * la transición al hero.
+             * Se elimina la portada y aparece el hero.
              */
             window.setTimeout(
                 () => {
                     cover.remove();
 
-                    document.body.style.overflow =
-                        "";
+                    document.body.style.overflow = "";
 
                     window.scrollTo({
                         top: 0,
@@ -193,9 +161,7 @@ function initInvitationOpening() {
 ===================================================== */
 
 function startCountdown() {
-    const countdown = document.querySelector(
-        ".countdown"
-    );
+    const countdown = document.querySelector(".countdown");
 
     if (!countdown) {
         return;
@@ -206,8 +172,7 @@ function startCountdown() {
     ).getTime();
 
     function updateCountdown() {
-        const distance =
-            weddingDate - Date.now();
+        const distance = weddingDate - Date.now();
 
         if (distance <= 0) {
             countdown.innerHTML = `
@@ -277,9 +242,7 @@ function startCountdown() {
         Object.entries(values).forEach(
             ([id, value]) => {
                 const element =
-                    document.getElementById(
-                        id
-                    );
+                    document.getElementById(id);
 
                 if (!element) {
                     return;
@@ -308,9 +271,7 @@ function startCountdown() {
     const timer = window.setInterval(
         () => {
             if (!updateCountdown()) {
-                window.clearInterval(
-                    timer
-                );
+                window.clearInterval(timer);
             }
         },
         1000
@@ -323,8 +284,7 @@ function startCountdown() {
 ===================================================== */
 
 function initGuestPersonalization() {
-    const guestName =
-        guestData.nombre;
+    const guestName = guestData.nombre;
 
     const parsedPasses =
         Number.parseInt(
@@ -333,9 +293,7 @@ function initGuestPersonalization() {
         );
 
     const passes =
-        Number.isInteger(
-            parsedPasses
-        ) &&
+        Number.isInteger(parsedPasses) &&
         parsedPasses > 0
             ? parsedPasses
             : 0;
@@ -360,9 +318,6 @@ function initGuestPersonalization() {
             "guest-pass-icons"
         );
 
-    /*
-     * Compatibilidad con versiones anteriores.
-     */
     const letterGuest =
         document.getElementById(
             "invitation-guest-name"
@@ -382,8 +337,7 @@ function initGuestPersonalization() {
     }
 
     if (letterGuest) {
-        letterGuest.textContent =
-            guestName;
+        letterGuest.textContent = guestName;
     }
 
     if (
@@ -395,13 +349,9 @@ function initGuestPersonalization() {
     }
 
     guestCard.hidden = false;
+    guestCard.removeAttribute("hidden");
 
-    guestCard.removeAttribute(
-        "hidden"
-    );
-
-    guestCardName.textContent =
-        guestName;
+    guestCardName.textContent = guestName;
 
     if (passes === 1) {
         guestCardPasses.textContent =
@@ -436,22 +386,17 @@ function initGuestPersonalization() {
         index += 1
     ) {
         const icon =
-            document.createElement(
-                "span"
-            );
+            document.createElement("span");
 
         icon.className =
             "guest-pass-icon";
 
-        icon.textContent =
-            "♥";
+        icon.textContent = "♥";
 
         icon.style.animationDelay =
             `${index * 90}ms`;
 
-        passIcons.appendChild(
-            icon
-        );
+        passIcons.appendChild(icon);
     }
 }
 
@@ -512,14 +457,10 @@ function initAudioPlayer() {
         }
 
         const minutes =
-            Math.floor(
-                seconds / 60
-            );
+            Math.floor(seconds / 60);
 
         const remainingSeconds =
-            Math.floor(
-                seconds % 60
-            );
+            Math.floor(seconds % 60);
 
         return `${
             String(minutes).padStart(
@@ -527,9 +468,7 @@ function initAudioPlayer() {
                 "0"
             )
         }:${
-            String(
-                remainingSeconds
-            ).padStart(
+            String(remainingSeconds).padStart(
                 2,
                 "0"
             )
@@ -547,9 +486,7 @@ function initAudioPlayer() {
 
     function updateProgress() {
         if (
-            !Number.isFinite(
-                audio.duration
-            ) ||
+            !Number.isFinite(audio.duration) ||
             audio.duration <= 0
         ) {
             return;
@@ -563,9 +500,7 @@ function initAudioPlayer() {
             100;
 
         progress.value =
-            String(
-                percentage
-            );
+            String(percentage);
 
         progress.style.setProperty(
             "--audio-progress",
@@ -645,18 +580,14 @@ function initAudioPlayer() {
         "input",
         () => {
             if (
-                !Number.isFinite(
-                    audio.duration
-                ) ||
+                !Number.isFinite(audio.duration) ||
                 audio.duration <= 0
             ) {
                 return;
             }
 
             const percentage =
-                Number(
-                    progress.value
-                );
+                Number(progress.value);
 
             audio.currentTime =
                 (
@@ -675,8 +606,7 @@ function initAudioPlayer() {
     volumeButton.addEventListener(
         "click",
         () => {
-            audio.muted =
-                !audio.muted;
+            audio.muted = !audio.muted;
 
             player.classList.toggle(
                 "is-muted",
@@ -704,8 +634,7 @@ function initAudioPlayer() {
                 "is-playing"
             );
 
-            progress.value =
-                "0";
+            progress.value = "0";
 
             progress.style.setProperty(
                 "--audio-progress",
@@ -742,13 +671,8 @@ function initRevealAnimations() {
         `);
 
     elements.forEach(
-        (
-            element,
-            index
-        ) => {
-            element.classList.add(
-                "reveal"
-            );
+        (element, index) => {
+            element.classList.add("reveal");
 
             element.style.setProperty(
                 "--reveal-delay",
@@ -757,12 +681,7 @@ function initRevealAnimations() {
         }
     );
 
-    if (
-        !(
-            "IntersectionObserver"
-            in window
-        )
-    ) {
+    if (!("IntersectionObserver" in window)) {
         elements.forEach(
             element => {
                 element.classList.add(
@@ -782,9 +701,7 @@ function initRevealAnimations() {
             ) => {
                 entries.forEach(
                     entry => {
-                        if (
-                            !entry.isIntersecting
-                        ) {
+                        if (!entry.isIntersecting) {
                             return;
                         }
 
@@ -800,7 +717,6 @@ function initRevealAnimations() {
             },
             {
                 threshold: 0.12,
-
                 rootMargin:
                     "0px 0px -40px 0px"
             }
@@ -808,9 +724,7 @@ function initRevealAnimations() {
 
     elements.forEach(
         element => {
-            observer.observe(
-                element
-            );
+            observer.observe(element);
         }
     );
 }
@@ -869,15 +783,11 @@ window.showMap = function (
         return;
     }
 
-    mapContainer.classList.add(
-        "is-open"
-    );
+    mapContainer.classList.add("is-open");
 
     const mapURL =
         `https://www.google.com/maps?q=${
-            encodeURIComponent(
-                coordinates
-            )
+            encodeURIComponent(coordinates)
         }&z=16&output=embed`;
 
     mapContainer.innerHTML = `
@@ -916,9 +826,7 @@ window.openLightbox = function (
     galleryItem
 ) {
     const image =
-        galleryItem?.querySelector(
-            "img"
-        );
+        galleryItem?.querySelector("img");
 
     const lightbox =
         document.getElementById(
@@ -946,48 +854,39 @@ window.openLightbox = function (
         image.alt ||
         "Fotografía ampliada";
 
-    lightbox.classList.add(
-        "active"
-    );
+    lightbox.classList.add("active");
 
     document.body.style.overflow =
         "hidden";
 };
 
-window.closeLightbox =
-    function () {
-        const lightbox =
-            document.getElementById(
-                "lightbox"
-            );
-
-        if (!lightbox) {
-            return;
-        }
-
-        lightbox.classList.remove(
-            "active"
+window.closeLightbox = function () {
+    const lightbox =
+        document.getElementById(
+            "lightbox"
         );
 
-        document.body.style.overflow =
-            "";
-    };
+    if (!lightbox) {
+        return;
+    }
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+};
 
 
 /* =====================================================
    TARJETAS GIRATORIAS DEL DRESS CODE
 ===================================================== */
 
-window.toggleFlip =
-    function (card) {
-        if (!card) {
-            return;
-        }
+window.toggleFlip = function (card) {
+    if (!card) {
+        return;
+    }
 
-        card.classList.toggle(
-            "is-flipped"
-        );
-    };
+    card.classList.toggle("is-flipped");
+};
 
 
 /* =====================================================
@@ -1022,24 +921,17 @@ function configureRSVPForm() {
         );
 
     const validPasses =
-        Number.isInteger(
-            passesValue
-        ) &&
+        Number.isInteger(passesValue) &&
         passesValue >= 1 &&
         passesValue <= 20;
 
     const invitationIsValid =
-        Boolean(
-            guestName
-        ) &&
-        Boolean(
-            guestCode
-        ) &&
+        Boolean(guestName) &&
+        Boolean(guestCode) &&
         validPasses;
 
     if (!invitationIsValid) {
-        rsvpButton.href =
-            "#";
+        rsvpButton.href = "#";
 
         rsvpButton.removeAttribute(
             "target"
@@ -1055,8 +947,7 @@ function configureRSVPForm() {
         );
 
         if (warning) {
-            warning.hidden =
-                false;
+            warning.hidden = false;
         }
 
         rsvpButton.addEventListener(
@@ -1065,8 +956,7 @@ function configureRSVPForm() {
                 event.preventDefault();
 
                 if (warning) {
-                    warning.hidden =
-                        false;
+                    warning.hidden = false;
                 }
             }
         );
@@ -1085,9 +975,7 @@ function configureRSVPForm() {
                 guestName,
 
             "entry.120770457":
-                String(
-                    passesValue
-                ),
+                String(passesValue),
 
             "entry.1314277754":
                 guestCode
@@ -1096,8 +984,7 @@ function configureRSVPForm() {
     rsvpButton.href =
         `${formBaseURL}?${formParams.toString()}`;
 
-    rsvpButton.target =
-        "_blank";
+    rsvpButton.target = "_blank";
 
     rsvpButton.rel =
         "noopener noreferrer";
@@ -1111,8 +998,7 @@ function configureRSVPForm() {
     );
 
     if (warning) {
-        warning.hidden =
-            true;
+        warning.hidden = true;
     }
 }
 
@@ -1151,15 +1037,13 @@ function configureGiftForm() {
     giftButton.href =
         `${formBaseURL}?${formParams.toString()}`;
 
-    giftButton.target =
-        "_blank";
+    giftButton.target = "_blank";
 
     giftButton.rel =
         "noopener noreferrer";
 
     if (!guestData.codigo) {
-        giftButton.href =
-            "#";
+        giftButton.href = "#";
 
         giftButton.removeAttribute(
             "target"
@@ -1226,9 +1110,7 @@ function showRSVPSummary() {
         );
 
     if (!guestName) {
-        summary.hidden =
-            true;
-
+        summary.hidden = true;
         return;
     }
 
@@ -1239,9 +1121,7 @@ function showRSVPSummary() {
         summaryPasses.textContent =
             "Tienes 1 lugar reservado.";
     } else if (
-        Number.isInteger(
-            passes
-        ) &&
+        Number.isInteger(passes) &&
         passes > 1
     ) {
         summaryPasses.textContent =
@@ -1251,12 +1131,8 @@ function showRSVPSummary() {
             "Consulta la cantidad de lugares asignados.";
     }
 
-    summary.hidden =
-        false;
-
-    summary.removeAttribute(
-        "hidden"
-    );
+    summary.hidden = false;
+    summary.removeAttribute("hidden");
 }
 
 
@@ -1294,8 +1170,7 @@ function updateWeddingStatusMessage() {
             )
         );
 
-    let message =
-        "";
+    let message = "";
 
     if (totalDays < 0) {
         message =
@@ -1334,16 +1209,407 @@ function initKeyboardControls() {
         "keydown",
         event => {
             if (
-                event.key ===
-                "Escape"
+                event.key === "Escape" &&
+                typeof window.closeLightbox ===
+                    "function"
             ) {
                 window.closeLightbox();
             }
         }
     );
 }
+/* =====================================================
+   HOJAS NATURALES — CAÍDA CONSTANTE
+===================================================== */
 
+function initFallingLeaves() {
+    const overlay = document.getElementById("leaf-overlay");
+    const hero = document.querySelector(".hero");
 
+    if (!overlay || !hero) {
+        return;
+    }
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+        return;
+    }
+
+    let spawnTimer = null;
+    let controlTimer = null;
+    let leavesAreActive = false;
+
+    /*
+     * Cantidad máxima y mínima de hojas visibles.
+     * Puedes modificarlas para aumentar o reducir
+     * la presencia de la animación.
+     */
+    const MAX_LEAVES = 22;
+    const MIN_LEAVES = 8;
+
+    function random(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    function chooseWeightedColor() {
+        const value = Math.random();
+
+        /*
+         * Distribución según la paleta:
+         * 46% verde salvia
+         * 20% rosa malva
+         * 18% rosa canela
+         * 10% guinda
+         * 6% blanco perla
+         */
+
+        if (value < 0.46) {
+            return "color-sage";
+        }
+
+        if (value < 0.66) {
+            return "color-mauve";
+        }
+
+        if (value < 0.84) {
+            return "color-cinnamon";
+        }
+
+        if (value < 0.94) {
+            return "color-wine";
+        }
+
+        return "color-pearl";
+    }
+
+    function chooseShape() {
+        const shapes = [
+            "shape-natural",
+            "shape-slender",
+            "shape-round",
+            "shape-curved"
+        ];
+
+        return shapes[
+            Math.floor(
+                Math.random() * shapes.length
+            )
+        ];
+    }
+
+    function createLeaf(options = {}) {
+        if (!leavesAreActive) {
+            return;
+        }
+
+        if (
+            overlay.childElementCount >=
+            MAX_LEAVES
+        ) {
+            return;
+        }
+
+        const leaf = document.createElement("span");
+
+        leaf.classList.add(
+            "falling-leaf",
+            chooseShape(),
+            chooseWeightedColor()
+        );
+
+        const baseDrift = random(-55, 55);
+
+        const oppositeDrift =
+            baseDrift * random(-0.75, -0.35);
+
+        /*
+         * Posición horizontal inicial.
+         */
+        leaf.style.left = `${random(1, 98)}vw`;
+
+        /*
+         * Hojas pequeñas y delicadas.
+         */
+        leaf.style.setProperty(
+            "--leaf-size",
+            `${random(10, 15.5).toFixed(1)}px`
+        );
+
+        leaf.style.setProperty(
+            "--leaf-size-mobile",
+            `${random(8, 12.5).toFixed(1)}px`
+        );
+
+        leaf.style.setProperty(
+            "--leaf-scale",
+            random(0.86, 1.12).toFixed(2)
+        );
+
+        /*
+         * Transparencia elegante.
+         */
+        leaf.style.setProperty(
+            "--leaf-opacity",
+            random(0.25, 0.48).toFixed(2)
+        );
+
+        /*
+         * Duración variada para evitar que todas
+         * lleguen al final simultáneamente.
+         */
+        leaf.style.setProperty(
+            "--fall-duration",
+            `${random(12.5, 18).toFixed(2)}s`
+        );
+
+        /*
+         * Las hojas iniciales reciben un retraso
+         * negativo para llenar distintas alturas
+         * de la pantalla desde el comienzo.
+         *
+         * Las hojas normales empiezan desde arriba.
+         */
+        const initialDelay = options.initial
+            ? random(-12, -1)
+            : 0;
+
+        leaf.style.setProperty(
+            "--leaf-delay",
+            `${initialDelay.toFixed(2)}s`
+        );
+
+        leaf.style.setProperty(
+            "--start-rotation",
+            `${random(-160, 160).toFixed(0)}deg`
+        );
+
+        leaf.style.setProperty(
+            "--start-tilt",
+            `${random(-48, 48).toFixed(0)}deg`
+        );
+
+        leaf.style.setProperty(
+            "--vein-angle",
+            `${random(-9, 9).toFixed(1)}deg`
+        );
+
+        /*
+         * Movimiento irregular de izquierda
+         * a derecha durante la caída.
+         */
+        leaf.style.setProperty(
+            "--drift-one",
+            `${(baseDrift * 0.58).toFixed(0)}px`
+        );
+
+        leaf.style.setProperty(
+            "--drift-two",
+            `${oppositeDrift.toFixed(0)}px`
+        );
+
+        leaf.style.setProperty(
+            "--drift-three",
+            `${(baseDrift * 1.05).toFixed(0)}px`
+        );
+
+        leaf.style.setProperty(
+            "--drift-end",
+            `${(baseDrift * 1.42).toFixed(0)}px`
+        );
+
+        const rotationDirection =
+            Math.random() < 0.5 ? -1 : 1;
+
+        leaf.style.setProperty(
+            "--rotation-one",
+            `${
+                rotationDirection *
+                random(45, 95)
+            }deg`
+        );
+
+        leaf.style.setProperty(
+            "--rotation-two",
+            `${
+                rotationDirection *
+                random(120, 185)
+            }deg`
+        );
+
+        leaf.style.setProperty(
+            "--rotation-three",
+            `${
+                rotationDirection *
+                random(205, 290)
+            }deg`
+        );
+
+        leaf.style.setProperty(
+            "--rotation-end",
+            `${
+                rotationDirection *
+                random(310, 430)
+            }deg`
+        );
+
+        overlay.appendChild(leaf);
+
+        leaf.addEventListener(
+            "animationend",
+            function () {
+                leaf.remove();
+            },
+            {
+                once: true
+            }
+        );
+    }
+
+    /*
+     * Generación continua con tiempos ligeramente
+     * diferentes para que no parezca mecánica.
+     */
+    function scheduleNextLeaf() {
+        if (!leavesAreActive) {
+            return;
+        }
+
+        createLeaf();
+
+        /*
+         * Una hoja cada 380–620 milisegundos.
+         */
+        const nextDelay = random(380, 620);
+
+        spawnTimer = window.setTimeout(
+            scheduleNextLeaf,
+            nextDelay
+        );
+    }
+
+    /*
+     * Control adicional:
+     * si por casualidad quedan pocas hojas,
+     * crea nuevas inmediatamente.
+     */
+    function maintainLeafFlow() {
+        if (!leavesAreActive) {
+            return;
+        }
+
+        const currentLeaves =
+            overlay.childElementCount;
+
+        if (currentLeaves < MIN_LEAVES) {
+            const missingLeaves =
+                MIN_LEAVES - currentLeaves;
+
+            for (
+                let index = 0;
+                index < missingLeaves;
+                index += 1
+            ) {
+                window.setTimeout(
+                    function () {
+                        createLeaf();
+                    },
+                    index * 100
+                );
+            }
+        }
+    }
+
+    function startLeaves() {
+        if (leavesAreActive) {
+            return;
+        }
+
+        leavesAreActive = true;
+
+        document.body.classList.add(
+            "leaves-active"
+        );
+
+        /*
+         * Crea hojas repartidas por toda la pantalla
+         * para evitar un inicio vacío.
+         */
+        for (
+            let index = 0;
+            index < 12;
+            index += 1
+        ) {
+            window.setTimeout(
+                function () {
+                    createLeaf({
+                        initial: true
+                    });
+                },
+                index * 90
+            );
+        }
+
+        /*
+         * Comienza el flujo constante.
+         */
+        spawnTimer = window.setTimeout(
+            scheduleNextLeaf,
+            250
+        );
+
+        /*
+         * Comprueba regularmente que nunca
+         * queden pocas hojas.
+         */
+        controlTimer = window.setInterval(
+            maintainLeafFlow,
+            700
+        );
+    }
+
+    function stopLeaves() {
+        leavesAreActive = false;
+
+        document.body.classList.remove(
+            "leaves-active"
+        );
+
+        if (spawnTimer) {
+            window.clearTimeout(spawnTimer);
+            spawnTimer = null;
+        }
+
+        if (controlTimer) {
+            window.clearInterval(controlTimer);
+            controlTimer = null;
+        }
+
+        overlay.replaceChildren();
+    }
+
+    /*
+     * Las hojas se activan después de salir del hero.
+     */
+    const observer = new IntersectionObserver(
+        function (entries) {
+            const heroEntry = entries[0];
+
+            if (heroEntry.isIntersecting) {
+                stopLeaves();
+            } else {
+                startLeaves();
+            }
+        },
+        {
+            threshold: 0.08
+        }
+    );
+
+    observer.observe(hero);
+}
 /* =====================================================
    INICIALIZACIÓN GENERAL
 ===================================================== */
@@ -1361,5 +1627,6 @@ document.addEventListener(
         showRSVPSummary();
         updateWeddingStatusMessage();
         initKeyboardControls();
+        initFallingLeaves();
     }
 );

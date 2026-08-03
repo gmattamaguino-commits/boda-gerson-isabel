@@ -4837,7 +4837,6 @@ a{
 
     width:min(570px,96vw);
     aspect-ratio:941 / 1672;
-    overflow:hidden;
 
     contain:layout paint;
     transform:translateZ(0);
@@ -4866,7 +4865,7 @@ a{
     width:100%;
     height:100%;
 
-    object-fit:cover;
+    object-fit:contain;
     object-position:center;
 
     opacity:1;
@@ -4885,13 +4884,13 @@ a{
 }
 
 .envelope-image-closed{
-    display:block;
     z-index:2;
+    visibility:visible;
 }
 
 .envelope-image-open{
-    display:none;
     z-index:3;
+    visibility:hidden;
 }
 
 /*
@@ -4900,12 +4899,12 @@ a{
  */
 .envelope-intro.is-open
 .envelope-image-closed{
-    display:none;
+    visibility:hidden;
 }
 
 .envelope-intro.is-open
 .envelope-image-open{
-    display:block;
+    visibility:visible;
 }
 
 /* =====================================================
@@ -4972,29 +4971,23 @@ a{
 }
 
 /* =====================================================
-   MENSAJE DE BIENVENIDA
-===================================================== */
-
-/* =====================================================
-   TEXTO DE LA TARJETA ABIERTA — v32
+   MENSAJE DE BIENVENIDA — v33
 ===================================================== */
 
 .envelope-welcome-message{
     position:absolute;
-
     left:50%;
-    top:37%;
-
+    top:35.2%;
     z-index:5;
 
-    width:62%;
+    width:68%;
+    max-width:68%;
 
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
-    gap:9px;
+    gap:6px;
 
     text-align:center;
 
@@ -5002,12 +4995,11 @@ a{
 
     opacity:0;
     visibility:hidden;
-
     pointer-events:none;
 
     transition:
-        opacity 90ms linear,
-        visibility 0ms linear 90ms;
+        opacity 80ms linear,
+        visibility 0ms linear 80ms;
 }
 
 .envelope-intro.is-open
@@ -5016,119 +5008,51 @@ a{
     visibility:visible;
 
     transition:
-        opacity 90ms linear,
+        opacity 80ms linear,
         visibility 0ms linear;
 }
 
-/* Texto superior plomo */
-
 .welcome-invitation-text{
+    display:block;
+
+    width:100%;
+    max-width:100%;
+
     margin:0;
 
     color:#696466;
 
     font-family:"Cinzel",serif;
-
-    font-size:clamp(
-        10px,
-        1.7vw,
-        17px
-    );
-
+    font-size:clamp(10px,1.7vw,16px);
     font-weight:500;
+    line-height:1.25;
+    letter-spacing:.35px;
 
-    line-height:1.45;
-
-    letter-spacing:.4px;
-
+    text-align:center;
+    white-space:nowrap;
     text-transform:none;
 
     text-shadow:
-        0 1px 0
-        rgba(255,255,255,.55);
+        0 1px 0 rgba(255,255,255,.55);
 }
-
-/* Título principal guinda */
 
 .welcome-wedding-title{
     margin:0;
 
-    color:var(
-        --color-wine,
-        #6b2737
-    );
+    color:var(--color-wine,#6b2737);
 
     font-family:"Great Vibes",cursive;
-
-    font-size:clamp(
-        37px,
-        6vw,
-        58px
-    );
-
+    font-size:clamp(38px,6.2vw,60px);
     font-weight:400;
-
     line-height:.95;
-
+    letter-spacing:.2px;
     white-space:nowrap;
-
-    letter-spacing:.3px;
 
     text-shadow:
         0 1px 0 rgba(255,255,255,.55),
         0 2px 3px rgba(80,41,48,.08);
 }
 
-/* =====================================================
-   AJUSTE PARA CELULAR
-===================================================== */
-@media(max-width:600px){
-
-    .envelope-welcome-message{
-        top:35.2% !important;
-        width:78% !important;
-        max-width:78% !important;
-        gap:6px !important;
-    }
-
-    .welcome-invitation-text{
-        display:block !important;
-
-        width:100% !important;
-        max-width:100% !important;
-
-        margin:0 !important;
-
-        font-family:"Cinzel",serif;
-
-        font-size:clamp(
-            8.5px,
-            2.55vw,
-            11px
-        ) !important;
-
-        font-weight:500;
-        line-height:1.2 !important;
-        letter-spacing:.1px !important;
-
-        text-align:center;
-        white-space:nowrap !important;
-
-        overflow:visible !important;
-        text-transform:none !important;
-    }
-
-    .welcome-wedding-title{
-        font-size:clamp(
-            38px,
-            10vw,
-            51px
-        ) !important;
-
-        line-height:.95 !important;
-        white-space:nowrap !important;
-    }
-}
 /* =====================================================
    INDICACIÓN INFERIOR
 ===================================================== */
@@ -5250,7 +5174,7 @@ body.invitation-open .hero{
 }
 
 /* =====================================================
-   CELULAR
+   CELULAR — APERTURA Y BIENVENIDA
 ===================================================== */
 
 @media(max-width:600px){
@@ -5270,18 +5194,43 @@ body.invitation-open .hero{
     }
 
     .envelope-welcome-message{
-        top:36.5%;
-        width:60%;
+        top:35.2% !important;
+        width:78% !important;
+        max-width:78% !important;
+        gap:6px !important;
     }
 
-    .envelope-welcome-message p{
-        font-size:9px;
-        letter-spacing:2px;
+    .welcome-invitation-text{
+        display:block !important;
+
+        width:100% !important;
+        max-width:100% !important;
+
+        margin:0 !important;
+
+        font-size:clamp(
+            8.5px,
+            2.55vw,
+            11px
+        ) !important;
+
+        line-height:1.2 !important;
+        letter-spacing:.1px !important;
+
+        text-align:center;
+        white-space:nowrap !important;
+        text-transform:none !important;
     }
 
-    .envelope-welcome-message h2{
-        font-size:
-            clamp(38px,12vw,55px);
+    .welcome-wedding-title{
+        font-size:clamp(
+            38px,
+            10vw,
+            51px
+        ) !important;
+
+        line-height:.95 !important;
+        white-space:nowrap !important;
     }
 
     .envelope-open-hint{
@@ -5302,5 +5251,768 @@ body.invitation-open .hero{
     .envelope-seal-button::after,
     .envelope-open-hint{
         animation:none !important;
+    }
+}
+/* =====================================================
+   HOJAS NATURALES DESPUÉS DEL HERO
+   Reemplaza el bloque anterior de hojas por este.
+===================================================== */
+
+.leaf-overlay{
+    position:fixed;
+    inset:0;
+    z-index:30;
+    overflow:hidden;
+    pointer-events:none;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+body.leaves-active .leaf-overlay{
+    opacity:1;
+    visibility:visible;
+}
+
+.falling-leaf{
+    position:absolute;
+    top:-10vh;
+    left:0;
+
+    width:var(--leaf-size, 13px);
+    height:calc(var(--leaf-size, 13px) * 1.72);
+
+    opacity:0;
+
+    /*
+     * Silueta asimétrica y puntiaguda.
+     * Evita que la hoja parezca un cuadrado redondeado.
+     */
+    clip-path:polygon(
+        50% 0%,
+        72% 13%,
+        91% 38%,
+        100% 66%,
+        79% 88%,
+        51% 100%,
+        26% 88%,
+        7% 62%,
+        15% 31%
+    );
+
+    border-radius:55% 45% 58% 42%;
+
+    background:
+        linear-gradient(
+            115deg,
+            var(--leaf-light),
+            var(--leaf-main) 48%,
+            var(--leaf-dark)
+        );
+
+    filter:
+        drop-shadow(
+            0 4px 4px
+            rgba(63,49,45,.07)
+        );
+
+    transform-origin:50% 45%;
+
+    animation:
+        naturalLeafFall
+        var(--fall-duration)
+        cubic-bezier(.34,.03,.64,.98)
+        forwards;
+
+    animation-delay:var(--leaf-delay, 0s);
+
+    will-change:
+        transform,
+        opacity;
+}
+
+/* Nervadura central */
+.falling-leaf::before{
+    content:"";
+
+    position:absolute;
+    top:8%;
+    left:49%;
+
+    width:.7px;
+    height:84%;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,.46) 18%,
+            rgba(255,255,255,.32) 72%,
+            transparent
+        );
+
+    transform:
+        rotate(var(--vein-angle, -5deg));
+
+    transform-origin:center;
+}
+
+/* Pequeñas nervaduras laterales */
+.falling-leaf::after{
+    content:"";
+
+    position:absolute;
+    top:30%;
+    left:26%;
+
+    width:48%;
+    height:36%;
+
+    opacity:.42;
+
+    background:
+        linear-gradient(
+            28deg,
+            transparent 43%,
+            rgba(255,255,255,.38) 47%,
+            transparent 51%
+        ),
+        linear-gradient(
+            -28deg,
+            transparent 43%,
+            rgba(255,255,255,.30) 47%,
+            transparent 51%
+        );
+
+    transform:
+        rotate(var(--vein-angle, -5deg));
+}
+
+/* Formas naturales ligeramente distintas */
+.falling-leaf.shape-slender{
+    height:calc(var(--leaf-size, 13px) * 1.95);
+
+    clip-path:polygon(
+        50% 0%,
+        68% 17%,
+        82% 42%,
+        88% 70%,
+        70% 91%,
+        50% 100%,
+        31% 89%,
+        13% 65%,
+        20% 31%
+    );
+}
+
+.falling-leaf.shape-round{
+    height:calc(var(--leaf-size, 13px) * 1.48);
+
+    clip-path:polygon(
+        50% 0%,
+        79% 12%,
+        98% 42%,
+        94% 72%,
+        70% 94%,
+        48% 100%,
+        21% 88%,
+        3% 58%,
+        15% 25%
+    );
+}
+
+.falling-leaf.shape-curved{
+    transform-origin:42% 46%;
+
+    clip-path:polygon(
+        55% 0%,
+        77% 15%,
+        93% 42%,
+        88% 70%,
+        66% 92%,
+        40% 100%,
+        20% 82%,
+        7% 51%,
+        24% 19%
+    );
+}
+
+/* Paleta de la invitación */
+.falling-leaf.color-sage{
+    --leaf-light:rgba(203,214,194,.72);
+    --leaf-main:rgba(150,174,139,.70);
+    --leaf-dark:rgba(105,137,96,.66);
+}
+
+.falling-leaf.color-mauve{
+    --leaf-light:rgba(232,205,211,.70);
+    --leaf-main:rgba(196,151,164,.68);
+    --leaf-dark:rgba(157,111,128,.64);
+}
+
+.falling-leaf.color-cinnamon{
+    --leaf-light:rgba(233,202,189,.70);
+    --leaf-main:rgba(196,145,127,.68);
+    --leaf-dark:rgba(157,105,91,.64);
+}
+
+.falling-leaf.color-wine{
+    --leaf-light:rgba(154,88,104,.68);
+    --leaf-main:rgba(111,48,66,.66);
+    --leaf-dark:rgba(78,30,45,.62);
+}
+
+.falling-leaf.color-pearl{
+    --leaf-light:rgba(255,253,249,.74);
+    --leaf-main:rgba(238,231,224,.68);
+    --leaf-dark:rgba(208,197,190,.62);
+}
+
+@keyframes naturalLeafFall{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate3d(0,-10vh,0)
+            rotate(var(--start-rotation))
+            rotateX(var(--start-tilt))
+            scale(var(--leaf-scale));
+    }
+
+    8%{
+        opacity:var(--leaf-opacity);
+    }
+
+    27%{
+        transform:
+            translate3d(
+                var(--drift-one),
+                24vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-one)
+                )
+            )
+            rotateX(
+                calc(
+                    var(--start-tilt)
+                    + 45deg
+                )
+            )
+            scale(var(--leaf-scale));
+    }
+
+    53%{
+        opacity:
+            calc(
+                var(--leaf-opacity) * .92
+            );
+
+        transform:
+            translate3d(
+                var(--drift-two),
+                54vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-two)
+                )
+            )
+            rotateY(58deg)
+            scale(var(--leaf-scale));
+    }
+
+    76%{
+        transform:
+            translate3d(
+                var(--drift-three),
+                81vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-three)
+                )
+            )
+            rotateX(-38deg)
+            scale(var(--leaf-scale));
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate3d(
+                var(--drift-end),
+                112vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-end)
+                )
+            )
+            rotateY(80deg)
+            scale(var(--leaf-scale));
+    }
+}
+
+@media(max-width:768px){
+
+    .falling-leaf{
+        width:var(--leaf-size-mobile, 10px);
+        height:calc(var(--leaf-size-mobile, 10px) * 1.72);
+    }
+
+    .falling-leaf.shape-slender{
+        height:calc(var(--leaf-size-mobile, 10px) * 1.95);
+    }
+
+    .falling-leaf.shape-round{
+        height:calc(var(--leaf-size-mobile, 10px) * 1.48);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .leaf-overlay{
+        display:none !important;
+    }
+}
+
+/* =====================================================
+   v35 — SOLO MEJORA VISUAL DE LOS CUADROS EXISTENTES
+   No cambia posiciones, tamaños, grid, padding ni textos.
+===================================================== */
+
+/* Tarjetas que ya existían en el diseño */
+.wedding-details .time-box,
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card {
+    position: relative;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 5% 7%,
+            rgba(201,160,165,.10),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 95% 93%,
+            rgba(156,175,136,.10),
+            transparent 25%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.93),
+            rgba(252,247,244,.94)
+        ) !important;
+
+    border-color: rgba(205,169,112,.62) !important;
+
+    box-shadow:
+        0 14px 34px rgba(91,62,68,.09),
+        inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+/* Segundo marco fino dentro del cuadro, sin alterar medidas */
+.wedding-details .time-box::before,
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(224,203,171,.58);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Radio compatible para el marco interior */
+.wedding-details .time-box::before {
+    border-radius: 11px;
+}
+
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before {
+    border-radius: 15px;
+}
+
+/* Detalle muy sutil en las esquinas de los cuadros grandes */
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card {
+    background-image:
+        radial-gradient(
+            ellipse at 0 0,
+            rgba(201,163,104,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            ellipse at 100% 100%,
+            rgba(156,175,136,.10),
+            transparent 26%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.93),
+            rgba(252,247,244,.94)
+        ) !important;
+}
+
+/* Galería: solo borde y profundidad; conserva tamaño y posición */
+.gallery-item {
+    border: 1px solid rgba(205,169,112,.58) !important;
+    box-shadow:
+        0 12px 28px rgba(91,62,68,.10),
+        inset 0 0 0 1px rgba(255,255,255,.65) !important;
+}
+
+.gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(238,222,198,.52);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Mantiene las animaciones y giros por encima de la decoración */
+.flip-card-front > *,
+.flip-card-back > *,
+.family-card > *,
+.schedule-card > *,
+.place-card > *,
+.form-cta > *,
+.regalo-card > *,
+.info-ninos-card > *,
+.bible-verse-block > *,
+.guest-invitation-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* En celular solo adelgaza el marco; no cambia dimensiones */
+@media(max-width:768px){
+    .wedding-details .time-box::before,
+    .bible-verse-block::before,
+    .guest-invitation-card::before,
+    .family-card::before,
+    .schedule-card::before,
+    .place-card::before,
+    .flip-card-front::before,
+    .flip-card-back::before,
+    .form-cta::before,
+    .regalo-card::before,
+    .info-ninos-card::before {
+        inset: 6px;
+    }
+}
+
+/* =====================================================
+   CORRECCIÓN FINAL DRESS CODE — v36
+   Mantiene únicamente las tarjetas internas del flip.
+   No altera el resto de secciones ni sus posiciones.
+===================================================== */
+
+.dresscode-grid{
+    align-items:start !important;
+}
+
+/* El contenedor exterior solo controla el giro; no es una tarjeta visible */
+.dresscode-card.flip-card{
+    position:relative !important;
+
+    width:100% !important;
+    height:300px !important;
+    min-height:300px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:transparent !important;
+    background-image:none !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+
+    overflow:visible !important;
+}
+
+.dresscode-card.flip-card::before,
+.dresscode-card.flip-card::after{
+    content:none !important;
+    display:none !important;
+}
+
+.dresscode-card.flip-card:hover{
+    box-shadow:none !important;
+}
+
+/* Ambas caras ocupan exactamente el mismo espacio */
+.dresscode-card.flip-card .flip-card-inner{
+    position:relative !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    position:absolute !important;
+    inset:0 !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    box-sizing:border-box !important;
+}
+
+/* Evita que una tarjeta quede visualmente más abajo que la otra */
+.dresscode-card.flip-card.is-visible,
+.dresscode-card.flip-card.visible{
+    opacity:1;
+}
+
+@media(max-width:768px){
+
+    .dresscode-card.flip-card{
+        height:290px !important;
+        min-height:290px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:18px 12px !important;
+    }
+}
+
+@media(max-width:480px){
+
+    .dresscode-card.flip-card{
+        height:300px !important;
+        min-height:300px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:16px 10px !important;
+    }
+
+    .dresscode-card.flip-card .color-list{
+        gap:9px !important;
+    }
+
+    .dresscode-card.flip-card .color-item{
+        max-width:100% !important;
+    }
+}
+
+/* =====================================================
+   CORRECCIÓN DEFINITIVA DRESS CODE — v37
+   Evita que la tarjeta se desplace al mostrar colores.
+   El frente y el reverso permanecen en el mismo lugar.
+===================================================== */
+
+/* Las dos tarjetas conservan siempre su posición en el grid */
+.dresscode-grid{
+    align-items:stretch !important;
+}
+
+.dresscode-card.flip-card,
+.dresscode-card.flip-card.reveal,
+.dresscode-card.flip-card.visible,
+.dresscode-card.flip-card.is-visible{
+    position:relative !important;
+
+    width:100% !important;
+    height:300px !important;
+    min-height:300px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    opacity:1 !important;
+    transform:none !important;
+
+    background:transparent !important;
+    background-image:none !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+
+    overflow:visible !important;
+}
+
+.dresscode-card.flip-card:hover,
+.dresscode-card.flip-card:active{
+    transform:none !important;
+    box-shadow:none !important;
+}
+
+/* Se elimina el giro 3D que provocaba el desplazamiento */
+.dresscode-card.flip-card .flip-card-inner,
+.dresscode-card.flip-card.is-flipped .flip-card-inner{
+    position:relative !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    transform:none !important;
+    transform-style:flat !important;
+    transition:none !important;
+}
+
+/* Ambas caras ocupan exactamente la misma coordenada */
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    position:absolute !important;
+    inset:0 !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    box-sizing:border-box !important;
+
+    transform:none !important;
+    backface-visibility:visible !important;
+    -webkit-backface-visibility:visible !important;
+
+    transition:
+        opacity .32s ease,
+        visibility .32s ease !important;
+}
+
+/* Estado inicial: se muestra el frente */
+.dresscode-card.flip-card .flip-card-front{
+    z-index:2 !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+}
+
+.dresscode-card.flip-card .flip-card-back{
+    z-index:1 !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+
+/* Al tocar: el reverso aparece exactamente encima */
+.dresscode-card.flip-card.is-flipped .flip-card-front{
+    z-index:1 !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+
+.dresscode-card.flip-card.is-flipped .flip-card-back{
+    z-index:2 !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+}
+
+/* El contenido permanece centrado dentro de la misma tarjeta */
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+@media(max-width:768px){
+
+    .dresscode-card.flip-card,
+    .dresscode-card.flip-card.reveal,
+    .dresscode-card.flip-card.visible,
+    .dresscode-card.flip-card.is-visible{
+        height:290px !important;
+        min-height:290px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:18px 12px !important;
+    }
+}
+
+@media(max-width:480px){
+
+    .dresscode-card.flip-card,
+    .dresscode-card.flip-card.reveal,
+    .dresscode-card.flip-card.visible,
+    .dresscode-card.flip-card.is-visible{
+        height:300px !important;
+        min-height:300px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:16px 10px !important;
     }
 }
