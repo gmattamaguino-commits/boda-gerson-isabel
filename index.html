@@ -49,7 +49,7 @@
     fetchpriority="high"
 >
 <!-- CSS principal -->
-<link href="css/style.css?v=43" rel="stylesheet">
+<link href="css/style.css?v=47" rel="stylesheet">
 </head>
 <body>
 <!-- =========================================
@@ -191,31 +191,31 @@
 <div class="divider-center"></div>
 <div class="schedule-grid">
 <div class="schedule-card">
-<div class="schedule-card-time">12:00 PM</div>
+<div class="schedule-card-time">12:00 p. m.</div>
 <div class="schedule-card-icon">⛪</div>
 <h3>Ceremonia religiosa</h3>
 <p>Nos daremos el "sí, acepto"</p>
 </div>
 <div class="schedule-card">
-<div class="schedule-card-time">5:30 PM</div>
+<div class="schedule-card-time">5:30 p. m.</div>
 <div class="schedule-card-icon">🎉</div>
 <h3>Recepción</h3>
 <p>Apertura del local e ingreso de invitados</p>
 </div>
 <div class="schedule-card">
-<div class="schedule-card-time">6:30 PM</div>
+<div class="schedule-card-time">6:30 p. m.</div>
 <div class="schedule-card-icon">🥂</div>
 <h3>Brindis</h3>
 <p>Un brindis por el amor</p>
 </div>
 <div class="schedule-card">
-<div class="schedule-card-time">7:00 PM</div>
+<div class="schedule-card-time">7:00 p. m.</div>
 <div class="schedule-card-icon">🍽️</div>
 <h3>Cena</h3>
 <p>Disfrutemos juntos de la cena</p>
 </div>
 <div class="schedule-card">
-<div class="schedule-card-time">10:00 PM</div>
+<div class="schedule-card-time">10:00 p. m.</div>
 <div class="schedule-card-icon">🎶</div>
 <h3>Hora loca y fiesta</h3>
 <p>¡A celebrar hasta el final!</p>
@@ -235,7 +235,7 @@
 <h3>Ceremonia religiosa</h3>
 <p class="place-name">Catedral San Pedro - Lurín</p>
 <p class="place-address">Jr. Bolognesi 398, Lurín 15823</p>
-<p class="place-time">12:00 PM</p>
+<p class="place-time">12:00 p. m.</p>
 <p class="place-arrival-note">
     Recomendamos llegar 20 minutos antes.
 </p>
@@ -263,9 +263,9 @@
 <h3>Recepción</h3>
 <p class="place-name">El Jardín de Villa</p>
 <p class="place-address">Q2HW+MQ3, Villa El Salvador 15842</p>
-<p class="place-time">5:30 PM</p>
+<p class="place-time">5:30 p. m.</p>
 <p class="place-arrival-note">
-    El ingreso estará disponible desde las 5:30 PM.
+    El ingreso estará disponible desde las 5:30 p. m.
 </p>
 <p class="place-parking-note">
     🚗 Estacionamiento disponible dentro del local.
@@ -508,7 +508,7 @@
 <div class="container">
 <div class="info-ninos-card">
 <div class="info-ninos-icon">🥂</div>
-<h3>Una noche para adultos</h3>
+<h3>Solo para adultos</h3>
 <p>
                 Amamos a los peques que forman parte de nuestras vidas, pero queremos que
                 todos ustedes también puedan relajarse, brindar y bailar sin preocupaciones.
@@ -548,18 +548,22 @@
 </div>
 </section>
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-<span class="lightbox-close">×</span>
+<div aria-hidden="true" aria-label="Galería ampliada" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+<button aria-label="Cerrar galería" class="lightbox-close" id="lightbox-close" type="button">×</button>
+<button aria-label="Fotografía anterior" class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button">‹</button>
+<div class="lightbox-stage" id="lightbox-stage">
 <img alt="Foto ampliada" id="lightbox-img" src=""/>
+</div>
+<button aria-label="Fotografía siguiente" class="lightbox-nav lightbox-next" id="lightbox-next" type="button">›</button>
+<p aria-live="polite" class="lightbox-counter" id="lightbox-counter">1 de 6</p>
 </div>
 <section class="gracias">
 <div class="gracias-content">
-<p class="subtitle-section">GRACIAS</p>
-<h2 class="gracias-title">Por ser parte de nuestra historia</h2>
+<h2 class="gracias-title">Gracias</h2>
 <div class="divider-center"></div>
 <p class="gracias-text">
-            Gracias por acompañarnos en este día tan especial y por ser
-            parte de nuestra historia de amor.
+            Por acompañarnos en este día tan especial y ser parte de
+            nuestra historia de amor.
         </p>
 <p class="gracias-names">Gerson &amp; Isabel</p>
 </div>
@@ -573,6 +577,6 @@
     aria-hidden="true"
 ></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=43"></script>
+<script src="js/script.js?v=44"></script>
 </body>
 </html>

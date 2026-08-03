@@ -887,6 +887,89 @@ window.closeLightbox = function () {
    TARJETAS GIRATORIAS DEL DRESS CODE
 ===================================================== */
 
+let currentGalleryIndex = 0;
+let lightboxReturnFocus = null;
+
+function getGalleryImages() {
+    return Array.from(document.querySelectorAll(".gallery-item img"));
+}
+
+function showLightboxImage(index, direction = 0) {
+    const images = getGalleryImages();
+    const image = document.getElementById("lightbox-img");
+    const counter = document.getElementById("lightbox-counter");
+    if (!images.length || !image) return;
+    currentGalleryIndex = (index + images.length) % images.length;
+    const source = images[currentGalleryIndex];
+    image.classList.remove("slide-from-left", "slide-from-right");
+    void image.offsetWidth;
+    if (direction) image.classList.add(direction > 0 ? "slide-from-right" : "slide-from-left");
+    image.src = source.currentSrc || source.src;
+    image.alt = source.alt || `Fotografía ${currentGalleryIndex + 1}`;
+    if (counter) counter.textContent = `${currentGalleryIndex + 1} de ${images.length}`;
+}
+
+window.navigateLightbox = direction => showLightboxImage(currentGalleryIndex + direction, direction);
+
+window.openLightbox = function (galleryItem) {
+    const lightbox = document.getElementById("lightbox");
+    const images = getGalleryImages();
+    const image = galleryItem?.querySelector("img");
+    if (!image || !lightbox || !images.length) return;
+    lightboxReturnFocus = galleryItem;
+    showLightboxImage(images.indexOf(image));
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    document.getElementById("lightbox-close")?.focus();
+};
+
+window.closeLightbox = function () {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+    lightbox.classList.remove("active", "is-dragging");
+    lightbox.style.removeProperty("--lightbox-drag-y");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    lightboxReturnFocus?.focus?.();
+};
+
+function initAdvancedGallery() {
+    const lightbox = document.getElementById("lightbox");
+    const stage = document.getElementById("lightbox-stage");
+    if (!lightbox || !stage) return;
+    document.getElementById("lightbox-close")?.addEventListener("click", window.closeLightbox);
+    document.getElementById("lightbox-prev")?.addEventListener("click", () => window.navigateLightbox(-1));
+    document.getElementById("lightbox-next")?.addEventListener("click", () => window.navigateLightbox(1));
+    lightbox.addEventListener("click", event => { if (event.target === lightbox) window.closeLightbox(); });
+
+    let startX = 0;
+    let startY = 0;
+    stage.addEventListener("pointerdown", event => {
+        startX = event.clientX; startY = event.clientY;
+        stage.setPointerCapture?.(event.pointerId);
+        lightbox.classList.add("is-dragging");
+    });
+    stage.addEventListener("pointermove", event => {
+        if (!lightbox.classList.contains("is-dragging")) return;
+        const deltaY = Math.max(0, event.clientY - startY);
+        lightbox.style.setProperty("--lightbox-drag-y", `${Math.min(deltaY, 120)}px`);
+    });
+    stage.addEventListener("pointerup", event => {
+        const deltaX = event.clientX - startX;
+        const deltaY = event.clientY - startY;
+        lightbox.classList.remove("is-dragging");
+        lightbox.style.removeProperty("--lightbox-drag-y");
+        if (deltaY > 90 && Math.abs(deltaY) > Math.abs(deltaX)) window.closeLightbox();
+        else if (Math.abs(deltaX) > 55) window.navigateLightbox(deltaX < 0 ? 1 : -1);
+    });
+    document.addEventListener("keydown", event => {
+        if (!lightbox.classList.contains("active")) return;
+        if (event.key === "ArrowLeft") window.navigateLightbox(-1);
+        if (event.key === "ArrowRight") window.navigateLightbox(1);
+    });
+}
+
 window.toggleFlip = function (card) {
     if (!card) {
         return;
@@ -1690,5 +1773,6 @@ document.addEventListener(
         initKeyboardControls();
         initFallingLeaves();
         initInvitationEnhancements();
+        initAdvancedGallery();
     }
 );
