@@ -970,6 +970,26 @@ function initAdvancedGallery() {
     });
 }
 
+function initElegantMicroAnimations() {
+    const timeline = document.querySelector(".schedule-grid");
+    if (!timeline) return;
+
+    if (!("IntersectionObserver" in window)) {
+        timeline.classList.add("timeline-animated");
+        return;
+    }
+
+    const timelineObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("timeline-animated");
+            timelineObserver.unobserve(entry.target);
+        });
+    }, { threshold: .18, rootMargin: "0px 0px -50px 0px" });
+
+    timelineObserver.observe(timeline);
+}
+
 window.toggleFlip = function (card) {
     if (!card) {
         return;
@@ -1774,5 +1794,6 @@ document.addEventListener(
         initFallingLeaves();
         initInvitationEnhancements();
         initAdvancedGallery();
+        initElegantMicroAnimations();
     }
 );

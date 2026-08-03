@@ -342,6 +342,142 @@ RESET
     text-align:center !important;
 }
 
+/* =====================================================
+   v48 — MICROANIMACIONES ELEGANTES
+===================================================== */
+
+/* 1. Separadores: la línea se dibuja desde el centro. */
+.divider-center.reveal{
+    transform:none !important;
+    background-size:0 100% !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    transition:background-size .85s cubic-bezier(.2,.75,.25,1), opacity .45s ease !important;
+}
+
+.divider-center.reveal.is-visible{
+    background-size:100% 100% !important;
+}
+
+.divider-center.reveal::before{
+    opacity:0;
+    transform:translate(-50%,-52%) scale(.65);
+    transition:opacity .35s .48s ease, transform .45s .48s cubic-bezier(.2,.8,.25,1.25);
+}
+
+.divider-center.reveal.is-visible::before{
+    opacity:1;
+    transform:translate(-50%,-52%) scale(1);
+}
+
+/* 3. La línea temporal se completa al entrar en pantalla. */
+.cronograma .schedule-grid::before{
+    clip-path:inset(0 100% 0 0);
+    transition:clip-path 1.15s .1s cubic-bezier(.2,.72,.25,1);
+}
+
+.cronograma .schedule-grid.timeline-animated::before{
+    clip-path:inset(0 0 0 0);
+}
+
+.cronograma .schedule-grid.timeline-animated .schedule-card{
+    animation:timelineCardArrival .62s cubic-bezier(.2,.75,.25,1) both;
+}
+
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(2){ animation-delay:.10s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(3){ animation-delay:.20s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(4){ animation-delay:.30s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(5){ animation-delay:.40s; }
+
+@keyframes timelineCardArrival{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* 4. Colores del Dress Code en cascada al voltear. */
+.dresscode-card.flip-card.is-flipped .color-item{
+    animation:dressColorArrival .42s cubic-bezier(.2,.8,.25,1) both;
+}
+
+.dresscode-card.flip-card.is-flipped .color-item:nth-child(1){ animation-delay:.09s; }
+.dresscode-card.flip-card.is-flipped .color-item:nth-child(2){ animation-delay:.16s; }
+.dresscode-card.flip-card.is-flipped .color-item:nth-child(3){ animation-delay:.23s; }
+.dresscode-card.flip-card.is-flipped .color-item:nth-child(4){ animation-delay:.30s; }
+
+@keyframes dressColorArrival{
+    from{ opacity:0; transform:translateY(7px) scale(.97); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* 8. Cierre final en tres tiempos. */
+.gracias-content.reveal.is-visible .gracias-title{
+    animation:finalMessageArrival .62s ease both;
+}
+
+.gracias-content.reveal.is-visible .gracias-text{
+    animation:finalMessageArrival .62s .18s ease both;
+}
+
+.gracias-content.reveal.is-visible .gracias-names{
+    animation:finalNamesArrival .72s .38s cubic-bezier(.2,.75,.25,1) both;
+}
+
+@keyframes finalMessageArrival{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes finalNamesArrival{
+    from{ opacity:0; transform:translateY(12px) scale(.96); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* 10. Rebote único del pin/ícono de cada ubicación. */
+.place-card.is-visible .place-icon .line-icon{
+    animation:placeIconBounce .72s .22s cubic-bezier(.2,.8,.25,1.2) both;
+    transform-origin:center bottom;
+}
+
+.place-card:nth-child(2).is-visible .place-icon .line-icon{
+    animation-delay:.34s;
+}
+
+@keyframes placeIconBounce{
+    0%{ opacity:0; transform:translateY(-8px) scale(.82); }
+    55%{ opacity:1; transform:translateY(3px) scale(1.06); }
+    78%{ transform:translateY(-2px) scale(.98); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+@media(max-width:768px){
+    .cronograma .schedule-grid::before{
+        clip-path:inset(0 0 100% 0);
+    }
+
+    .cronograma .schedule-grid.timeline-animated::before{
+        clip-path:inset(0 0 0 0);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .divider-center.reveal,
+    .divider-center.reveal::before,
+    .cronograma .schedule-grid::before{
+        transition:none !important;
+        clip-path:none !important;
+        background-size:100% 100% !important;
+    }
+
+    .cronograma .schedule-card,
+    .dresscode-card .color-item,
+    .gracias-content > *,
+    .place-card .place-icon .line-icon{
+        animation:none !important;
+        opacity:1 !important;
+        transform:none !important;
+    }
+}
+
 @media(max-width:480px){
     .cronograma .schedule-card{
         margin-left:34px;
