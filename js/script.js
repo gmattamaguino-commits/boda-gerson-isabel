@@ -1445,12 +1445,12 @@ function initFallingLeaves() {
          */
         leaf.style.setProperty(
             "--leaf-size",
-            `${random(10, 15.5).toFixed(1)}px`
+            `${random(12, 18).toFixed(1)}px`
         );
 
         leaf.style.setProperty(
             "--leaf-size-mobile",
-            `${random(8, 12.5).toFixed(1)}px`
+            `${random(10, 15).toFixed(1)}px`
         );
 
         leaf.style.setProperty(
