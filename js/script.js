@@ -901,12 +901,24 @@ function showLightboxImage(index, direction = 0) {
     if (!images.length || !image) return;
     currentGalleryIndex = (index + images.length) % images.length;
     const source = images[currentGalleryIndex];
+    const galleryItem = source.closest(".gallery-item");
+    const fullSource = galleryItem?.dataset.full || source.currentSrc || source.src;
     image.classList.remove("slide-from-left", "slide-from-right");
     void image.offsetWidth;
     if (direction) image.classList.add(direction > 0 ? "slide-from-right" : "slide-from-left");
-    image.src = source.currentSrc || source.src;
+    image.src = fullSource;
     image.alt = source.alt || `Fotografía ${currentGalleryIndex + 1}`;
     if (counter) counter.textContent = `${currentGalleryIndex + 1} de ${images.length}`;
+
+    [-1, 1].forEach(offset => {
+        const adjacentIndex = (currentGalleryIndex + offset + images.length) % images.length;
+        const adjacentItem = images[adjacentIndex].closest(".gallery-item");
+        const adjacentSource = adjacentItem?.dataset.full;
+        if (adjacentSource) {
+            const preload = new Image();
+            preload.src = adjacentSource;
+        }
+    });
 }
 
 window.navigateLightbox = direction => showLightboxImage(currentGalleryIndex + direction, direction);
@@ -938,6 +950,13 @@ function initAdvancedGallery() {
     const lightbox = document.getElementById("lightbox");
     const stage = document.getElementById("lightbox-stage");
     if (!lightbox || !stage) return;
+
+    getGalleryImages().forEach(image => {
+        const revealImage = () => image.classList.add("is-loaded");
+        if (image.complete) revealImage();
+        else image.addEventListener("load", revealImage, { once: true });
+    });
+
     document.getElementById("lightbox-close")?.addEventListener("click", window.closeLightbox);
     document.getElementById("lightbox-prev")?.addEventListener("click", () => window.navigateLightbox(-1));
     document.getElementById("lightbox-next")?.addEventListener("click", () => window.navigateLightbox(1));
