@@ -5234,7 +5234,7 @@ a{
      */
     .hero::before{
         background-size:cover !important;
-        background-position:center 48% !important;
+        background-position:47% 48% !important;
         filter:none !important;
         transform:none !important;
         animation:none !important;
