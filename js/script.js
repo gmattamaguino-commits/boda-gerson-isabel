@@ -255,16 +255,13 @@ function startCountdown() {
                     return;
                 }
 
-                const digits =
-                    id === "days"
-                        ? 3
-                        : 2;
-
                 element.textContent =
-                    String(value).padStart(
-                        digits,
-                        "0"
-                    );
+                    id === "days"
+                        ? String(value)
+                        : String(value).padStart(
+                            2,
+                            "0"
+                        );
             }
         );
 
