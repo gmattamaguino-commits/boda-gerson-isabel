@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 34" role="img" aria-labelledby="title">
+  <title id="title">Separador floral elegante</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 17h70M158 17h70" stroke="#6B2737" stroke-width="1"/>
+    <path d="M45 17c7-8 14-9 21-7-3 7-9 11-17 10M68 17c5 5 10 6 16 5-1-5-5-9-12-10" stroke="#9CAF88" stroke-width="1.25"/>
+    <path d="M195 17c-7-8-14-9-21-7 3 7 9 11 17 10M172 17c-5 5-10 6-16 5 1-5 5-9 12-10" stroke="#9CAF88" stroke-width="1.25"/>
+    <path d="M93 17c8-10 17-11 27 0-10 11-19 10-27 0Z" stroke="#B2894E" stroke-width="1.15"/>
+    <path d="M147 17c-8-10-17-11-27 0 10 11 19 10 27 0Z" stroke="#B2894E" stroke-width="1.15"/>
+    <circle cx="120" cy="17" r="2.4" fill="#6B2737" stroke="#6B2737"/>
+  </g>
+</svg>
