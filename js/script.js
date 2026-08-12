@@ -1006,15 +1006,6 @@ function initElegantMicroAnimations() {
     timelineObserver.observe(timeline);
 }
 
-window.toggleFlip = function (card) {
-    if (!card) {
-        return;
-    }
-
-    card.classList.toggle("is-flipped");
-};
-
-
 /* =====================================================
    FORMULARIO DE ASISTENCIA
 ===================================================== */
