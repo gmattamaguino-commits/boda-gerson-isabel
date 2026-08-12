@@ -7107,3 +7107,107 @@ body.invitation-open .hero .hero-audio-player{
             "button";
     }
 }
+
+
+/* =====================================================
+   v55 — ÍCONOS LINEALES Y SEPARADORES FLORALES
+===================================================== */
+
+.schedule-card-icon,
+.place-icon,
+.dresscode-icon,
+.regalo-icon,
+.info-ninos-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--color-wine) !important;
+    line-height:1;
+}
+
+.schedule-card:nth-child(2) .schedule-card-icon,
+.place-card:nth-child(2) .place-icon,
+.regalo-card:nth-child(2) .regalo-icon{
+    color:var(--color-sage) !important;
+}
+
+.schedule-card-icon .line-icon,
+.place-icon .line-icon,
+.dresscode-icon .line-icon,
+.regalo-icon .line-icon,
+.info-ninos-icon .line-icon{
+    width:30px;
+    height:30px;
+    overflow:visible;
+    stroke:currentColor;
+    vector-effect:non-scaling-stroke;
+}
+
+.dresscode-icon .line-icon{
+    width:34px;
+    height:34px;
+}
+
+.inline-icon{
+    display:inline-block;
+    width:1.05em;
+    height:1.05em;
+    color:var(--color-wine);
+    vertical-align:-.16em;
+    overflow:visible;
+}
+
+.place-parking-note .inline-icon{
+    margin-right:.35em;
+}
+
+.info-ninos-thanks .inline-icon{
+    margin-left:.25em;
+}
+
+/* Ornamento floral ligero, inspirado en la papelería de la boda. */
+.divider-center,
+.gracias .divider-center{
+    position:relative;
+    width:min(220px,64vw) !important;
+    height:32px !important;
+    margin:16px auto 34px !important;
+    background-image:url("../img/separador-floral.svg?v=1") !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    background-size:contain !important;
+}
+
+.divider-center::before{
+    content:none !important;
+}
+
+.divider-center.reveal{
+    background-size:0 100% !important;
+}
+
+.divider-center.reveal.is-visible{
+    background-size:100% 100% !important;
+}
+
+@media(max-width:768px){
+    .schedule-card-icon .line-icon{
+        width:26px;
+        height:26px;
+    }
+
+    .place-icon .line-icon,
+    .dresscode-icon .line-icon,
+    .regalo-icon .line-icon,
+    .info-ninos-icon .line-icon{
+        width:28px;
+        height:28px;
+    }
+
+    .divider-center,
+    .gracias .divider-center{
+        width:min(185px,58vw) !important;
+        height:28px !important;
+        margin:11px auto 25px !important;
+    }
+}
