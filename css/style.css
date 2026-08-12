@@ -7079,3 +7079,31 @@ body.invitation-open .hero .hero-audio-player{
     width:100% !important;
     min-height:48px !important;
 }
+
+
+/* RSVP SIN ÍCONOS */
+.rsvp-confirm-card,
+.rsvp-song-card{
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"content button";
+}
+
+.rsvp-confirm-content,
+.rsvp-song-content{
+    grid-area:content;
+}
+
+.rsvp-confirm-card .btn-form,
+.rsvp-song-card .btn-form{
+    grid-area:button;
+}
+
+@media(max-width:768px){
+    .rsvp-confirm-card,
+    .rsvp-song-card{
+        grid-template-columns:1fr;
+        grid-template-areas:
+            "content"
+            "button";
+    }
+}
