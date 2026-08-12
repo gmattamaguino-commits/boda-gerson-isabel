@@ -7064,3 +7064,18 @@ body.invitation-open .hero .hero-audio-player{
         transform:none !important;
     }
 }
+
+
+/* v53 — Un solo botón de ubicación */
+.place-actions{
+    display:flex !important;
+    justify-content:center;
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+}
+
+.place-actions .btn-place{
+    width:100% !important;
+    min-height:48px !important;
+}
