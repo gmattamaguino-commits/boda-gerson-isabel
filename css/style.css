@@ -7125,8 +7125,12 @@ body.invitation-open .hero .hero-audio-player{
     line-height:1;
 }
 
+/* El círculo ya usa salvia; el trazo queda guinda para asegurar contraste. */
 .schedule-card:nth-child(2) .schedule-card-icon,
-.place-card:nth-child(2) .place-icon,
+.place-card:nth-child(2) .place-icon{
+    color:var(--color-wine) !important;
+}
+
 .regalo-card:nth-child(2) .regalo-icon{
     color:var(--color-sage) !important;
 }
