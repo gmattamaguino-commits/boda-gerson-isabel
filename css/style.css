@@ -7516,22 +7516,3 @@ body.invitation-open .hero .hero-audio-player{
 }
 
 
-/* =====================================================
-   v61 — MONOGRAMA DEL CIERRE
-===================================================== */
-
-.gracias-monogram{
-    display:block;
-    width:min(330px,72vw);
-    height:auto;
-    margin:0 auto 8px;
-    object-fit:contain;
-    filter:drop-shadow(0 4px 9px rgba(91,62,68,.06));
-}
-
-@media(max-width:600px){
-    .gracias-monogram{
-        width:min(270px,78vw);
-        margin-bottom:5px;
-    }
-}
