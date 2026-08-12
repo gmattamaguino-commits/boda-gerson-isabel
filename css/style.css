@@ -7211,3 +7211,41 @@ body.invitation-open .hero .hero-audio-player{
         margin:11px auto 25px !important;
     }
 }
+
+
+/* =====================================================
+   v56 — FECHA ALINEADA Y SEPARADOR FLORAL
+===================================================== */
+
+/* Evita que el 4 descienda por los números antiguos de Cormorant. */
+.wedding-details-date{
+    white-space:nowrap;
+    font-variant-numeric:lining-nums proportional-nums;
+    font-feature-settings:"lnum" 1, "pnum" 1;
+}
+
+/* Usa en la portada de fecha el mismo ornamento de los títulos. */
+.wedding-details-divider{
+    width:min(220px,64vw);
+    height:32px;
+    margin:14px auto 15px;
+    background-image:url("../img/separador-floral.svg?v=1");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+@media(max-width:768px){
+    .wedding-details-date{
+        font-family:"Cinzel", serif !important;
+        font-size:clamp(24px,7.6vw,32px) !important;
+        line-height:1.15;
+        letter-spacing:0;
+    }
+
+    .wedding-details-divider{
+        width:min(185px,58vw);
+        height:28px;
+        margin:10px auto 12px;
+    }
+}
