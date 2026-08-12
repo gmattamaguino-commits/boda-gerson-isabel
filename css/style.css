@@ -7268,3 +7268,249 @@ body.invitation-open .hero .hero-audio-player{
         padding-top:22px !important;
     }
 }
+
+
+/* =====================================================
+   v60 — REFINAMIENTO VISUAL INTEGRAL
+   Legibilidad, fondo, tarjetas, adornos, controles y CTA.
+===================================================== */
+
+/* 1. Fondo floral presente en los bordes y más limpio al centro. */
+.bg-fixed{
+    background-color:var(--color-pearl) !important;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(250,247,245,.30) 0%,
+            rgba(250,247,245,.76) 20%,
+            rgba(250,247,245,.94) 42%,
+            rgba(250,247,245,.94) 58%,
+            rgba(250,247,245,.76) 80%,
+            rgba(250,247,245,.30) 100%
+        ),
+        url("../img/fondo-floral.jpg") !important;
+    background-position:top center !important;
+    background-repeat:repeat-y !important;
+    background-size:100% auto !important;
+}
+
+.bg-fixed::after{
+    background:none !important;
+}
+
+/* 2. El separador floral bajo cada título reemplaza los adornos repetidos. */
+.family-section::before,
+.cronograma::before,
+.lugares::before,
+.dresscode::before,
+.rsvp::before{
+    content:none !important;
+    display:none !important;
+}
+
+/* 3. Sistema visual único para todas las tarjetas. */
+.wedding-details .time-box,
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.96),
+            rgba(252,248,246,.96)
+        ) !important;
+    border:1px solid rgba(205,169,112,.54) !important;
+    border-radius:20px !important;
+    box-shadow:
+        0 10px 25px rgba(91,62,68,.08),
+        inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+.wedding-details .time-box::before,
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before{
+    inset:6px !important;
+    border-color:rgba(224,203,171,.50) !important;
+    border-radius:14px !important;
+}
+
+.family-card,
+.place-card,
+.form-cta,
+.regalo-card,
+.info-ninos-card{
+    padding:28px 24px;
+}
+
+/* 4. Mayor legibilidad y contraste. */
+.schedule-card p,
+.place-address,
+.place-arrival-note,
+.place-parking-note,
+.dresscode-intro,
+.regalo-intro,
+.regalo-card p,
+.rsvp-confirm-content p,
+.rsvp-song-content p,
+.info-ninos-card p{
+    color:rgba(42,39,40,.74) !important;
+}
+
+/* 5. Todos los botones principales usan el mismo guinda. */
+.btn-form,
+.btn-place,
+.place-actions .btn-place{
+    min-height:48px !important;
+    color:#fff !important;
+    background:var(--color-wine) !important;
+    border-color:var(--color-wine) !important;
+    box-shadow:0 7px 16px rgba(107,39,55,.14);
+}
+
+.btn-form:hover,
+.btn-form:focus-visible,
+.btn-place:hover,
+.btn-place:focus-visible,
+.place-actions .btn-place:hover,
+.place-actions .btn-place:focus-visible{
+    color:#fff !important;
+    background:#7d3345 !important;
+    border-color:#7d3345 !important;
+}
+
+/* 6. Controles flotantes discretos y alejados del contenido central. */
+.floating-control{
+    right:max(8px, env(safe-area-inset-right)) !important;
+    width:42px !important;
+    height:42px !important;
+    min-height:42px !important;
+    background:rgba(255,250,247,.92) !important;
+    box-shadow:0 7px 20px rgba(70,42,48,.15) !important;
+}
+
+.floating-control .line-icon{
+    width:19px !important;
+    height:19px !important;
+}
+
+.floating-music{
+    bottom:calc(66px + env(safe-area-inset-bottom)) !important;
+}
+
+.back-to-top{
+    bottom:calc(14px + env(safe-area-inset-bottom)) !important;
+}
+
+/* Ajustes específicos de lectura en celular. */
+@media(max-width:768px){
+
+    .bg-fixed{
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(250,247,245,.30) 0%,
+                rgba(250,247,245,.82) 18%,
+                rgba(250,247,245,.95) 38%,
+                rgba(250,247,245,.95) 62%,
+                rgba(250,247,245,.82) 82%,
+                rgba(250,247,245,.30) 100%
+            ),
+            url("../img/fondo-floral.jpg") !important;
+    }
+
+    .family-card,
+    .place-card,
+    .form-cta,
+    .regalo-card,
+    .info-ninos-card{
+        padding:22px 18px !important;
+    }
+
+    .schedule-card p{
+        font-size:12px !important;
+        line-height:1.48 !important;
+    }
+
+    .schedule-card-time{
+        font-size:11.5px !important;
+        line-height:1.25 !important;
+    }
+
+    .place-address{
+        font-size:13px !important;
+        line-height:1.5 !important;
+    }
+
+    .place-time{
+        font-size:11px !important;
+    }
+
+    .place-arrival-note{
+        font-size:12px !important;
+        line-height:1.48 !important;
+    }
+
+    .place-parking-note{
+        padding:7px 11px !important;
+        font-size:11px !important;
+        line-height:1.42 !important;
+    }
+
+    .dresscode-intro,
+    .regalo-intro{
+        font-size:14px !important;
+        line-height:1.62 !important;
+    }
+
+    .regalo-card p,
+    .rsvp-confirm-content p,
+    .rsvp-song-content p{
+        font-size:12.5px !important;
+        line-height:1.5 !important;
+    }
+
+    .info-ninos-card p{
+        font-size:13.5px !important;
+        line-height:1.58 !important;
+    }
+
+    .btn-form,
+    .btn-place,
+    .place-actions .btn-place{
+        min-height:46px !important;
+        font-size:12px !important;
+    }
+}
+
+@media(max-width:380px){
+
+    .schedule-card p{
+        font-size:11.5px !important;
+    }
+
+    .floating-control{
+        right:6px !important;
+        width:40px !important;
+        height:40px !important;
+        min-height:40px !important;
+    }
+
+    .floating-music{
+        bottom:calc(62px + env(safe-area-inset-bottom)) !important;
+    }
+}
