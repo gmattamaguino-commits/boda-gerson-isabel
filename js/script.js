@@ -184,7 +184,12 @@ function startCountdown() {
         if (distance <= 0) {
             countdown.innerHTML = `
                 <h3 class="countdown-finished">
-                    💍 ¡Hoy es nuestro gran día!
+                    <svg class="countdown-finished-icon line-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="10" cy="13" r="6"></circle>
+                        <circle cx="15" cy="13" r="6"></circle>
+                        <path d="m8 5 2-3 2 3M13 5l2-3 2 3"></path>
+                    </svg>
+                    ¡Hoy es nuestro gran día!
                 </h3>
             `;
 
@@ -775,7 +780,10 @@ window.showMap = function (
                     class="map-toggle-icon"
                     aria-hidden="true"
                 >
-                    📍
+                    <svg class="line-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="2.5"></circle>
+                    </svg>
                 </span>
 
                 <span>
