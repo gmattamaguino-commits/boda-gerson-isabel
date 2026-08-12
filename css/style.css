@@ -7253,3 +7253,18 @@ body.invitation-open .hero .hero-audio-player{
         margin:10px auto 12px;
     }
 }
+
+
+/* =====================================================
+   v59 — TARJETAS DE LUGARES SIN ÍCONO SUPERIOR
+===================================================== */
+
+.place-card > h3{
+    margin-top:0 !important;
+}
+
+@media(max-width:768px){
+    .place-card{
+        padding-top:22px !important;
+    }
+}
