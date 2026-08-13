@@ -8461,3 +8461,17 @@ body.invitation-open .hero .hero-audio-player{
 .wedding-details .wedding-details-count-title > span{
     color:var(--color-text) !important;
 }
+
+
+/* =====================================================
+   v64 — FRASE DEL CONTADOR EN UNA SOLA LÍNEA
+===================================================== */
+
+.wedding-details .wedding-details-count-title{
+    white-space:nowrap;
+}
+
+.wedding-details .wedding-details-count-title > span{
+    display:inline !important;
+    margin:0 0 0 .18em !important;
+}
