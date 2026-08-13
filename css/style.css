@@ -8245,3 +8245,113 @@ body.invitation-open .hero .hero-audio-player{
         font-size:6.5px;
     }
 }
+
+
+/* =====================================================
+   v59 — AJUSTE FINAL DE FECHA Y CONTADOR
+===================================================== */
+
+.wedding-calendar-date > strong{
+    color:var(--color-gold) !important;
+    text-shadow:0 3px 0 rgba(107,39,55,.08);
+}
+
+.wedding-details .wedding-details-count-title,
+.wedding-details .wedding-details-count-title > span{
+    color:var(--color-wine) !important;
+    font-family:"Great Vibes", cursive !important;
+    font-size:clamp(31px, 5vw, 43px) !important;
+    font-weight:400 !important;
+    line-height:1.08 !important;
+    letter-spacing:.3px !important;
+    text-transform:none !important;
+}
+
+.wedding-details .wedding-details-count-title > span{
+    display:block;
+    margin-top:0;
+}
+
+/* Se conservan únicamente los cuadros: sin separadores de dos puntos. */
+.wedding-details .countdown{
+    gap:8px !important;
+}
+
+.wedding-details .time-box{
+    flex:1 1 0;
+    width:auto !important;
+    min-width:0 !important;
+    padding:13px 6px !important;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.96),
+            rgba(252,248,246,.96)
+        ) !important;
+    border:1px solid rgba(205,169,112,.54) !important;
+    border-radius:17px !important;
+    box-shadow:
+        0 8px 18px rgba(91,62,68,.07),
+        inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+.wedding-details .time-box:not(:last-child)::after{
+    content:none !important;
+    display:none !important;
+}
+
+.wedding-details .time-box span{
+    font-size:clamp(25px, 6vw, 36px) !important;
+}
+
+.wedding-details .time-box small{
+    margin-top:7px !important;
+    font-size:8px !important;
+    letter-spacing:.4px !important;
+}
+
+@media(max-width:768px){
+    .wedding-details .wedding-details-count-title,
+    .wedding-details .wedding-details-count-title > span{
+        font-size:34px !important;
+    }
+
+    .wedding-details .countdown{
+        gap:6px !important;
+    }
+
+    .wedding-details .time-box{
+        width:calc((100% - 18px) / 4) !important;
+        padding:11px 3px !important;
+        border-radius:15px !important;
+    }
+
+    .wedding-details .time-box span{
+        font-size:clamp(22px, 7.5vw, 29px) !important;
+    }
+
+    .wedding-details .time-box small{
+        font-size:7px !important;
+        letter-spacing:.15px !important;
+    }
+}
+
+@media(max-width:360px){
+    .wedding-details .countdown{
+        gap:4px !important;
+    }
+
+    .wedding-details .time-box{
+        width:calc((100% - 12px) / 4) !important;
+        padding-left:2px !important;
+        padding-right:2px !important;
+    }
+
+    .wedding-details .time-box span{
+        font-size:21px !important;
+    }
+
+    .wedding-details .time-box small{
+        font-size:6.2px !important;
+    }
+}
