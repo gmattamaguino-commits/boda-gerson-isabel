@@ -1143,36 +1143,38 @@ function initGiftAccountCard() {
         return;
     }
 
-    function setCardSide(showDetails) {
-        if (showDetails) {
-            card.classList.add("is-flipped");
-        } else {
-            card.classList.remove("is-flipped");
-        }
+    function setExpanded(expanded) {
+        card.classList.toggle("is-expanded", expanded);
+        showButton.setAttribute("aria-expanded", String(expanded));
+        details.setAttribute("aria-hidden", String(!expanded));
+        details.toggleAttribute("inert", !expanded);
 
-        card.dataset.side = showDetails ? "back" : "front";
-        showButton.setAttribute("aria-expanded", String(showDetails));
-        details.setAttribute("aria-hidden", String(!showDetails));
-        showButton.disabled = showDetails;
-        backButton.disabled = !showDetails;
-
-        if (status && !showDetails) {
+        if (!expanded && status) {
             status.textContent = "";
         }
     }
 
-    card.dataset.side = "front";
-    backButton.disabled = true;
+    setExpanded(false);
 
     showButton.addEventListener("click", event => {
         event.preventDefault();
-        setCardSide(true);
+        setExpanded(true);
+
+        window.setTimeout(
+            () => details.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                    ? "auto"
+                    : "smooth",
+                block: "nearest"
+            }),
+            120
+        );
     });
 
     backButton.addEventListener("click", event => {
         event.preventDefault();
-        event.stopPropagation();
-        setCardSide(false);
+        setExpanded(false);
+        showButton.focus({ preventScroll: true });
     });
 
     card.querySelectorAll(".gift-copy-button").forEach(button => {
@@ -1211,7 +1213,6 @@ function initGiftAccountCard() {
         });
     });
 }
-
 
 /* =====================================================
    RESUMEN DEL RSVP
