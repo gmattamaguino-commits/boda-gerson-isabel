@@ -8002,3 +8002,246 @@ body.invitation-open .hero .hero-audio-player{
         transition:none;
     }
 }
+
+
+/* =====================================================
+   v58 — FECHA EDITORIAL DESPUÉS DEL HERO
+===================================================== */
+
+.wedding-details{
+    min-height:100svh;
+    padding:64px 18px;
+}
+
+.wedding-details-container{
+    width:min(94%, 680px);
+}
+
+.wedding-details-invitation{
+    margin:0 auto 30px;
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(14px, 2.5vw, 18px);
+    font-weight:600;
+    line-height:1.5;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar{
+    width:min(100%, 520px);
+    margin:0 auto 30px;
+}
+
+.wedding-calendar-month{
+    margin:0 0 9px;
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar-date{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    align-items:center;
+    gap:18px;
+}
+
+.wedding-calendar-date > strong{
+    color:var(--color-sage);
+    font-family:"Cinzel", serif;
+    font-size:clamp(76px, 15vw, 112px);
+    font-weight:600;
+    line-height:.95;
+    text-shadow:0 3px 0 rgba(196,154,91,.16);
+}
+
+.wedding-calendar-side{
+    display:grid;
+    gap:8px;
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(12px, 2.5vw, 15px);
+    font-weight:500;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar-line{
+    display:block;
+    width:100%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(107,39,55,.78),
+        transparent
+    );
+}
+
+.wedding-details .wedding-details-count-title{
+    margin:0 auto 22px;
+    color:rgba(39,35,35,.72);
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:clamp(19px, 3.4vw, 25px);
+    font-weight:400;
+    line-height:1.25;
+    letter-spacing:.2px;
+    text-transform:none;
+}
+
+.wedding-details-count-title > span{
+    display:block;
+    margin-top:1px;
+    color:var(--color-wine);
+    font-family:"Great Vibes", cursive;
+    font-size:clamp(31px, 5vw, 43px);
+    line-height:1.15;
+}
+
+.wedding-details .countdown{
+    width:min(100%, 560px);
+    margin:0 auto 24px;
+    gap:0;
+}
+
+.wedding-details .time-box{
+    position:relative;
+    flex:1 1 0;
+    width:auto;
+    min-width:0;
+    padding:5px 11px;
+    color:var(--color-text);
+    background:transparent;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+.wedding-details .time-box:not(:last-child)::after{
+    content:":";
+    position:absolute;
+    top:1px;
+    right:-4px;
+    color:var(--color-gold);
+    font-family:"Cinzel", serif;
+    font-size:clamp(27px, 5vw, 39px);
+    font-weight:400;
+    line-height:1;
+}
+
+.wedding-details .time-box span{
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:clamp(27px, 6vw, 42px);
+    font-weight:500;
+    line-height:1;
+}
+
+.wedding-details .time-box small{
+    margin-top:8px;
+    color:rgba(39,35,35,.62);
+    font-family:"Cinzel", serif;
+    font-size:9px;
+    letter-spacing:.8px;
+}
+
+.wedding-details .guest-invitation-card{
+    margin-top:30px;
+}
+
+@media(max-width:768px){
+    .wedding-details{
+        min-height:auto;
+        padding:56px 12px 62px;
+    }
+
+    .wedding-details-invitation{
+        margin-bottom:25px;
+        font-size:13px;
+        letter-spacing:1.2px;
+    }
+
+    .wedding-calendar{
+        margin-bottom:27px;
+    }
+
+    .wedding-calendar-date{
+        gap:10px;
+    }
+
+    .wedding-calendar-date > strong{
+        font-size:clamp(72px, 24vw, 94px);
+    }
+
+    .wedding-calendar-side{
+        gap:7px;
+        font-size:11px;
+        letter-spacing:.7px;
+    }
+
+    .wedding-details .wedding-details-count-title{
+        margin-bottom:19px;
+        font-size:20px;
+    }
+
+    .wedding-details-count-title > span{
+        font-size:34px;
+    }
+
+    .wedding-details .countdown{
+        gap:0;
+    }
+
+    .wedding-details .time-box{
+        width:25%;
+        padding:4px 5px;
+    }
+
+    .wedding-details .time-box span{
+        font-size:clamp(24px, 8vw, 32px);
+    }
+
+    .wedding-details .time-box small{
+        margin-top:7px;
+        font-size:7px;
+        letter-spacing:.35px;
+    }
+
+    .wedding-details .time-box:not(:last-child)::after{
+        right:-3px;
+        font-size:27px;
+    }
+}
+
+@media(max-width:360px){
+    .wedding-calendar-date{
+        gap:7px;
+    }
+
+    .wedding-calendar-date > strong{
+        font-size:68px;
+    }
+
+    .wedding-calendar-side{
+        font-size:10px;
+    }
+
+    .wedding-details .time-box{
+        padding-left:3px;
+        padding-right:3px;
+    }
+
+    .wedding-details .time-box span{
+        font-size:23px;
+    }
+
+    .wedding-details .time-box small{
+        font-size:6.5px;
+    }
+}
