@@ -148,10 +148,11 @@ function initInvitationOpening() {
 
                     document.body.style.overflow = "";
 
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "auto"
-                    });
+                    /*
+                     * No forzar el regreso al inicio:
+                     * el visitante puede haber comenzado a deslizar
+                     * mientras termina la animación del sobre.
+                     */
                 },
                 4300
             );
