@@ -9355,3 +9355,23 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 4.35rem !important;
     }
 }
+
+
+/* v76 · Número de pases equilibrado con el nombre */
+.wedding-details .guest-ticket-passes #guest-card-passes {
+    font-size: clamp(2.2rem, 6vw, 4rem) !important;
+    line-height: .9 !important;
+}
+
+@media (max-width: 575.98px) {
+    .wedding-details .guest-ticket-passes #guest-card-passes {
+        font-size: clamp(2rem, 9.5vw, 2.55rem) !important;
+        line-height: .9 !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .wedding-details .guest-ticket-passes #guest-card-passes {
+        font-size: 1.9rem !important;
+    }
+}
