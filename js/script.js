@@ -136,7 +136,7 @@ function initInvitationOpening() {
                         "invitation-open"
                     );
                 },
-                3800
+                2500
             );
 
             /*
