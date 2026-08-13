@@ -9159,3 +9159,13 @@ body.invitation-open .hero .hero-audio-player{
         font-size: .54rem;
     }
 }
+
+
+/* v71 · La imagen ornamental elegida debe prevalecer sobre temas anteriores */
+.wedding-details .guest-invitation-card {
+    background-color: #f8f4ed !important;
+    background-image: url("data:image/webp;base64,undefined") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 100% 100% !important;
+}
