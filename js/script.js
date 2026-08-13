@@ -1129,71 +1129,69 @@ function configureRSVPForm() {
 
 
 /* =====================================================
-   FORMULARIO PRIVADO PARA REGALOS
+   TARJETA DE DATOS PARA REGALO MONETARIO
 ===================================================== */
 
-function configureGiftForm() {
-    const giftButton =
-        document.getElementById(
-            "gift-form-button"
-        );
+function initGiftAccountCard() {
+    const card = document.getElementById("gift-card");
+    const showButton = document.getElementById("gift-data-button");
+    const backButton = document.getElementById("gift-back-button");
+    const details = document.getElementById("gift-account-details");
+    const status = document.getElementById("gift-copy-status");
 
-    if (!giftButton) {
+    if (!card || !showButton || !backButton || !details) {
         return;
     }
 
-    const formBaseURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSfcSfTX_YKVaqRev6ps2Wc9wEB-q-EAMc1zO4zfWc1In1Agxw/viewform";
+    function setCardSide(showDetails) {
+        card.classList.toggle("is-flipped", showDetails);
+        showButton.setAttribute("aria-expanded", String(showDetails));
+        details.setAttribute("aria-hidden", String(!showDetails));
 
-    const formParams =
-        new URLSearchParams({
-            usp: "pp_url",
-
-            "entry.988199634":
-                guestData.nombre,
-
-            "entry.1231225220":
-                guestData.codigo,
-
-            "entry.995696210":
-                "Ambas opciones"
-        });
-
-    giftButton.href =
-        `${formBaseURL}?${formParams.toString()}`;
-
-    giftButton.target = "_blank";
-
-    giftButton.rel =
-        "noopener noreferrer";
-
-    if (!guestData.codigo) {
-        giftButton.href = "#";
-
-        giftButton.removeAttribute(
-            "target"
-        );
-
-        giftButton.setAttribute(
-            "aria-disabled",
-            "true"
-        );
-
-        giftButton.classList.add(
-            "is-disabled"
-        );
-
-        giftButton.addEventListener(
-            "click",
-            event => {
-                event.preventDefault();
-
-                alert(
-                    "Para solicitar los datos de regalo, abre el enlace personalizado que recibiste con tu invitación."
-                );
-            }
+        window.setTimeout(
+            () => (showDetails ? backButton : showButton).focus(),
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 420
         );
     }
+
+    showButton.addEventListener("click", () => setCardSide(true));
+    backButton.addEventListener("click", () => setCardSide(false));
+
+    card.querySelectorAll(".gift-copy-button").forEach(button => {
+        button.addEventListener("click", async () => {
+            const value = button.dataset.copyValue || "";
+
+            try {
+                await navigator.clipboard.writeText(value);
+            } catch (_) {
+                const temporaryInput = document.createElement("textarea");
+                temporaryInput.value = value;
+                temporaryInput.setAttribute("readonly", "");
+                temporaryInput.style.position = "fixed";
+                temporaryInput.style.opacity = "0";
+                document.body.appendChild(temporaryInput);
+                temporaryInput.select();
+                document.execCommand("copy");
+                temporaryInput.remove();
+            }
+
+            if (status) {
+                status.textContent =
+                    button.getAttribute("aria-label") === "Copiar CCI"
+                        ? "CCI copiado"
+                        : "Número de cuenta copiado";
+            }
+
+            const label = button.querySelector("span");
+            if (label) {
+                const originalText = label.textContent;
+                label.textContent = "Copiado";
+                window.setTimeout(() => {
+                    label.textContent = originalText;
+                }, 1600);
+            }
+        });
+    });
 }
 
 
@@ -1801,7 +1799,7 @@ document.addEventListener(
         initGuestPersonalization();
         startCountdown();
         initRevealAnimations();
-        configureGiftForm();
+        initGiftAccountCard();
         configureRSVPForm();
         showRSVPSummary();
         updateWeddingStatusMessage();
