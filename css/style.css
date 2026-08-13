@@ -8355,3 +8355,28 @@ body.invitation-open .hero .hero-audio-player{
         font-size:6.2px !important;
     }
 }
+
+
+/* =====================================================
+   v60 — DORADO CHAMPÁN METÁLICO DEL NÚMERO 24
+===================================================== */
+
+.wedding-calendar-date > strong{
+    color:#AA915C !important;
+    background:linear-gradient(
+        135deg,
+        #7C6234 0%,
+        #C8B689 24%,
+        #AA915C 43%,
+        #CFBF95 61%,
+        #947946 79%,
+        #C3AE79 100%
+    );
+    background-size:180% 180%;
+    background-position:center;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:none;
+    filter:drop-shadow(0 2px 1px rgba(124,98,52,.16));
+}
