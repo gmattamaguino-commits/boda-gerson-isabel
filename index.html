@@ -49,7 +49,7 @@
     fetchpriority="high"
 >
 <!-- CSS principal -->
-<link href="css/style.css?v=72" rel="stylesheet">
+<link href="css/style.css?v=73" rel="stylesheet">
 </head>
 <body>
 <!-- =========================================
@@ -188,12 +188,21 @@
 </div>
 <div class="guest-invitation-card" hidden="" id="guest-invitation-card">
 <p class="guest-card-label">
-        ESTA INVITACIÓN HA SIDO PREPARADA PARA
+        RESERVADO PARA
     </p>
-<h3 id="guest-card-name"></h3>
-<div class="guest-card-divider"></div>
-<p id="guest-card-passes"></p>
-<div aria-hidden="true" class="guest-pass-icons" id="guest-pass-icons"></div>
+<div class="guest-ticket">
+    <div class="guest-ticket-name">
+        <h3 id="guest-card-name"></h3>
+        <span class="guest-ticket-heart" aria-hidden="true">♡</span>
+    </div>
+    <div class="guest-ticket-separator" aria-hidden="true"></div>
+    <div class="guest-ticket-passes">
+        <span class="guest-ticket-passes-label">PASES</span>
+        <strong id="guest-card-passes"></strong>
+    </div>
+</div>
+<p class="guest-card-welcome">Nos encantará celebrar este día contigo.</p>
+<div class="guest-card-closing-ornament" aria-hidden="true">♡</div>
 </div>
 </div>
 </section>
