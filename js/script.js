@@ -362,50 +362,13 @@ function initGuestPersonalization() {
 
     guestCardName.textContent = guestName;
 
-    if (passes === 1) {
-        guestCardPasses.textContent =
-            "Hemos reservado 1 lugar en tu honor.";
-    } else if (passes > 1) {
-        guestCardPasses.textContent =
-            `Hemos reservado ${passes} lugares en su honor.`;
-    } else {
-        guestCardPasses.textContent =
-            "Será un honor compartir este día contigo.";
-    }
+    guestCardPasses.textContent =
+        passes > 0
+            ? String(passes)
+            : "—";
 
-    if (!passIcons) {
-        return;
-    }
-
-    passIcons.innerHTML = "";
-
-    if (passes <= 0) {
-        return;
-    }
-
-    const visiblePasses =
-        Math.min(
-            passes,
-            10
-        );
-
-    for (
-        let index = 0;
-        index < visiblePasses;
-        index += 1
-    ) {
-        const icon =
-            document.createElement("span");
-
-        icon.className =
-            "guest-pass-icon";
-
-        icon.textContent = "♥";
-
-        icon.style.animationDelay =
-            `${index * 90}ms`;
-
-        passIcons.appendChild(icon);
+    if (passIcons) {
+        passIcons.innerHTML = "";
     }
 }
 
