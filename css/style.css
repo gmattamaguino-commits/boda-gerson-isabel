@@ -7872,3 +7872,133 @@ body.invitation-open .hero .hero-audio-player{
         font-size:15px;
     }
 }
+
+
+/* =====================================================
+   v57 — REGALO MONETARIO DESPLEGABLE
+===================================================== */
+
+.regalo-card.gift-card.gift-accordion{
+    display:flex !important;
+    width:min(100%, 350px);
+    min-height:0 !important;
+    padding:25px 22px !important;
+    overflow:hidden;
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(196,154,91,.42);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    perspective:none;
+}
+
+.gift-accordion .regalo-icon{
+    margin-bottom:6px;
+}
+
+.gift-accordion .regalo-content{
+    width:100%;
+}
+
+.gift-accordion .regalo-content h3{
+    margin-bottom:5px;
+}
+
+.gift-accordion .regalo-content p{
+    max-width:290px;
+    margin:0 auto 15px !important;
+    line-height:1.45;
+}
+
+.gift-accordion .gift-data-button{
+    width:100%;
+    max-width:270px;
+    margin:0 auto !important;
+    border:0;
+}
+
+.gift-accordion.is-expanded .gift-data-button{
+    display:none;
+}
+
+.gift-account-details{
+    display:grid;
+    width:100%;
+    grid-template-rows:0fr;
+    opacity:0;
+    visibility:hidden;
+    transition:
+        grid-template-rows .42s cubic-bezier(.2,.72,.25,1),
+        opacity .25s ease,
+        visibility 0s .42s;
+}
+
+.gift-accordion.is-expanded .gift-account-details{
+    grid-template-rows:1fr;
+    opacity:1;
+    visibility:visible;
+    transition:
+        grid-template-rows .42s cubic-bezier(.2,.72,.25,1),
+        opacity .3s .10s ease,
+        visibility 0s;
+}
+
+.gift-details-inner{
+    min-height:0;
+    overflow:hidden;
+}
+
+.gift-details-divider{
+    width:70px;
+    height:1px;
+    margin:18px auto 15px;
+    background:rgba(107,39,55,.28);
+}
+
+.gift-details-inner > h3{
+    margin:0 0 2px;
+    font-size:20px;
+}
+
+.gift-details-inner .gift-bank-name{
+    margin:0 0 9px !important;
+    font-size:19px !important;
+}
+
+.gift-details-inner .gift-account-row{
+    margin-bottom:8px;
+    padding:9px 10px 9px 12px;
+}
+
+.gift-details-inner .gift-account-holder{
+    padding:2px 4px;
+}
+
+.gift-details-inner .gift-copy-status{
+    margin:2px 0 3px !important;
+}
+
+.gift-details-inner .gift-back-button{
+    min-height:40px;
+    touch-action:manipulation;
+}
+
+@media(max-width:480px){
+    .regalo-card.gift-card.gift-accordion{
+        width:min(100%, 330px);
+        padding:22px 18px !important;
+    }
+
+    .gift-accordion .regalo-content p{
+        font-size:12px;
+    }
+
+    .gift-details-inner .gift-account-text strong{
+        font-size:13px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .gift-account-details{
+        transition:none;
+    }
+}
