@@ -9210,3 +9210,65 @@ body.invitation-open .hero .hero-audio-player{
         font-size: .76rem;
     }
 }
+
+
+/* v74 · Boleto libre, nombre completo y pases destacados */
+.wedding-details .guest-invitation-card {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.wedding-details .guest-invitation-card::before,
+.wedding-details .guest-invitation-card::after {
+    display: none !important;
+    content: none !important;
+}
+
+.guest-ticket {
+    grid-template-columns: minmax(0, 1.78fr) 1px minmax(94px, .72fr);
+}
+
+.guest-ticket-name h3 {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-size: clamp(2.05rem, 6.4vw, 4.5rem);
+}
+
+.guest-ticket-passes strong {
+    color: #74283d;
+    font-family: "Cinzel", serif;
+    font-size: clamp(4.4rem, 12vw, 8.2rem);
+    font-weight: 500;
+    line-height: .8;
+}
+
+@media (max-width: 575.98px) {
+    .guest-ticket {
+        grid-template-columns: minmax(0, 1.72fr) 1px minmax(82px, .7fr);
+        padding-inline: 12.5%;
+    }
+
+    .guest-ticket-name h3 {
+        font-size: clamp(1.75rem, 9.5vw, 2.45rem);
+    }
+
+    .guest-ticket-passes strong {
+        font-size: clamp(3.65rem, 19vw, 5rem);
+    }
+}
+
+@media (max-width: 350px) {
+    .guest-ticket-name h3 {
+        font-size: 1.62rem;
+    }
+
+    .guest-ticket-passes strong {
+        font-size: 3.45rem;
+    }
+}
