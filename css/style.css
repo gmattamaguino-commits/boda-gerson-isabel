@@ -7575,3 +7575,218 @@ body.invitation-open .hero .hero-audio-player{
 @media(prefers-reduced-motion:reduce){
     .hero-scroll-arrow{ animation:none !important; }
 }
+
+
+/* =====================================================
+   v55 — TARJETA DE REGALO MONETARIO
+===================================================== */
+
+.regalo-card.gift-card{
+    display:block !important;
+    width:min(100%, 390px);
+    padding:0 !important;
+    background:transparent;
+    box-shadow:none;
+    perspective:1200px;
+}
+
+.gift-card-inner{
+    position:relative;
+    width:100%;
+    min-height:430px;
+    transform-style:preserve-3d;
+    transition:transform .75s cubic-bezier(.2,.7,.2,1);
+}
+
+.gift-card.is-flipped .gift-card-inner{
+    transform:rotateY(180deg);
+}
+
+.gift-card-face{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    padding:36px 30px;
+    overflow:hidden;
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(196,154,91,.42);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+.gift-card-face::after{
+    content:"";
+    position:absolute;
+    inset:9px;
+    pointer-events:none;
+    border:1px solid rgba(196,154,91,.30);
+    border-radius:14px;
+}
+
+.gift-card-face > *{
+    position:relative;
+    z-index:1;
+}
+
+.gift-card-back{
+    transform:rotateY(180deg);
+}
+
+.gift-card-front .regalo-content{
+    width:100%;
+}
+
+.gift-card .gift-data-button{
+    width:100%;
+    max-width:280px;
+    margin-top:auto;
+    border:0;
+}
+
+.gift-bank-name{
+    margin:0 0 15px !important;
+    color:var(--color-wine) !important;
+    font-family:var(--font-title);
+    font-size:24px !important;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.gift-account-row{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    padding:12px 12px 12px 15px;
+    text-align:left;
+    background:rgba(249,246,242,.92);
+    border:1px solid rgba(107,39,55,.13);
+    border-radius:13px;
+}
+
+.gift-account-text{
+    min-width:0;
+}
+
+.gift-account-label,
+.gift-account-holder span{
+    display:block;
+    margin-bottom:3px;
+    color:rgba(0,0,0,.57);
+    font-size:11px;
+    line-height:1.2;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+}
+
+.gift-account-text strong{
+    display:block;
+    overflow-wrap:anywhere;
+    color:var(--color-text);
+    font-family:var(--font-body);
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.35px;
+}
+
+.gift-copy-button,
+.gift-back-button{
+    border-radius:999px;
+    font-family:var(--font-body);
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.gift-copy-button{
+    min-width:72px;
+    min-height:38px;
+    padding:8px 12px;
+    color:var(--color-wine);
+    background:#fff;
+    border:1px solid rgba(107,39,55,.30);
+    font-size:12px;
+}
+
+.gift-copy-button:hover,
+.gift-copy-button:focus-visible{
+    color:#fff;
+    background:var(--color-wine);
+}
+
+.gift-account-holder{
+    width:100% !important;
+    margin:2px 0 0 !important;
+    padding:5px 4px;
+    text-align:left !important;
+}
+
+.gift-account-holder strong{
+    display:block;
+    color:var(--color-text);
+    font-size:16px;
+}
+
+.gift-copy-status{
+    min-height:20px;
+    margin:7px 0 5px !important;
+    color:var(--color-wine) !important;
+    font-size:12px !important;
+    font-weight:600;
+}
+
+.gift-back-button{
+    min-width:120px;
+    padding:9px 18px;
+    color:var(--color-wine);
+    background:transparent;
+    border:1px solid rgba(107,39,55,.30);
+    font-size:13px;
+}
+
+.gift-back-button:hover,
+.gift-back-button:focus-visible{
+    background:rgba(107,39,55,.08);
+}
+
+.gift-copy-button:active,
+.gift-back-button:active{
+    transform:scale(.97);
+}
+
+@media(max-width:480px){
+    .regalo-card.gift-card{
+        width:min(100%, 350px);
+    }
+
+    .gift-card-inner{
+        min-height:410px;
+    }
+
+    .gift-card-face{
+        padding:28px 20px;
+    }
+
+    .gift-account-text strong{
+        font-size:13px;
+        letter-spacing:.15px;
+    }
+
+    .gift-copy-button{
+        min-width:66px;
+        padding:8px 10px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .gift-card-inner{
+        transition:none;
+    }
+}
