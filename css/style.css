@@ -7516,3 +7516,62 @@ body.invitation-open .hero .hero-audio-player{
 }
 
 
+
+
+/* v54 — Invitación a deslizar desde el hero */
+.hero-bottom-content{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.hero-scroll-hint{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    margin:0;
+    padding:5px 12px;
+    color:rgba(255,255,255,.92);
+    font-family:"Cinzel", serif;
+    font-size:clamp(9px,2.5vw,11px);
+    font-weight:500;
+    line-height:1.35;
+    letter-spacing:1.4px;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 2px 8px rgba(0,0,0,.48);
+}
+
+.hero-scroll-arrow{
+    display:block;
+    font-family:Arial, sans-serif;
+    font-size:25px;
+    line-height:.8;
+    animation:heroScrollCue 1.7s ease-in-out infinite;
+}
+
+@keyframes heroScrollCue{
+    0%,100%{ transform:translateY(0); opacity:.62; }
+    50%{ transform:translateY(6px); opacity:1; }
+}
+
+.hero-scroll-hint:hover,
+.hero-scroll-hint:focus-visible{
+    color:#fff;
+}
+
+@media(max-width:480px){
+    .hero-bottom-content{ gap:7px; }
+    .hero-scroll-hint{
+        max-width:290px;
+        font-size:9px;
+        letter-spacing:1.15px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .hero-scroll-arrow{ animation:none !important; }
+}
