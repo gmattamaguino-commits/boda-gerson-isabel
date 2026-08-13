@@ -8451,3 +8451,13 @@ body.invitation-open .hero .hero-audio-player{
         font-size:15px !important;
     }
 }
+
+
+/* =====================================================
+   v63 — COLOR DE LA FRASE PREVIA AL CONTADOR
+===================================================== */
+
+.wedding-details .wedding-details-count-title,
+.wedding-details .wedding-details-count-title > span{
+    color:var(--color-text) !important;
+}
