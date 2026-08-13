@@ -49,7 +49,7 @@
     fetchpriority="high"
 >
 <!-- CSS principal -->
-<link href="css/style.css?v=54" rel="stylesheet">
+<link href="css/style.css?v=55" rel="stylesheet">
 </head>
 <body>
 <!-- =========================================
@@ -383,21 +383,52 @@
 <div class="divider-center"></div>
 <p class="regalo-intro">
             Pero si desean tener un detalle con nosotros,
-            pueden hacerlo de la siguiente manera.
+            pueden hacerlo mediante una transferencia.
         </p>
 <div class="regalo-grid">
-<article class="regalo-card">
+<article class="regalo-card gift-card" id="gift-card">
+<div class="gift-card-inner">
+<div class="gift-card-face gift-card-front">
 <div aria-hidden="true" class="regalo-icon"><svg class="line-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 15h3"/><path d="M15.5 13.5c-1.8-2-4.2 1-1.2 3l1.2.8 1.2-.8c3-2 0-5-1.2-3Z"/></svg></div>
 <div class="regalo-content">
 <h3>Regalo monetario</h3>
 <p>
-                        Solicita de forma segura nuestros datos
-                        para Yape, Plin o transferencia.
+                        Si desean obsequiarnos un detalle, pueden consultar
+                        aquí nuestros datos bancarios.
                     </p>
 </div>
-<a class="btn-form" href="#" id="gift-form-button" rel="noopener noreferrer" target="_blank">
-                    Solicitar datos
-                </a>
+<button class="btn-form gift-data-button" id="gift-data-button" type="button" aria-controls="gift-account-details" aria-expanded="false">
+                    Presiona para obtener los datos
+                </button>
+</div>
+<div class="gift-card-face gift-card-back" id="gift-account-details" aria-hidden="true">
+<h3>Datos para transferencia</h3>
+<p class="gift-bank-name">BCP</p>
+<div class="gift-account-row">
+<div class="gift-account-text">
+<span class="gift-account-label">Número de cuenta</span>
+<strong>19493192474010</strong>
+</div>
+<button class="gift-copy-button" type="button" data-copy-value="19493192474010" aria-label="Copiar número de cuenta">
+<span aria-hidden="true">Copiar</span>
+</button>
+</div>
+<div class="gift-account-row">
+<div class="gift-account-text">
+<span class="gift-account-label">CCI</span>
+<strong>00219419319247401098</strong>
+</div>
+<button class="gift-copy-button" type="button" data-copy-value="00219419319247401098" aria-label="Copiar CCI">
+<span aria-hidden="true">Copiar</span>
+</button>
+</div>
+<p class="gift-account-holder"><span>Titular</span><strong>Isabel Alvis</strong></p>
+<p class="gift-copy-status" id="gift-copy-status" role="status" aria-live="polite"></p>
+<button class="gift-back-button" id="gift-back-button" type="button">
+                    Volver
+                </button>
+</div>
+</div>
 </article>
 </div>
 </div>
@@ -478,6 +509,6 @@
     aria-hidden="true"
 ></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=53"></script>
+<script src="js/script.js?v=54"></script>
 </body>
 </html>
