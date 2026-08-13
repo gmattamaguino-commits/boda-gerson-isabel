@@ -7790,3 +7790,85 @@ body.invitation-open .hero .hero-audio-player{
         transition:none;
     }
 }
+
+
+/* =====================================================
+   v56 — TARJETA DE REGALO COMPACTA Y TÁCTIL
+===================================================== */
+
+.gift-card-inner{
+    min-height:385px;
+}
+
+.gift-card-front{
+    pointer-events:auto;
+}
+
+.gift-card-back{
+    pointer-events:none;
+}
+
+.gift-card.is-flipped .gift-card-front{
+    pointer-events:none;
+}
+
+.gift-card.is-flipped .gift-card-back{
+    pointer-events:auto;
+}
+
+.gift-card-back h3{
+    margin-bottom:4px;
+}
+
+.gift-card-back .gift-bank-name{
+    margin-bottom:9px !important;
+}
+
+.gift-card-back .gift-account-row{
+    margin-bottom:9px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.gift-card-back .gift-copy-status{
+    margin-top:3px !important;
+    margin-bottom:3px !important;
+}
+
+.gift-card-back .gift-back-button{
+    min-height:40px;
+    touch-action:manipulation;
+    position:relative;
+    z-index:3;
+}
+
+@media(max-width:480px){
+    .gift-card-inner{
+        min-height:355px;
+    }
+
+    .gift-card-face{
+        padding:22px 18px;
+    }
+
+    .gift-card-back h3{
+        font-size:20px;
+        line-height:1.15;
+    }
+
+    .gift-card-back .gift-bank-name{
+        font-size:19px !important;
+    }
+
+    .gift-card-back .gift-account-row{
+        padding:9px 10px 9px 12px;
+    }
+
+    .gift-account-holder{
+        padding:2px 4px;
+    }
+
+    .gift-account-holder strong{
+        font-size:15px;
+    }
+}
