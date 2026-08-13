@@ -8475,3 +8475,28 @@ body.invitation-open .hero .hero-audio-player{
     display:inline !important;
     margin:0 0 0 .18em !important;
 }
+
+
+/* =====================================================
+   v65 — ETIQUETAS DEL CONTADOR MÁS LEGIBLES
+===================================================== */
+
+.wedding-details .time-box small{
+    color:var(--color-text) !important;
+    font-size:10px !important;
+    font-weight:500 !important;
+    letter-spacing:.45px !important;
+}
+
+@media(max-width:768px){
+    .wedding-details .time-box small{
+        font-size:8.5px !important;
+        letter-spacing:.25px !important;
+    }
+}
+
+@media(max-width:360px){
+    .wedding-details .time-box small{
+        font-size:7.5px !important;
+    }
+}
