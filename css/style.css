@@ -8500,3 +8500,266 @@ body.invitation-open .hero .hero-audio-player{
         font-size:7.5px !important;
     }
 }
+
+
+/* =====================================================
+   v66 — TARJETA PERSONALIZADA DE INVITACIÓN PREMIUM
+===================================================== */
+
+.wedding-details .guest-invitation-card{
+    position:relative;
+    isolation:isolate;
+    width:min(100%, 640px);
+    margin:34px auto 0;
+    padding:34px 44px 30px !important;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 10% 12%, rgba(201,160,165,.10), transparent 25%),
+        radial-gradient(circle at 90% 88%, rgba(156,175,136,.10), transparent 26%),
+        linear-gradient(145deg, rgba(255,255,255,.98), rgba(251,246,242,.97)) !important;
+    border:1px solid rgba(170,145,92,.72) !important;
+    border-radius:24px !important;
+    box-shadow:
+        0 22px 48px rgba(72,42,50,.13),
+        0 5px 14px rgba(170,145,92,.10),
+        inset 0 0 0 1px rgba(255,255,255,.92) !important;
+}
+
+.wedding-details .guest-invitation-card::before{
+    content:"" !important;
+    position:absolute;
+    inset:8px !important;
+    z-index:0 !important;
+    pointer-events:none;
+    border:1px solid rgba(170,145,92,.46) !important;
+    border-radius:17px !important;
+}
+
+.wedding-details .guest-invitation-card::after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    z-index:0;
+    pointer-events:none;
+    border:1px solid rgba(107,39,55,.08);
+    border-radius:13px;
+}
+
+.wedding-details .guest-invitation-card > *{
+    position:relative;
+    z-index:1;
+}
+
+.guest-card-monogram{
+    width:56px;
+    height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    margin:0 auto 13px;
+    color:var(--color-wine);
+    background:
+        radial-gradient(circle, rgba(255,255,255,.98) 54%, rgba(196,154,91,.10) 100%);
+    border:1px solid rgba(170,145,92,.60);
+    border-radius:50%;
+    box-shadow:
+        0 5px 15px rgba(107,39,55,.08),
+        inset 0 0 0 4px rgba(255,255,255,.80);
+    font-family:"Cinzel", serif;
+    line-height:1;
+}
+
+.guest-card-monogram::before,
+.guest-card-monogram::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:38px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(170,145,92,.70));
+}
+
+.guest-card-monogram::before{
+    right:calc(100% + 9px);
+}
+
+.guest-card-monogram::after{
+    left:calc(100% + 9px);
+    transform:scaleX(-1);
+}
+
+.guest-card-monogram span{
+    font-size:14px;
+    font-weight:600;
+}
+
+.guest-card-monogram b{
+    color:#AA915C;
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:17px;
+    font-style:italic;
+    font-weight:600;
+}
+
+.wedding-details .guest-card-label{
+    max-width:520px;
+    margin:0 auto 10px !important;
+    color:var(--color-wine) !important;
+    font-family:"Cinzel", serif !important;
+    font-size:10px !important;
+    font-weight:600 !important;
+    line-height:1.55;
+    letter-spacing:3px !important;
+}
+
+.wedding-details .guest-invitation-card #guest-card-name{
+    margin:0;
+    color:#59212F !important;
+    font-family:"Great Vibes", cursive !important;
+    font-size:clamp(46px, 7vw, 66px) !important;
+    font-weight:400 !important;
+    line-height:1.05 !important;
+    text-shadow:0 2px 0 rgba(170,145,92,.12);
+}
+
+.wedding-details .guest-card-divider{
+    position:relative;
+    width:150px !important;
+    height:1px;
+    margin:17px auto 18px !important;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(170,145,92,.90) 35%,
+        rgba(107,39,55,.55) 50%,
+        rgba(170,145,92,.90) 65%,
+        transparent
+    ) !important;
+}
+
+.wedding-details .guest-card-divider::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:7px;
+    height:7px;
+    background:#AA915C;
+    border:2px solid #fffaf7;
+    transform:translate(-50%,-50%) rotate(45deg);
+    box-shadow:0 0 0 1px rgba(107,39,55,.22);
+}
+
+.wedding-details #guest-card-passes{
+    margin:0 !important;
+    color:var(--color-text) !important;
+    font-family:"Cormorant Garamond", Georgia, serif !important;
+    font-size:clamp(18px, 3vw, 23px) !important;
+    font-weight:500;
+    line-height:1.4 !important;
+}
+
+.wedding-details .guest-pass-icons{
+    gap:8px !important;
+    margin-top:15px !important;
+}
+
+.wedding-details .guest-pass-icon{
+    width:30px !important;
+    height:30px !important;
+    color:var(--color-wine) !important;
+    background:linear-gradient(145deg,#fff,#faf1ed) !important;
+    border:1px solid rgba(170,145,92,.55) !important;
+    box-shadow:0 4px 10px rgba(107,39,55,.07);
+    font-size:12px !important;
+}
+
+.wedding-details .guest-card-welcome{
+    margin:15px auto 0 !important;
+    color:rgba(51,50,52,.72) !important;
+    font-family:"Cormorant Garamond", Georgia, serif !important;
+    font-size:16px !important;
+    font-style:italic;
+    line-height:1.4 !important;
+}
+
+@media(max-width:600px){
+    .wedding-details .guest-invitation-card{
+        width:min(100%, 355px);
+        margin-top:28px;
+        padding:27px 20px 25px !important;
+        border-radius:21px !important;
+    }
+
+    .wedding-details .guest-invitation-card::before{
+        inset:7px !important;
+        border-radius:15px !important;
+    }
+
+    .wedding-details .guest-invitation-card::after{
+        inset:13px;
+        border-radius:11px;
+    }
+
+    .guest-card-monogram{
+        width:48px;
+        height:48px;
+        margin-bottom:11px;
+    }
+
+    .guest-card-monogram::before,
+    .guest-card-monogram::after{
+        width:28px;
+        margin:0;
+    }
+
+    .wedding-details .guest-card-label{
+        max-width:285px;
+        margin-bottom:7px !important;
+        font-size:8px !important;
+        letter-spacing:1.8px !important;
+    }
+
+    .wedding-details .guest-invitation-card #guest-card-name{
+        font-size:clamp(40px, 13vw, 52px) !important;
+    }
+
+    .wedding-details .guest-card-divider{
+        width:120px !important;
+        margin:13px auto 14px !important;
+    }
+
+    .wedding-details #guest-card-passes{
+        font-size:18px !important;
+    }
+
+    .wedding-details .guest-pass-icons{
+        margin-top:12px !important;
+    }
+
+    .wedding-details .guest-pass-icon{
+        width:27px !important;
+        height:27px !important;
+        font-size:11px !important;
+    }
+
+    .wedding-details .guest-card-welcome{
+        margin-top:12px !important;
+        font-size:14px !important;
+    }
+}
+
+@media(max-width:360px){
+    .wedding-details .guest-invitation-card{
+        padding:24px 17px 22px !important;
+    }
+
+    .wedding-details .guest-invitation-card #guest-card-name{
+        font-size:39px !important;
+    }
+
+    .wedding-details #guest-card-passes{
+        font-size:16px !important;
+    }
+}
