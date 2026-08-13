@@ -1144,18 +1144,36 @@ function initGiftAccountCard() {
     }
 
     function setCardSide(showDetails) {
-        card.classList.toggle("is-flipped", showDetails);
+        if (showDetails) {
+            card.classList.add("is-flipped");
+        } else {
+            card.classList.remove("is-flipped");
+        }
+
+        card.dataset.side = showDetails ? "back" : "front";
         showButton.setAttribute("aria-expanded", String(showDetails));
         details.setAttribute("aria-hidden", String(!showDetails));
+        showButton.disabled = showDetails;
+        backButton.disabled = !showDetails;
 
-        window.setTimeout(
-            () => (showDetails ? backButton : showButton).focus(),
-            window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 420
-        );
+        if (status && !showDetails) {
+            status.textContent = "";
+        }
     }
 
-    showButton.addEventListener("click", () => setCardSide(true));
-    backButton.addEventListener("click", () => setCardSide(false));
+    card.dataset.side = "front";
+    backButton.disabled = true;
+
+    showButton.addEventListener("click", event => {
+        event.preventDefault();
+        setCardSide(true);
+    });
+
+    backButton.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        setCardSide(false);
+    });
 
     card.querySelectorAll(".gift-copy-button").forEach(button => {
         button.addEventListener("click", async () => {
