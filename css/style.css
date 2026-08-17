@@ -9394,3 +9394,12 @@ body.invitation-open .hero .hero-audio-player{
 }
 
 /* v79-retry-2 */
+
+
+/* v80 · Fuerza las fotografías en alta calidad sin reutilizar caché */
+.full-page-couple-photo img[src="img/foto-antes-bendicion.webp"] {
+    content: url("../img/foto-antes-bendicion.webp?v=80");
+}
+.family-section::after {
+    background-image: url("../img/foto-antes-cronograma.webp?v=80");
+}
