@@ -9375,3 +9375,20 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 1.9rem !important;
     }
 }
+
+
+/* v79 · Fotografía de página completa entre padrinos y cronograma */
+.family-section::after {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    margin: 70px 0 -70px calc(50% - 50vw);
+    background-color: #2b180f;
+    background-image: url("../img/foto-antes-cronograma.webp");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
