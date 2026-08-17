@@ -50,6 +50,36 @@
 >
 <!-- CSS principal -->
 <link href="css/style.css?v=77" rel="stylesheet">
+
+<style>
+/* v78 · Fotografía de página completa entre el ticket y la bendición */
+.full-page-couple-photo {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #261711;
+}
+.full-page-couple-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+@media (max-width: 575.98px) {
+    .full-page-couple-photo {
+        min-height: 100svh;
+    }
+    .full-page-couple-photo img {
+        object-position: 42% 50%;
+    }
+}
+</style>
 </head>
 <body>
 <!-- =========================================
@@ -204,6 +234,14 @@
 <div class="guest-card-closing-ornament" aria-hidden="true">♡</div>
 </div>
 </div>
+</section>
+<section class="full-page-couple-photo" aria-label="Fotografía de Gerson e Isabel">
+<img
+    src="img/foto-antes-bendicion.webp"
+    alt="Gerson e Isabel durante su sesión de preboda"
+    loading="lazy"
+    decoding="async"
+>
 </section>
 <section class="family-section" id="bendicion">
 <div class="container">
