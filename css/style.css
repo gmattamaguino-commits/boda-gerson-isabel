@@ -10327,3 +10327,28 @@ body.invitation-open .hero .hero-audio-player{
         background-size: cover !important;
     }
 }
+
+/* v96 · Nueva fotografía del HERO con encuadres independientes */
+.hero::before {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.26),
+            rgba(0,0,0,.36)
+        ),
+        url("../img/hero-gerson-isabel-v96-desktop.webp") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+@media (max-width: 768px) {
+    .hero::before {
+        background-image:
+            linear-gradient(
+                rgba(0,0,0,.22),
+                rgba(0,0,0,.34)
+            ),
+            url("../img/hero-gerson-isabel-v96-mobile.webp") !important;
+        background-position: center center !important;
+        background-size: cover !important;
+    }
+}
