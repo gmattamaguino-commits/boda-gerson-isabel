@@ -10277,3 +10277,28 @@ body.invitation-open .hero .hero-audio-player{
         line-height: 1.18 !important;
     }
 }
+
+/* v92 · Nueva fotografía del HERO con encuadres responsivos */
+.hero::before {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.26),
+            rgba(0,0,0,.36)
+        ),
+        url("../img/hero-gerson-isabel-v92-desktop.webp") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+@media (max-width: 768px) {
+    .hero::before {
+        background-image:
+            linear-gradient(
+                rgba(0,0,0,.22),
+                rgba(0,0,0,.34)
+            ),
+            url("../img/hero-gerson-isabel-v92-mobile.webp") !important;
+        background-position: 52% center !important;
+        background-size: cover !important;
+    }
+}
