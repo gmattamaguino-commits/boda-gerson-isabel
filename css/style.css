@@ -9688,6 +9688,7 @@ body.invitation-open .hero .hero-audio-player{
     }
 }
 
+
 /* v82 · Escala tipográfica continua con el resto de la invitación */
 .family-section .blessing-title-script,
 .family-section .title-section:not(.blessing-title)::before {
@@ -9710,6 +9711,7 @@ body.invitation-open .hero .hero-audio-player{
         font-size: clamp(28px, 8vw, 34px);
     }
 }
+
 
 /* v83 · La segunda hoja conserva la escala tipográfica de la primera */
 @media (max-width: 768px) {
@@ -9738,5 +9740,139 @@ body.invitation-open .hero .hero-audio-player{
     .family-section .godparents-name {
         font-size: clamp(22px, 6.5vw, 25px);
         line-height: 1.24;
+    }
+}
+
+/* =====================================================
+   v84 · CUADRO BEIGE RECORTADO PARA PADRES Y PADRINOS
+   El arte es el fondo; los nombres siguen siendo texto adaptable.
+===================================================== */
+
+.family-section .family-card {
+    position: relative;
+    display: block !important;
+    width: min(100%, 690px);
+    max-width: 690px;
+    height: clamp(580px, 133vw, 920px);
+    min-height: 580px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 !important;
+    overflow: visible;
+    background: transparent url("../img/cuadro-padres-familia-v84.webp") center / 100% 100% no-repeat !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    clip-path: none !important;
+    box-shadow: none !important;
+}
+
+.family-section .family-card::before {
+    content: none !important;
+    display: none !important;
+}
+
+.family-section .parents-row {
+    display: contents !important;
+}
+
+.family-section .parents-col,
+.family-section .godparents-block {
+    position: absolute;
+    right: 10%;
+    left: 10%;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-align: center;
+    border: 0;
+}
+
+.family-section .parents-col:nth-child(1) {
+    top: 8%;
+    height: 13%;
+}
+
+.family-section .parents-col:nth-child(2) {
+    top: 22%;
+    height: 20%;
+}
+
+.family-section .godparents-block {
+    top: 44%;
+    height: 26%;
+}
+
+.family-section .parents-col:not(:last-child)::after,
+.family-section .godparents-block::before {
+    content: none !important;
+    display: none !important;
+}
+
+.family-section .parents-label {
+    margin: 0 0 7px;
+    color: var(--color-wine);
+    font-family: "Cinzel", serif !important;
+    font-size: clamp(10px, 1.05vw, 12px);
+    font-weight: 500;
+    letter-spacing: .20em;
+    line-height: 1.35;
+}
+
+.family-section .parents-name,
+.family-section .godparents-name {
+    color: var(--color-text);
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(24px, 2.5vw, 30px);
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 1.16;
+}
+
+.family-section .godparents-name {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .family-section .family-card {
+        width: min(100%, 430px);
+        height: clamp(580px, 161vw, 690px);
+        min-height: 580px;
+    }
+
+    .family-section .parents-col,
+    .family-section .godparents-block {
+        right: 9%;
+        left: 9%;
+    }
+
+    .family-section .parents-label {
+        margin-bottom: 6px;
+        font-size: 9px;
+        letter-spacing: .20em;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: clamp(22px, 6.5vw, 25px);
+        line-height: 1.16;
+    }
+}
+
+@media (max-width: 350px) {
+    .family-section .family-card {
+        min-height: 560px;
+        height: 560px;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: 21px;
     }
 }
