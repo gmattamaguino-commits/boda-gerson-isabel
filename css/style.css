@@ -9878,3 +9878,57 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 21px;
     }
 }
+
+/* v85 · Cuadro más compacto y textos centrados entre adornos */
+@media (max-width: 768px) {
+    .family-section .family-card {
+        width: min(86%, 360px);
+        height: clamp(470px, 132vw, 540px);
+        min-height: 470px;
+    }
+
+    .family-section .parents-col,
+    .family-section .godparents-block {
+        right: 10%;
+        left: 10%;
+    }
+
+    .family-section .parents-col:nth-child(1) {
+        top: 9.5%;
+        height: 10.5%;
+    }
+
+    .family-section .parents-col:nth-child(2) {
+        top: 22.5%;
+        height: 19.5%;
+    }
+
+    .family-section .godparents-block {
+        top: 44%;
+        height: 26%;
+    }
+
+    .family-section .parents-label {
+        margin-bottom: 4px;
+        font-size: 8px;
+        line-height: 1.25;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: clamp(19px, 5.8vw, 22px);
+        line-height: 1.12;
+    }
+}
+
+@media (max-width: 350px) {
+    .family-section .family-card {
+        height: 455px;
+        min-height: 455px;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: 19px;
+    }
+}
