@@ -9687,3 +9687,26 @@ body.invitation-open .hero .hero-audio-player{
         line-height: 1;
     }
 }
+
+/* v82 · Escala tipográfica continua con el resto de la invitación */
+.family-section .blessing-title-script,
+.family-section .title-section:not(.blessing-title)::before {
+    font-size: clamp(52px, 5.5vw, 68px);
+}
+
+.family-section .blessing-title-main,
+.family-section .title-section:not(.blessing-title)::after {
+    font-size: clamp(32px, 3.8vw, 48px);
+}
+
+@media (max-width: 768px) {
+    .family-section .blessing-title-script,
+    .family-section .title-section:not(.blessing-title)::before {
+        font-size: clamp(48px, 14vw, 58px);
+    }
+
+    .family-section .blessing-title-main,
+    .family-section .title-section:not(.blessing-title)::after {
+        font-size: clamp(28px, 8vw, 34px);
+    }
+}
