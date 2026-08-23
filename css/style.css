@@ -9764,6 +9764,8 @@ body.invitation-open .hero .hero-audio-player{
     border-radius: 0 !important;
     clip-path: none !important;
     box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 .family-section .family-card::before {
