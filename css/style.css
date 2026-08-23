@@ -10207,3 +10207,16 @@ body.invitation-open .hero .hero-audio-player{
         padding: 48px 28px 42px !important;
     }
 }
+
+/* v90 · Nombres con la misma escala del título de bendición */
+.family-section .parents-name,
+.family-section .godparents-name {
+    font-size: clamp(14px, 2.5vw, 18px) !important;
+}
+
+@media (max-width: 768px) {
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: 13px !important;
+    }
+}
