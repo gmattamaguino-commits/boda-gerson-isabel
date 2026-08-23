@@ -9932,3 +9932,67 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 19px;
     }
 }
+
+/* v86 · Nuevo cuadro compacto, sin espacio inferior sobrante */
+.family-section .family-card {
+    width: min(88%, 560px);
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1122 / 1402;
+    background-image: url("../img/cuadro-padres-familia-compacto-v86.webp") !important;
+}
+
+.family-section .parents-col:nth-child(1) {
+    top: 14%;
+    height: 21%;
+}
+
+.family-section .parents-col:nth-child(2) {
+    top: 39%;
+    height: 23%;
+}
+
+.family-section .godparents-block {
+    top: 65%;
+    height: 24%;
+}
+
+@media (max-width: 768px) {
+    .family-section .family-card {
+        width: min(88%, 360px);
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1122 / 1402;
+    }
+
+    .family-section .parents-col,
+    .family-section .godparents-block {
+        right: 10%;
+        left: 10%;
+    }
+
+    .family-section .parents-label {
+        margin-bottom: 4px;
+        font-size: 8px;
+        line-height: 1.25;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: clamp(19px, 5.8vw, 22px);
+        line-height: 1.12;
+    }
+}
+
+@media (max-width: 350px) {
+    .family-section .family-card {
+        width: 88%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: 18px;
+    }
+}
