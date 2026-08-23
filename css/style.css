@@ -9996,3 +9996,35 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 18px;
     }
 }
+
+/* v87 · El título de bendición replica la tipografía de la primera hoja */
+.family-section .title-section:not(.blessing-title) {
+    display: block;
+    width: min(100%, 520px);
+    max-width: 520px;
+    margin: 0 auto;
+    color: var(--color-text) !important;
+    font-family: "Cinzel", serif !important;
+    font-size: clamp(14px, 2.5vw, 18px) !important;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    line-height: 1.5;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.family-section .title-section:not(.blessing-title)::before,
+.family-section .title-section:not(.blessing-title)::after {
+    content: none !important;
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .family-section .title-section:not(.blessing-title) {
+        width: min(100%, 310px);
+        max-width: 310px;
+        font-size: 13px !important;
+        letter-spacing: 1.2px;
+        line-height: 1.5;
+    }
+}
