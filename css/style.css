@@ -1,6 +1,3 @@
-Total output lines: 10330
-
-256244 css/style.css
 @import url("variables.css");
 
 /*=========================================
@@ -5423,7 +5420,2692 @@ a{
         font-size:22px;
     }
 
-    .wedding-details .guest…14067 tokens truncated…ap:0;
+    .wedding-details .guest-card-divider{
+        width:40px;
+        margin:8px auto;
+    }
+
+    .wedding-details .guest-invitation-card > p:last-of-type{
+        font-size:11.5px;
+        line-height:1.35;
+    }
+
+    .wedding-details .guest-pass-icons{
+        gap:4px;
+        margin-top:8px;
+    }
+
+    .wedding-details .guest-pass-icon{
+        width:20px;
+        height:20px;
+        font-size:9px;
+    }
+}
+
+@media(max-width:380px){
+
+    .wedding-details .guest-invitation-card{
+        padding:12px;
+    }
+
+    .wedding-details .guest-invitation-card h3{
+        font-size:20px;
+    }
+
+    .wedding-details .guest-pass-icon{
+        width:18px;
+        height:18px;
+        font-size:8px;
+    }
+}
+
+/* =====================================================
+   APERTURA CON CAMBIO INSTANTÁNEO — v29
+===================================================== */
+
+.envelope-intro{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:grid;
+    place-items:center;
+
+    padding:8px;
+
+    overflow:hidden;
+    isolation:isolate;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #fffaf5 0%,
+            #f1e4d8 62%,
+            #d9c4b2 100%
+        );
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+}
+
+.envelope-intro::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 12% 16%,
+            rgba(107,39,55,.07),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 88% 84%,
+            rgba(156,175,136,.10),
+            transparent 28%
+        );
+
+    pointer-events:none;
+}
+
+.envelope-swap{
+    position:relative;
+    z-index:1;
+
+    width:min(570px,96vw);
+    aspect-ratio:941 / 1672;
+
+    contain:layout paint;
+    transform:translateZ(0);
+
+    filter:
+        drop-shadow(
+            0 28px 38px
+            rgba(56,37,37,.26)
+        );
+
+    animation:
+        envelopeIntroEntrance
+        .55s ease both;
+
+    transition:
+        opacity .42s ease,
+        transform .42s ease;
+}
+
+.envelope-image{
+    position:absolute;
+    inset:0;
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    object-position:center;
+
+    opacity:1;
+    transform:none !important;
+
+    transition:none !important;
+    animation:none !important;
+
+    user-select:none;
+    pointer-events:none;
+    -webkit-user-drag:none;
+
+    backface-visibility:hidden;
+    transform-style:flat;
+    will-change:auto;
+}
+
+.envelope-image-closed{
+    z-index:2;
+    visibility:visible;
+}
+
+.envelope-image-open{
+    z-index:3;
+    visibility:hidden;
+}
+
+/*
+ * Cambio duro en un solo fotograma:
+ * no existe crossfade ni desplazamiento.
+ */
+.envelope-intro.is-open
+.envelope-image-closed{
+    visibility:hidden;
+}
+
+.envelope-intro.is-open
+.envelope-image-open{
+    visibility:visible;
+}
+
+/* =====================================================
+   ZONA DEL SELLO
+===================================================== */
+
+.envelope-seal-button{
+    position:absolute;
+    left:50%;
+    top:55.7%;
+    z-index:6;
+
+    width:23%;
+    max-width:130px;
+    min-width:78px;
+    aspect-ratio:1;
+
+    transform:translate(-50%,-50%);
+
+    padding:0;
+    border:0;
+    border-radius:50%;
+
+    background:transparent;
+    box-shadow:none;
+
+    cursor:pointer;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+.envelope-seal-button:disabled{
+    cursor:wait;
+}
+
+.envelope-seal-button::after{
+    content:"";
+    position:absolute;
+    inset:-4px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 0 0
+        rgba(107,39,55,.27);
+
+    animation:
+        envelopeSealPulse
+        1.8s ease-out infinite;
+}
+
+.envelope-seal-button:focus-visible{
+    outline:
+        3px solid
+        rgba(107,39,55,.48);
+
+    outline-offset:5px;
+}
+
+.envelope-intro.is-open
+.envelope-seal-button{
+    opacity:0;
+    pointer-events:none;
+}
+
+/* =====================================================
+   MENSAJE DE BIENVENIDA — v33
+===================================================== */
+
+.envelope-welcome-message{
+    position:absolute;
+    left:50%;
+    top:35.2%;
+    z-index:5;
+
+    width:68%;
+    max-width:68%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    text-align:center;
+
+    transform:translate(-50%,-50%);
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:
+        opacity 80ms linear,
+        visibility 0ms linear 80ms;
+}
+
+.envelope-intro.is-open
+.envelope-welcome-message{
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity 80ms linear,
+        visibility 0ms linear;
+}
+
+.welcome-invitation-text{
+    display:block;
+
+    width:100%;
+    max-width:100%;
+
+    margin:0;
+
+    color:#696466;
+
+    font-family:"Cinzel",serif;
+    font-size:clamp(10px,1.7vw,16px);
+    font-weight:500;
+    line-height:1.25;
+    letter-spacing:.35px;
+
+    text-align:center;
+    white-space:nowrap;
+    text-transform:none;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.55);
+}
+
+.welcome-wedding-title{
+    margin:0;
+
+    color:var(--color-wine,#6b2737);
+
+    font-family:"Great Vibes",cursive;
+    font-size:clamp(38px,6.2vw,60px);
+    font-weight:400;
+    line-height:.95;
+    letter-spacing:.2px;
+    white-space:nowrap;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.55),
+        0 2px 3px rgba(80,41,48,.08);
+}
+
+/* =====================================================
+   INDICACIÓN INFERIOR
+===================================================== */
+
+.envelope-open-hint{
+    position:absolute;
+    left:50%;
+    bottom:1.8%;
+    z-index:7;
+
+    transform:translateX(-50%);
+
+    margin:0;
+
+    color:#705d61;
+
+    font-family:"Cinzel",serif;
+    font-size:clamp(8px,1.7vw,11px);
+    font-weight:600;
+    letter-spacing:2px;
+    white-space:nowrap;
+    text-transform:uppercase;
+
+    animation:
+        envelopeHintPulse
+        1.8s ease-in-out infinite;
+
+    transition:
+        opacity 80ms linear;
+}
+
+.envelope-intro.is-open
+.envelope-open-hint{
+    opacity:0;
+}
+
+/* =====================================================
+   SALIDA AL HERO
+===================================================== */
+
+.envelope-intro.is-leaving{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.envelope-intro.is-leaving
+.envelope-swap{
+    opacity:0;
+    transform:scale(.99);
+}
+
+body.invitation-closed{
+    overflow:hidden;
+}
+
+body.invitation-closed .hero{
+    opacity:0;
+    transform:scale(1.015);
+}
+
+body.invitation-open .hero{
+    opacity:1;
+    transform:scale(1);
+
+    transition:
+        opacity .7s ease,
+        transform .8s ease;
+}
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes envelopeIntroEntrance{
+    from{
+        opacity:0;
+        transform:
+            translateY(16px)
+            scale(.985);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes envelopeSealPulse{
+    0%{
+        box-shadow:
+            0 0 0 0
+            rgba(107,39,55,.27);
+    }
+
+    70%{
+        box-shadow:
+            0 0 0 13px
+            rgba(107,39,55,0);
+    }
+
+    100%{
+        box-shadow:
+            0 0 0 0
+            rgba(107,39,55,0);
+    }
+}
+
+@keyframes envelopeHintPulse{
+    0%,100%{
+        opacity:.55;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   CELULAR — APERTURA Y BIENVENIDA
+===================================================== */
+
+@media(max-width:600px){
+
+    .envelope-intro{
+        padding:3px;
+    }
+
+    .envelope-swap{
+        width:min(99vw,440px);
+    }
+
+    .envelope-seal-button{
+        top:55.7%;
+        width:23%;
+        min-width:70px;
+    }
+
+    .envelope-welcome-message{
+        top:35.2% !important;
+        width:78% !important;
+        max-width:78% !important;
+        gap:6px !important;
+    }
+
+    .welcome-invitation-text{
+        display:block !important;
+
+        width:100% !important;
+        max-width:100% !important;
+
+        margin:0 !important;
+
+        font-size:clamp(
+            8.5px,
+            2.55vw,
+            11px
+        ) !important;
+
+        line-height:1.2 !important;
+        letter-spacing:.1px !important;
+
+        text-align:center;
+        white-space:nowrap !important;
+        text-transform:none !important;
+    }
+
+    .welcome-wedding-title{
+        font-size:clamp(
+            38px,
+            10vw,
+            51px
+        ) !important;
+
+        line-height:.95 !important;
+        white-space:nowrap !important;
+    }
+
+    .envelope-open-hint{
+        bottom:1.3%;
+        letter-spacing:1.3px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .envelope-intro,
+    .envelope-swap,
+    .envelope-welcome-message{
+        transition-duration:.01ms !important;
+        animation:none !important;
+    }
+
+    .envelope-seal-button::after,
+    .envelope-open-hint{
+        animation:none !important;
+    }
+}
+/* =====================================================
+   HOJAS NATURALES DESPUÉS DEL HERO
+   Reemplaza el bloque anterior de hojas por este.
+===================================================== */
+
+.leaf-overlay{
+    position:fixed;
+    inset:0;
+    z-index:30;
+    overflow:hidden;
+    pointer-events:none;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+body.leaves-active .leaf-overlay{
+    opacity:1;
+    visibility:visible;
+}
+
+.falling-leaf{
+    position:absolute;
+    top:-10vh;
+    left:0;
+
+    width:var(--leaf-size, 13px);
+    height:calc(var(--leaf-size, 13px) * 1.72);
+
+    opacity:0;
+
+    /*
+     * Silueta asimétrica y puntiaguda.
+     * Evita que la hoja parezca un cuadrado redondeado.
+     */
+    clip-path:polygon(
+        50% 0%,
+        72% 13%,
+        91% 38%,
+        100% 66%,
+        79% 88%,
+        51% 100%,
+        26% 88%,
+        7% 62%,
+        15% 31%
+    );
+
+    border-radius:55% 45% 58% 42%;
+
+    background:
+        linear-gradient(
+            115deg,
+            var(--leaf-light),
+            var(--leaf-main) 48%,
+            var(--leaf-dark)
+        );
+
+    filter:
+        drop-shadow(
+            0 4px 4px
+            rgba(63,49,45,.07)
+        );
+
+    transform-origin:50% 45%;
+
+    animation:
+        naturalLeafFall
+        var(--fall-duration)
+        cubic-bezier(.34,.03,.64,.98)
+        forwards;
+
+    animation-delay:var(--leaf-delay, 0s);
+
+    will-change:
+        transform,
+        opacity;
+}
+
+/* Nervadura central */
+.falling-leaf::before{
+    content:"";
+
+    position:absolute;
+    top:8%;
+    left:49%;
+
+    width:.7px;
+    height:84%;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,.46) 18%,
+            rgba(255,255,255,.32) 72%,
+            transparent
+        );
+
+    transform:
+        rotate(var(--vein-angle, -5deg));
+
+    transform-origin:center;
+}
+
+/* Pequeñas nervaduras laterales */
+.falling-leaf::after{
+    content:"";
+
+    position:absolute;
+    top:30%;
+    left:26%;
+
+    width:48%;
+    height:36%;
+
+    opacity:.42;
+
+    background:
+        linear-gradient(
+            28deg,
+            transparent 43%,
+            rgba(255,255,255,.38) 47%,
+            transparent 51%
+        ),
+        linear-gradient(
+            -28deg,
+            transparent 43%,
+            rgba(255,255,255,.30) 47%,
+            transparent 51%
+        );
+
+    transform:
+        rotate(var(--vein-angle, -5deg));
+}
+
+/* Formas naturales ligeramente distintas */
+.falling-leaf.shape-slender{
+    height:calc(var(--leaf-size, 13px) * 1.95);
+
+    clip-path:polygon(
+        50% 0%,
+        68% 17%,
+        82% 42%,
+        88% 70%,
+        70% 91%,
+        50% 100%,
+        31% 89%,
+        13% 65%,
+        20% 31%
+    );
+}
+
+.falling-leaf.shape-round{
+    height:calc(var(--leaf-size, 13px) * 1.48);
+
+    clip-path:polygon(
+        50% 0%,
+        79% 12%,
+        98% 42%,
+        94% 72%,
+        70% 94%,
+        48% 100%,
+        21% 88%,
+        3% 58%,
+        15% 25%
+    );
+}
+
+.falling-leaf.shape-curved{
+    transform-origin:42% 46%;
+
+    clip-path:polygon(
+        55% 0%,
+        77% 15%,
+        93% 42%,
+        88% 70%,
+        66% 92%,
+        40% 100%,
+        20% 82%,
+        7% 51%,
+        24% 19%
+    );
+}
+
+/* Paleta de la invitación */
+.falling-leaf.color-sage{
+    --leaf-light:rgba(203,214,194,.72);
+    --leaf-main:rgba(150,174,139,.70);
+    --leaf-dark:rgba(105,137,96,.66);
+}
+
+.falling-leaf.color-mauve{
+    --leaf-light:rgba(232,205,211,.70);
+    --leaf-main:rgba(196,151,164,.68);
+    --leaf-dark:rgba(157,111,128,.64);
+}
+
+.falling-leaf.color-cinnamon{
+    --leaf-light:rgba(233,202,189,.70);
+    --leaf-main:rgba(196,145,127,.68);
+    --leaf-dark:rgba(157,105,91,.64);
+}
+
+.falling-leaf.color-wine{
+    --leaf-light:rgba(154,88,104,.68);
+    --leaf-main:rgba(111,48,66,.66);
+    --leaf-dark:rgba(78,30,45,.62);
+}
+
+.falling-leaf.color-pearl{
+    --leaf-light:rgba(255,253,249,.74);
+    --leaf-main:rgba(238,231,224,.68);
+    --leaf-dark:rgba(208,197,190,.62);
+}
+
+@keyframes naturalLeafFall{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translate3d(0,-10vh,0)
+            rotate(var(--start-rotation))
+            rotateX(var(--start-tilt))
+            scale(var(--leaf-scale));
+    }
+
+    8%{
+        opacity:var(--leaf-opacity);
+    }
+
+    27%{
+        transform:
+            translate3d(
+                var(--drift-one),
+                24vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-one)
+                )
+            )
+            rotateX(
+                calc(
+                    var(--start-tilt)
+                    + 45deg
+                )
+            )
+            scale(var(--leaf-scale));
+    }
+
+    53%{
+        opacity:
+            calc(
+                var(--leaf-opacity) * .92
+            );
+
+        transform:
+            translate3d(
+                var(--drift-two),
+                54vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-two)
+                )
+            )
+            rotateY(58deg)
+            scale(var(--leaf-scale));
+    }
+
+    76%{
+        transform:
+            translate3d(
+                var(--drift-three),
+                81vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-three)
+                )
+            )
+            rotateX(-38deg)
+            scale(var(--leaf-scale));
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translate3d(
+                var(--drift-end),
+                112vh,
+                0
+            )
+            rotate(
+                calc(
+                    var(--start-rotation)
+                    + var(--rotation-end)
+                )
+            )
+            rotateY(80deg)
+            scale(var(--leaf-scale));
+    }
+}
+
+@media(max-width:768px){
+
+    .falling-leaf{
+        width:var(--leaf-size-mobile, 10px);
+        height:calc(var(--leaf-size-mobile, 10px) * 1.72);
+    }
+
+    .falling-leaf.shape-slender{
+        height:calc(var(--leaf-size-mobile, 10px) * 1.95);
+    }
+
+    .falling-leaf.shape-round{
+        height:calc(var(--leaf-size-mobile, 10px) * 1.48);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .leaf-overlay{
+        display:none !important;
+    }
+}
+
+/* =====================================================
+   v35 — SOLO MEJORA VISUAL DE LOS CUADROS EXISTENTES
+   No cambia posiciones, tamaños, grid, padding ni textos.
+===================================================== */
+
+/* Tarjetas que ya existían en el diseño */
+.wedding-details .time-box,
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card {
+    position: relative;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 5% 7%,
+            rgba(201,160,165,.10),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 95% 93%,
+            rgba(156,175,136,.10),
+            transparent 25%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.93),
+            rgba(252,247,244,.94)
+        ) !important;
+
+    border-color: rgba(205,169,112,.62) !important;
+
+    box-shadow:
+        0 14px 34px rgba(91,62,68,.09),
+        inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+/* Segundo marco fino dentro del cuadro, sin alterar medidas */
+.wedding-details .time-box::before,
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(224,203,171,.58);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Radio compatible para el marco interior */
+.wedding-details .time-box::before {
+    border-radius: 11px;
+}
+
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before {
+    border-radius: 15px;
+}
+
+/* Detalle muy sutil en las esquinas de los cuadros grandes */
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card {
+    background-image:
+        radial-gradient(
+            ellipse at 0 0,
+            rgba(201,163,104,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            ellipse at 100% 100%,
+            rgba(156,175,136,.10),
+            transparent 26%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.93),
+            rgba(252,247,244,.94)
+        ) !important;
+}
+
+/* Galería: solo borde y profundidad; conserva tamaño y posición */
+.gallery-item {
+    border: 1px solid rgba(205,169,112,.58) !important;
+    box-shadow:
+        0 12px 28px rgba(91,62,68,.10),
+        inset 0 0 0 1px rgba(255,255,255,.65) !important;
+}
+
+.gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(238,222,198,.52);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Mantiene las animaciones y giros por encima de la decoración */
+.flip-card-front > *,
+.flip-card-back > *,
+.family-card > *,
+.schedule-card > *,
+.place-card > *,
+.form-cta > *,
+.regalo-card > *,
+.info-ninos-card > *,
+.bible-verse-block > *,
+.guest-invitation-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* En celular solo adelgaza el marco; no cambia dimensiones */
+@media(max-width:768px){
+    .wedding-details .time-box::before,
+    .bible-verse-block::before,
+    .guest-invitation-card::before,
+    .family-card::before,
+    .schedule-card::before,
+    .place-card::before,
+    .flip-card-front::before,
+    .flip-card-back::before,
+    .form-cta::before,
+    .regalo-card::before,
+    .info-ninos-card::before {
+        inset: 6px;
+    }
+}
+
+/* =====================================================
+   CORRECCIÓN FINAL DRESS CODE — v36
+   Mantiene únicamente las tarjetas internas del flip.
+   No altera el resto de secciones ni sus posiciones.
+===================================================== */
+
+.dresscode-grid{
+    align-items:start !important;
+}
+
+/* El contenedor exterior solo controla el giro; no es una tarjeta visible */
+.dresscode-card.flip-card{
+    position:relative !important;
+
+    width:100% !important;
+    height:300px !important;
+    min-height:300px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    background:transparent !important;
+    background-image:none !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+
+    overflow:visible !important;
+}
+
+.dresscode-card.flip-card::before,
+.dresscode-card.flip-card::after{
+    content:none !important;
+    display:none !important;
+}
+
+.dresscode-card.flip-card:hover{
+    box-shadow:none !important;
+}
+
+/* Ambas caras ocupan exactamente el mismo espacio */
+.dresscode-card.flip-card .flip-card-inner{
+    position:relative !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    position:absolute !important;
+    inset:0 !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    box-sizing:border-box !important;
+}
+
+/* Evita que una tarjeta quede visualmente más abajo que la otra */
+.dresscode-card.flip-card.is-visible,
+.dresscode-card.flip-card.visible{
+    opacity:1;
+}
+
+@media(max-width:768px){
+
+    .dresscode-card.flip-card{
+        height:290px !important;
+        min-height:290px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:18px 12px !important;
+    }
+}
+
+@media(max-width:480px){
+
+    .dresscode-card.flip-card{
+        height:300px !important;
+        min-height:300px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:16px 10px !important;
+    }
+
+    .dresscode-card.flip-card .color-list{
+        gap:9px !important;
+    }
+
+    .dresscode-card.flip-card .color-item{
+        max-width:100% !important;
+    }
+}
+
+/* =====================================================
+   CORRECCIÓN DEFINITIVA DRESS CODE — v37
+   Evita que la tarjeta se desplace al mostrar colores.
+   El frente y el reverso permanecen en el mismo lugar.
+===================================================== */
+
+/* Las dos tarjetas conservan siempre su posición en el grid */
+.dresscode-grid{
+    align-items:stretch !important;
+}
+
+.dresscode-card.flip-card,
+.dresscode-card.flip-card.reveal,
+.dresscode-card.flip-card.visible,
+.dresscode-card.flip-card.is-visible{
+    position:relative !important;
+
+    width:100% !important;
+    height:300px !important;
+    min-height:300px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    opacity:1 !important;
+    transform:none !important;
+
+    background:transparent !important;
+    background-image:none !important;
+
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+
+    overflow:visible !important;
+}
+
+.dresscode-card.flip-card:hover,
+.dresscode-card.flip-card:active{
+    transform:none !important;
+    box-shadow:none !important;
+}
+
+/* Se elimina el giro 3D que provocaba el desplazamiento */
+.dresscode-card.flip-card .flip-card-inner,
+.dresscode-card.flip-card.is-flipped .flip-card-inner{
+    position:relative !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    transform:none !important;
+    transform-style:flat !important;
+    transition:none !important;
+}
+
+/* Ambas caras ocupan exactamente la misma coordenada */
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    position:absolute !important;
+    inset:0 !important;
+
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+
+    margin:0 !important;
+    box-sizing:border-box !important;
+
+    transform:none !important;
+    backface-visibility:visible !important;
+    -webkit-backface-visibility:visible !important;
+
+    transition:
+        opacity .32s ease,
+        visibility .32s ease !important;
+}
+
+/* Estado inicial: se muestra el frente */
+.dresscode-card.flip-card .flip-card-front{
+    z-index:2 !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+}
+
+.dresscode-card.flip-card .flip-card-back{
+    z-index:1 !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+
+/* Al tocar: el reverso aparece exactamente encima */
+.dresscode-card.flip-card.is-flipped .flip-card-front{
+    z-index:1 !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+
+.dresscode-card.flip-card.is-flipped .flip-card-back{
+    z-index:2 !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+}
+
+/* El contenido permanece centrado dentro de la misma tarjeta */
+.dresscode-card.flip-card .flip-card-front,
+.dresscode-card.flip-card .flip-card-back{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+@media(max-width:768px){
+
+    .dresscode-card.flip-card,
+    .dresscode-card.flip-card.reveal,
+    .dresscode-card.flip-card.visible,
+    .dresscode-card.flip-card.is-visible{
+        height:290px !important;
+        min-height:290px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:18px 12px !important;
+    }
+}
+
+@media(max-width:480px){
+
+    .dresscode-card.flip-card,
+    .dresscode-card.flip-card.reveal,
+    .dresscode-card.flip-card.visible,
+    .dresscode-card.flip-card.is-visible{
+        height:300px !important;
+        min-height:300px !important;
+    }
+
+    .dresscode-card.flip-card .flip-card-front,
+    .dresscode-card.flip-card .flip-card-back{
+        padding:16px 10px !important;
+    }
+}
+
+/* =====================================================
+   v40 — COHERENCIA VISUAL, CONTROLES Y ACCESIBILIDAD
+===================================================== */
+body,
+p,
+li,
+small,
+.parents-name,
+.godparents-name,
+.place-address,
+.place-arrival-note,
+.place-parking-note,
+.dresscode-intro,
+.regalo-intro,
+.gracias-text{
+    font-family:"Cormorant Garamond", Georgia, serif;
+}
+
+.title-section,
+.subtitle-section,
+.schedule-card h3,
+.place-card h3,
+.dresscode-card h3,
+.regalo-card h3,
+.info-ninos-card h3,
+.rsvp-confirm-content h3,
+.rsvp-song-content h3{
+    font-family:"Cinzel", serif;
+}
+
+.line-icon{
+    display:block;
+    width:1em;
+    height:1em;
+}
+
+.schedule-card-icon,
+.place-icon,
+.dresscode-icon,
+.regalo-icon,
+.info-ninos-icon,
+.rsvp-confirm-icon,
+.rsvp-song-icon{
+    color:var(--color-wine) !important;
+}
+
+.schedule-card-icon .line-icon,
+.place-icon .line-icon,
+.dresscode-icon .line-icon,
+.regalo-icon .line-icon,
+.info-ninos-icon .line-icon{
+    width:30px;
+    height:30px;
+}
+
+.map-toggle-icon .line-icon{
+    width:18px;
+    height:18px;
+}
+
+.guest-invitation-card #guest-card-name{
+    color:#333234;
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:clamp(30px, 5vw, 46px);
+    font-weight:700;
+    line-height:1.1;
+}
+
+.guest-card-welcome{
+    margin:18px 0 0;
+    color:var(--color-wine);
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:18px;
+    font-style:italic;
+}
+
+.floating-control{
+    position:fixed;
+    right:max(16px, env(safe-area-inset-right));
+    z-index:9990;
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    padding:0;
+    color:var(--color-wine);
+    background:rgba(255,250,247,.94);
+    border:1px solid rgba(178,137,78,.55);
+    border-radius:50%;
+    box-shadow:0 10px 28px rgba(70,42,48,.18);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s ease, background .25s ease;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.floating-control.is-visible{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+}
+
+.floating-control:hover,
+.floating-control:focus-visible{
+    color:#fff;
+    background:var(--color-wine);
+    outline:3px solid rgba(201,160,165,.38);
+    outline-offset:3px;
+}
+
+.floating-control .line-icon{
+    width:23px;
+    height:23px;
+}
+
+.floating-music{
+    bottom:calc(78px + env(safe-area-inset-bottom));
+}
+
+.floating-music.is-playing .line-icon{
+    animation:musicPulse 1.5s ease-in-out infinite;
+}
+
+.back-to-top{
+    bottom:calc(18px + env(safe-area-inset-bottom));
+}
+
+@keyframes musicPulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.12); }
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible{
+    outline:3px solid rgba(107,39,55,.38);
+    outline-offset:3px;
+}
+
+.btn-form,
+.btn-place,
+.map-toggle,
+.floating-control{
+    min-height:48px;
+}
+
+.gallery-item[role="button"]{
+    cursor:pointer;
+}
+
+@media(max-width:480px){
+    .floating-control{
+        width:46px;
+        height:46px;
+        right:12px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto !important; }
+    *,*::before,*::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+    .floating-music.is-playing .line-icon{ animation:none !important; }
+}
+
+/* =====================================================
+   v42 — CENTRADO REAL DE ÍCONOS EN TARJETAS
+===================================================== */
+@media(max-width:768px){
+    .place-card > .place-icon,
+    .info-ninos-card > .info-ninos-icon{
+        position:static !important;
+        inset:auto !important;
+        float:none !important;
+        width:100% !important;
+        max-width:none !important;
+        height:auto !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        margin:0 auto 8px !important;
+        padding:0 !important;
+        text-align:center !important;
+        transform:none !important;
+    }
+
+    .place-card > .place-icon .line-icon,
+    .info-ninos-card > .info-ninos-icon .line-icon{
+        display:block !important;
+        margin:0 auto !important;
+        flex:0 0 auto;
+    }
+}
+
+/* =====================================================
+   v44 — BLOQUE FINAL CONSOLIDADO
+   Portada, galería avanzada y consistencia editorial.
+===================================================== */
+
+/* Transición del sobre hacia la portada. */
+body.invitation-closed .hero .hero-content{
+    opacity:0;
+    transform:translateY(22px) scale(.975);
+}
+
+body.invitation-open .hero .hero-content{
+    animation:heroContentEntrance 1.05s .12s cubic-bezier(.2,.75,.25,1) both;
+}
+
+body.invitation-open .hero h1{
+    animation:heroNamesEntrance 1.15s .28s cubic-bezier(.2,.75,.25,1) both;
+}
+
+body.invitation-open .hero .hero-audio-player{
+    animation:heroAudioEntrance .85s .58s cubic-bezier(.2,.75,.25,1) both;
+}
+
+@keyframes heroContentEntrance{
+    from{ opacity:0; transform:translateY(22px) scale(.975); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes heroNamesEntrance{
+    from{ opacity:0; transform:translateY(16px); letter-spacing:.08em; }
+    to{ opacity:1; transform:translateY(0); letter-spacing:normal; }
+}
+
+@keyframes heroAudioEntrance{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* Galería ampliada con navegación táctil. */
+.lightbox{
+    --lightbox-drag-y:0px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:64px 72px;
+    background:rgba(24,19,20,.94);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .28s ease, visibility .28s ease;
+}
+
+.lightbox.active{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.lightbox-stage{
+    width:min(1100px, 86vw);
+    height:min(78vh, 820px);
+    display:grid;
+    place-items:center;
+    touch-action:none;
+    transform:translateY(var(--lightbox-drag-y));
+    transition:transform .22s ease;
+}
+
+.lightbox.is-dragging .lightbox-stage{
+    transition:none;
+}
+
+.lightbox-stage #lightbox-img{
+    display:block;
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:100%;
+    object-fit:contain;
+    border-radius:12px;
+    box-shadow:0 20px 60px rgba(0,0,0,.38);
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+.lightbox-close,
+.lightbox-nav{
+    position:absolute;
+    z-index:2;
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    padding:0;
+    color:#fff;
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:50%;
+    font-family:Arial, sans-serif;
+    line-height:1;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+}
+
+.lightbox-close{
+    top:18px;
+    right:18px;
+    font-size:30px;
+}
+
+.lightbox-nav{
+    top:50%;
+    transform:translateY(-50%);
+    font-size:36px;
+}
+
+.lightbox-prev{ left:18px; }
+.lightbox-next{ right:18px; }
+
+.lightbox-counter{
+    position:absolute;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+    margin:0;
+    padding:7px 15px;
+    color:#fff;
+    background:rgba(0,0,0,.35);
+    border-radius:999px;
+    font-family:"Cinzel", serif;
+    font-size:12px;
+    letter-spacing:.08em;
+}
+
+#lightbox-img.slide-from-right{ animation:lightboxFromRight .28s ease both; }
+#lightbox-img.slide-from-left{ animation:lightboxFromLeft .28s ease both; }
+
+@keyframes lightboxFromRight{
+    from{ opacity:0; transform:translateX(24px); }
+    to{ opacity:1; transform:translateX(0); }
+}
+
+@keyframes lightboxFromLeft{
+    from{ opacity:0; transform:translateX(-24px); }
+    to{ opacity:1; transform:translateX(0); }
+}
+
+@media(max-width:600px){
+    .lightbox{ padding:56px 12px 70px; }
+    .lightbox-stage{ width:100%; height:75vh; }
+    .lightbox-nav{ width:42px; height:42px; top:auto; bottom:16px; transform:none; }
+    .lightbox-prev{ left:18px; }
+    .lightbox-next{ right:18px; }
+    .lightbox-counter{ bottom:24px; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    body.invitation-open .hero .hero-content,
+    body.invitation-open .hero h1,
+    body.invitation-open .hero .hero-audio-player,
+    #lightbox-img.slide-from-right,
+    #lightbox-img.slide-from-left{
+        animation:none !important;
+        opacity:1 !important;
+        transform:none !important;
+    }
+}
+
+
+/* v53 — Un solo botón de ubicación */
+.place-actions{
+    display:flex !important;
+    justify-content:center;
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+}
+
+.place-actions .btn-place{
+    width:100% !important;
+    min-height:48px !important;
+}
+
+
+/* RSVP SIN ÍCONOS */
+.rsvp-confirm-card,
+.rsvp-song-card{
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"content button";
+}
+
+.rsvp-confirm-content,
+.rsvp-song-content{
+    grid-area:content;
+}
+
+.rsvp-confirm-card .btn-form,
+.rsvp-song-card .btn-form{
+    grid-area:button;
+}
+
+@media(max-width:768px){
+    .rsvp-confirm-card,
+    .rsvp-song-card{
+        grid-template-columns:1fr;
+        grid-template-areas:
+            "content"
+            "button";
+    }
+}
+
+
+/* =====================================================
+   v55 — ÍCONOS LINEALES Y SEPARADORES FLORALES
+===================================================== */
+
+.schedule-card-icon,
+.place-icon,
+.dresscode-icon,
+.regalo-icon,
+.info-ninos-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--color-wine) !important;
+    line-height:1;
+}
+
+/* El círculo ya usa salvia; el trazo queda guinda para asegurar contraste. */
+.schedule-card:nth-child(2) .schedule-card-icon,
+.place-card:nth-child(2) .place-icon{
+    color:var(--color-wine) !important;
+}
+
+.regalo-card:nth-child(2) .regalo-icon{
+    color:var(--color-wine) !important;
+}
+
+.schedule-card-icon .line-icon,
+.place-icon .line-icon,
+.dresscode-icon .line-icon,
+.regalo-icon .line-icon,
+.info-ninos-icon .line-icon{
+    width:30px;
+    height:30px;
+    overflow:visible;
+    stroke:currentColor;
+    vector-effect:non-scaling-stroke;
+}
+
+.dresscode-icon .line-icon{
+    width:34px;
+    height:34px;
+}
+
+.inline-icon{
+    display:inline-block;
+    width:1.05em;
+    height:1.05em;
+    color:var(--color-wine);
+    vertical-align:-.16em;
+    overflow:visible;
+}
+
+.place-parking-note .inline-icon{
+    margin-right:.35em;
+}
+
+.info-ninos-thanks .inline-icon{
+    margin-left:.25em;
+}
+
+/* Ornamento floral ligero, inspirado en la papelería de la boda. */
+.divider-center,
+.gracias .divider-center{
+    position:relative;
+    width:min(220px,64vw) !important;
+    height:32px !important;
+    margin:16px auto 34px !important;
+    background-image:url("../img/separador-floral.svg?v=1") !important;
+    background-position:center !important;
+    background-repeat:no-repeat !important;
+    background-size:contain !important;
+}
+
+.divider-center::before{
+    content:none !important;
+}
+
+.divider-center.reveal{
+    background-size:0 100% !important;
+}
+
+.divider-center.reveal.is-visible{
+    background-size:100% 100% !important;
+}
+
+@media(max-width:768px){
+    .schedule-card-icon .line-icon{
+        width:26px;
+        height:26px;
+    }
+
+    .place-icon .line-icon,
+    .dresscode-icon .line-icon,
+    .regalo-icon .line-icon,
+    .info-ninos-icon .line-icon{
+        width:28px;
+        height:28px;
+    }
+
+    .divider-center,
+    .gracias .divider-center{
+        width:min(185px,58vw) !important;
+        height:28px !important;
+        margin:11px auto 25px !important;
+    }
+}
+
+
+/* =====================================================
+   v56 — FECHA ALINEADA Y SEPARADOR FLORAL
+===================================================== */
+
+/* Evita que el 4 descienda por los números antiguos de Cormorant. */
+.wedding-details-date{
+    white-space:nowrap;
+    font-variant-numeric:lining-nums proportional-nums;
+    font-feature-settings:"lnum" 1, "pnum" 1;
+}
+
+/* Usa en la portada de fecha el mismo ornamento de los títulos. */
+.wedding-details-divider{
+    width:min(220px,64vw);
+    height:32px;
+    margin:14px auto 15px;
+    background-image:url("../img/separador-floral.svg?v=1");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+@media(max-width:768px){
+    .wedding-details-date{
+        font-family:"Cinzel", serif !important;
+        font-size:clamp(24px,7.6vw,32px) !important;
+        line-height:1.15;
+        letter-spacing:0;
+    }
+
+    .wedding-details-divider{
+        width:min(185px,58vw);
+        height:28px;
+        margin:10px auto 12px;
+    }
+}
+
+
+/* =====================================================
+   v59 — TARJETAS DE LUGARES SIN ÍCONO SUPERIOR
+===================================================== */
+
+.place-card > h3{
+    margin-top:0 !important;
+}
+
+@media(max-width:768px){
+    .place-card{
+        padding-top:22px !important;
+    }
+}
+
+
+/* =====================================================
+   v60 — REFINAMIENTO VISUAL INTEGRAL
+   Legibilidad, fondo, tarjetas, adornos, controles y CTA.
+===================================================== */
+
+/* 1. Fondo floral presente en los bordes y más limpio al centro. */
+.bg-fixed{
+    background-color:var(--color-pearl) !important;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(250,247,245,.30) 0%,
+            rgba(250,247,245,.76) 20%,
+            rgba(250,247,245,.94) 42%,
+            rgba(250,247,245,.94) 58%,
+            rgba(250,247,245,.76) 80%,
+            rgba(250,247,245,.30) 100%
+        ),
+        url("../img/fondo-floral.jpg") !important;
+    background-position:top center !important;
+    background-repeat:repeat-y !important;
+    background-size:100% auto !important;
+}
+
+.bg-fixed::after{
+    background:none !important;
+}
+
+/* 2. El separador floral bajo cada título reemplaza los adornos repetidos. */
+.family-section::before,
+.cronograma::before,
+.lugares::before,
+.dresscode::before,
+.rsvp::before{
+    content:none !important;
+    display:none !important;
+}
+
+/* 3. Sistema visual único para todas las tarjetas. */
+.wedding-details .time-box,
+.bible-verse-block,
+.guest-invitation-card,
+.family-card,
+.schedule-card,
+.place-card,
+.flip-card-front,
+.flip-card-back,
+.form-cta,
+.regalo-card,
+.info-ninos-card{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.96),
+            rgba(252,248,246,.96)
+        ) !important;
+    border:1px solid rgba(205,169,112,.54) !important;
+    border-radius:20px !important;
+    box-shadow:
+        0 10px 25px rgba(91,62,68,.08),
+        inset 0 0 0 1px rgba(255,255,255,.72) !important;
+}
+
+.wedding-details .time-box::before,
+.bible-verse-block::before,
+.guest-invitation-card::before,
+.family-card::before,
+.schedule-card::before,
+.place-card::before,
+.flip-card-front::before,
+.flip-card-back::before,
+.form-cta::before,
+.regalo-card::before,
+.info-ninos-card::before{
+    inset:6px !important;
+    border-color:rgba(224,203,171,.50) !important;
+    border-radius:14px !important;
+}
+
+.family-card,
+.place-card,
+.form-cta,
+.regalo-card,
+.info-ninos-card{
+    padding:28px 24px;
+}
+
+/* 4. Mayor legibilidad y contraste. */
+.schedule-card p,
+.place-address,
+.place-arrival-note,
+.place-parking-note,
+.dresscode-intro,
+.regalo-intro,
+.regalo-card p,
+.rsvp-confirm-content p,
+.rsvp-song-content p,
+.info-ninos-card p{
+    color:rgba(42,39,40,.74) !important;
+}
+
+/* 5. Todos los botones principales usan el mismo guinda. */
+.btn-form,
+.btn-place,
+.place-actions .btn-place{
+    min-height:48px !important;
+    color:#fff !important;
+    background:var(--color-wine) !important;
+    border-color:var(--color-wine) !important;
+    box-shadow:0 7px 16px rgba(107,39,55,.14);
+}
+
+.btn-form:hover,
+.btn-form:focus-visible,
+.btn-place:hover,
+.btn-place:focus-visible,
+.place-actions .btn-place:hover,
+.place-actions .btn-place:focus-visible{
+    color:#fff !important;
+    background:#7d3345 !important;
+    border-color:#7d3345 !important;
+}
+
+/* 6. Controles flotantes discretos y alejados del contenido central. */
+.floating-control{
+    right:max(8px, env(safe-area-inset-right)) !important;
+    width:42px !important;
+    height:42px !important;
+    min-height:42px !important;
+    background:rgba(255,250,247,.92) !important;
+    box-shadow:0 7px 20px rgba(70,42,48,.15) !important;
+}
+
+.floating-control .line-icon{
+    width:19px !important;
+    height:19px !important;
+}
+
+.floating-music{
+    bottom:calc(66px + env(safe-area-inset-bottom)) !important;
+}
+
+.back-to-top{
+    bottom:calc(14px + env(safe-area-inset-bottom)) !important;
+}
+
+/* Ajustes específicos de lectura en celular. */
+@media(max-width:768px){
+
+    .bg-fixed{
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(250,247,245,.30) 0%,
+                rgba(250,247,245,.82) 18%,
+                rgba(250,247,245,.95) 38%,
+                rgba(250,247,245,.95) 62%,
+                rgba(250,247,245,.82) 82%,
+                rgba(250,247,245,.30) 100%
+            ),
+            url("../img/fondo-floral.jpg") !important;
+    }
+
+    .family-card,
+    .place-card,
+    .form-cta,
+    .regalo-card,
+    .info-ninos-card{
+        padding:22px 18px !important;
+    }
+
+    .schedule-card p{
+        font-size:12px !important;
+        line-height:1.48 !important;
+    }
+
+    .schedule-card-time{
+        font-size:11.5px !important;
+        line-height:1.25 !important;
+    }
+
+    .place-address{
+        font-size:13px !important;
+        line-height:1.5 !important;
+    }
+
+    .place-time{
+        font-size:11px !important;
+    }
+
+    .place-arrival-note{
+        font-size:12px !important;
+        line-height:1.48 !important;
+    }
+
+    .place-parking-note{
+        padding:7px 11px !important;
+        font-size:11px !important;
+        line-height:1.42 !important;
+    }
+
+    .dresscode-intro,
+    .regalo-intro{
+        font-size:14px !important;
+        line-height:1.62 !important;
+    }
+
+    .regalo-card p,
+    .rsvp-confirm-content p,
+    .rsvp-song-content p{
+        font-size:12.5px !important;
+        line-height:1.5 !important;
+    }
+
+    .info-ninos-card p{
+        font-size:13.5px !important;
+        line-height:1.58 !important;
+    }
+
+    .btn-form,
+    .btn-place,
+    .place-actions .btn-place{
+        min-height:46px !important;
+        font-size:12px !important;
+    }
+}
+
+@media(max-width:380px){
+
+    .schedule-card p{
+        font-size:11.5px !important;
+    }
+
+    .floating-control{
+        right:6px !important;
+        width:40px !important;
+        height:40px !important;
+        min-height:40px !important;
+    }
+
+    .floating-music{
+        bottom:calc(62px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+
+
+
+/* v54 — Invitación a deslizar desde el hero */
+.hero-bottom-content{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.hero-scroll-hint{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    margin:0;
+    padding:5px 12px;
+    color:rgba(255,255,255,.92);
+    font-family:"Cinzel", serif;
+    font-size:clamp(9px,2.5vw,11px);
+    font-weight:500;
+    line-height:1.35;
+    letter-spacing:1.4px;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 2px 8px rgba(0,0,0,.48);
+}
+
+.hero-scroll-arrow{
+    display:block;
+    font-family:Arial, sans-serif;
+    font-size:25px;
+    line-height:.8;
+    animation:heroScrollCue 1.7s ease-in-out infinite;
+}
+
+@keyframes heroScrollCue{
+    0%,100%{ transform:translateY(0); opacity:.62; }
+    50%{ transform:translateY(6px); opacity:1; }
+}
+
+.hero-scroll-hint:hover,
+.hero-scroll-hint:focus-visible{
+    color:#fff;
+}
+
+@media(max-width:480px){
+    .hero-bottom-content{ gap:7px; }
+    .hero-scroll-hint{
+        max-width:290px;
+        font-size:9px;
+        letter-spacing:1.15px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .hero-scroll-arrow{ animation:none !important; }
+}
+
+
+/* =====================================================
+   v55 — TARJETA DE REGALO MONETARIO
+===================================================== */
+
+.regalo-card.gift-card{
+    display:block !important;
+    width:min(100%, 390px);
+    padding:0 !important;
+    background:transparent;
+    box-shadow:none;
+    perspective:1200px;
+}
+
+.gift-card-inner{
+    position:relative;
+    width:100%;
+    min-height:430px;
+    transform-style:preserve-3d;
+    transition:transform .75s cubic-bezier(.2,.7,.2,1);
+}
+
+.gift-card.is-flipped .gift-card-inner{
+    transform:rotateY(180deg);
+}
+
+.gift-card-face{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    padding:36px 30px;
+    overflow:hidden;
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(196,154,91,.42);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+.gift-card-face::after{
+    content:"";
+    position:absolute;
+    inset:9px;
+    pointer-events:none;
+    border:1px solid rgba(196,154,91,.30);
+    border-radius:14px;
+}
+
+.gift-card-face > *{
+    position:relative;
+    z-index:1;
+}
+
+.gift-card-back{
+    transform:rotateY(180deg);
+}
+
+.gift-card-front .regalo-content{
+    width:100%;
+}
+
+.gift-card .gift-data-button{
+    width:100%;
+    max-width:280px;
+    margin-top:auto;
+    border:0;
+}
+
+.gift-bank-name{
+    margin:0 0 15px !important;
+    color:var(--color-wine) !important;
+    font-family:var(--font-title);
+    font-size:24px !important;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.gift-account-row{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    padding:12px 12px 12px 15px;
+    text-align:left;
+    background:rgba(249,246,242,.92);
+    border:1px solid rgba(107,39,55,.13);
+    border-radius:13px;
+}
+
+.gift-account-text{
+    min-width:0;
+}
+
+.gift-account-label,
+.gift-account-holder span{
+    display:block;
+    margin-bottom:3px;
+    color:rgba(0,0,0,.57);
+    font-size:11px;
+    line-height:1.2;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+}
+
+.gift-account-text strong{
+    display:block;
+    overflow-wrap:anywhere;
+    color:var(--color-text);
+    font-family:var(--font-body);
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.35px;
+}
+
+.gift-copy-button,
+.gift-back-button{
+    border-radius:999px;
+    font-family:var(--font-body);
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.gift-copy-button{
+    min-width:72px;
+    min-height:38px;
+    padding:8px 12px;
+    color:var(--color-wine);
+    background:#fff;
+    border:1px solid rgba(107,39,55,.30);
+    font-size:12px;
+}
+
+.gift-copy-button:hover,
+.gift-copy-button:focus-visible{
+    color:#fff;
+    background:var(--color-wine);
+}
+
+.gift-account-holder{
+    width:100% !important;
+    margin:2px 0 0 !important;
+    padding:5px 4px;
+    text-align:left !important;
+}
+
+.gift-account-holder strong{
+    display:block;
+    color:var(--color-text);
+    font-size:16px;
+}
+
+.gift-copy-status{
+    min-height:20px;
+    margin:7px 0 5px !important;
+    color:var(--color-wine) !important;
+    font-size:12px !important;
+    font-weight:600;
+}
+
+.gift-back-button{
+    min-width:120px;
+    padding:9px 18px;
+    color:var(--color-wine);
+    background:transparent;
+    border:1px solid rgba(107,39,55,.30);
+    font-size:13px;
+}
+
+.gift-back-button:hover,
+.gift-back-button:focus-visible{
+    background:rgba(107,39,55,.08);
+}
+
+.gift-copy-button:active,
+.gift-back-button:active{
+    transform:scale(.97);
+}
+
+@media(max-width:480px){
+    .regalo-card.gift-card{
+        width:min(100%, 350px);
+    }
+
+    .gift-card-inner{
+        min-height:410px;
+    }
+
+    .gift-card-face{
+        padding:28px 20px;
+    }
+
+    .gift-account-text strong{
+        font-size:13px;
+        letter-spacing:.15px;
+    }
+
+    .gift-copy-button{
+        min-width:66px;
+        padding:8px 10px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .gift-card-inner{
+        transition:none;
+    }
+}
+
+
+/* =====================================================
+   v56 — TARJETA DE REGALO COMPACTA Y TÁCTIL
+===================================================== */
+
+.gift-card-inner{
+    min-height:385px;
+}
+
+.gift-card-front{
+    pointer-events:auto;
+}
+
+.gift-card-back{
+    pointer-events:none;
+}
+
+.gift-card.is-flipped .gift-card-front{
+    pointer-events:none;
+}
+
+.gift-card.is-flipped .gift-card-back{
+    pointer-events:auto;
+}
+
+.gift-card-back h3{
+    margin-bottom:4px;
+}
+
+.gift-card-back .gift-bank-name{
+    margin-bottom:9px !important;
+}
+
+.gift-card-back .gift-account-row{
+    margin-bottom:9px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.gift-card-back .gift-copy-status{
+    margin-top:3px !important;
+    margin-bottom:3px !important;
+}
+
+.gift-card-back .gift-back-button{
+    min-height:40px;
+    touch-action:manipulation;
+    position:relative;
+    z-index:3;
+}
+
+@media(max-width:480px){
+    .gift-card-inner{
+        min-height:355px;
+    }
+
+    .gift-card-face{
+        padding:22px 18px;
+    }
+
+    .gift-card-back h3{
+        font-size:20px;
+        line-height:1.15;
+    }
+
+    .gift-card-back .gift-bank-name{
+        font-size:19px !important;
+    }
+
+    .gift-card-back .gift-account-row{
+        padding:9px 10px 9px 12px;
+    }
+
+    .gift-account-holder{
+        padding:2px 4px;
+    }
+
+    .gift-account-holder strong{
+        font-size:15px;
+    }
+}
+
+
+/* =====================================================
+   v57 — REGALO MONETARIO DESPLEGABLE
+===================================================== */
+
+.regalo-card.gift-card.gift-accordion{
+    display:flex !important;
+    width:min(100%, 350px);
+    min-height:0 !important;
+    padding:25px 22px !important;
+    overflow:hidden;
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(196,154,91,.42);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    perspective:none;
+}
+
+.gift-accordion .regalo-icon{
+    margin-bottom:6px;
+}
+
+.gift-accordion .regalo-content{
+    width:100%;
+}
+
+.gift-accordion .regalo-content h3{
+    margin-bottom:5px;
+}
+
+.gift-accordion .regalo-content p{
+    max-width:290px;
+    margin:0 auto 15px !important;
+    line-height:1.45;
+}
+
+.gift-accordion .gift-data-button{
+    width:100%;
+    max-width:270px;
+    margin:0 auto !important;
+    border:0;
+}
+
+.gift-accordion.is-expanded .gift-data-button{
+    display:none;
+}
+
+.gift-account-details{
+    display:grid;
+    width:100%;
+    grid-template-rows:0fr;
+    opacity:0;
+    visibility:hidden;
+    transition:
+        grid-template-rows .42s cubic-bezier(.2,.72,.25,1),
+        opacity .25s ease,
+        visibility 0s .42s;
+}
+
+.gift-accordion.is-expanded .gift-account-details{
+    grid-template-rows:1fr;
+    opacity:1;
+    visibility:visible;
+    transition:
+        grid-template-rows .42s cubic-bezier(.2,.72,.25,1),
+        opacity .3s .10s ease,
+        visibility 0s;
+}
+
+.gift-details-inner{
+    min-height:0;
+    overflow:hidden;
+}
+
+.gift-details-divider{
+    width:70px;
+    height:1px;
+    margin:18px auto 15px;
+    background:rgba(107,39,55,.28);
+}
+
+.gift-details-inner > h3{
+    margin:0 0 2px;
+    font-size:20px;
+}
+
+.gift-details-inner .gift-bank-name{
+    margin:0 0 9px !important;
+    font-size:19px !important;
+}
+
+.gift-details-inner .gift-account-row{
+    margin-bottom:8px;
+    padding:9px 10px 9px 12px;
+}
+
+.gift-details-inner .gift-account-holder{
+    padding:2px 4px;
+}
+
+.gift-details-inner .gift-copy-status{
+    margin:2px 0 3px !important;
+}
+
+.gift-details-inner .gift-back-button{
+    min-height:40px;
+    touch-action:manipulation;
+}
+
+@media(max-width:480px){
+    .regalo-card.gift-card.gift-accordion{
+        width:min(100%, 330px);
+        padding:22px 18px !important;
+    }
+
+    .gift-accordion .regalo-content p{
+        font-size:12px;
+    }
+
+    .gift-details-inner .gift-account-text strong{
+        font-size:13px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .gift-account-details{
+        transition:none;
+    }
+}
+
+
+/* =====================================================
+   v58 — FECHA EDITORIAL DESPUÉS DEL HERO
+===================================================== */
+
+.wedding-details{
+    min-height:100svh;
+    padding:64px 18px;
+}
+
+.wedding-details-container{
+    width:min(94%, 680px);
+}
+
+.wedding-details-invitation{
+    margin:0 auto 30px;
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(14px, 2.5vw, 18px);
+    font-weight:600;
+    line-height:1.5;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar{
+    width:min(100%, 520px);
+    margin:0 auto 30px;
+}
+
+.wedding-calendar-month{
+    margin:0 0 9px;
+    color:var(--color-wine);
+    font-family:"Cinzel", serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar-date{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    align-items:center;
+    gap:18px;
+}
+
+.wedding-calendar-date > strong{
+    color:var(--color-sage);
+    font-family:"Cinzel", serif;
+    font-size:clamp(76px, 15vw, 112px);
+    font-weight:600;
+    line-height:.95;
+    text-shadow:0 3px 0 rgba(196,154,91,.16);
+}
+
+.wedding-calendar-side{
+    display:grid;
+    gap:8px;
+    color:var(--color-text);
+    font-family:"Cinzel", serif;
+    font-size:clamp(12px, 2.5vw, 15px);
+    font-weight:500;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+.wedding-calendar-line{
+    display:block;
+    width:100%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(107,39,55,.78),
+        transparent
+    );
+}
+
+.wedding-details .wedding-details-count-title{
+    margin:0 auto 22px;
+    color:rgba(39,35,35,.72);
+    font-family:"Cormorant Garamond", Georgia, serif;
+    font-size:clamp(19px, 3.4vw, 25px);
+    font-weight:400;
+    line-height:1.25;
+    letter-spacing:.2px;
+    text-transform:none;
+}
+
+.wedding-details-count-title > span{
+    display:block;
+    margin-top:1px;
+    color:var(--color-wine);
+    font-family:"Great Vibes", cursive;
+    font-size:clamp(31px, 5vw, 43px);
+    line-height:1.15;
+}
+
+.wedding-details .countdown{
+    width:min(100%, 560px);
+    margin:0 auto 24px;
+    gap:0;
 }
 
 .wedding-details .time-box{
