@@ -10372,3 +10372,12 @@ body.invitation-open .hero .hero-audio-player{
         line-height: 1.18 !important;
     }
 }
+
+/* v98 · Igual separación entre los tres grupos familiares */
+.family-section .parents-col:last-child {
+    margin-bottom: 0 !important;
+}
+
+.family-section .godparents-block {
+    padding-top: 30px !important;
+}
