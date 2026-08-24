@@ -1,6 +1,80 @@
 "use strict";
 
 /* =====================================================
+   v111 · NUEVA SECUENCIA NARRATIVA
+===================================================== */
+(function applyInvitationPageOrderV111() {
+    const hero = document.querySelector(".hero");
+    const family = document.getElementById("bendicion");
+    const weddingDetails = document.getElementById("detalles-principales");
+    const existingPhoto = document.querySelector(".full-page-couple-photo");
+    const places = document.getElementById("lugares");
+    const itinerary = document.getElementById("cronograma");
+    const details = document.getElementById("dresscode");
+    const scrollHint = document.querySelector(".hero-scroll-hint");
+
+    if (hero && family) {
+        hero.insertAdjacentElement("afterend", family);
+    }
+
+    if (family && weddingDetails) {
+        family.insertAdjacentElement("afterend", weddingDetails);
+    }
+
+    if (weddingDetails && existingPhoto) {
+        weddingDetails.insertAdjacentElement("afterend", existingPhoto);
+    }
+
+    if (itinerary && places) {
+        itinerary.insertAdjacentElement("beforebegin", places);
+    }
+
+    function createStoryPhoto(className, src, alt, label) {
+        const section = document.createElement("section");
+        const image = document.createElement("img");
+
+        section.className = "story-photo-v111 " + className;
+        section.setAttribute("aria-label", label);
+        image.src = src;
+        image.alt = alt;
+        image.loading = "lazy";
+        image.decoding = "async";
+        section.appendChild(image);
+
+        return section;
+    }
+
+    if (itinerary && !document.querySelector(".story-photo-v111--itinerary")) {
+        itinerary.insertAdjacentElement(
+            "afterend",
+            createStoryPhoto(
+                "story-photo-v111--itinerary",
+                "img/foto-despues-itinerario-v111.webp?v=111",
+                "Gerson e Isabel celebrando juntos durante su sesión de preboda",
+                "Fotografía de Gerson e Isabel después del itinerario"
+            )
+        );
+    }
+
+    if (details && !document.querySelector(".story-photo-v111--details")) {
+        details.insertAdjacentElement(
+            "afterend",
+            createStoryPhoto(
+                "story-photo-v111--details",
+                "img/foto-despues-detalles-v111.webp?v=111",
+                "Isabel apoyada en el hombro de Gerson durante su sesión de preboda",
+                "Fotografía de Gerson e Isabel después de los detalles"
+            )
+        );
+    }
+
+    if (scrollHint) {
+        scrollHint.setAttribute("href", "#bendicion");
+    }
+})();
+
+
+/* =====================================================
    DATOS PERSONALIZADOS DEL INVITADO
    Ejemplo:
    ?n=Familia%20Pérez&p=4&codigo=GI26-001
