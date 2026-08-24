@@ -58,3 +58,15 @@
         margin-bottom: 8px !important;
     }
 }
+
+/* v109 · Nueva fotografía entre el ticket y la bendición */
+.full-page-couple-photo img[src="img/foto-antes-bendicion.webp"] {
+    content: url("../img/foto-antes-bendicion.webp?v=109") !important;
+    object-position: 50% 35% !important;
+}
+
+@media (max-width: 575.98px) {
+    .full-page-couple-photo img[src="img/foto-antes-bendicion.webp"] {
+        object-position: 42% 50% !important;
+    }
+}
