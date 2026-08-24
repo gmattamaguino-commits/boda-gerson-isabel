@@ -767,16 +767,52 @@ window.closeLightbox = function () {
     lightboxReturnFocus?.focus?.();
 };
 
-function initAdvancedGallery() {
-    const lightbox = document.getElementById("lightbox");
-    const stage = document.getElementById("lightbox-stage");
-    if (!lightbox || !stage) return;
+function ensureGalleryLightbox() {
+    let lightbox = document.getElementById("lightbox");
 
-    getGalleryImages().forEach(image => {
+    if (!lightbox) {
+        lightbox = document.createElement("div");
+        lightbox.id = "lightbox";
+        lightbox.className = "lightbox";
+        lightbox.setAttribute("role", "dialog");
+        lightbox.setAttribute("aria-modal", "true");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightbox.setAttribute("aria-label", "Galería ampliada");
+        lightbox.innerHTML = `
+            <button aria-label="Cerrar galería" class="lightbox-close" id="lightbox-close" type="button">×</button>
+            <button aria-label="Fotografía anterior" class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button">‹</button>
+            <div class="lightbox-stage" id="lightbox-stage">
+                <img alt="Foto ampliada" id="lightbox-img" src="">
+            </div>
+            <button aria-label="Fotografía siguiente" class="lightbox-nav lightbox-next" id="lightbox-next" type="button">›</button>
+            <p aria-live="polite" class="lightbox-counter" id="lightbox-counter">1 de 7</p>
+        `;
+        document.body.appendChild(lightbox);
+    }
+
+    return {
+        lightbox,
+        stage: lightbox.querySelector("#lightbox-stage")
+    };
+}
+
+function initAdvancedGallery() {
+    const gallery = document.getElementById("galeria");
+    const galleryImages = getGalleryImages();
+    gallery?.classList.add("gallery-enhanced");
+
+    galleryImages.forEach(image => {
         const revealImage = () => image.classList.add("is-loaded");
-        if (image.complete) revealImage();
-        else image.addEventListener("load", revealImage, { once: true });
+        if (image.complete) {
+            revealImage();
+        } else {
+            image.addEventListener("load", revealImage, { once: true });
+            image.addEventListener("error", revealImage, { once: true });
+        }
     });
+
+    const { lightbox, stage } = ensureGalleryLightbox();
+    if (!lightbox || !stage) return;
 
     document.getElementById("lightbox-close")?.addEventListener("click", window.closeLightbox);
     document.getElementById("lightbox-prev")?.addEventListener("click", () => window.navigateLightbox(-1));
