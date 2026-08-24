@@ -70,3 +70,15 @@
         object-position: 42% 50% !important;
     }
 }
+
+/* v110 · Nueva fotografía entre padrinos e itinerario */
+.family-section::after {
+    background-image: url("../img/foto-antes-cronograma.webp?v=110") !important;
+    background-position: 50% 45% !important;
+}
+
+@media (max-width: 575.98px) {
+    .family-section::after {
+        background-position: 58% 50% !important;
+    }
+}
