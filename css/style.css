@@ -10979,3 +10979,295 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 13px !important;
     }
 }
+
+/* v105 · Detalles: Dress Code y celebración para adultos en una sola hoja */
+#dresscode {
+    padding: 72px 0 54px !important;
+    text-align: center !important;
+}
+
+#dresscode > .container {
+    width: 100% !important;
+    max-width: 460px !important;
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+}
+
+#dresscode .subtitle-section,
+#dresscode .dresscode-intro {
+    display: none !important;
+}
+
+#dresscode .title-section {
+    margin: 0 auto 5px !important;
+    color: var(--color-text) !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#dresscode .title-section::after {
+    content: "Detalles";
+    display: block;
+    color: var(--color-text);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 44px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: .01em;
+    text-transform: none;
+}
+
+#dresscode .divider-center {
+    display: block !important;
+    width: min(185px, 55vw) !important;
+    margin: 7px auto 15px !important;
+}
+
+#dresscode .dresscode-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: 424px !important;
+    margin: 0 auto 20px !important;
+}
+
+#dresscode .dresscode-card {
+    display: none !important;
+}
+
+#dresscode .dresscode-card:first-child {
+    position: relative !important;
+    isolation: isolate;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 22px 24px 28px !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(252,248,246,.97)) !important;
+    border: 1px solid rgba(205,169,112,.72) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 20px rgba(91,62,68,.08) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+#dresscode .dresscode-card:first-child::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 6px !important;
+    z-index: 0 !important;
+    display: block !important;
+    border: 1px solid rgba(224,203,171,.46) !important;
+    border-radius: 18px !important;
+    pointer-events: none;
+}
+
+#dresscode .dresscode-card:first-child::after {
+    content: "Agradecemos evitar en vestidos y ternos:\A blanco, beige y sus tonalidades." !important;
+    position: relative !important;
+    z-index: 1 !important;
+    display: block !important;
+    margin-top: 9px !important;
+    color: rgba(42,39,40,.78) !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    line-height: 1.42 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: pre-line !important;
+}
+
+#dresscode .dresscode-icon {
+    position: relative !important;
+    z-index: 1 !important;
+    display: block !important;
+    width: 150px !important;
+    height: 142px !important;
+    margin: 0 auto 4px !important;
+    background-color: transparent !important;
+    background-image: url("../img/dresscode-pareja-v105.webp") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+#dresscode .dresscode-icon .line-icon {
+    display: none !important;
+}
+
+#dresscode .dresscode-card:first-child h3 {
+    position: relative !important;
+    z-index: 1 !important;
+    margin: 0 0 7px !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#dresscode .dresscode-card:first-child h3::after {
+    content: "DRESS CODE";
+    display: block;
+    color: var(--color-wine);
+    font-family: "Cinzel", serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: .34em;
+}
+
+#dresscode .dresscode-card:first-child p {
+    position: relative !important;
+    z-index: 1 !important;
+    margin: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#dresscode .dresscode-card:first-child p::after {
+    content: "FORMAL ELEGANTE";
+    display: block;
+    color: var(--color-text);
+    font-family: "Cinzel", serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: .08em;
+}
+
+#dresscode > .dresscode-restricted {
+    position: relative !important;
+    isolation: isolate;
+    box-sizing: border-box !important;
+    width: calc(100% - 36px) !important;
+    max-width: 424px !important;
+    margin: 0 auto !important;
+    padding: 20px 25px 26px !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(252,248,246,.97)) !important;
+    border: 1px solid rgba(205,169,112,.72) !important;
+    border-radius: 24px !important;
+    box-shadow:
+        0 8px 20px rgba(91,62,68,.08),
+        inset 0 0 0 6px rgba(255,255,255,.55),
+        inset 0 0 0 7px rgba(224,203,171,.40) !important;
+}
+
+#dresscode > .dresscode-restricted::before {
+    content: "" !important;
+    position: relative !important;
+    display: block !important;
+    width: 120px !important;
+    height: 105px !important;
+    margin: 0 auto 4px !important;
+    background-color: transparent !important;
+    background-image: url("../img/celebracion-adultos-v105.webp") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+#dresscode .restricted-colors,
+#dresscode .restricted-special-note {
+    display: none !important;
+}
+
+#dresscode > .dresscode-restricted .restricted-title {
+    margin: 0 auto 10px !important;
+    color: var(--color-text) !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#dresscode > .dresscode-restricted .restricted-title::after {
+    content: "CELEBRACIÓN SOLO\A PARA ADULTOS";
+    display: block;
+    color: var(--color-text);
+    font-family: "Cinzel", serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.32;
+    letter-spacing: .06em;
+    white-space: pre-line;
+}
+
+#dresscode > .dresscode-restricted .restricted-note {
+    margin: 0 auto !important;
+    color: rgba(42,39,40,.78) !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#dresscode > .dresscode-restricted .restricted-note::after {
+    content: "Para que todos disfruten cómodamente de esta ocasión especial, nuestra celebración será exclusivamente para adultos. Agradecemos su comprensión.";
+    display: block;
+    max-width: 330px;
+    margin: 0 auto;
+    color: rgba(42,39,40,.78);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.42;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+/* El bloque independiente anterior deja de mostrarse. */
+#info-ninos {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    #dresscode {
+        padding-top: 56px !important;
+        padding-bottom: 42px !important;
+    }
+
+    #dresscode .title-section::after {
+        font-size: 36px;
+    }
+
+    #dresscode .dresscode-card:first-child {
+        padding: 18px 20px 24px !important;
+        border-radius: 21px !important;
+    }
+
+    #dresscode .dresscode-card:first-child::before {
+        border-radius: 15px !important;
+    }
+
+    #dresscode .dresscode-icon {
+        width: 132px !important;
+        height: 126px !important;
+    }
+
+    #dresscode .dresscode-card:first-child h3::after {
+        font-size: 11px;
+    }
+
+    #dresscode .dresscode-card:first-child p::after,
+    #dresscode > .dresscode-restricted .restricted-title::after {
+        font-size: 18px;
+    }
+
+    #dresscode .dresscode-card:first-child::after,
+    #dresscode > .dresscode-restricted .restricted-note::after {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+
+    #dresscode > .dresscode-restricted {
+        padding: 17px 21px 23px !important;
+        border-radius: 21px !important;
+    }
+
+    #dresscode > .dresscode-restricted::before {
+        width: 105px !important;
+        height: 94px !important;
+    }
+}
