@@ -370,7 +370,7 @@ RESET
 
 /* 3. La línea temporal se completa al entrar en pantalla. */
 .cronograma .schedule-grid::before{
-    clip-path:inset(0 100% 0 0);
+    clip-path:inset(0 0 100% 0);
     transition:clip-path 1.15s .1s cubic-bezier(.2,.72,.25,1);
 }
 
@@ -10586,7 +10586,6 @@ body.invitation-open .hero .hero-audio-player{
     -webkit-backdrop-filter: none !important;
     opacity: 1;
     transform: none;
-    animation: none;
 }
 
 #cronograma .schedule-card--right {
