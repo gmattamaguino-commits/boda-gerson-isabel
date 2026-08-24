@@ -10926,3 +10926,15 @@ body.invitation-open .hero .hero-audio-player{
         background-size: 28px 1.5px !important;
     }
 }
+
+/* v103 · Fondo transparente del itinerario sobre el papel floral */
+#cronograma .schedule-grid {
+    background-color: transparent !important;
+    background-size:
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        1.5px 100% !important;
+}
