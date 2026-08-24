@@ -10613,3 +10613,26 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 11.5px !important;
     }
 }
+
+/* v101 · Renombra Cronograma como Itinerario */
+#cronograma .subtitle-section {
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#cronograma .subtitle-section::after {
+    content: "ITINERARIO";
+    display: block;
+    color: var(--color-mauve);
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    line-height: 1.3;
+    letter-spacing: 6px;
+}
+
+@media (max-width: 768px) {
+    #cronograma .subtitle-section::after {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+}
