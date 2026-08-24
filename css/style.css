@@ -370,25 +370,21 @@ RESET
 
 /* 3. La línea temporal se completa al entrar en pantalla. */
 .cronograma .schedule-grid::before{
-    clip-path:inset(0 0 100% 0);
-    transition:clip-path 1.15s .1s cubic-bezier(.2,.72,.25,1);
-}
-
-.cronograma .schedule-grid.timeline-animated::before{
-    clip-path:inset(0 0 0 0);
+    clip-path:none;
 }
 
 .cronograma .schedule-grid.timeline-animated .schedule-card{
-    animation:timelineCardArrival .62s cubic-bezier(.2,.75,.25,1) both;
+    animation:timelineCardArrival .52s cubic-bezier(.22,.7,.25,1) both;
 }
 
-.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(2){ animation-delay:.10s; }
-.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(3){ animation-delay:.20s; }
-.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(4){ animation-delay:.30s; }
-.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(5){ animation-delay:.40s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(1){ animation-delay:.10s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(2){ animation-delay:.36s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(3){ animation-delay:.62s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(4){ animation-delay:.88s; }
+.cronograma .schedule-grid.timeline-animated .schedule-card:nth-child(5){ animation-delay:1.14s; }
 
 @keyframes timelineCardArrival{
-    from{ opacity:0; transform:translateY(14px); }
+    from{ opacity:0; transform:translateY(10px); }
     to{ opacity:1; transform:translateY(0); }
 }
 
@@ -449,11 +445,7 @@ RESET
 
 @media(max-width:768px){
     .cronograma .schedule-grid::before{
-        clip-path:inset(0 0 100% 0);
-    }
-
-    .cronograma .schedule-grid.timeline-animated::before{
-        clip-path:inset(0 0 0 0);
+        clip-path:none;
     }
 }
 
@@ -473,6 +465,10 @@ RESET
         animation:none !important;
         opacity:1 !important;
         transform:none !important;
+    }
+
+    #cronograma .schedule-grid::before{
+        transform:translateX(-50%) scaleY(1) !important;
     }
 }
 
@@ -10560,8 +10556,15 @@ body.invitation-open .hero .hero-audio-player{
     z-index: 0;
     width: 1.5px;
     height: auto;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform 1.35s cubic-bezier(.22, .65, .3, 1);
+    will-change: transform;
     background: rgba(183, 138, 60, .78);
+}
+
+#cronograma .schedule-grid.timeline-animated::before {
+    transform: translateX(-50%) scaleY(1);
 }
 
 #cronograma .schedule-card {
@@ -10584,8 +10587,9 @@ body.invitation-open .hero .hero-audio-player{
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    opacity: 1;
-    transform: none;
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: opacity, transform;
 }
 
 #cronograma .schedule-card--right {
