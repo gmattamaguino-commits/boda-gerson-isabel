@@ -36,3 +36,25 @@
     --transition: all .35s ease;
     --shadow: 0 10px 30px rgba(0,0,0,.12);
 }
+
+/* v108 · Ilustración elegida para sugerir canciones */
+#rsvp .rsvp-song-content::before {
+    content: "" !important;
+    display: block !important;
+    width: min(185px, 58vw) !important;
+    height: 66px !important;
+    margin: 0 auto 9px !important;
+    background-color: transparent !important;
+    background-image: url("../img/cancion-vinilo-v108.webp") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+@media (max-width: 768px) {
+    #rsvp .rsvp-song-content::before {
+        width: min(168px, 55vw) !important;
+        height: 59px !important;
+        margin-bottom: 8px !important;
+    }
+}
