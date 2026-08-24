@@ -10488,12 +10488,19 @@ body.invitation-open .hero .hero-audio-player{
     white-space: pre-line;
 }
 
-#lugares .place-card .btn-place::after {
+#lugares .place-card .btn-place::before {
     content: "Ver ubicación";
+    position: relative;
+    z-index: 1;
+    display: block;
     color: #fff;
     font-family: "Cormorant Garamond", Georgia, serif;
     font-size: 14px;
     line-height: 1;
+}
+
+#lugares .place-card:nth-child(2) .place-arrival-note {
+    display: none !important;
 }
 
 @media (max-width: 768px) {
