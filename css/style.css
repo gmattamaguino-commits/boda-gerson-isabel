@@ -10381,3 +10381,131 @@ body.invitation-open .hero .hero-audio-player{
 .family-section .godparents-block {
     padding-top: 30px !important;
 }
+
+/* v99 · Ilustraciones de iglesia y brindis en las tarjetas de lugares */
+.place-card .place-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 2px auto 12px;
+    line-height: 0;
+}
+
+.place-card .place-illustration img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.place-card .place-illustration--church img {
+    width: min(270px, 78vw);
+    max-height: 190px;
+}
+
+.place-card .place-illustration--toast {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.place-card .place-illustration--toast img {
+    width: min(150px, 44vw);
+    max-height: 108px;
+}
+
+.place-card:nth-child(2) > h3 {
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
+.place-card .place-address {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .place-card .place-illustration--church img {
+        width: min(225px, 72vw);
+        max-height: 165px;
+    }
+
+    .place-card .place-illustration--toast img {
+        width: min(125px, 40vw);
+        max-height: 92px;
+    }
+}
+
+/* Respaldo visual v99: aplica el nuevo diseño sin alterar datos privados del documento. */
+#lugares .place-card > h3::after {
+    content: "";
+    display: block;
+    margin: 8px auto 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#lugares .place-card:first-child > h3::after {
+    width: min(270px, 78vw);
+    aspect-ratio: 1136 / 841;
+    background-image: url("../img/iglesia-ceremonia-v99.webp");
+}
+
+#lugares .place-card:nth-child(2) > h3::after {
+    width: min(150px, 44vw);
+    aspect-ratio: 839 / 558;
+    margin-bottom: 8px;
+    background-image: url("../img/copas-brindis-v99.webp");
+}
+
+#lugares .place-card:first-child .place-name,
+#lugares .place-card:nth-child(2) .place-address,
+#lugares .place-card .btn-place {
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#lugares .place-card:first-child .place-name::after {
+    content: "Catedral San Pedro de Lurín";
+    display: block;
+    color: var(--color-wine);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+#lugares .place-card:nth-child(2) .place-address::after {
+    content: "Sub-Parcela 34, Asociación Villa Rica,\A Av. César Vallejo con Av. Separadora Agroindustrial - Villa El Salvador";
+    display: block;
+    color: rgba(42,39,40,.74);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+#lugares .place-card .btn-place::after {
+    content: "Ver ubicación";
+    color: #fff;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 14px;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    #lugares .place-card:first-child > h3::after {
+        width: min(225px, 72vw);
+    }
+
+    #lugares .place-card:nth-child(2) > h3::after {
+        width: min(125px, 40vw);
+    }
+
+    #lugares .place-card:nth-child(2) .place-address::after {
+        font-size: 13px;
+    }
+}
