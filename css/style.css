@@ -10352,3 +10352,23 @@ body.invitation-open .hero .hero-audio-player{
         background-size: cover !important;
     }
 }
+
+/* v97 · Nombres familiares con serif cursiva de la referencia */
+.family-section .parents-name,
+.family-section .godparents-name {
+    color: var(--color-text) !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.16 !important;
+    text-transform: none !important;
+}
+
+@media (max-width: 768px) {
+    .family-section .parents-name,
+    .family-section .godparents-name {
+        font-size: 22px !important;
+        line-height: 1.18 !important;
+    }
+}
