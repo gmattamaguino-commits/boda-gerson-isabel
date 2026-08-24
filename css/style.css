@@ -10636,3 +10636,293 @@ body.invitation-open .hero .hero-audio-player{
         letter-spacing: 4px;
     }
 }
+
+/* v102 · Itinerario alternado con línea central e ilustraciones */
+#cronograma .subtitle-section,
+#cronograma .divider-center {
+    display: none !important;
+}
+
+#cronograma .title-section {
+    margin: 0 auto 22px !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#cronograma .title-section::after {
+    content: "Itinerario de\A nuestra boda";
+    display: block;
+    color: var(--color-text);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(40px, 8vw, 58px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: .95;
+    white-space: pre-line;
+}
+
+#cronograma .schedule-grid {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    padding: 10px 0 !important;
+    gap: 0 !important;
+    overflow: visible !important;
+    background-image:
+        radial-gradient(circle at 50% 10%, #b78a3c 0 6px, #fffaf7 6.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 50% 30%, #b78a3c 0 6px, #fffaf7 6.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 50% 50%, #b78a3c 0 6px, #fffaf7 6.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 50% 70%, #b78a3c 0 6px, #fffaf7 6.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 50% 90%, #b78a3c 0 6px, #fffaf7 6.5px 8px, transparent 8.5px),
+        linear-gradient(180deg, transparent 0 10%, rgba(183,138,60,.78) 10% 90%, transparent 90%) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+}
+
+#cronograma .schedule-card,
+#cronograma .schedule-grid::before,
+#cronograma .schedule-grid::after {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 1 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 50% !important;
+    min-height: 150px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 8px 14px !important;
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}
+
+#cronograma .schedule-card::before,
+#cronograma .schedule-card::after {
+    content: none !important;
+    display: none !important;
+}
+
+#cronograma .schedule-card:nth-child(1),
+#cronograma .schedule-grid::before,
+#cronograma .schedule-grid::after {
+    margin-left: 50% !important;
+    margin-right: 0 !important;
+    background-position: left center !important;
+}
+
+#cronograma .schedule-card:nth-child(2),
+#cronograma .schedule-card:nth-child(3) {
+    margin-left: 0 !important;
+    margin-right: 50% !important;
+    background-position: right center !important;
+}
+
+#cronograma .schedule-card:nth-child(1) {
+    order: 1;
+    background-image: linear-gradient(90deg, rgba(183,138,60,.78), rgba(183,138,60,.78)) !important;
+    background-repeat: no-repeat !important;
+    background-size: 34px 1.5px !important;
+}
+
+#cronograma .schedule-card:nth-child(2) {
+    order: 2;
+    background-image: linear-gradient(90deg, rgba(183,138,60,.78), rgba(183,138,60,.78)) !important;
+    background-repeat: no-repeat !important;
+    background-size: 34px 1.5px !important;
+}
+
+#cronograma .schedule-grid::before {
+    content: "INGRESO DE LOS NOVIOS\A 5:00 P. M." !important;
+    order: 3;
+    padding-top: 100px !important;
+    justify-content: flex-start !important;
+    clip-path: none !important;
+    color: var(--color-text) !important;
+    font-family: "Cinzel", serif;
+    font-size: 17px;
+    line-height: 1.4;
+    letter-spacing: .03em;
+    text-align: center;
+    white-space: pre-line;
+    pointer-events: none;
+    background-image:
+        url("../img/itinerario-pareja-v102.webp"),
+        linear-gradient(90deg, rgba(183,138,60,.78), rgba(183,138,60,.78)) !important;
+    background-position: center 7px, left center !important;
+    background-repeat: no-repeat !important;
+    background-size: auto 88px, 34px 1.5px !important;
+}
+
+#cronograma .schedule-card:nth-child(3) {
+    order: 4;
+    background-image: linear-gradient(90deg, rgba(183,138,60,.78), rgba(183,138,60,.78)) !important;
+    background-repeat: no-repeat !important;
+    background-size: 34px 1.5px !important;
+}
+
+#cronograma .schedule-grid::after {
+    content: "¡A BAILAR!\A 9:00 P. M." !important;
+    order: 5;
+    padding-top: 100px !important;
+    color: var(--color-text) !important;
+    font-family: "Cinzel", serif;
+    font-size: 17px;
+    line-height: 1.4;
+    letter-spacing: .03em;
+    text-align: center;
+    white-space: pre-line;
+    pointer-events: none;
+    background-image:
+        url("../img/itinerario-baile-v102.webp"),
+        linear-gradient(90deg, rgba(183,138,60,.78), rgba(183,138,60,.78)) !important;
+    background-position: center 7px, left center !important;
+    background-repeat: no-repeat !important;
+    background-size: auto 86px, 34px 1.5px !important;
+}
+
+#cronograma .schedule-card + .schedule-card {
+    border-top: 0 !important;
+}
+
+#cronograma .schedule-card-icon {
+    order: 1;
+    width: 94px !important;
+    height: 86px !important;
+    margin: 0 auto 3px !important;
+    background-color: transparent !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
+
+#cronograma .schedule-card:nth-child(1) .schedule-card-icon {
+    background-image: url("../img/itinerario-anillos-v102.webp") !important;
+}
+
+#cronograma .schedule-card:nth-child(2) .schedule-card-icon {
+    background-image: url("../img/itinerario-arco-v102.webp") !important;
+}
+
+#cronograma .schedule-card:nth-child(3) .schedule-card-icon {
+    background-image: url("../img/itinerario-cena-v102.webp") !important;
+}
+
+#cronograma .schedule-card-icon .line-icon {
+    display: none !important;
+}
+
+#cronograma .schedule-card h3 {
+    order: 2;
+    margin: 0 0 3px !important;
+    color: var(--color-text) !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: .03em !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+}
+
+#cronograma .schedule-card-time {
+    order: 3;
+    margin: 0 !important;
+    color: var(--color-wine) !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: .07em !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+
+#cronograma .schedule-card:nth-child(1) .schedule-card-time {
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+#cronograma .schedule-card:nth-child(1) .schedule-card-time::after {
+    content: "11:00 A. M.";
+    display: block;
+    font-size: 15px;
+    line-height: 1.25;
+}
+
+#cronograma .schedule-card p {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    #cronograma .title-section {
+        margin-bottom: 16px !important;
+    }
+
+    #cronograma .title-section::after {
+        font-size: clamp(38px, 12vw, 48px);
+    }
+
+    #cronograma .schedule-grid {
+        max-width: 380px !important;
+    }
+
+    #cronograma .schedule-card,
+    #cronograma .schedule-grid::before,
+    #cronograma .schedule-grid::after {
+        min-height: 142px !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    #cronograma .schedule-card-icon {
+        width: 82px !important;
+        height: 76px !important;
+    }
+
+    #cronograma .schedule-card h3 {
+        font-size: 15px !important;
+    }
+
+    #cronograma .schedule-card-time,
+    #cronograma .schedule-card:nth-child(1) .schedule-card-time::after {
+        font-size: 12px !important;
+    }
+
+    #cronograma .schedule-grid::before,
+    #cronograma .schedule-grid::after {
+        padding-top: 88px !important;
+        font-size: 14px;
+    }
+
+    #cronograma .schedule-grid::before {
+        background-size: auto 78px, 28px 1.5px !important;
+    }
+
+    #cronograma .schedule-grid::after {
+        background-size: auto 74px, 28px 1.5px !important;
+    }
+
+    #cronograma .schedule-card:nth-child(1),
+    #cronograma .schedule-card:nth-child(2),
+    #cronograma .schedule-card:nth-child(3) {
+        background-size: 28px 1.5px !important;
+    }
+}
