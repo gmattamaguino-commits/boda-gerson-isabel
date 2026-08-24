@@ -1,78 +1,8 @@
 "use strict";
 
-/* =====================================================
-   v111 · NUEVA SECUENCIA NARRATIVA
-===================================================== */
-(function applyInvitationPageOrderV111() {
-    const hero = document.querySelector(".hero");
-    const family = document.getElementById("bendicion");
-    const weddingDetails = document.getElementById("detalles-principales");
-    const existingPhoto = document.querySelector(".full-page-couple-photo");
-    const places = document.getElementById("lugares");
-    const itinerary = document.getElementById("cronograma");
-    const details = document.getElementById("dresscode");
-    const scrollHint = document.querySelector(".hero-scroll-hint");
-
-    if (hero && family) {
-        hero.insertAdjacentElement("afterend", family);
-    }
-
-    if (family && weddingDetails) {
-        family.insertAdjacentElement("afterend", weddingDetails);
-    }
-
-    if (weddingDetails && existingPhoto) {
-        weddingDetails.insertAdjacentElement("afterend", existingPhoto);
-    }
-
-    if (itinerary && places) {
-        itinerary.insertAdjacentElement("beforebegin", places);
-    }
-
-    function createStoryPhoto(className, src, alt, label) {
-        const section = document.createElement("section");
-        const image = document.createElement("img");
-
-        section.className = "story-photo-v111 " + className;
-        section.setAttribute("aria-label", label);
-        image.src = src;
-        image.alt = alt;
-        image.loading = "lazy";
-        image.decoding = "async";
-        section.appendChild(image);
-
-        return section;
-    }
-
-    if (itinerary && !document.querySelector(".story-photo-v111--itinerary")) {
-        itinerary.insertAdjacentElement(
-            "afterend",
-            createStoryPhoto(
-                "story-photo-v111--itinerary",
-                "img/foto-despues-itinerario-v111.webp?v=111",
-                "Gerson e Isabel celebrando juntos durante su sesión de preboda",
-                "Fotografía de Gerson e Isabel después del itinerario"
-            )
-        );
-    }
-
-    if (details && !document.querySelector(".story-photo-v111--details")) {
-        details.insertAdjacentElement(
-            "afterend",
-            createStoryPhoto(
-                "story-photo-v111--details",
-                "img/foto-despues-detalles-v111.webp?v=111",
-                "Isabel apoyada en el hombro de Gerson durante su sesión de preboda",
-                "Fotografía de Gerson e Isabel después de los detalles"
-            )
-        );
-    }
-
-    if (scrollHint) {
-        scrollHint.setAttribute("href", "#bendicion");
-    }
-})();
-
+const WEDDING_CONFIG = Object.freeze({
+    dateTime: "2026-10-24T11:00:00-05:00"
+});
 
 /* =====================================================
    DATOS PERSONALIZADOS DEL INVITADO
@@ -249,9 +179,7 @@ function startCountdown() {
         return;
     }
 
-    const weddingDate = new Date(
-        "2026-10-24T12:00:00-05:00"
-    ).getTime();
+    const weddingDate = new Date(WEDDING_CONFIG.dateTime).getTime();
 
     function updateCountdown() {
         const distance = weddingDate - Date.now();
@@ -712,7 +640,6 @@ function initRevealAnimations() {
             .dresscode-card,
             .form-cta,
             .regalo-card,
-            .info-ninos-card,
             .gallery-item,
             .gracias-content
         `);
@@ -778,156 +705,7 @@ function initRevealAnimations() {
 
 
 /* =====================================================
-   MAPAS DESPLEGABLES
-===================================================== */
-
-window.showMap = function (
-    containerId,
-    coordinates
-) {
-    const mapContainer =
-        document.getElementById(
-            containerId
-        );
-
-    if (!mapContainer) {
-        return;
-    }
-
-    const isOpen =
-        mapContainer.classList.contains(
-            "is-open"
-        );
-
-    if (isOpen) {
-        mapContainer.classList.remove(
-            "is-open"
-        );
-
-        mapContainer.innerHTML = `
-            <button
-                type="button"
-                class="map-toggle"
-                aria-expanded="false"
-                onclick="showMap(
-                    '${containerId}',
-                    '${coordinates}'
-                )"
-            >
-                <span
-                    class="map-toggle-icon"
-                    aria-hidden="true"
-                >
-                    <svg class="line-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
-                        <circle cx="12" cy="10" r="2.5"></circle>
-                    </svg>
-                </span>
-
-                <span>
-                    Ver mapa
-                </span>
-            </button>
-        `;
-
-        return;
-    }
-
-    mapContainer.classList.add("is-open");
-
-    const mapURL =
-        `https://www.google.com/maps?q=${
-            encodeURIComponent(coordinates)
-        }&z=16&output=embed`;
-
-    mapContainer.innerHTML = `
-        <div class="map-expanded">
-
-            <iframe
-                src="${mapURL}"
-                title="Mapa de ubicación"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-
-            <button
-                type="button"
-                class="map-close-button"
-                aria-label="Cerrar mapa"
-                onclick="showMap(
-                    '${containerId}',
-                    '${coordinates}'
-                )"
-            >
-                Cerrar mapa
-            </button>
-
-        </div>
-    `;
-};
-
-
-/* =====================================================
-   GALERÍA Y LIGHTBOX
-===================================================== */
-
-window.openLightbox = function (
-    galleryItem
-) {
-    const image =
-        galleryItem?.querySelector("img");
-
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-    const lightboxImage =
-        document.getElementById(
-            "lightbox-img"
-        );
-
-    if (
-        !image ||
-        !lightbox ||
-        !lightboxImage
-    ) {
-        return;
-    }
-
-    lightboxImage.src =
-        image.currentSrc ||
-        image.src;
-
-    lightboxImage.alt =
-        image.alt ||
-        "Fotografía ampliada";
-
-    lightbox.classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-};
-
-window.closeLightbox = function () {
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-    if (!lightbox) {
-        return;
-    }
-
-    lightbox.classList.remove("active");
-
-    document.body.style.overflow = "";
-};
-
-
-/* =====================================================
-   TARJETAS GIRATORIAS DEL DRESS CODE
+   GALERÍA Y LIGHTBOX ACCESIBLE
 ===================================================== */
 
 let currentGalleryIndex = 0;
@@ -1251,134 +1029,6 @@ function initGiftAccountCard() {
         });
     });
 }
-
-/* =====================================================
-   RESUMEN DEL RSVP
-===================================================== */
-
-function showRSVPSummary() {
-    const summary =
-        document.getElementById(
-            "rsvp-summary"
-        );
-
-    const summaryName =
-        document.getElementById(
-            "rsvp-summary-name"
-        );
-
-    const summaryPasses =
-        document.getElementById(
-            "rsvp-summary-passes"
-        );
-
-    if (
-        !summary ||
-        !summaryName ||
-        !summaryPasses
-    ) {
-        return;
-    }
-
-    const guestName =
-        guestData.nombre;
-
-    const passes =
-        Number.parseInt(
-            guestData.pases,
-            10
-        );
-
-    if (!guestName) {
-        summary.hidden = true;
-        return;
-    }
-
-    summaryName.textContent =
-        guestName;
-
-    if (passes === 1) {
-        summaryPasses.textContent =
-            "Tienes 1 lugar reservado.";
-    } else if (
-        Number.isInteger(passes) &&
-        passes > 1
-    ) {
-        summaryPasses.textContent =
-            `Tienen ${passes} lugares reservados.`;
-    } else {
-        summaryPasses.textContent =
-            "Consulta la cantidad de lugares asignados.";
-    }
-
-    summary.hidden = false;
-    summary.removeAttribute("hidden");
-}
-
-
-/* =====================================================
-   MENSAJE SEGÚN LA FECHA
-===================================================== */
-
-function updateWeddingStatusMessage() {
-    const messageElement =
-        document.getElementById(
-            "wedding-status-message"
-        );
-
-    if (!messageElement) {
-        return;
-    }
-
-    const weddingDate =
-        new Date(
-            "2026-10-24T12:00:00-05:00"
-        );
-
-    const difference =
-        weddingDate.getTime() -
-        Date.now();
-
-    const totalDays =
-        Math.ceil(
-            difference /
-            (
-                1000 *
-                60 *
-                60 *
-                24
-            )
-        );
-
-    let message = "";
-
-    if (totalDays < 0) {
-        message =
-            "Gracias por haber sido parte de nuestro gran día.";
-    } else if (totalDays === 0) {
-        message =
-            "¡Hoy es nuestro gran día!";
-    } else if (totalDays === 1) {
-        message =
-            "¡Mañana nos casamos!";
-    } else if (totalDays <= 7) {
-        message =
-            `¡Faltan solo ${totalDays} días!`;
-    } else if (totalDays <= 30) {
-        message =
-            "Estamos a menos de un mes de celebrar juntos.";
-    } else if (totalDays <= 60) {
-        message =
-            "Cada vez falta menos para nuestro gran día.";
-    } else {
-        message =
-            "Contamos los días para celebrar junto a ustedes.";
-    }
-
-    messageElement.textContent =
-        message;
-}
-
 
 /* =====================================================
    CONTROLES DEL TECLADO
@@ -1795,26 +1445,7 @@ function initFallingLeaves() {
 ===================================================== */
 
 function initInvitationEnhancements() {
-    const paths = {
-        church:'<path d="M4 21h16M6 21V10l6-5 6 5v11M9 21v-6h6v6M12 2v5M9.5 4.5h5"/>',
-        party:'<path d="M4 20 9 7l8 8-13 5ZM9 7l8-3M14 12l6-2M15 4l1-2M20 8l2 1"/>',
-        toast:'<path d="M3 3h8l-1 7a3 3 0 0 1-6 0L3 3ZM7 13v6M4 21h6M13 3h8l-1 7a3 3 0 0 1-6 0l-1-7ZM17 13v6M14 21h6"/>',
-        dinner:'<path d="M6 3v7M3 3v5a3 3 0 0 0 6 0V3M6 10v11M15 3v18M15 3c4 2 4 8 0 10"/>',
-        music:'<path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>',
-        suit:'<path d="M8 3l4 3 4-3 3 4-2 14H7L5 7l3-4ZM12 6v15M9 10l3 3 3-3"/>',
-        dress:'<path d="M9 3h6l-1 6 5 12H5l5-12-1-6ZM10 9h4"/>',
-        gift:'<path d="M3 9h18v12H3V9ZM2 5h20v4H2V5ZM12 5v16M12 5c-3 0-5-1-5-3 3-1 5 0 5 3ZM12 5c3 0 5-1 5-3-3-1-5 0-5 3Z"/>',
-        children:'<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7M9 8h.01M15 8h.01M10 11c1 .7 3 .7 4 0"/>',
-        pin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>'
-    };
-    const icon = name => '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">' + paths[name] + '</svg>';
-    const replaceIcons = (selector, names) => document.querySelectorAll(selector).forEach((el, i) => { el.innerHTML = icon(names[i] || names[0]); });
-    replaceIcons('.schedule-card-icon', ['church','party','toast','dinner','music']);
-    replaceIcons('.place-icon', ['church','party']);
-    replaceIcons('.dresscode-icon', ['suit','dress']);
-    replaceIcons('.regalo-icon', ['gift']);
-    replaceIcons('.info-ninos-icon', ['children']);
-    replaceIcons('.map-toggle-icon', ['pin']);
+    const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
 
     const guestCard = document.getElementById('guest-invitation-card');
     if (guestCard && !guestCard.querySelector('.guest-card-welcome')) {
@@ -1827,7 +1458,7 @@ function initInvitationEnhancements() {
     const audio = document.getElementById('wedding-audio');
     if (audio) {
         const music = document.createElement('button');
-        music.type = 'button'; music.className = 'floating-control floating-music'; music.innerHTML = icon('music');
+        music.type = 'button'; music.className = 'floating-control floating-music'; music.innerHTML = musicIcon;
         document.body.appendChild(music);
         const sync = () => { const playing = !audio.paused; music.classList.toggle('is-playing', playing); music.setAttribute('aria-pressed', String(playing)); music.setAttribute('aria-label', playing ? 'Pausar canción' : 'Reproducir canción'); };
         music.addEventListener('click', async () => { try { if (audio.paused) await audio.play(); else audio.pause(); } catch (_) { music.setAttribute('aria-label','No se pudo reproducir la canción'); } });
@@ -1858,8 +1489,6 @@ document.addEventListener(
         initRevealAnimations();
         initGiftAccountCard();
         configureRSVPForm();
-        showRSVPSummary();
-        updateWeddingStatusMessage();
         initKeyboardControls();
         initFallingLeaves();
         initInvitationEnhancements();
