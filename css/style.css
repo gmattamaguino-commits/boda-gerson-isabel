@@ -11271,3 +11271,47 @@ body.invitation-open .hero .hero-audio-player{
         height: 94px !important;
     }
 }
+
+/* v106 · Ilustraciones ornamentales en regalo y confirmación */
+#regalo .gift-accordion .regalo-icon {
+    display: block !important;
+    width: min(210px, 65vw) !important;
+    height: 52px !important;
+    margin: 0 auto 9px !important;
+    background-color: transparent !important;
+    background-image: url("../img/regalo-ornamento-v106.webp") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+#regalo .gift-accordion .regalo-icon .line-icon {
+    display: none !important;
+}
+
+#rsvp .rsvp-confirm-content::before {
+    content: "" !important;
+    display: block !important;
+    width: min(185px, 58vw) !important;
+    height: 66px !important;
+    margin: 0 auto 9px !important;
+    background-color: transparent !important;
+    background-image: url("../img/confirmacion-ornamento-v106.webp") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
+
+@media (max-width: 768px) {
+    #regalo .gift-accordion .regalo-icon {
+        width: min(185px, 60vw) !important;
+        height: 45px !important;
+        margin-bottom: 8px !important;
+    }
+
+    #rsvp .rsvp-confirm-content::before {
+        width: min(168px, 55vw) !important;
+        height: 59px !important;
+        margin-bottom: 8px !important;
+    }
+}
