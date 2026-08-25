@@ -11787,3 +11787,33 @@ body.invitation-open .hero .hero-audio-player{
         height: clamp(50px, 8.4svh, 68px) !important;
     }
 }
+
+
+/* =====================================================
+   v139 · SEPARADORES DE HOJAS ENTRE PADRES Y PADRINOS
+===================================================== */
+
+.family-section .parents-col:not(:last-child)::after,
+.family-section .godparents-block::before {
+    content: "" !important;
+    display: block !important;
+    width: min(230px, 72vw) !important;
+    height: 28px !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    background:
+        linear-gradient(#743044, #743044) left center / 72px 1px no-repeat,
+        linear-gradient(#743044, #743044) right center / 72px 1px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 28'%3E%3Cg fill='none' stroke='%23788768' stroke-width='1.45' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 23C31 21 44 14 63 5'/%3E%3C/g%3E%3Cg fill='%2393A27F'%3E%3Cpath d='M29 19C23 19 19 15 18 10c6 0 10 3 11 9Z'/%3E%3Cpath d='M36 16c-1-6 1-10 6-12 2 6 0 10-6 12Z'/%3E%3Cpath d='M45 12c-1-5 2-9 7-10 1 5-1 9-7 10Z'/%3E%3Cpath d='M49 11c5-2 10 0 13 4-5 3-10 1-13-4Z'/%3E%3Cpath d='M35 16c5-1 9 1 11 5-5 2-9 0-11-5Z'/%3E%3C/g%3E%3C/svg%3E") center / 74px 26px no-repeat !important;
+}
+
+@media (max-width: 768px) {
+    .family-section .parents-col:not(:last-child)::after,
+    .family-section .godparents-block::before {
+        width: min(210px, 70vw) !important;
+        background-size:
+            63px 1px,
+            63px 1px,
+            70px 25px !important;
+    }
+}
