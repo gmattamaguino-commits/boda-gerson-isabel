@@ -11423,3 +11423,16 @@ body.invitation-open .hero .hero-audio-player{
 .hero .hero-content h1 span {
     color: #E7B9C7 !important;
 }
+
+/* v121 · Rótulos del contador ajustados al ancho de cada cuadro. */
+#detalles-principales .countdown .time-box small {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-inline: 2px !important;
+    font-size: clamp(8px, 2.4vw, 10px) !important;
+    letter-spacing: .08em !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
