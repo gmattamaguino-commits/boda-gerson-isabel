@@ -11604,3 +11604,18 @@ body.invitation-open .hero .hero-audio-player{
         max-height: 100px !important;
     }
 }
+
+
+/* =====================================================
+   v131 · NOMBRES Y HORARIOS DE LUGARES MÁS GRANDES
+===================================================== */
+
+#lugares .place-name {
+    font-size: clamp(18px, 2.6vw, 20px) !important;
+    line-height: 1.25 !important;
+}
+
+#lugares .place-time {
+    font-size: clamp(14px, 2vw, 16px) !important;
+    line-height: 1.3 !important;
+}
