@@ -906,42 +906,31 @@ function configureRSVPForm() {
         Boolean(guestCode) &&
         validPasses;
 
+    const formBaseURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfxyaz7drSzgiMviKdOuDYxbv3Oo6Djhbj-38066ikbl6WSmA/viewform";
+
     if (!invitationIsValid) {
-        rsvpButton.href = "#";
+        rsvpButton.href = formBaseURL;
 
-        rsvpButton.removeAttribute(
-            "target"
-        );
+        rsvpButton.target = "_blank";
 
-        rsvpButton.classList.add(
+        rsvpButton.rel =
+            "noopener noreferrer";
+
+        rsvpButton.classList.remove(
             "is-disabled"
         );
 
-        rsvpButton.setAttribute(
-            "aria-disabled",
-            "true"
+        rsvpButton.removeAttribute(
+            "aria-disabled"
         );
 
         if (warning) {
-            warning.hidden = false;
+            warning.hidden = true;
         }
-
-        rsvpButton.addEventListener(
-            "click",
-            event => {
-                event.preventDefault();
-
-                if (warning) {
-                    warning.hidden = false;
-                }
-            }
-        );
 
         return;
     }
-
-    const formBaseURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSfxyaz7drSzgiMviKdOuDYxbv3Oo6Djhbj-38066ikbl6WSmA/viewform";
 
     const formParams =
         new URLSearchParams({
