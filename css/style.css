@@ -11245,3 +11245,19 @@ body.invitation-open .hero .hero-audio-player{
         width: 27px !important;
     }
 }
+
+/* v116 · La página de padres y padrinos ocupa una pantalla completa en móvil. */
+@media (max-width: 768px) {
+    #bendicion {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    #bendicion > .container {
+        width: 100%;
+    }
+}
