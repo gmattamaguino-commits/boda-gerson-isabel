@@ -11444,16 +11444,40 @@ body.invitation-open .hero .hero-audio-player{
     text-align: center !important;
 }
 
-/* v123 · Respiración de la sección familiar y nombres con más contraste. */
+/* v124 · Mayor respiración y padrinos separados en dos líneas. */
 #bendicion .parents-name,
 #bendicion .godparents-name {
     color: #292627 !important;
     font-weight: 600 !important;
 }
 
+#bendicion .godparents-name {
+    font-size: 0 !important;
+}
+
+#bendicion .godparents-name::before,
+#bendicion .godparents-name::after {
+    display: block;
+    color: #292627;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(23px, 3.6vw, 29px);
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: .01em;
+    line-height: 1.15;
+}
+
+#bendicion .godparents-name::before {
+    content: "David Gonzales Francia";
+}
+
+#bendicion .godparents-name::after {
+    content: "Cynthia Olivera Zanabria";
+}
+
 @media (max-width: 768px) {
     #bendicion {
-        padding-top: 38px !important;
-        padding-bottom: 40px !important;
+        padding-top: 58px !important;
+        padding-bottom: 60px !important;
     }
 }
