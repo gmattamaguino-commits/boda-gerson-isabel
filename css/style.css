@@ -11817,3 +11817,18 @@ body.invitation-open .hero .hero-audio-player{
             70px 25px !important;
     }
 }
+
+
+/* =====================================================
+   v140 · RESPIRACIÓN ALREDEDOR DE SEPARADORES FAMILIARES
+===================================================== */
+
+/* Espacio entre Rosa Maguiño Molina y el primer separador. */
+.family-section .parents-col:first-child {
+    padding-bottom: 38px !important;
+}
+
+/* Espacio entre el segundo separador y el rótulo Padrinos. */
+.family-section .godparents-block {
+    padding-top: 38px !important;
+}
