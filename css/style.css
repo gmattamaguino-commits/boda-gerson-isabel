@@ -11282,3 +11282,9 @@ body.invitation-open .hero .hero-audio-player{
         margin-bottom: 18px;
     }
 }
+
+/* v118 · Nombres familiares en negro carbón cálido de la referencia. */
+#bendicion .parents-name,
+#bendicion .godparents-name {
+    color: #2c292a !important;
+}
