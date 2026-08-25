@@ -11763,3 +11763,15 @@ body.invitation-open .hero .hero-audio-player{
         saturate(.9)
         drop-shadow(0 0 .35px rgba(61, 57, 56, .68)) !important;
 }
+
+
+/* =====================================================
+   v137 · ICONOS DEL ITINERARIO UN POCO MÁS GRANDES
+===================================================== */
+
+@media (max-width: 768px) {
+    #cronograma .schedule-card-icon {
+        width: clamp(50px, 8.2svh, 66px) !important;
+        height: clamp(45px, 7.7svh, 60px) !important;
+    }
+}
