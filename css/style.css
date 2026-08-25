@@ -11619,3 +11619,22 @@ body.invitation-open .hero .hero-audio-player{
     font-size: clamp(14px, 2vw, 16px) !important;
     line-height: 1.3 !important;
 }
+
+
+/* =====================================================
+   v132 · TIPOGRAFÍA DE PADRES EN EVENTOS DEL ITINERARIO
+===================================================== */
+
+/* Ceremonia, recepción, ingreso, cena y baile. */
+#cronograma .schedule-card h3 {
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+}
+
+/* Horarios en el mismo guinda, ahora en negrita. */
+#cronograma .schedule-card-time {
+    color: #743044 !important;
+    font-weight: 700 !important;
+}
