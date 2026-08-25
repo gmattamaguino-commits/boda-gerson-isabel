@@ -11436,3 +11436,10 @@ body.invitation-open .hero .hero-audio-player{
     text-align: center !important;
     white-space: nowrap !important;
 }
+
+/* v122 · Título centrado en la tarjeta de confirmación. */
+#rsvp .rsvp-confirm-card .rsvp-confirm-content h3 {
+    width: 100% !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+}
