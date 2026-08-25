@@ -11652,3 +11652,80 @@ body.invitation-open .hero .hero-audio-player{
     width: min(185px, 55vw);
     margin: 10px auto 18px !important;
 }
+
+
+/* =====================================================
+   v134 · ITINERARIO COMPLETO EN UNA PANTALLA MÓVIL
+===================================================== */
+
+@media (max-width: 768px) {
+    #cronograma {
+        box-sizing: border-box;
+        height: 100svh;
+        min-height: 560px;
+        max-height: 100svh;
+        padding-top: clamp(18px, 3svh, 26px) !important;
+        padding-bottom: clamp(14px, 2.5svh, 22px) !important;
+        overflow: hidden;
+    }
+
+    #cronograma > .container {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+    }
+
+    #cronograma .itinerary-title {
+        flex: 0 0 auto;
+        font-size: clamp(26px, 4.4svh, 32px) !important;
+        line-height: 1.02 !important;
+    }
+
+    #cronograma .divider-center {
+        flex: 0 0 auto;
+        width: min(155px, 48vw);
+        margin: 6px auto 8px !important;
+    }
+
+    #cronograma .schedule-grid {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    #cronograma .schedule-grid::before {
+        top: 5% !important;
+        bottom: 5% !important;
+    }
+
+    #cronograma .schedule-card {
+        flex: 1 1 0;
+        min-height: 0 !important;
+        padding: 0 7px !important;
+        justify-content: center;
+    }
+
+    #cronograma .schedule-card-icon {
+        width: clamp(44px, 7.5svh, 58px) !important;
+        height: clamp(40px, 7svh, 52px) !important;
+        margin-bottom: 0 !important;
+    }
+
+    #cronograma .schedule-card h3 {
+        margin-bottom: 1px !important;
+        font-size: clamp(15px, 2.35svh, 18px) !important;
+        line-height: 1.04 !important;
+    }
+
+    #cronograma .schedule-card-time {
+        font-size: clamp(10.5px, 1.65svh, 12px) !important;
+        line-height: 1.1 !important;
+    }
+
+    #cronograma .schedule-card::after {
+        width: 24px !important;
+    }
+}
