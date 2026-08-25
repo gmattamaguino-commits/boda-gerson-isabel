@@ -11261,3 +11261,24 @@ body.invitation-open .hero .hero-audio-player{
         width: 100%;
     }
 }
+
+/* v117 · Título de la bendición más próximo al HERO. */
+#bendicion .subtitle-section {
+    display: none !important;
+}
+
+#bendicion .title-section {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+    #bendicion {
+        justify-content: flex-start;
+        padding-top: 28px;
+    }
+
+    #bendicion .divider-center {
+        margin-top: 10px;
+        margin-bottom: 18px;
+    }
+}
