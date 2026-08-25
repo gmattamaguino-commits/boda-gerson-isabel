@@ -1482,7 +1482,7 @@ function initFallingLeaves() {
 ===================================================== */
 
 function initInvitationEnhancements() {
-    const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 1 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
+    const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
 
     const brideParentNames = document.querySelectorAll(
         '#bendicion .parents-col:nth-child(2) .parents-name'
