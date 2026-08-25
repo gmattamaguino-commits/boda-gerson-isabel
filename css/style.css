@@ -11775,3 +11775,15 @@ body.invitation-open .hero .hero-audio-player{
         height: clamp(45px, 7.7svh, 60px) !important;
     }
 }
+
+
+/* =====================================================
+   v138 · SEGUNDO AUMENTO DE ICONOS DEL ITINERARIO
+===================================================== */
+
+@media (max-width: 768px) {
+    #cronograma .schedule-card-icon {
+        width: clamp(56px, 9svh, 74px) !important;
+        height: clamp(50px, 8.4svh, 68px) !important;
+    }
+}
