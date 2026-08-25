@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Montserrat:wght@500;600&display=swap");
 
 /*=========================================
 RESET
@@ -11442,4 +11442,18 @@ body.invitation-open .hero .hero-audio-player{
     width: 100% !important;
     margin-inline: auto !important;
     text-align: center !important;
+}
+
+/* v123 · Respiración de la sección familiar y nombres con más contraste. */
+#bendicion .parents-name,
+#bendicion .godparents-name {
+    color: #292627 !important;
+    font-weight: 600 !important;
+}
+
+@media (max-width: 768px) {
+    #bendicion {
+        padding-top: 38px !important;
+        padding-bottom: 40px !important;
+    }
 }
