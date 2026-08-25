@@ -11729,3 +11729,23 @@ body.invitation-open .hero .hero-audio-player{
         width: 24px !important;
     }
 }
+
+
+/* =====================================================
+   v135 · SEPARADOR DEL ITINERARIO SIEMPRE VISIBLE
+   Evita que la animación reveal lo deje transparente en móvil.
+===================================================== */
+
+#cronograma .divider-center,
+#cronograma .divider-center.reveal,
+#cronograma .divider-center.reveal.is-visible {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    height: 28px !important;
+    background-image: url("../img/separador-floral.svg?v=1") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+}
