@@ -11544,3 +11544,17 @@ body.invitation-open .hero .hero-audio-player{
 #detalles-principales .wedding-calendar-side {
     color: #2F2C2C !important;
 }
+
+
+/* =====================================================
+   v128 · TIPOGRAFÍA DE NOMBRES EN FRASE Y TICKET
+===================================================== */
+
+/* Misma fuente que los nombres de padres y padrinos. */
+#detalles-principales .wedding-details-count-title,
+#detalles-principales .wedding-details-count-title span,
+#detalles-principales #guest-card-name {
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+}
