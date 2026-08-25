@@ -11619,17 +11619,3 @@ body.invitation-open .hero .hero-audio-player{
     font-size: clamp(14px, 2vw, 16px) !important;
     line-height: 1.3 !important;
 }
-
-
-/* =====================================================
-   v132 · SEPARADOR ORNAMENTAL EN ITINERARIO
-===================================================== */
-
-#cronograma .itinerary-title {
-    margin-bottom: 0 !important;
-}
-
-#cronograma .divider-center {
-    width: min(185px, 55vw);
-    margin: 10px auto 18px !important;
-}
