@@ -6,8 +6,10 @@ const WEDDING_CONFIG = Object.freeze({
         "Julian Alvis Pimentel",
         "Aydee Hernandez Lloclla"
     ]),
-    godparents:
-        "David Gonzales Francia & Cynthia Olivera Zanabria",
+    godparents: Object.freeze([
+        "David Gonzales Francia",
+        "Cynthia Olivera Zanabria"
+    ]),
     rsvpMessage: `
         Su confirmación es importante para nosotros.<br>
         Les agradeceremos confirmar su asistencia antes del
@@ -1496,7 +1498,7 @@ function initInvitationEnhancements() {
 
     const godparentsName = document.querySelector('.godparents-name');
     if (godparentsName) {
-        godparentsName.textContent = WEDDING_CONFIG.godparents;
+        godparentsName.innerHTML = WEDDING_CONFIG.godparents.join('<br>');
     }
 
     const rsvpMessage = document.querySelector(
