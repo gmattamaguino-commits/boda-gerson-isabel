@@ -11558,3 +11558,9 @@ body.invitation-open .hero .hero-audio-player{
     font-style: italic !important;
     font-weight: 600 !important;
 }
+
+
+/* v129 · TEXTO DE INVITACIÓN EN NEGRITA */
+#detalles-principales .wedding-details-invitation {
+    font-weight: 700 !important;
+}
