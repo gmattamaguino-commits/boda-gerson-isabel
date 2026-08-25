@@ -2,6 +2,10 @@
 
 const WEDDING_CONFIG = Object.freeze({
     dateTime: "2026-10-24T11:00:00-05:00",
+    brideParents: Object.freeze([
+        "Julian Alvis Pimentel",
+        "Aydee Hernandez Lloclla"
+    ]),
     godparents:
         "David Gonzales Francia & Cynthia Olivera Zanabria",
     rsvpMessage: `
@@ -1478,7 +1482,17 @@ function initFallingLeaves() {
 ===================================================== */
 
 function initInvitationEnhancements() {
-    const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
+    const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 1 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
+
+    const brideParentNames = document.querySelectorAll(
+        '#bendicion .parents-col:nth-child(2) .parents-name'
+    );
+    brideParentNames.forEach((element, index) => {
+        const correctedName = WEDDING_CONFIG.brideParents[index];
+        if (correctedName) {
+            element.textContent = correctedName;
+        }
+    });
 
     const godparentsName = document.querySelector('.godparents-name');
     if (godparentsName) {
