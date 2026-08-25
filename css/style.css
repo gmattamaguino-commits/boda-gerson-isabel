@@ -11638,3 +11638,17 @@ body.invitation-open .hero .hero-audio-player{
     color: #743044 !important;
     font-weight: 700 !important;
 }
+
+
+/* =====================================================
+   v133 · SEPARADOR ORNAMENTAL EN ITINERARIO
+===================================================== */
+
+#cronograma .itinerary-title {
+    margin-bottom: 0 !important;
+}
+
+#cronograma .divider-center {
+    width: min(185px, 55vw);
+    margin: 10px auto 18px !important;
+}
