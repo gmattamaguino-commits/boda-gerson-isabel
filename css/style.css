@@ -11564,3 +11564,43 @@ body.invitation-open .hero .hero-audio-player{
 #detalles-principales .wedding-details-invitation {
     font-weight: 700 !important;
 }
+
+
+/* =====================================================
+   v130 · AJUSTES DE LUGARES E ILUSTRACIONES TRANSPARENTES
+===================================================== */
+
+/* Se elimina el rótulo redundante “LUGARES”. */
+#lugares .subtitle-section {
+    display: none !important;
+}
+
+/* Las ilustraciones se integran directamente con el fondo. */
+#lugares .place-illustration,
+#lugares .place-illustration img {
+    background: transparent !important;
+}
+
+/* Catedral ligeramente más pequeña. */
+#lugares .place-illustration--church img {
+    width: min(145px, 46vw) !important;
+    max-height: 108px !important;
+}
+
+/* Nombres de los lugares en guinda y negrita. */
+#lugares .place-name {
+    color: #743044 !important;
+    font-weight: 700 !important;
+}
+
+/* Horarios de ceremonia y recepción en negrita. */
+#lugares .place-time {
+    font-weight: 700 !important;
+}
+
+@media (max-width: 768px) {
+    #lugares .place-illustration--church img {
+        width: min(135px, 43vw) !important;
+        max-height: 100px !important;
+    }
+}
