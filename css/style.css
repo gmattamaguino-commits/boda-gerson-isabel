@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@500;600&display=swap");
+
 /*=========================================
 RESET
 =========================================*/
@@ -11284,4 +11286,140 @@ body.invitation-open .hero .hero-audio-player{
 #bendicion .parents-name,
 #bendicion .godparents-name {
     color: #2c292a !important;
+}
+
+
+/* =====================================================
+   v119 · SISTEMA TIPOGRÁFICO UNIFICADO
+===================================================== */
+
+/* Títulos principales */
+#bendicion .title-section,
+#lugares .title-section,
+#cronograma .title-section,
+#dresscode .title-section,
+#rsvp .title-section,
+#regalo .title-section,
+#galeria .title-section {
+    color: #3D3938 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 46px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.08 !important;
+    text-transform: uppercase !important;
+}
+
+/* Subtítulos de tarjetas y eventos */
+#lugares .place-card > h3,
+#cronograma .schedule-card > h3,
+#dresscode .details-card > h3,
+#rsvp .form-cta h3,
+#regalo .regalo-card h3 {
+    color: #3D3938 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 32px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+}
+
+/* Rótulos pequeños */
+#lugares .subtitle-section,
+#rsvp .subtitle-section,
+#regalo .subtitle-section,
+#galeria .subtitle-section,
+#bendicion .parents-label,
+#dresscode .details-eyebrow,
+#detalles-principales .wedding-calendar-month,
+#detalles-principales .guest-card-label,
+#detalles-principales .guest-ticket-passes-label,
+#regalo .gift-account-label,
+#detalles-principales .time-box small {
+    color: #743044 !important;
+    font-family: "Montserrat", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .16em !important;
+    line-height: 1.35 !important;
+    text-transform: uppercase !important;
+}
+
+/* Nombres de padres, padrinos e invitado */
+#bendicion .parents-name,
+#bendicion .godparents-name,
+#detalles-principales #guest-card-name {
+    color: #3D3938 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 34px !important;
+    font-style: italic !important;
+    font-weight: 500 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.15 !important;
+    text-transform: none !important;
+}
+
+/* Textos descriptivos, direcciones y mensajes */
+#detalles-principales .wedding-details-invitation,
+#detalles-principales .wedding-details-count-title,
+#detalles-principales .guest-card-welcome,
+#lugares .place-name,
+#lugares .place-address,
+#lugares .place-parking-note,
+#dresscode .details-card p:not(.details-eyebrow),
+#rsvp .form-cta p,
+#regalo .regalo-intro,
+#regalo .regalo-card p,
+.gracias .gracias-text {
+    color: #4B4543 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 19px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .005em !important;
+    line-height: 1.45 !important;
+}
+
+/* Horas y fechas pequeñas */
+#lugares .place-time,
+#cronograma .schedule-card-time,
+#detalles-principales .wedding-calendar-side {
+    color: #743044 !important;
+    font-family: "Montserrat", Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .08em !important;
+    line-height: 1.35 !important;
+    text-transform: uppercase !important;
+}
+
+/* Botones principales */
+#lugares .btn-place,
+#rsvp .btn-form,
+#regalo .btn-form {
+    color: #FFFFFF !important;
+    font-family: "Montserrat", Arial, sans-serif !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    letter-spacing: .01em !important;
+}
+
+/* Solo los nombres de la portada */
+.hero .hero-content h1 {
+    color: #FFFFFF !important;
+    font-family: "Great Vibes", cursive !important;
+    font-size: 72px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+}
+
+.hero .hero-content h1 span {
+    color: #E7B9C7 !important;
 }
