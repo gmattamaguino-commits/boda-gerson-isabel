@@ -1,7 +1,9 @@
 "use strict";
 
 const WEDDING_CONFIG = Object.freeze({
-    dateTime: "2026-10-24T11:00:00-05:00"
+    dateTime: "2026-10-24T11:00:00-05:00",
+    godparents:
+        "David Gonzales Francia & Cynthia Olivera Zanabria"
 });
 
 /* =====================================================
@@ -1470,6 +1472,11 @@ function initFallingLeaves() {
 
 function initInvitationEnhancements() {
     const musicIcon = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13M9 9l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>';
+
+    const godparentsName = document.querySelector('.godparents-name');
+    if (godparentsName) {
+        godparentsName.textContent = WEDDING_CONFIG.godparents;
+    }
 
     const guestCard = document.getElementById('guest-invitation-card');
     if (guestCard && !guestCard.querySelector('.guest-card-welcome')) {
