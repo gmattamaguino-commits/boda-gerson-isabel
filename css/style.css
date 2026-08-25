@@ -11481,3 +11481,24 @@ body.invitation-open .hero .hero-audio-player{
         padding-bottom: 60px !important;
     }
 }
+
+
+/* =====================================================
+   v125 · PRUEBA SIN CUADRO EN PADRES Y PADRINOS
+   Conserva los nombres y la composición; elimina solo el contenedor visual.
+===================================================== */
+#bendicion .family-card {
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+#bendicion .family-card::before {
+    content: none !important;
+    display: none !important;
+    border: 0 !important;
+}
