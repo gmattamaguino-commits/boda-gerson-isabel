@@ -3,7 +3,14 @@
 const WEDDING_CONFIG = Object.freeze({
     dateTime: "2026-10-24T11:00:00-05:00",
     godparents:
-        "David Gonzales Francia & Cynthia Olivera Zanabria"
+        "David Gonzales Francia & Cynthia Olivera Zanabria",
+    rsvpMessage: `
+        Su confirmación es importante para nosotros.<br>
+        Les agradeceremos confirmar su asistencia antes del
+        <strong>30 de septiembre de 2026</strong>, ya que cada detalle
+        de nuestra celebración ha sido preparado con mucho cariño
+        para compartir este momento junto a ustedes.
+    `
 });
 
 /* =====================================================
@@ -1476,6 +1483,19 @@ function initInvitationEnhancements() {
     const godparentsName = document.querySelector('.godparents-name');
     if (godparentsName) {
         godparentsName.textContent = WEDDING_CONFIG.godparents;
+    }
+
+    const rsvpMessage = document.querySelector(
+        '.rsvp-confirm-content > p:not(.rsvp-form-warning)'
+    );
+    if (rsvpMessage) {
+        rsvpMessage.innerHTML = WEDDING_CONFIG.rsvpMessage;
+
+        const rsvpDeadline = rsvpMessage.querySelector('strong');
+        if (rsvpDeadline) {
+            rsvpDeadline.style.color = '#743044';
+            rsvpDeadline.style.fontWeight = '600';
+        }
     }
 
     const guestCard = document.getElementById('guest-invitation-card');
