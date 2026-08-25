@@ -11246,15 +11246,12 @@ body.invitation-open .hero .hero-audio-player{
     }
 }
 
-/* v116 · La página de padres y padrinos ocupa una pantalla completa en móvil. */
+/* v116 · La página de padres y padrinos conserva una altura fluida en móvil. */
 @media (max-width: 768px) {
     #bendicion {
         box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 100vh;
-        min-height: 100svh;
+        display: block;
+        min-height: 0;
     }
 
     #bendicion > .container {
@@ -11273,8 +11270,8 @@ body.invitation-open .hero .hero-audio-player{
 
 @media (max-width: 768px) {
     #bendicion {
-        justify-content: flex-start;
         padding-top: 28px;
+        padding-bottom: 28px;
     }
 
     #bendicion .divider-center {
