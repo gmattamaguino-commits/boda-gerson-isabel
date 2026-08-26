@@ -153,3 +153,69 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     grid-row: auto !important;
     aspect-ratio: 2 / 3 !important;
 }
+
+/* =====================================================
+   v168 · Frase bíblica sobre la foto de compromiso
+   ===================================================== */
+.story-photo--after-family::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        180deg,
+        rgba(18, 13, 12, .50) 0%,
+        rgba(18, 13, 12, .22) 30%,
+        rgba(18, 13, 12, 0) 58%
+    );
+    pointer-events: none;
+}
+
+.story-photo--after-family .story-photo-verse {
+    position: absolute;
+    top: 8%;
+    left: 7%;
+    z-index: 2;
+    width: min(86%, 610px);
+    color: #fffdfb;
+    text-align: left;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .58);
+    pointer-events: none;
+}
+
+.story-photo--after-family .story-photo-verse p {
+    margin: 0;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(21px, 2.2vw, 32px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: .01em;
+}
+
+.story-photo--after-family .story-photo-verse cite {
+    display: block;
+    margin-top: 13px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(15px, 1.2vw, 19px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .story-photo--after-family .story-photo-verse {
+        top: 7%;
+        left: 6%;
+        width: 88%;
+    }
+
+    .story-photo--after-family .story-photo-verse p {
+        font-size: clamp(18px, 5.2vw, 23px);
+    }
+
+    .story-photo--after-family .story-photo-verse cite {
+        margin-top: 11px;
+        font-size: clamp(14px, 3.9vw, 17px);
+    }
+}
