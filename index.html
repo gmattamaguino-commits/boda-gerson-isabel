@@ -50,7 +50,7 @@
 >
 <!-- Estilos de la invitación -->
 <link href="css/variables.css?v=112" rel="stylesheet">
-<link href="css/style.css?v=133" rel="stylesheet">
+<link href="css/style.css?v=148" rel="stylesheet">
 
 <style>
 /* v78 · Fotografía de página completa entre el ticket y la bendición */
@@ -412,9 +412,17 @@ Estacionamiento disponible dentro del local.
 <div class="regalo-content">
 <p>Tu presencia es el mejor regalo, pero si gustas hacernos un detalle, te dejamos estas sugerencias.</p>
 </div>
+<div class="gift-option-buttons">
+<a class="btn-form gift-option-button" href="https://www.noviosfalabella.com.pe/public/prodSubCatTodasCategoriasCl.do?codigoEvento=738096&amp;dvEvento=08&amp;retencionEvento=S" target="_blank" rel="noopener noreferrer">
+                Ver lista de novios Falabella
+            </a>
+<button class="btn-form gift-option-button" type="button" data-bs-toggle="modal" data-bs-target="#yape-modal" aria-controls="yape-modal">
+                Ver QR de Yape
+            </button>
 <button class="btn-form gift-data-button" id="gift-data-button" type="button" aria-controls="gift-account-details" aria-expanded="false">
                 Ver datos bancarios
             </button>
+</div>
 <div class="gift-account-details" id="gift-account-details" aria-hidden="true">
 <div class="gift-details-inner">
 <div class="gift-details-divider" aria-hidden="true"></div>
@@ -449,6 +457,16 @@ Estacionamiento disponible dentro del local.
 </div>
 </div>
 </section>
+<div class="modal fade gift-yape-modal" id="yape-modal" tabindex="-1" aria-labelledby="yape-modal-title" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<button class="btn-close gift-yape-close" type="button" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+<h3 id="yape-modal-title">Yape</h3>
+<img class="gift-yape-qr" src="img/yape-qr-isabel-v148.png?v=148" alt="Código QR de Yape de Isabel Alvis" loading="lazy" decoding="async">
+<p>Yape a nombre de <strong>Isabel Alvis</strong></p>
+</div>
+</div>
+</div>
 <section class="rsvp" id="rsvp">
 <div class="container">
 <p class="subtitle-section">
