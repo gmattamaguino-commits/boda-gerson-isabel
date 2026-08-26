@@ -11832,3 +11832,80 @@ body.invitation-open .hero .hero-audio-player{
 .family-section .godparents-block {
     padding-top: 38px !important;
 }
+
+
+/* =====================================================
+   v141 · AJUSTE DEL CUADRO Y JERARQUÍA DEL DRESS CODE
+===================================================== */
+
+/* Cuadros más compactos y alineados visualmente con los de lugares. */
+#dresscode .details-grid {
+    width: min(95%, 430px) !important;
+}
+
+#dresscode .details-card {
+    width: 100% !important;
+    margin-inline: auto !important;
+    padding: 16px 18px 21px !important;
+}
+
+/* En la primera tarjeta: título, ilustración, modalidad y descripción. */
+#dresscode .details-card:first-child .details-eyebrow {
+    order: 1;
+    margin: 0 0 5px !important;
+    color: #743044 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(19px, 2.8vw, 22px) !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    letter-spacing: .025em !important;
+    line-height: 1.15 !important;
+    text-transform: none !important;
+}
+
+#dresscode .details-card:first-child .details-illustration--dresscode {
+    order: 2;
+    width: 118px !important;
+    height: 108px !important;
+    margin: 0 auto 3px !important;
+}
+
+#dresscode .details-card:first-child h3 {
+    order: 3;
+    margin: 0 0 7px !important;
+    color: #743044 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(18px, 2.6vw, 20px) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.25 !important;
+    text-transform: none !important;
+}
+
+#dresscode .details-card:first-child p:not(.details-eyebrow) {
+    order: 4;
+}
+
+@media (max-width: 768px) {
+    #dresscode .details-grid {
+        width: 95% !important;
+    }
+
+    #dresscode .details-card {
+        padding: 14px 16px 19px !important;
+    }
+
+    #dresscode .details-card:first-child .details-eyebrow {
+        font-size: 19px !important;
+    }
+
+    #dresscode .details-card:first-child .details-illustration--dresscode {
+        width: 112px !important;
+        height: 102px !important;
+    }
+
+    #dresscode .details-card:first-child h3 {
+        font-size: 18px !important;
+    }
+}
