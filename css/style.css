@@ -12390,3 +12390,73 @@ body #rsvp .rsvp-song-card .rsvp-song-content > p {
     text-align: center !important;
     text-wrap: pretty;
 }
+
+/* =====================================================
+   v162 · Detalles compactos y tipografía unificada
+   ===================================================== */
+
+/* Mismo ancho que el cuadro de Mesa de regalos. */
+#dresscode .details-grid {
+    width: min(100%, 350px) !important;
+    max-width: 350px !important;
+}
+
+#dresscode .details-card {
+    box-sizing: border-box;
+    width: 100% !important;
+    padding: 16px 18px 21px !important;
+}
+
+/* Imágenes de vestido y traje ligeramente más pequeñas. */
+#dresscode .details-card:first-child .dresscode-choices {
+    gap: 12px !important;
+    margin: 1px auto 6px !important;
+}
+
+#dresscode .details-card:first-child .dresscode-choice {
+    flex-basis: 104px !important;
+}
+
+#dresscode .details-card:first-child .dresscode-figure {
+    width: 88px !important;
+    height: 112px !important;
+}
+
+/* Solo los párrafos toman el diseño del texto de Mesa de regalos. */
+#dresscode .details-card > p:not(.details-eyebrow) {
+    max-width: 290px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    color: #4B4543 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .005em !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+}
+
+@media (max-width: 480px) {
+    #dresscode .details-grid {
+        width: min(100%, 330px) !important;
+        max-width: 330px !important;
+    }
+
+    #dresscode .details-card {
+        padding: 14px 16px 19px !important;
+    }
+
+    #dresscode .details-card:first-child .dresscode-choices {
+        gap: 10px !important;
+    }
+
+    #dresscode .details-card:first-child .dresscode-figure {
+        width: 82px !important;
+        height: 105px !important;
+    }
+
+    #dresscode .details-card > p:not(.details-eyebrow) {
+        font-size: 17.5px !important;
+    }
+}
