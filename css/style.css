@@ -12368,3 +12368,12 @@ body.gift-modal-open {
         font-size: 17.5px !important;
     }
 }
+
+
+/* v160 · Título de la sugerencia musical centrado. */
+#rsvp .rsvp-song-content h3 {
+    width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+}
