@@ -11924,3 +11924,9 @@ body.invitation-open .hero .hero-audio-player{
     line-height: 1.1 !important;
     text-transform: uppercase !important;
 }
+
+
+/* v143 · DRESS CODE EN EL MISMO PLOMO DE LOS TÍTULOS DE LUGARES */
+#dresscode .details-card:first-child .details-eyebrow {
+    color: #3D3938 !important;
+}
