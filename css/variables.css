@@ -219,3 +219,52 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
         font-size: clamp(14px, 3.9vw, 17px);
     }
 }
+
+/* =====================================================
+   v169 · Reubica la frase sin cubrir rostro, anillo ni manos
+   ===================================================== */
+.story-photo--after-family::after {
+    background: radial-gradient(
+        ellipse at 0% 78%,
+        rgba(18, 13, 12, .56) 0%,
+        rgba(18, 13, 12, .30) 28%,
+        rgba(18, 13, 12, 0) 60%
+    );
+}
+
+.story-photo--after-family .story-photo-verse {
+    top: auto;
+    bottom: 12%;
+    left: 6%;
+    width: min(46%, 460px);
+}
+
+.story-photo--after-family .story-photo-verse p {
+    font-size: clamp(19px, 1.8vw, 27px);
+    line-height: 1.25;
+}
+
+.story-photo--after-family .story-photo-verse cite {
+    margin-top: 10px;
+    font-size: clamp(14px, 1.05vw, 17px);
+}
+
+@media (max-width: 768px) {
+    .story-photo--after-family .story-photo-verse {
+        top: auto;
+        right: auto;
+        bottom: 15%;
+        left: 5.5%;
+        width: 48%;
+    }
+
+    .story-photo--after-family .story-photo-verse p {
+        font-size: clamp(17px, 4.7vw, 20px);
+        line-height: 1.24;
+    }
+
+    .story-photo--after-family .story-photo-verse cite {
+        margin-top: 9px;
+        font-size: clamp(13px, 3.7vw, 15px);
+    }
+}
