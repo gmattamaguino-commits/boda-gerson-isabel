@@ -12332,3 +12332,16 @@ body.gift-modal-open {
 #regalo .gift-option-buttons > * {
     grid-area: auto !important;
 }
+
+
+/* v153 · Texto introductorio de mesa de regalos ligeramente mayor. */
+#regalo .regalo-card .regalo-content p {
+    font-size: 16.5px !important;
+    line-height: 1.5 !important;
+}
+
+@media (max-width: 480px) {
+    #regalo .regalo-card .regalo-content p {
+        font-size: 16px !important;
+    }
+}
