@@ -502,3 +502,27 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
         margin-top: 8px;
     }
 }
+
+/* =====================================================
+   v176 · Separador ornamental como imagen SVG
+   ===================================================== */
+.envelope-intro .envelope-welcome-message .welcome-wedding-title::after {
+    content: "" !important;
+    display: block !important;
+    width: 96px !important;
+    height: 16px !important;
+    margin: 7px auto 0 !important;
+    grid-column: 1 / -1;
+    justify-self: center;
+    background: transparent url("../img/separador-nos-casamos-v176.svg") center / contain no-repeat !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+@media (max-width: 600px) {
+    .envelope-intro .envelope-welcome-message .welcome-wedding-title::after {
+        width: 90px !important;
+        height: 14px !important;
+        margin-top: 6px !important;
+    }
+}
