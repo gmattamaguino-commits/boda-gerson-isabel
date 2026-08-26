@@ -12475,3 +12475,18 @@ body #rsvp .rsvp-song-card .rsvp-song-content > p {
         max-width: 305px !important;
     }
 }
+
+/* =====================================================
+   v164 · Ajuste fino del ancho de Detalles
+   ===================================================== */
+#dresscode .details-grid {
+    width: min(100%, 330px) !important;
+    max-width: 330px !important;
+}
+
+@media (max-width: 480px) {
+    #dresscode .details-grid {
+        width: min(100%, 312px) !important;
+        max-width: 312px !important;
+    }
+}
