@@ -12345,3 +12345,26 @@ body.gift-modal-open {
         font-size: 17.5px !important;
     }
 }
+
+
+/* v157 · Párrafos de confirmación y música con la tipografía de regalos. */
+#rsvp .rsvp-confirm-content p:not(.rsvp-form-warning),
+#rsvp .rsvp-song-content p {
+    color: #4B4543 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+#rsvp .rsvp-confirm-content .rsvp-deadline {
+    color: #743044 !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 480px) {
+    #rsvp .rsvp-confirm-content p:not(.rsvp-form-warning),
+    #rsvp .rsvp-song-content p {
+        font-size: 17.5px !important;
+    }
+}
