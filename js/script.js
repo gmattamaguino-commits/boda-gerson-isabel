@@ -13,9 +13,7 @@ const WEDDING_CONFIG = Object.freeze({
     rsvpMessage: `
         Su confirmación es importante para nosotros.<br>
         Les agradeceremos confirmar su asistencia antes del
-        <strong>30 de septiembre de 2026</strong>, ya que cada detalle
-        de nuestra celebración ha sido preparado con mucho cariño
-        para compartir este momento junto a ustedes.
+        <strong class="rsvp-deadline">26 de setiembre de 2026</strong>.
     `
 });
 
@@ -1563,7 +1561,7 @@ function initInvitationEnhancements() {
         const rsvpDeadline = rsvpMessage.querySelector('strong');
         if (rsvpDeadline) {
             rsvpDeadline.style.color = '#743044';
-            rsvpDeadline.style.fontWeight = '600';
+            rsvpDeadline.style.fontWeight = '700';
         }
     }
 
