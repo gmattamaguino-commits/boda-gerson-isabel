@@ -432,3 +432,16 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
         font-size: clamp(18px, 5.35vw, 22px) !important;
     }
 }
+
+/* =====================================================
+   v174 · Restaura texto visible de lista de novios
+   ===================================================== */
+#regalo .gift-option-buttons > a.gift-option-button:first-child {
+    color: #ffffff !important;
+    text-align: center !important;
+}
+
+#regalo .gift-option-buttons > a.gift-option-button:first-child::after {
+    content: none !important;
+    display: none !important;
+}
