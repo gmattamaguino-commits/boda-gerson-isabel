@@ -12460,3 +12460,18 @@ body #rsvp .rsvp-song-card .rsvp-song-content > p {
         font-size: 17.5px !important;
     }
 }
+
+/* =====================================================
+   v163 · Cuadros de detalles un poco más estrechos
+   ===================================================== */
+#dresscode .details-grid {
+    width: min(100%, 325px) !important;
+    max-width: 325px !important;
+}
+
+@media (max-width: 480px) {
+    #dresscode .details-grid {
+        width: min(100%, 305px) !important;
+        max-width: 305px !important;
+    }
+}
