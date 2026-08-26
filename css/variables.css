@@ -382,3 +382,20 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     white-space: nowrap;
     pointer-events: none;
 }
+
+/* =====================================================
+   v172 · Centrado de textos y lista de novios
+   ===================================================== */
+#rsvp .rsvp-confirm-content p:not(.rsvp-form-warning),
+#rsvp .rsvp-song-content p {
+    width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+    text-wrap: pretty;
+}
+
+#regalos .gift-option-button {
+    justify-content: center !important;
+    text-align: center !important;
+}
