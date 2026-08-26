@@ -399,3 +399,36 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     justify-content: center !important;
     text-align: center !important;
 }
+
+/* =====================================================
+   v173 · Título del sobre proporcionado y legible
+   ===================================================== */
+.envelope-intro .envelope-welcome-message .welcome-wedding-title {
+    display: flex !important;
+    width: 74% !important;
+    max-width: 360px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    align-items: center;
+    justify-content: center;
+    column-gap: .42em;
+    font-size: clamp(25px, 3.1vw, 36px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: .01em !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.envelope-intro .envelope-welcome-message .welcome-wedding-title > span {
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
+@media (max-width: 600px) {
+    .envelope-intro .envelope-welcome-message .welcome-wedding-title {
+        width: 70% !important;
+        max-width: 250px !important;
+        column-gap: .5em;
+        font-size: clamp(18px, 5.35vw, 22px) !important;
+    }
+}
