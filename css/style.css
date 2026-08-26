@@ -11930,3 +11930,85 @@ body.invitation-open .hero .hero-audio-player{
 #dresscode .details-card:first-child .details-eyebrow {
     color: #3D3938 !important;
 }
+
+
+/* =====================================================
+   v144 · VESTIDO Y TRAJE SEPARADOS EN DRESS CODE
+===================================================== */
+
+#dresscode .details-card:first-child .dresscode-choices {
+    order: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(18px, 5vw, 34px);
+    width: 100%;
+    margin: 3px auto 9px;
+}
+
+#dresscode .details-card:first-child .dresscode-choice {
+    display: flex;
+    flex: 0 1 126px;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+#dresscode .details-card:first-child .dresscode-figure {
+    position: relative;
+    display: block;
+    width: 96px;
+    height: 126px;
+    overflow: hidden;
+}
+
+#dresscode .details-card:first-child .dresscode-figure img {
+    position: absolute;
+    top: 0;
+    width: auto !important;
+    max-width: none !important;
+    height: 128px !important;
+    margin: 0 !important;
+    object-fit: initial !important;
+}
+
+#dresscode .details-card:first-child .dresscode-figure--dress img {
+    left: 11px;
+    clip-path: inset(0 31% 0 0);
+}
+
+#dresscode .details-card:first-child .dresscode-figure--suit img {
+    left: -30px;
+    clip-path: inset(0 0 0 54%);
+}
+
+#dresscode .details-card:first-child .dresscode-choice-label {
+    display: block;
+    margin-top: 2px;
+    color: #743044;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(17px, 2.5vw, 19px);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: .01em;
+    line-height: 1.2;
+    text-align: center;
+}
+
+#dresscode .details-card:first-child > p:not(.details-eyebrow) {
+    order: 3;
+}
+
+@media (max-width: 768px) {
+    #dresscode .details-card:first-child .dresscode-choices {
+        gap: 14px;
+    }
+
+    #dresscode .details-card:first-child .dresscode-choice {
+        flex-basis: 112px;
+    }
+
+    #dresscode .details-card:first-child .dresscode-choice-label {
+        font-size: 17px;
+    }
+}
