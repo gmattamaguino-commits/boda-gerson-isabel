@@ -445,3 +445,60 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     content: none !important;
     display: none !important;
 }
+
+/* =====================================================
+   v175 · “NOS CASAMOS!” según referencia serif
+   ===================================================== */
+.envelope-intro .envelope-welcome-message .welcome-wedding-title {
+    display: grid !important;
+    width: 78% !important;
+    max-width: 330px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+    column-gap: .32em;
+    color: #5B1F2B !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(23px, 3.2vw, 31px) !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 1.05 !important;
+    letter-spacing: .035em !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+
+.envelope-intro .envelope-welcome-message .welcome-wedding-title::after {
+    content: "✣";
+    display: block;
+    width: 94px;
+    margin: 9px auto 0;
+    grid-column: 1 / -1;
+    justify-self: center;
+    color: #5B1F2B;
+    background:
+        linear-gradient(#5B1F2B, #5B1F2B) left center / 39% 1px no-repeat,
+        linear-gradient(#5B1F2B, #5B1F2B) right center / 39% 1px no-repeat;
+    font-family: Georgia, serif;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .envelope-intro .envelope-welcome-message .welcome-wedding-title {
+        width: 76% !important;
+        max-width: 255px !important;
+        column-gap: .28em;
+        font-size: clamp(19px, 5.7vw, 23px) !important;
+    }
+
+    .envelope-intro .envelope-welcome-message .welcome-wedding-title::after {
+        width: 88px;
+        margin-top: 8px;
+    }
+}
