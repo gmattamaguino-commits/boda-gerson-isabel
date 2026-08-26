@@ -335,3 +335,26 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
         font-size: clamp(13px, 3.7vw, 15px);
     }
 }
+
+/* =====================================================
+   v171 · Ajusta “¡NOS CASAMOS!” dentro de la tarjeta
+   ===================================================== */
+.envelope-intro .envelope-welcome-message .welcome-wedding-title {
+    display: block;
+    width: auto;
+    max-width: 82%;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    font-size: clamp(30px, 4.2vw, 44px) !important;
+    line-height: .95 !important;
+    letter-spacing: 0 !important;
+    text-align: center;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 600px) {
+    .envelope-intro .envelope-welcome-message .welcome-wedding-title {
+        max-width: 84%;
+        font-size: clamp(24px, 7.2vw, 32px) !important;
+    }
+}
