@@ -12090,6 +12090,8 @@ body.invitation-open .hero .hero-audio-player{
 #regalo .gift-option-button,
 #regalo .gift-option-buttons .gift-data-button {
     display: flex !important;
+    grid-area: auto !important;
+    position: relative !important;
     align-items: center;
     justify-content: center;
     width: 100% !important;
@@ -12324,4 +12326,9 @@ body.gift-modal-open {
     .gift-yape-modal .gift-yape-qr {
         width: min(100%, 280px);
     }
+}
+
+/* v152 · Cada opción de regalo ocupa su propia fila en móvil. */
+#regalo .gift-option-buttons > * {
+    grid-area: auto !important;
 }
