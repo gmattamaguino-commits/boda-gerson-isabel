@@ -31,7 +31,6 @@ html body #dresscode .details-card > p:not(.details-eyebrow) {
     line-height: 1.4 !important;
 }
 
-/* Los colores reservados se mantienen destacados en negrita. */
 html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong {
     color: inherit !important;
     font-family: inherit !important;
@@ -43,28 +42,29 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
 }
 
 /* =====================================================
-   v162 · Galería: ocultar el subtítulo “GALERÍA”
+   v165 · Galería según croquis:
+   [ FOTO HORIZONTAL ]
+   foto1 | foto2
+   foto3 | foto4
+   foto5 | foto6
    ===================================================== */
 #galeria .subtitle-section {
     display: none !important;
 }
 
-/* =====================================================
-   v164 · Galería: foto de la pedida en formato horizontal
-   debajo del separador y antes de la cuadrícula.
-   ===================================================== */
 #galeria .gallery-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-auto-flow: row !important;
+    gap: 10px !important;
 }
 
-/* La foto que se eliminó previamente (galeria-03) continúa oculta. */
-#galeria .gallery-grid > .gallery-item:nth-child(3) {
-    display: none !important;
+#galeria .gallery-grid > .gallery-item {
+    min-width: 0 !important;
+    margin: 0 !important;
 }
 
-/* Foto de la pedida: ocupa las dos columnas en formato horizontal. */
+/* Foto horizontal principal: ocupa toda la primera fila. */
 #galeria .gallery-grid > .gallery-item:nth-child(1) {
     order: 0 !important;
     grid-column: 1 / -1 !important;
@@ -74,7 +74,6 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     min-height: 0 !important;
     max-height: none !important;
     aspect-ratio: 3 / 2 !important;
-    margin: 0 0 10px !important;
     border-radius: 14px !important;
     overflow: hidden !important;
 }
@@ -87,19 +86,34 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     object-position: center center !important;
 }
 
-/* La foto en blanco y negro inicia la cuadrícula inferior. */
-#galeria .gallery-grid > .gallery-item:nth-child(2) {
-    order: 1 !important;
-}
-
-/* El resto de fotos continúa debajo manteniendo su orden. */
-#galeria .gallery-grid > .gallery-item:nth-child(n+4) {
+/* foto1 y foto2 */
+#galeria .gallery-grid > .gallery-item:nth-child(2) { order: 1 !important; }
+#galeria .gallery-grid > .gallery-item:nth-child(3) {
+    display: block !important;
     order: 2 !important;
 }
 
+/* foto3 y foto4 */
+#galeria .gallery-grid > .gallery-item:nth-child(4) { order: 3 !important; }
+#galeria .gallery-grid > .gallery-item:nth-child(5) { order: 4 !important; }
+
+/* foto5 y foto6 */
+#galeria .gallery-grid > .gallery-item:nth-child(6) { order: 5 !important; }
+#galeria .gallery-grid > .gallery-item:nth-child(7) { order: 6 !important; }
+
+/* Las seis fotos inferiores mantienen dos columnas. */
+#galeria .gallery-grid > .gallery-item:nth-child(n+2) {
+    grid-column: auto !important;
+}
+
 @media (max-width: 768px) {
+    #galeria .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+    }
+
     #galeria .gallery-grid > .gallery-item:nth-child(1) {
         aspect-ratio: 3 / 2 !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 2px !important;
     }
 }
