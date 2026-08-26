@@ -50,7 +50,7 @@
 >
 <!-- Estilos de la invitación -->
 <link href="css/variables.css?v=112" rel="stylesheet">
-<link href="css/style.css?v=148" rel="stylesheet">
+<link href="css/style.css?v=149" rel="stylesheet">
 
 <style>
 /* v78 · Fotografía de página completa entre el ticket y la bendición */
@@ -416,7 +416,7 @@ Estacionamiento disponible dentro del local.
 <a class="btn-form gift-option-button" href="https://www.noviosfalabella.com.pe/public/prodSubCatTodasCategoriasCl.do?codigoEvento=738096&amp;dvEvento=08&amp;retencionEvento=S" target="_blank" rel="noopener noreferrer">
                 Ver lista de novios Falabella
             </a>
-<button class="btn-form gift-option-button" type="button" data-bs-toggle="modal" data-bs-target="#yape-modal" aria-controls="yape-modal">
+<button class="btn-form gift-option-button" id="gift-yape-button" type="button" aria-controls="yape-modal" aria-expanded="false">
                 Ver QR de Yape
             </button>
 <button class="btn-form gift-data-button" id="gift-data-button" type="button" aria-controls="gift-account-details" aria-expanded="false">
@@ -457,12 +457,15 @@ Estacionamiento disponible dentro del local.
 </div>
 </div>
 </section>
-<div class="modal fade gift-yape-modal" id="yape-modal" tabindex="-1" aria-labelledby="yape-modal-title" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-<button class="btn-close gift-yape-close" type="button" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+<div class="gift-yape-modal" id="yape-modal" role="dialog" aria-modal="true" aria-labelledby="yape-modal-title" aria-hidden="true" hidden>
+<button class="gift-yape-backdrop" type="button" data-yape-close aria-label="Cerrar ventana de Yape"></button>
+<div class="gift-yape-dialog" role="document">
+<div class="gift-yape-content">
+<button class="gift-yape-close" id="gift-yape-close" type="button" data-yape-close aria-label="Cerrar">
+<span aria-hidden="true">×</span>
+</button>
 <h3 id="yape-modal-title">Yape</h3>
-<img class="gift-yape-qr" src="img/yape-qr-isabel-v148.png?v=148" alt="Código QR de Yape de Isabel Alvis" loading="lazy" decoding="async">
+<img class="gift-yape-qr" src="img/yape-qr-isabel-v148.png?v=149" alt="Código QR de Yape de Isabel Alvis" loading="eager" decoding="async" width="720" height="745">
 <p>Yape a nombre de <strong>Isabel Alvis</strong></p>
 </div>
 </div>
@@ -558,6 +561,6 @@ Estacionamiento disponible dentro del local.
     aria-hidden="true"
 ></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js?v=112"></script>
+<script src="js/script.js?v=149"></script>
 </body>
 </html>
