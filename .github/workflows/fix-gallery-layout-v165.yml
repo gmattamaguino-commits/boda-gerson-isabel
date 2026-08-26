@@ -1,0 +1,50 @@
+name: Fix gallery layout v165
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/fix-gallery-layout-v165.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update gallery HTML and cache bust
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          old = '''<div class="gallery-item" data-full="img/galeria-03-full.webp" onclick="openLightbox(this)">
+          <img alt="Gerson e Isabel en una fotografía romántica" decoding="async" loading="lazy" src="img/galeria-03-thumb.webp" width="720" height="481"/>
+          </div>'''.replace('          ', '')
+
+          new = '''<div class="gallery-item" data-full="img/galeria-01.jpg?v=20260826photo2" onclick="openLightbox(this)">
+          <img alt="Gerson e Isabel frente al corazón de rosas" decoding="async" loading="lazy" src="img/galeria-01.jpg?v=20260826photo2" width="720" height="480"/>
+          </div>'''.replace('          ', '')
+
+          if old not in s:
+              raise SystemExit('No se encontró el bloque de galeria-03 esperado')
+
+          s = s.replace(old, new, 1)
+          s = s.replace('css/variables.css?v=112', 'css/variables.css?v=165')
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/fix-gallery-layout-v165.yml
+          git commit -m "[skip ci] Ajusta galería al croquis solicitado"
+          git push
