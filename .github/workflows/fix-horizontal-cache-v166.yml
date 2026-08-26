@@ -1,0 +1,39 @@
+name: Fix horizontal gallery cache v166
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-horizontal-cache-v166.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Actualizar URLs de la foto horizontal
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('data-full="img/galeria-01-full.webp"', 'data-full="img/galeria-01-full.webp?v=20260826horizontal4"', 1)
+          s = s.replace('src="img/galeria-01-thumb.webp"', 'src="img/galeria-01-thumb.webp?v=20260826horizontal4"', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm .github/workflows/fix-horizontal-cache-v166.yml
+
+      - name: Guardar cambio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-horizontal-cache-v166.yml
+          git commit -m "Fuerza recarga de foto horizontal de galería"
+          git push
