@@ -50,45 +50,56 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
 }
 
 /* =====================================================
-   v163 · Galería: retirar la foto marcada con X y mover
-   la foto principal del corazón a su ubicación.
+   v164 · Galería: foto de la pedida en formato horizontal
+   debajo del separador y antes de la cuadrícula.
    ===================================================== */
 #galeria .gallery-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
 }
 
-/* Foto marcada con X verde: galeria-03 */
+/* La foto que se eliminó previamente (galeria-03) continúa oculta. */
 #galeria .gallery-grid > .gallery-item:nth-child(3) {
     display: none !important;
 }
 
-/* La foto principal galeria-01 pasa al segundo espacio de la primera fila. */
+/* Foto de la pedida: ocupa las dos columnas en formato horizontal. */
 #galeria .gallery-grid > .gallery-item:nth-child(1) {
-    order: 2 !important;
-    grid-column: auto !important;
+    order: 0 !important;
+    grid-column: 1 / -1 !important;
     grid-row: auto !important;
     width: 100% !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 !important;
+    aspect-ratio: 3 / 2 !important;
+    margin: 0 0 10px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
 }
 
-/* La foto en blanco y negro permanece a la izquierda. */
+#galeria .gallery-grid > .gallery-item:nth-child(1) img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+}
+
+/* La foto en blanco y negro inicia la cuadrícula inferior. */
 #galeria .gallery-grid > .gallery-item:nth-child(2) {
     order: 1 !important;
 }
 
-/* El resto de fotos continúa debajo, conservando su orden. */
+/* El resto de fotos continúa debajo manteniendo su orden. */
 #galeria .gallery-grid > .gallery-item:nth-child(n+4) {
-    order: 3 !important;
+    order: 2 !important;
 }
 
-#galeria .gallery-grid > .gallery-item:nth-child(1) img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
+@media (max-width: 768px) {
+    #galeria .gallery-grid > .gallery-item:nth-child(1) {
+        aspect-ratio: 3 / 2 !important;
+        margin-bottom: 8px !important;
+    }
 }
