@@ -358,3 +358,27 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
         font-size: clamp(24px, 7.2vw, 32px) !important;
     }
 }
+
+/* =====================================================
+   v172 · Mesa de regalos: texto corto y centrado
+   ===================================================== */
+#regalo .gift-option-buttons > a.gift-option-button:first-child {
+    position: relative;
+    color: transparent !important;
+}
+
+#regalo .gift-option-buttons > a.gift-option-button:first-child::after {
+    content: "Ver lista de novios";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font: inherit;
+    letter-spacing: inherit;
+    line-height: normal;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
