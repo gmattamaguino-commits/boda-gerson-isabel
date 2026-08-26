@@ -12073,3 +12073,136 @@ body.invitation-open .hero .hero-audio-player{
 #regalo .regalo-content p {
     margin: 0 auto !important;
 }
+
+
+/* =====================================================
+   v148 · FALABELLA, YAPE Y TRANSFERENCIA
+===================================================== */
+
+#regalo .gift-option-buttons {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+#regalo .gift-option-button,
+#regalo .gift-option-buttons .gift-data-button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 46px;
+    margin: 0 !important;
+    padding: 11px 16px;
+    border: 0 !important;
+    border-radius: 999px;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+#regalo .gift-option-button:hover,
+#regalo .gift-option-button:focus-visible {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+#regalo .gift-accordion.is-expanded .gift-option-buttons {
+    display: none;
+}
+
+.gift-yape-modal .modal-dialog {
+    width: min(calc(100% - 28px), 390px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.gift-yape-modal .modal-content {
+    position: relative;
+    align-items: center;
+    padding: 28px 22px 24px;
+    overflow: hidden;
+    background: #FFFCFA;
+    border: 1px solid rgba(205, 169, 112, .72);
+    border-radius: 22px;
+    box-shadow: 0 18px 48px rgba(45, 29, 35, .22);
+    text-align: center;
+}
+
+.gift-yape-modal .modal-content::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(224, 203, 171, .52);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.gift-yape-modal .modal-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+.gift-yape-modal .gift-yape-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+}
+
+.gift-yape-modal h3 {
+    margin: 0 0 14px;
+    color: #3D3938;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: .01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.gift-yape-modal .gift-yape-qr {
+    display: block;
+    width: min(100%, 300px);
+    height: auto;
+    margin: 0 auto 13px;
+    border-radius: 14px;
+}
+
+.gift-yape-modal p {
+    margin: 0;
+    color: #4B4543;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.gift-yape-modal p strong {
+    color: #743044;
+    font-weight: 700;
+}
+
+@media (max-width: 480px) {
+    #regalo .gift-option-buttons {
+        max-width: 270px;
+        gap: 9px;
+    }
+
+    #regalo .gift-option-button,
+    #regalo .gift-option-buttons .gift-data-button {
+        min-height: 44px;
+        padding: 10px 13px;
+        font-size: 13px !important;
+    }
+
+    .gift-yape-modal .modal-content {
+        padding: 25px 16px 20px;
+    }
+
+    .gift-yape-modal .gift-yape-qr {
+        width: min(100%, 280px);
+    }
+}
