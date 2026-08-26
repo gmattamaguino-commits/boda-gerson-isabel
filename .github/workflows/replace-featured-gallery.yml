@@ -1,0 +1,43 @@
+name: Replace featured gallery image
+
+on:
+  push:
+    paths:
+      - '.github/workflows/replace-featured-gallery.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct new gallery image
+        shell: bash
+        run: |
+          cat \
+            .uploadtmp/part1.txt \
+            .uploadtmp/part2.txt \
+            .uploadtmp/part3.txt \
+            .uploadtmp/part4.txt \
+            .uploadtmp/part5.txt \
+            .uploadtmp/part6.txt \
+            .uploadtmp/part7.txt > /tmp/gallery-photo.b64
+          base64 -d /tmp/gallery-photo.b64 > img/galeria-01-thumb.webp
+          cp img/galeria-01-thumb.webp img/galeria-01-full.webp
+          rm -rf .uploadtmp
+          test "$(stat -c%s img/galeria-01-thumb.webp)" -gt 40000
+
+      - name: Commit replacement
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/galeria-01-thumb.webp img/galeria-01-full.webp .uploadtmp
+          git commit -m "[skip ci] Reemplaza foto principal de galería"
+          git push
