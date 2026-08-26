@@ -12012,3 +12012,28 @@ body.invitation-open .hero .hero-audio-player{
         font-size: 17px;
     }
 }
+
+
+/* =====================================================
+   v145 · ILUSTRACIONES REALMENTE INDEPENDIENTES
+===================================================== */
+
+#dresscode .details-card:first-child .dresscode-figure {
+    width: 104px !important;
+    height: 132px !important;
+    overflow: visible !important;
+}
+
+#dresscode .details-card:first-child .dresscode-figure img,
+#dresscode .details-card:first-child .dresscode-figure--dress img,
+#dresscode .details-card:first-child .dresscode-figure--suit img {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    clip-path: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+}
