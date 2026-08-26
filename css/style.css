@@ -12377,3 +12377,16 @@ body.gift-modal-open {
     margin-left: auto !important;
     text-align: center !important;
 }
+
+/* =====================================================
+   v161 · Centrado definitivo de textos RSVP
+   ===================================================== */
+body #rsvp .rsvp-confirm-card .rsvp-confirm-content > p:not(.rsvp-form-warning),
+body #rsvp .rsvp-song-card .rsvp-song-content > p {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+    text-wrap: pretty;
+}
