@@ -16,3 +16,28 @@
     --transition: all .35s ease;
     --shadow: 0 10px 30px rgba(0, 0, 0, .12);
 }
+
+/* =====================================================
+   v161 · Detalles: párrafos con el mismo estilo que
+   “Tu presencia es el mejor regalo”
+   ===================================================== */
+html body #dresscode .details-card > p:not(.details-eyebrow) {
+    color: #4B4543 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(15.5px, 2.2vw, 17px) !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: .005em !important;
+    line-height: 1.4 !important;
+}
+
+/* Los colores reservados se mantienen destacados en negrita. */
+html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong {
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-style: inherit !important;
+    font-weight: 700 !important;
+    letter-spacing: inherit !important;
+    line-height: inherit !important;
+}
