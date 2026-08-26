@@ -1069,6 +1069,59 @@ function initGiftAccountCard() {
     });
 }
 
+
+/* =====================================================
+   MODAL PROPIO PARA QR DE YAPE
+===================================================== */
+
+function initGiftYapeModal() {
+    const modal = document.getElementById("yape-modal");
+    const openButton = document.getElementById("gift-yape-button");
+    const closeButton = document.getElementById("gift-yape-close");
+
+    if (!modal || !openButton || !closeButton) {
+        return;
+    }
+
+    let previousFocus = null;
+
+    function openModal() {
+        previousFocus = document.activeElement;
+        modal.hidden = false;
+        modal.setAttribute("aria-hidden", "false");
+        openButton.setAttribute("aria-expanded", "true");
+        document.body.classList.add("gift-modal-open");
+        closeButton.focus({ preventScroll: true });
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+        modal.setAttribute("aria-hidden", "true");
+        openButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("gift-modal-open");
+
+        if (previousFocus && typeof previousFocus.focus === "function") {
+            previousFocus.focus({ preventScroll: true });
+        }
+    }
+
+    openButton.addEventListener("click", event => {
+        event.preventDefault();
+        openModal();
+    });
+
+    modal.querySelectorAll("[data-yape-close]").forEach(control => {
+        control.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !modal.hidden) {
+            event.preventDefault();
+            closeModal();
+        }
+    });
+}
+
 /* =====================================================
    CONTROLES DEL TECLADO
 ===================================================== */
@@ -1555,6 +1608,7 @@ document.addEventListener(
         startCountdown();
         initRevealAnimations();
         initGiftAccountCard();
+        initGiftYapeModal();
         configureRSVPForm();
         initKeyboardControls();
         initFallingLeaves();
