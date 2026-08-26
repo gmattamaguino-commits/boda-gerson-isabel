@@ -41,3 +41,10 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
     letter-spacing: inherit !important;
     line-height: inherit !important;
 }
+
+/* =====================================================
+   v162 · Galería: ocultar el subtítulo “GALERÍA”
+   ===================================================== */
+#galeria .subtitle-section {
+    display: none !important;
+}
