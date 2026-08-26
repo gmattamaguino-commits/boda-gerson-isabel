@@ -48,3 +48,47 @@ html body #dresscode .details-card:first-child > p:not(.details-eyebrow) strong 
 #galeria .subtitle-section {
     display: none !important;
 }
+
+/* =====================================================
+   v163 · Galería: retirar la foto marcada con X y mover
+   la foto principal del corazón a su ubicación.
+   ===================================================== */
+#galeria .gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* Foto marcada con X verde: galeria-03 */
+#galeria .gallery-grid > .gallery-item:nth-child(3) {
+    display: none !important;
+}
+
+/* La foto principal galeria-01 pasa al segundo espacio de la primera fila. */
+#galeria .gallery-grid > .gallery-item:nth-child(1) {
+    order: 2 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 !important;
+}
+
+/* La foto en blanco y negro permanece a la izquierda. */
+#galeria .gallery-grid > .gallery-item:nth-child(2) {
+    order: 1 !important;
+}
+
+/* El resto de fotos continúa debajo, conservando su orden. */
+#galeria .gallery-grid > .gallery-item:nth-child(n+4) {
+    order: 3 !important;
+}
+
+#galeria .gallery-grid > .gallery-item:nth-child(1) img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
