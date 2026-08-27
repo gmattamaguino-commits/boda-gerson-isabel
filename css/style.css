@@ -12490,18 +12490,3 @@ body #rsvp .rsvp-song-card .rsvp-song-content > p {
         max-width: 312px !important;
     }
 }
-
-/* =====================================================
-   v165 · Títulos de Detalles igualados a Mesa de regalos
-   ===================================================== */
-#dresscode .details-card:first-child .details-eyebrow,
-#dresscode .details-card:nth-child(2) h3 {
-    color: #3D3938 !important;
-    font-family: "Cormorant Garamond", Georgia, serif !important;
-    font-size: clamp(29px, 4.5vw, 36px) !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    letter-spacing: .01em !important;
-    line-height: 1.12 !important;
-    text-transform: uppercase !important;
-}
