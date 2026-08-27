@@ -12490,3 +12490,18 @@ body #rsvp .rsvp-song-card .rsvp-song-content > p {
         max-width: 312px !important;
     }
 }
+
+/* =====================================================
+   v165 · Párrafos de Detalles ligeramente mayores
+   ===================================================== */
+#dresscode .details-card > p:not(.details-eyebrow) {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+@media (max-width: 480px) {
+    #dresscode .details-card > p:not(.details-eyebrow) {
+        font-size: 19px !important;
+    }
+}
