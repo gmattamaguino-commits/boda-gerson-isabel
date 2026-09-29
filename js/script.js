@@ -10,11 +10,7 @@ const WEDDING_CONFIG = Object.freeze({
         "David Gonzales Francia",
         "Cynthia Olivera Zanabria"
     ]),
-    rsvpMessage: `
-        Su confirmación es importante para nosotros. 
-        Les agradeceremos confirmar su asistencia antes del
-        <strong class="rsvp-deadline">26 de setiembre de 2026</strong>.
-    `
+    rsvpMessage: `Su confirmación es importante para nosotros. Les agradeceremos confirmar su asistencia lo antes posible.`
 });
 
 /* =====================================================
